@@ -8,9 +8,10 @@ import { createClient } from '@sanity/client';
 import type { SanityImage } from './sanity';
 
 // Create a lightweight client for image URL building only
+// ProjectId is public information, safe to hardcode for client-side use
 const projectId = typeof window === 'undefined'
-  ? process.env.SANITY_PROJECT_ID || ''
-  : '';
+  ? process.env.SANITY_PROJECT_ID || 'qibofery'
+  : 'qibofery';
 const dataset = typeof window === 'undefined'
   ? process.env.SANITY_DATASET || 'production'
   : 'production';
