@@ -13,7 +13,8 @@
     "format:check": "prettier --check \"app/**/*.{ts,tsx,css}\"",
     "sanity": "cd sanity && npm run dev",
     "sanity:build": "cd sanity && npm run build",
-    "sanity:deploy": "cd sanity && npm run deploy"
+    "sanity:deploy": "cd sanity && npm run deploy",
+    "seed:services": "npx tsx sanity/scripts/seed-services.ts"
   },
   "dependencies": {
     "@react-router/node": "7.10.1",
@@ -30,6 +31,7 @@
     "react": "^19.2.1",
     "react-dom": "^19.2.1",
     "react-i18next": "^16.4.0",
+    "react-intersection-observer": "^10.0.0",
     "react-router": "7.10.1"
   },
   "devDependencies": {
@@ -41,12 +43,14 @@
     "@types/react-dom": "^19.2.3",
     "@typescript-eslint/eslint-plugin": "^8.48.1",
     "@typescript-eslint/parser": "^8.48.1",
+    "dotenv": "^17.2.3",
     "eslint": "^9.39.1",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^7.0.1",
     "prettier": "^3.7.4",
     "tailwindcss": "^4.1.13",
+    "tsx": "^4.21.0",
     "typescript": "^5.9.2",
     "vite": "^7.1.7",
     "vite-tsconfig-paths": "^5.1.4"

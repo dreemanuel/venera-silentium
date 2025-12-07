@@ -44,6 +44,20 @@
     "viewAll": "View All",
     "close": "Close"
   },
+  "services": {
+    "pageTitle": "Services | Silentium",
+    "pageDescription": "Discover our range of aesthetic treatments. From anti-aging injectables to skin rejuvenation, find the perfect treatment for your needs.",
+    "heading": "Our Services",
+    "subheading": "Treatments designed to enhance your natural beauty",
+    "homeHeading": "Our Treatments",
+    "homeSubheading": "A curated selection of services to restore your natural radiance",
+    "viewAllServices": "View All Services",
+    "bookConsultation": "Book Consultation",
+    "duration": "Duration",
+    "idealFor": "Ideal For",
+    "benefits": "Benefits",
+    "relatedServices": "You Might Also Like"
+  },
   "footer": {
     "copyright": "All rights reserved",
     "privacyPolicy": "Privacy Policy",

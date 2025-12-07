@@ -44,6 +44,20 @@
     "viewAll": "Lihat Semua",
     "close": "Tutup"
   },
+  "services": {
+    "pageTitle": "Layanan | Silentium",
+    "pageDescription": "Temukan berbagai perawatan estetika kami. Dari suntikan anti-penuaan hingga peremajaan kulit, temukan perawatan yang tepat untuk kebutuhan Anda.",
+    "heading": "Layanan Kami",
+    "subheading": "Perawatan yang dirancang untuk meningkatkan kecantikan alami Anda",
+    "homeHeading": "Perawatan Kami",
+    "homeSubheading": "Koleksi layanan pilihan untuk mengembalikan cahaya alami Anda",
+    "viewAllServices": "Lihat Semua Layanan",
+    "bookConsultation": "Pesan Konsultasi",
+    "duration": "Durasi",
+    "idealFor": "Ideal Untuk",
+    "benefits": "Manfaat",
+    "relatedServices": "Anda Mungkin Juga Suka"
+  },
   "footer": {
     "copyright": "Hak cipta dilindungi",
     "privacyPolicy": "Kebijakan Privasi",

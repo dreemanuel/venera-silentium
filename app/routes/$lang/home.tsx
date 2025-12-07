@@ -1,12 +1,15 @@
 import { useTranslation } from 'react-i18next';
 import { useLoaderData } from 'react-router';
 import type { Route } from './+types/home';
-import { HeroSection, AboutPreview, SilentiumPhilosophy } from '~/components/sections';
+import { HeroSection, AboutPreview, SilentiumPhilosophy, ServicesGallery } from '~/components/sections';
+import { Button } from '~/components/ui';
 import {
   sanityClient,
   siteSettingsQuery,
+  featuredServicesQuery,
   getLocalizedValue,
   type SiteSettings,
+  type Service,
   type Language,
   type PortableTextBlock,
 } from '~/lib/sanity';
@@ -16,14 +19,21 @@ export async function loader({ params }: Route.LoaderArgs) {
 
   // Try to fetch from Sanity, but gracefully handle if not configured
   let siteSettings: SiteSettings | null = null;
+  let featuredServices: Service[] = [];
+
   try {
-    siteSettings = await sanityClient.fetch<SiteSettings>(siteSettingsQuery);
+    const [settings, services] = await Promise.all([
+      sanityClient.fetch<SiteSettings>(siteSettingsQuery),
+      sanityClient.fetch<Service[]>(featuredServicesQuery),
+    ]);
+    siteSettings = settings;
+    featuredServices = services || [];
   } catch {
     // Sanity not configured or no content yet - use fallback
     console.log('Sanity fetch failed, using i18n fallback');
   }
 
-  return { siteSettings, lang };
+  return { siteSettings, featuredServices, lang };
 }
 
 export function meta({ params }: Route.MetaArgs) {
@@ -56,7 +66,7 @@ export function meta({ params }: Route.MetaArgs) {
 
 export default function Home() {
   const { t } = useTranslation();
-  const { siteSettings, lang } = useLoaderData<typeof loader>();
+  const { siteSettings, featuredServices, lang } = useLoaderData<typeof loader>();
 
   // Get Hero content from Sanity or fall back to i18n
   const heroTitle =
@@ -113,17 +123,39 @@ export default function Home() {
         ctaLink={`/${lang}/contact`}
       />
 
-      {/* Services Preview Section - Coming in Story 3.x */}
-      <section className="py-20 bg-beige/30">
-        <div className="container mx-auto px-6 text-center">
-          <h2 className="text-paynes-gray text-3xl md:text-4xl mb-4">
-            {t('nav.services')}
-          </h2>
-          <p className="text-paynes-gray/70 font-heading mb-8">
-            {t('common.comingSoon')}
-          </p>
+      {/* Services Preview Section */}
+      {featuredServices.length > 0 ? (
+        <div className="bg-beige/30">
+          <ServicesGallery
+            services={featuredServices}
+            lang={lang}
+            title={t('services.homeHeading')}
+            subtitle={t('services.homeSubheading')}
+            showCategories={false}
+          />
+          <div className="container mx-auto px-6 pb-16 text-center">
+            <Button
+              as="link"
+              to={`/${lang}/services`}
+              variant="outline"
+              size="lg"
+            >
+              {t('services.viewAllServices')}
+            </Button>
+          </div>
         </div>
-      </section>
+      ) : (
+        <section className="py-20 bg-beige/30">
+          <div className="container mx-auto px-6 text-center">
+            <h2 className="text-paynes-gray text-3xl md:text-4xl mb-4">
+              {t('services.homeHeading')}
+            </h2>
+            <p className="text-paynes-gray/70 font-heading mb-8">
+              {t('common.comingSoon')}
+            </p>
+          </div>
+        </section>
+      )}
 
       {/* About Dr. Venera Preview Section */}
       <AboutPreview
