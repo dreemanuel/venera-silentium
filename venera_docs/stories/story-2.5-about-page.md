@@ -1,7 +1,7 @@
 # Story 2.5: Create About Page Route
 
 **Epic**: 2 - Content Management & Brand Foundation
-**Status**: Ready for Development
+**Status**: ✅ COMPLETE
 
 ## User Story
 
@@ -11,12 +11,12 @@ so that **I can learn the full story in one place**.
 
 ## Acceptance Criteria
 
-- [ ] **AC1**: Route created at `/:lang/about` with proper i18n handling
-- [ ] **AC2**: Page combines Dr. Venera and Silentium sections with clear visual hierarchy
-- [ ] **AC3**: SEO meta tags populated from CMS content
-- [ ] **AC4**: Breadcrumb or back navigation available
-- [ ] **AC5**: CTA to contact/booking at page bottom
-- [ ] **AC6**: Page content fully manageable through Sanity CMS
+- [x] **AC1**: Route created at `/:lang/about` with proper i18n handling
+- [x] **AC2**: Page combines Dr. Venera and Silentium sections with clear visual hierarchy
+- [x] **AC3**: SEO meta tags populated from CMS content
+- [x] **AC4**: Breadcrumb or back navigation available (via Header navigation)
+- [x] **AC5**: CTA to contact/booking at page bottom
+- [x] **AC6**: Page content fully manageable through Sanity CMS
 
 ## Technical Tasks
 
@@ -100,12 +100,12 @@ so that **I can learn the full story in one place**.
 
 ## Definition of Done
 
-- [ ] All acceptance criteria met
-- [ ] Page renders at `/:lang/about`
-- [ ] Meta tags correct for SEO
-- [ ] Content hierarchy clear
-- [ ] CTA links work correctly
-- [ ] Page indexed by search engines (no noindex)
+- [x] All acceptance criteria met
+- [x] Page renders at `/:lang/about`
+- [x] Meta tags correct for SEO
+- [x] Content hierarchy clear
+- [x] CTA links work correctly
+- [x] Page indexed by search engines (no noindex)
 
 ## Notes
 

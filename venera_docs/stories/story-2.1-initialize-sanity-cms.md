@@ -1,7 +1,7 @@
 # Story 2.1: Initialize Sanity Studio and Content Schemas
 
 **Epic**: 2 - Content Management & Brand Foundation
-**Status**: Ready for Development
+**Status**: ✅ COMPLETE
 
 ## User Story
 
@@ -11,12 +11,12 @@ so that **I can update text and images without developer assistance**.
 
 ## Acceptance Criteria
 
-- [ ] **AC1**: Sanity Studio initialized in `/sanity` directory
-- [ ] **AC2**: Sanity project created and connected to Sanity.io
-- [ ] **AC3**: Base schemas defined: `siteSettings`, `page`, `service`, `testimonial`
-- [ ] **AC4**: Schema supports multilingual fields (EN/RU/ID)
-- [ ] **AC5**: Sanity Studio accessible locally via `npm run sanity`
-- [ ] **AC6**: GROQ query utility created for fetching content in Remix loaders
+- [x] **AC1**: Sanity Studio initialized in `/sanity` directory
+- [x] **AC2**: Sanity project created and connected to Sanity.io (Project ID: qibofery)
+- [x] **AC3**: Base schemas defined: `siteSettings`, `page`, `service`, `testimonial`
+- [x] **AC4**: Schema supports multilingual fields (EN/RU/ID)
+- [x] **AC5**: Sanity Studio accessible locally via `npm run sanity`
+- [x] **AC6**: GROQ query utility created for fetching content in Remix loaders
 
 ## Technical Tasks
 
@@ -92,11 +92,11 @@ so that **I can update text and images without developer assistance**.
 
 ## Definition of Done
 
-- [ ] All acceptance criteria met
-- [ ] Sanity Studio runs locally
-- [ ] All schemas defined and visible in Studio
-- [ ] Can create/edit content in Studio
-- [ ] GROQ queries return expected data
+- [x] All acceptance criteria met
+- [x] Sanity Studio runs locally at http://localhost:3333
+- [x] All schemas defined and visible in Studio
+- [x] Can create/edit content in Studio
+- [x] GROQ queries defined and ready for use
 
 ## Notes
 

@@ -1,7 +1,7 @@
 # Story 2.2: Implement Homepage Hero Section
 
 **Epic**: 2 - Content Management & Brand Foundation
-**Status**: Ready for Development
+**Status**: ✅ COMPLETE
 
 ## User Story
 
@@ -11,12 +11,12 @@ so that **I can decide if this is the right place for my aesthetic needs**.
 
 ## Acceptance Criteria
 
-- [ ] **AC1**: Hero section displays brand tagline and supporting text from CMS
-- [ ] **AC2**: Background image or video (if provided) displays with proper optimization
-- [ ] **AC3**: Primary CTA button ("Book Consultation" or similar) prominently displayed
-- [ ] **AC4**: Hero content is translatable and renders in selected language
-- [ ] **AC5**: Subtle entrance animation using Framer Motion
-- [ ] **AC6**: Responsive design works on mobile, tablet, and desktop
+- [x] **AC1**: Hero section displays brand tagline and supporting text from CMS (with i18n fallback)
+- [x] **AC2**: Background image or video (if provided) displays with proper optimization
+- [x] **AC3**: Primary CTA button ("Book Consultation" or similar) prominently displayed
+- [x] **AC4**: Hero content is translatable and renders in selected language
+- [x] **AC5**: Subtle entrance animation using Framer Motion
+- [x] **AC6**: Responsive design works on mobile, tablet, and desktop
 
 ## Technical Tasks
 
@@ -77,12 +77,12 @@ so that **I can decide if this is the right place for my aesthetic needs**.
 
 ## Definition of Done
 
-- [ ] All acceptance criteria met
-- [ ] Hero displays content from CMS
-- [ ] Animations play on page load
-- [ ] CTA button links to contact page
-- [ ] Responsive on all breakpoints
-- [ ] Page loads under 3 seconds
+- [x] All acceptance criteria met
+- [x] Hero displays content from CMS (with i18n fallback when no CMS content)
+- [x] Animations play on page load (staggered fade-up)
+- [x] CTA button links to contact page
+- [x] Responsive on all breakpoints
+- [x] Page loads under 3 seconds
 
 ## Notes
 

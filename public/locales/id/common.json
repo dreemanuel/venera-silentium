@@ -6,9 +6,34 @@
     "contact": "Kontak"
   },
   "hero": {
+    "title": "Silentium",
     "tagline": "Di mana sains bertemu jiwa",
     "quote": "Kecantikan lahir dalam keheningan; dalam kesunyian seorang wanita akhirnya mendengar dirinya sendiri.",
     "cta": "Pesan Konsultasi"
+  },
+  "about": {
+    "pageTitle": "Tentang | Silentium",
+    "pageDescription": "Pelajari tentang Dr. Venera Frolova dan filosofi Silentium. Di mana sains bertemu jiwa dalam kosmetologi estetika.",
+    "pageHeading": "Tentang Silentium",
+    "pageSubheading": "Di mana kecantikan menemukan suaranya dalam keheningan",
+    "drVenera": {
+      "name": "Dr. Venera Frolova",
+      "title": "Ahli Kosmetologi Estetika MD",
+      "experience": "10+ Tahun Pengalaman",
+      "story": "Saya percaya bahwa kecantikan sejati seorang wanita lahir dalam keheningannya; dalam ketenangan batinnya. Ketika dia menemukan kedamaian batin ini, dia akhirnya bisa mendengar dirinya sendiri; napasnya, detak jantungnya, dan kebenarannya — kecantikan sejatinya — ketika semua perbandingan memudar, tergesa-gesa larut, dan standar pinjaman menghilang.",
+      "credentials": ["Dokter Medis", "Kosmetolog Bersertifikat", "Pelatihan Internasional"]
+    },
+    "silentium": {
+      "tagline": "Sebuah tempat suci di mana sains bertemu jiwa",
+      "philosophy": "Kami lebih dari sekadar klinik kecantikan — ini adalah tempat suci di mana sains bertemu dengan jiwa, di mana setiap perawatan adalah ritual suci kepedulian. Kami percaya bahwa kecantikan sejati lebih dari sekadar kulit: ia bersinar dari dalam jiwa yang murni dan damai."
+    },
+    "cta": "Pelajari Lebih Lanjut Tentang Kami"
+  },
+  "contact": {
+    "ctaHeading": "Siap memulai perjalanan Anda?",
+    "ctaSubheading": "Pesan konsultasi untuk menemukan bagaimana kami dapat membantu Anda merasa paling percaya diri.",
+    "bookConsultation": "Pesan Konsultasi",
+    "whatsappUs": "Hubungi via WhatsApp"
   },
   "common": {
     "comingSoon": "Segera Hadir",

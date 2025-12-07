@@ -6,9 +6,34 @@
     "contact": "Contact"
   },
   "hero": {
+    "title": "Silentium",
     "tagline": "Where science meets spirit",
     "quote": "Beauty is born in silence; in the stillness is where a woman finally hears herself.",
     "cta": "Book Consultation"
+  },
+  "about": {
+    "pageTitle": "About | Silentium",
+    "pageDescription": "Learn about Dr. Venera Frolova and the Silentium philosophy. Where science meets spirit in aesthetic cosmetology.",
+    "pageHeading": "About Silentium",
+    "pageSubheading": "Where beauty finds its voice in silence",
+    "drVenera": {
+      "name": "Dr. Venera Frolova",
+      "title": "Aesthetic Cosmetologist MD",
+      "experience": "10+ Years Experience",
+      "story": "I believe that a woman's true beauty is born in her silence; in her stillness. When she finds this inner peace, she can finally hear herself; her breath, her heartbeat, and her truth — her true beauty — when all comparison fades away, haste dissolves, and borrowed standards fall away.",
+      "credentials": ["Medical Doctor", "Certified Cosmetologist", "International Training"]
+    },
+    "silentium": {
+      "tagline": "A sanctuary where science meets spirit",
+      "philosophy": "We are more than just a beauty clinic — this is a sanctuary where science meets the spirit, where each treatment is a sacred ritual of care. We believe that true beauty is more than skin deep: it shines from within a pure and peaceful soul."
+    },
+    "cta": "Learn More About Us"
+  },
+  "contact": {
+    "ctaHeading": "Ready to begin your journey?",
+    "ctaSubheading": "Book a consultation to discover how we can help you feel your most confident self.",
+    "bookConsultation": "Book Consultation",
+    "whatsappUs": "WhatsApp Us"
   },
   "common": {
     "comingSoon": "Coming Soon",

@@ -12,5 +12,7 @@ export default [
   // Language-prefixed routes
   layout("routes/$lang/layout.tsx", [
     route(":lang", "routes/$lang/home.tsx"),
+    route(":lang/about", "routes/$lang/about.tsx"),
+    route(":lang/contact", "routes/$lang/contact.tsx"),
   ]),
 ] satisfies RouteConfig;

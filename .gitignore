@@ -43,6 +43,7 @@ test-results/
 # Sanity
 sanity/node_modules/
 sanity/.sanity/
+sanity/.env
 
 # Misc
 *.tsbuildinfo
