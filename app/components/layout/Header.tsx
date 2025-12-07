@@ -1,11 +1,15 @@
-import { useState } from "react";
+import { useState, lazy, Suspense } from "react";
 import { Link } from "react-router";
 import { useTranslation } from "react-i18next";
 import { Menu } from "lucide-react";
 import { LanguageSwitcher } from "./LanguageSwitcher";
-import { MobileMenu } from "./MobileMenu";
 import { Button } from "~/components/ui/Button";
 import type { SupportedLanguage } from "~/lib/i18n";
+
+// Lazy load mobile menu - only needed on mobile devices
+const MobileMenu = lazy(() =>
+  import("./MobileMenu").then((mod) => ({ default: mod.MobileMenu }))
+);
 
 interface HeaderProps {
   lang: SupportedLanguage;
@@ -74,13 +78,17 @@ export function Header({ lang }: HeaderProps) {
         </div>
       </header>
 
-      {/* Mobile Menu */}
-      <MobileMenu
-        isOpen={isMobileMenuOpen}
-        onClose={() => setIsMobileMenuOpen(false)}
-        navItems={navItems}
-        lang={lang}
-      />
+      {/* Mobile Menu - lazy loaded */}
+      {isMobileMenuOpen && (
+        <Suspense fallback={null}>
+          <MobileMenu
+            isOpen={isMobileMenuOpen}
+            onClose={() => setIsMobileMenuOpen(false)}
+            navItems={navItems}
+            lang={lang}
+          />
+        </Suspense>
+      )}
     </>
   );
 }

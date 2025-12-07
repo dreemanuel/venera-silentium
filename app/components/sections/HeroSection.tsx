@@ -1,6 +1,6 @@
 import { motion, type Variants } from 'framer-motion';
 import { Button } from '~/components/ui';
-import { urlFor } from '~/lib/sanity';
+import { getResponsiveImageProps } from '~/lib/image';
 import type { SanityImage } from '~/lib/sanity';
 
 interface HeroSectionProps {
@@ -43,19 +43,27 @@ export function HeroSection({
   ctaText,
   ctaLink,
 }: HeroSectionProps) {
-  // Generate optimized image URL if image exists
-  const backgroundImageUrl = image
-    ? urlFor(image).width(1920).quality(80).auto('format').url()
+  // Generate optimized image props for hero (priority loading)
+  const imageProps = image
+    ? getResponsiveImageProps(image, {
+        alt: title,
+        priority: true, // Hero images load with high priority
+        sizes: '100vw',
+        maxWidth: 1920,
+        quality: 85,
+      })
     : null;
 
   return (
     <section className="relative min-h-[calc(100vh-5rem)] flex items-center justify-center overflow-hidden">
       {/* Background Image with overlay */}
-      {backgroundImageUrl ? (
+      {imageProps ? (
         <>
-          <div
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-            style={{ backgroundImage: `url(${backgroundImageUrl})` }}
+          {/* Use img element for LCP optimization */}
+          <img
+            {...imageProps}
+            className="absolute inset-0 w-full h-full object-cover"
+            aria-hidden="true"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-paynes-gray/40 via-paynes-gray/30 to-paynes-gray/50" />
         </>
@@ -79,7 +87,7 @@ export function HeroSection({
         <motion.h1
           variants={itemVariants}
           className={`text-4xl xs:text-5xl md:text-6xl lg:text-7xl mb-6 leading-tight ${
-            backgroundImageUrl ? 'text-cornsilk' : 'text-paynes-gray'
+            imageProps ? 'text-cornsilk' : 'text-paynes-gray'
           }`}
         >
           {title}
@@ -90,7 +98,7 @@ export function HeroSection({
           <motion.p
             variants={itemVariants}
             className={`font-heading text-lg md:text-xl lg:text-2xl mb-8 max-w-xl mx-auto ${
-              backgroundImageUrl ? 'text-cornsilk/90' : 'text-paynes-gray/80'
+              imageProps ? 'text-cornsilk/90' : 'text-paynes-gray/80'
             }`}
           >
             {subtitle}
@@ -102,7 +110,7 @@ export function HeroSection({
           <motion.blockquote
             variants={itemVariants}
             className={`italic text-base md:text-lg mb-12 max-w-md mx-auto ${
-              backgroundImageUrl ? 'text-cornsilk/80' : 'text-paynes-gray/60'
+              imageProps ? 'text-cornsilk/80' : 'text-paynes-gray/60'
             }`}
           >
             &ldquo;{quote}&rdquo;
@@ -112,7 +120,7 @@ export function HeroSection({
         {/* CTA Button */}
         <motion.div variants={itemVariants}>
           <Button
-            variant={backgroundImageUrl ? 'secondary' : 'primary'}
+            variant={imageProps ? 'secondary' : 'primary'}
             size="lg"
             as="link"
             to={ctaLink}
@@ -131,12 +139,12 @@ export function HeroSection({
             animate={{ y: [0, 8, 0] }}
             transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
             className={`w-6 h-10 border-2 rounded-full flex justify-center pt-2 ${
-              backgroundImageUrl ? 'border-cornsilk/50' : 'border-paynes-gray/30'
+              imageProps ? 'border-cornsilk/50' : 'border-paynes-gray/30'
             }`}
           >
             <motion.div
               className={`w-1.5 h-1.5 rounded-full ${
-                backgroundImageUrl ? 'bg-cornsilk/70' : 'bg-paynes-gray/50'
+                imageProps ? 'bg-cornsilk/70' : 'bg-paynes-gray/50'
               }`}
             />
           </motion.div>

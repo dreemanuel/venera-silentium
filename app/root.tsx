@@ -14,9 +14,17 @@ import { defaultLanguage, isValidLanguage } from "~/lib/i18n";
 import { LocalBusinessSchema, WebSiteSchema, PersonSchema } from "~/components/seo";
 
 export const links: Route.LinksFunction = () => [
+  // DNS prefetch for external resources
+  { rel: "dns-prefetch", href: "https://cdn.sanity.io" },
+  // Preconnect to Google Fonts
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
   { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+  // Preload local fonts
   { rel: "preload", href: "/fonts/ashford-bold.otf", as: "font", type: "font/otf", crossOrigin: "anonymous" },
+  // Favicon
+  { rel: "icon", href: "/favicon.ico", sizes: "32x32" },
+  { rel: "icon", href: "/icon.svg", type: "image/svg+xml" },
+  { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
@@ -30,6 +38,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="theme-color" content="#fefae0" />
+        <meta name="color-scheme" content="light" />
         <Meta />
         <Links />
       </head>

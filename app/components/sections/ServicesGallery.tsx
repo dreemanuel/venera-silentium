@@ -1,7 +1,7 @@
 import { motion, type Variants } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Link } from 'react-router';
-import { urlFor } from '~/lib/sanity';
+import { getThumbnailUrl } from '~/lib/image';
 import type { Service, Language, ServiceCategory } from '~/lib/sanity';
 import { getLocalizedValue } from '~/lib/sanity';
 
@@ -69,7 +69,7 @@ function ServiceCard({ service, lang }: { service: Service; lang: Language }) {
   const title = getLocalizedValue(service.title, lang) || 'Untitled Service';
   const shortDescription = getLocalizedValue(service.shortDescription, lang);
   const imageUrl = service.image
-    ? urlFor(service.image).width(400).height(300).quality(80).auto('format').url()
+    ? getThumbnailUrl(service.image, 400, 300, 80)
     : null;
 
   return (
@@ -86,6 +86,9 @@ function ServiceCard({ service, lang }: { service: Service; lang: Language }) {
               alt={title}
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               loading="lazy"
+              decoding="async"
+              width={400}
+              height={300}
             />
           ) : (
             <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-tea-green/30 to-beige">
