@@ -22,5 +22,7 @@ export default [
     // API routes (no layout needed)
     route(":lang/api/contact", "routes/$lang/api/contact.tsx"),
     route(":lang/api/booking", "routes/$lang/api/booking.tsx"),
+    // Catch-all 404 for lang-prefixed routes
+    route(":lang/*", "routes/$lang/not-found.tsx"),
   ]),
 ] satisfies RouteConfig;

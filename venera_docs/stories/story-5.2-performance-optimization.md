@@ -18,138 +18,48 @@ so that **I don't leave due to slow loading times**.
 - [ ] **AC5**: Core Web Vitals passing (LCP, FID, CLS) (requires deployment)
 - [x] **AC6**: Vercel edge caching configured for static assets
 
-## Technical Tasks
+## Technical Implementation
 
-1. Create Sanity image URL builder `app/lib/image.ts`:
-   ```typescript
-   import imageUrlBuilder from '@sanity/image-url';
-   import { sanityClient } from './sanity.server';
+### Files Created/Modified
 
-   const builder = imageUrlBuilder(sanityClient);
+1. **`app/lib/image.ts`** - Image optimization utilities:
+   - `urlFor()` - Base Sanity image URL builder
+   - `getResponsiveImageProps()` - Generate srcSet, sizes, loading attributes
+   - `getHeroImageUrl()` - Optimized hero/banner images
+   - `getThumbnailUrl()` - Thumbnail images
+   - `getBlurPlaceholder()` - Low-quality placeholder URLs
+   - `getOgImageUrl()` - Open Graph image URLs
+   - `getImagePreloadLink()` - Preload link attributes
+   - `IMAGE_BREAKPOINTS` - Standard responsive breakpoints
 
-   export function urlFor(source: any) {
-     return builder.image(source);
-   }
+2. **`app/components/sections/HeroSection.tsx`** - Updated for LCP optimization:
+   - Uses `getResponsiveImageProps()` with priority flag
+   - Proper `<img>` element instead of background-image
+   - `fetchPriority="high"` for hero images
+   - `loading="eager"` for above-fold content
 
-   export function getResponsiveImageProps(source: any, alt: string) {
-     return {
-       src: urlFor(source).width(800).format('webp').url(),
-       srcSet: `
-         ${urlFor(source).width(400).format('webp').url()} 400w,
-         ${urlFor(source).width(800).format('webp').url()} 800w,
-         ${urlFor(source).width(1200).format('webp').url()} 1200w
-       `,
-       sizes: '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw',
-       alt,
-       loading: 'lazy' as const,
-     };
-   }
-   ```
+3. **`app/components/sections/ServicesGallery.tsx`** - Updated for lazy loading:
+   - Uses `getThumbnailUrl()` for optimized thumbnails
+   - `loading="lazy"` and `decoding="async"` for below-fold
+   - Width/height attributes for CLS prevention
 
-2. Optimize font loading in `app/styles/fonts.css`:
-   ```css
-   @font-face {
-     font-family: 'Gilmoray';
-     src: url('/fonts/gilmoray.woff2') format('woff2');
-     font-weight: 400;
-     font-style: normal;
-     font-display: swap;
-   }
+4. **`app/components/layout/Header.tsx`** - Code splitting:
+   - Lazy-loaded `MobileMenu` component
+   - `Suspense` wrapper with null fallback
+   - Only loads on mobile menu open
 
-   @font-face {
-     font-family: 'Gilmer';
-     src: url('/fonts/gilmer-light.woff2') format('woff2');
-     font-weight: 300;
-     font-style: normal;
-     font-display: swap;
-   }
-   ```
+5. **`app/root.tsx`** - Resource hints:
+   - `dns-prefetch` for cdn.sanity.io
+   - `preconnect` for Google Fonts
+   - `preload` for local fonts
+   - `theme-color` meta tag
 
-3. Add font preload links in `app/root.tsx`:
-   ```typescript
-   export const links: LinksFunction = () => [
-     {
-       rel: 'preload',
-       href: '/fonts/gilmoray.woff2',
-       as: 'font',
-       type: 'font/woff2',
-       crossOrigin: 'anonymous',
-     },
-     {
-       rel: 'preload',
-       href: '/fonts/gilmer-light.woff2',
-       as: 'font',
-       type: 'font/woff2',
-       crossOrigin: 'anonymous',
-     },
-   ];
-   ```
-
-4. Convert fonts to WOFF2 format (if not already):
-   ```bash
-   # Use online converter or tool like fonttools
-   ```
-
-5. Configure Vercel caching in `vercel.json`:
-   ```json
-   {
-     "headers": [
-       {
-         "source": "/fonts/(.*)",
-         "headers": [
-           {
-             "key": "Cache-Control",
-             "value": "public, max-age=31536000, immutable"
-           }
-         ]
-       },
-       {
-         "source": "/(.*).webp",
-         "headers": [
-           {
-             "key": "Cache-Control",
-             "value": "public, max-age=31536000, immutable"
-           }
-         ]
-       }
-     ]
-   }
-   ```
-
-6. Implement lazy loading for below-fold images:
-   ```tsx
-   <img
-     src={imageUrl}
-     alt={alt}
-     loading="lazy"
-     decoding="async"
-   />
-   ```
-
-7. Add loading priority for hero image:
-   ```tsx
-   // In HeroSection
-   <img
-     src={heroImageUrl}
-     alt={alt}
-     loading="eager"
-     fetchPriority="high"
-   />
-   ```
-
-8. Optimize JavaScript bundle:
-   ```typescript
-   // Use dynamic imports for non-critical components
-   const MobileMenu = lazy(() => import('./MobileMenu'));
-   ```
-
-9. Run Lighthouse audit and address issues:
-   ```bash
-   npm install -g lighthouse
-   lighthouse https://your-preview-url.vercel.app --output html
-   ```
-
-10. Monitor Core Web Vitals in Vercel Analytics
+6. **`vercel.json`** - Caching headers:
+   - `/fonts/*` - 1 year immutable cache
+   - `*.webp, *.png, *.jpg, *.svg, *.ico` - 1 year immutable cache
+   - `/locales/*` - 1 hour with stale-while-revalidate
+   - `/sitemap.xml` - 1 hour with stale-while-revalidate
+   - `/robots.txt` - 1 day cache
 
 ## Dependencies
 
@@ -169,7 +79,8 @@ so that **I don't leave due to slow loading times**.
 
 - Test on 3G throttled connection
 - Mobile performance is priority
-- Consider using Vercel Image Optimization if needed
+- Sanity's `auto('format')` handles WebP conversion automatically
+- Lighthouse tests will be run post-deployment
 
 ## Reference Documents
 

@@ -107,5 +107,25 @@
     "success": "Thank you! Your booking request has been received. Dr. Venera will contact you within 24 hours to confirm your appointment.",
     "submitting": "Submitting...",
     "notesPlaceholder": "Tell us about your concerns or what you'd like to achieve..."
+  },
+  "errors": {
+    "notFound": {
+      "title": "Page Not Found",
+      "description": "The page you're looking for doesn't exist or has been moved. Let us help you find your way back.",
+      "backHome": "Back to Home",
+      "viewServices": "View Services",
+      "helpText": "Need assistance?",
+      "contactUs": "Contact us"
+    },
+    "general": {
+      "title": "Something Went Wrong",
+      "description": "We're sorry, but something unexpected happened. Please try again or contact us if the problem persists.",
+      "tryAgain": "Try Again",
+      "backHome": "Back to Home"
+    },
+    "offline": {
+      "title": "You're Offline",
+      "description": "Please check your internet connection and try again."
+    }
   }
 }

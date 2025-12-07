@@ -11,6 +11,7 @@ import { initI18nClient } from "~/lib/i18n.client";
 import i18next from "i18next";
 import { Header, Footer } from "~/components/layout";
 import { HreflangLinks } from "~/components/seo";
+import { NavigationProgress } from "~/components/ui/NavigationProgress";
 
 export function loader({ params }: Route.LoaderArgs) {
   const lang = params.lang;
@@ -51,6 +52,7 @@ export default function LangLayout({ loaderData }: Route.ComponentProps) {
   return (
     <I18nextProvider i18n={i18next}>
       <HreflangLinks currentLang={typedLang} />
+      <NavigationProgress />
       <div className="flex flex-col min-h-screen">
         <Header lang={typedLang} />
         <main className="flex-1 pt-16 md:pt-20">

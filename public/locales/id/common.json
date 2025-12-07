@@ -107,5 +107,25 @@
     "success": "Terima kasih! Permintaan pemesanan Anda telah diterima. Dr. Venera akan menghubungi Anda dalam 24 jam untuk mengkonfirmasi janji temu.",
     "submitting": "Mengirim...",
     "notesPlaceholder": "Ceritakan tentang kekhawatiran Anda atau apa yang ingin Anda capai..."
+  },
+  "errors": {
+    "notFound": {
+      "title": "Halaman Tidak Ditemukan",
+      "description": "Halaman yang Anda cari tidak ada atau telah dipindahkan. Biarkan kami membantu Anda menemukan jalan kembali.",
+      "backHome": "Kembali ke Beranda",
+      "viewServices": "Lihat Layanan",
+      "helpText": "Butuh bantuan?",
+      "contactUs": "Hubungi kami"
+    },
+    "general": {
+      "title": "Terjadi Kesalahan",
+      "description": "Maaf, terjadi kesalahan yang tidak terduga. Silakan coba lagi atau hubungi kami jika masalah berlanjut.",
+      "tryAgain": "Coba Lagi",
+      "backHome": "Kembali ke Beranda"
+    },
+    "offline": {
+      "title": "Anda Sedang Offline",
+      "description": "Silakan periksa koneksi internet Anda dan coba lagi."
+    }
   }
 }
