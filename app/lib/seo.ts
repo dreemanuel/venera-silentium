@@ -2,7 +2,10 @@
  * SEO helper utilities for generating meta tags
  */
 
-export const SITE_URL = 'https://silentium.com';
+// Use environment variable for production URL, fallback to silentium.com
+export const SITE_URL = typeof process !== 'undefined' && process.env?.SITE_URL
+  ? process.env.SITE_URL
+  : 'https://silentium.com';
 export const SITE_NAME = 'Silentium';
 export const DEFAULT_OG_IMAGE = '/images/og-default.jpg';
 
