@@ -127,5 +127,102 @@
       "title": "Anda Sedang Offline",
       "description": "Silakan periksa koneksi internet Anda dan coba lagi."
     }
+  },
+  "legal": {
+    "backToHome": "Kembali ke Beranda",
+    "privacy": {
+      "title": "Kebijakan Privasi",
+      "lastUpdated": "Terakhir Diperbarui",
+      "intro": "Di Silentium, kami berkomitmen untuk melindungi privasi Anda. Kebijakan Privasi ini menjelaskan bagaimana kami mengumpulkan, menggunakan, dan melindungi informasi pribadi Anda saat Anda mengunjungi situs web kami atau menggunakan layanan kami.",
+      "dataCollection": {
+        "title": "Informasi yang Kami Kumpulkan",
+        "description": "Kami mengumpulkan informasi yang Anda berikan secara sukarela kepada kami saat Anda:",
+        "items": {
+          "name": "Nama Anda saat mengisi formulir kontak atau pemesanan kami",
+          "email": "Alamat email Anda untuk keperluan komunikasi",
+          "phone": "Nomor telepon Anda untuk konfirmasi janji temu",
+          "message": "Informasi tambahan yang Anda pilih untuk dibagikan dengan kami"
+        }
+      },
+      "dataUse": {
+        "title": "Bagaimana Kami Menggunakan Informasi Anda",
+        "description": "Kami menggunakan informasi yang kami kumpulkan untuk:",
+        "items": {
+          "respond": "Menanggapi pertanyaan dan permintaan Anda",
+          "appointments": "Menjadwalkan dan mengelola janji temu Anda",
+          "service": "Memberikan layanan pelanggan yang sangat baik",
+          "updates": "Mengirimkan pembaruan penting tentang janji temu Anda"
+        }
+      },
+      "dataProtection": {
+        "title": "Perlindungan Data",
+        "description": "Kami menerapkan langkah-langkah keamanan yang sesuai untuk melindungi informasi pribadi Anda. Data Anda disimpan dengan aman dan kami tidak membagikannya dengan pihak ketiga kecuali jika diperlukan untuk menyediakan layanan kami atau sebagaimana diwajibkan oleh hukum."
+      },
+      "thirdParties": {
+        "title": "Layanan Pihak Ketiga",
+        "description": "Kami dapat menggunakan layanan pihak ketiga seperti WhatsApp dan penyedia email untuk berkomunikasi dengan Anda. Layanan ini memiliki kebijakan privasi mereka sendiri, dan kami mendorong Anda untuk meninjaunya."
+      },
+      "rights": {
+        "title": "Hak Anda",
+        "description": "Anda memiliki hak untuk:",
+        "items": {
+          "access": "Mengakses informasi pribadi yang kami simpan tentang Anda",
+          "correction": "Meminta koreksi informasi yang tidak akurat",
+          "deletion": "Meminta penghapusan informasi pribadi Anda",
+          "withdraw": "Menarik persetujuan Anda kapan saja"
+        }
+      },
+      "contact": {
+        "title": "Hubungi Kami",
+        "description": "Jika Anda memiliki pertanyaan tentang Kebijakan Privasi ini atau ingin menggunakan hak Anda, silakan hubungi kami."
+      }
+    },
+    "terms": {
+      "title": "Ketentuan Layanan",
+      "lastUpdated": "Terakhir Diperbarui",
+      "intro": "Selamat datang di Silentium. Dengan mengakses situs web kami dan menggunakan layanan kami, Anda setuju untuk terikat dengan Ketentuan Layanan ini. Harap baca dengan saksama.",
+      "acceptance": {
+        "title": "Penerimaan Ketentuan",
+        "description": "Dengan menggunakan situs web kami atau memesan layanan kami, Anda mengakui bahwa Anda telah membaca, memahami, dan setuju untuk terikat dengan ketentuan ini. Jika Anda tidak setuju, harap jangan gunakan layanan kami."
+      },
+      "services": {
+        "title": "Layanan Kami",
+        "description": "Silentium menyediakan layanan kosmetologi estetika. Harap perhatikan:",
+        "items": {
+          "consultation": "Semua perawatan memerlukan konsultasi awal",
+          "medical": "Hasil dapat bervariasi berdasarkan faktor individu",
+          "results": "Kami tidak menjamin hasil spesifik dari perawatan apapun"
+        }
+      },
+      "appointments": {
+        "title": "Janji Temu & Pembatalan",
+        "description": "Untuk memastikan layanan terbaik bagi semua klien kami:",
+        "items": {
+          "cancellation": "Harap berikan pemberitahuan minimal 24 jam untuk pembatalan",
+          "noshow": "Ketidakhadiran dapat mempengaruhi hak pemesanan di masa mendatang",
+          "rescheduling": "Penjadwalan ulang tersedia tergantung ketersediaan"
+        }
+      },
+      "payment": {
+        "title": "Pembayaran",
+        "description": "Ketentuan pembayaran dan metode yang diterima akan dibahas selama konsultasi Anda. Harga dapat berubah tanpa pemberitahuan."
+      },
+      "liability": {
+        "title": "Batasan Tanggung Jawab",
+        "description": "Sejauh diizinkan oleh hukum, Silentium tidak bertanggung jawab atas kerusakan tidak langsung, insidental, atau konsekuensial yang timbul dari penggunaan layanan kami."
+      },
+      "medical": {
+        "title": "Penafian Medis",
+        "description": "Layanan kami disediakan oleh profesional medis yang berkualifikasi. Namun, hasil individu dapat bervariasi, dan perawatan memiliki risiko bawaan yang akan dibahas selama konsultasi."
+      },
+      "changes": {
+        "title": "Perubahan Ketentuan",
+        "description": "Kami berhak untuk mengubah ketentuan ini kapan saja. Perubahan akan berlaku segera setelah dipublikasikan di situs web kami."
+      },
+      "contact": {
+        "title": "Hubungi Kami",
+        "description": "Untuk pertanyaan tentang Ketentuan Layanan ini, silakan hubungi kami."
+      }
+    }
   }
 }

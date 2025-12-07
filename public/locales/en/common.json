@@ -127,5 +127,102 @@
       "title": "You're Offline",
       "description": "Please check your internet connection and try again."
     }
+  },
+  "legal": {
+    "backToHome": "Back to Home",
+    "privacy": {
+      "title": "Privacy Policy",
+      "lastUpdated": "Last Updated",
+      "intro": "At Silentium, we are committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your personal information when you visit our website or use our services.",
+      "dataCollection": {
+        "title": "Information We Collect",
+        "description": "We collect information that you voluntarily provide to us when you:",
+        "items": {
+          "name": "Your name when you fill out our contact or booking forms",
+          "email": "Your email address for communication purposes",
+          "phone": "Your phone number for appointment confirmations",
+          "message": "Any additional information you choose to share with us"
+        }
+      },
+      "dataUse": {
+        "title": "How We Use Your Information",
+        "description": "We use the information we collect to:",
+        "items": {
+          "respond": "Respond to your inquiries and requests",
+          "appointments": "Schedule and manage your appointments",
+          "service": "Provide you with excellent customer service",
+          "updates": "Send you important updates about your appointments"
+        }
+      },
+      "dataProtection": {
+        "title": "Data Protection",
+        "description": "We implement appropriate security measures to protect your personal information. Your data is stored securely and we do not share it with third parties except as necessary to provide our services or as required by law."
+      },
+      "thirdParties": {
+        "title": "Third-Party Services",
+        "description": "We may use third-party services such as WhatsApp and email providers to communicate with you. These services have their own privacy policies, and we encourage you to review them."
+      },
+      "rights": {
+        "title": "Your Rights",
+        "description": "You have the right to:",
+        "items": {
+          "access": "Access the personal information we hold about you",
+          "correction": "Request correction of any inaccurate information",
+          "deletion": "Request deletion of your personal information",
+          "withdraw": "Withdraw your consent at any time"
+        }
+      },
+      "contact": {
+        "title": "Contact Us",
+        "description": "If you have any questions about this Privacy Policy or wish to exercise your rights, please contact us."
+      }
+    },
+    "terms": {
+      "title": "Terms of Service",
+      "lastUpdated": "Last Updated",
+      "intro": "Welcome to Silentium. By accessing our website and using our services, you agree to be bound by these Terms of Service. Please read them carefully.",
+      "acceptance": {
+        "title": "Acceptance of Terms",
+        "description": "By using our website or booking our services, you acknowledge that you have read, understood, and agree to be bound by these terms. If you do not agree, please do not use our services."
+      },
+      "services": {
+        "title": "Our Services",
+        "description": "Silentium provides aesthetic cosmetology services. Please note:",
+        "items": {
+          "consultation": "All treatments require an initial consultation",
+          "medical": "Results may vary based on individual factors",
+          "results": "We do not guarantee specific results from any treatment"
+        }
+      },
+      "appointments": {
+        "title": "Appointments & Cancellations",
+        "description": "To ensure the best service for all our clients:",
+        "items": {
+          "cancellation": "Please provide at least 24 hours notice for cancellations",
+          "noshow": "No-shows may affect future booking privileges",
+          "rescheduling": "Rescheduling is available subject to availability"
+        }
+      },
+      "payment": {
+        "title": "Payment",
+        "description": "Payment terms and accepted methods will be discussed during your consultation. Prices are subject to change without notice."
+      },
+      "liability": {
+        "title": "Limitation of Liability",
+        "description": "To the fullest extent permitted by law, Silentium shall not be liable for any indirect, incidental, or consequential damages arising from the use of our services."
+      },
+      "medical": {
+        "title": "Medical Disclaimer",
+        "description": "Our services are provided by qualified medical professionals. However, individual results may vary, and treatments carry inherent risks which will be discussed during consultation."
+      },
+      "changes": {
+        "title": "Changes to Terms",
+        "description": "We reserve the right to modify these terms at any time. Changes will be effective immediately upon posting on our website."
+      },
+      "contact": {
+        "title": "Contact Us",
+        "description": "For any questions about these Terms of Service, please contact us."
+      }
+    }
   }
 }
