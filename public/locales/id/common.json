@@ -1,0 +1,33 @@
+{
+  "nav": {
+    "home": "Beranda",
+    "about": "Tentang",
+    "services": "Layanan",
+    "contact": "Kontak"
+  },
+  "hero": {
+    "tagline": "Di mana sains bertemu jiwa",
+    "quote": "Kecantikan lahir dalam keheningan; dalam kesunyian seorang wanita akhirnya mendengar dirinya sendiri.",
+    "cta": "Pesan Konsultasi"
+  },
+  "common": {
+    "comingSoon": "Segera Hadir",
+    "location": "Kosmetologi Estetika di Bali",
+    "brandPalette": "Palet Warna",
+    "learnMore": "Pelajari Lebih Lanjut",
+    "readMore": "Baca Selengkapnya",
+    "viewAll": "Lihat Semua",
+    "close": "Tutup"
+  },
+  "footer": {
+    "copyright": "Hak cipta dilindungi",
+    "privacyPolicy": "Kebijakan Privasi",
+    "termsOfService": "Ketentuan Layanan"
+  },
+  "language": {
+    "select": "Pilih Bahasa",
+    "en": "Inggris",
+    "ru": "Rusia",
+    "id": "Indonesia"
+  }
+}

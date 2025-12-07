@@ -1,0 +1,33 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "contact": "Contact"
+  },
+  "hero": {
+    "tagline": "Where science meets spirit",
+    "quote": "Beauty is born in silence; in the stillness is where a woman finally hears herself.",
+    "cta": "Book Consultation"
+  },
+  "common": {
+    "comingSoon": "Coming Soon",
+    "location": "Aesthetic Cosmetology in Bali",
+    "brandPalette": "Brand Palette",
+    "learnMore": "Learn More",
+    "readMore": "Read More",
+    "viewAll": "View All",
+    "close": "Close"
+  },
+  "footer": {
+    "copyright": "All rights reserved",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service"
+  },
+  "language": {
+    "select": "Select Language",
+    "en": "English",
+    "ru": "Russian",
+    "id": "Indonesian"
+  }
+}
