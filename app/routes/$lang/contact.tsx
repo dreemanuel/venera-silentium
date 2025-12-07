@@ -13,6 +13,7 @@ import {
 } from "~/lib/sanity";
 import { ContactForm, BookingForm } from "~/components/forms";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "~/components/ui/Tabs";
+import { generateMeta, pageSeo, getOgLocale, SITE_URL } from "~/lib/seo";
 
 export async function loader({ params, request }: Route.LoaderArgs) {
   const lang = (params.lang || "en") as Language;
@@ -37,35 +38,15 @@ export async function loader({ params, request }: Route.LoaderArgs) {
 }
 
 export function meta({ params }: Route.MetaArgs) {
-  const defaultMeta = {
-    title: "Contact | Silentium - Aesthetic Cosmetology",
-    description:
-      "Book a consultation with Dr. Venera Frolova. Contact Silentium for premium aesthetic cosmetology in Bali.",
-  };
-
-  const langMeta: Record<string, { title: string; description: string }> = {
-    en: defaultMeta,
-    ru: {
-      title: "Контакты | Silentium - Эстетическая косметология",
-      description:
-        "Запишитесь на консультацию к Др. Венере Фроловой. Свяжитесь с Silentium для премиум эстетической косметологии на Бали.",
-    },
-    id: {
-      title: "Kontak | Silentium - Kosmetologi Estetika",
-      description:
-        "Pesan konsultasi dengan Dr. Venera Frolova. Hubungi Silentium untuk kosmetologi estetika premium di Bali.",
-    },
-  };
-
   const lang = params.lang || "en";
-  const currentMeta = langMeta[lang] || defaultMeta;
+  const seo = pageSeo.contact[lang as keyof typeof pageSeo.contact] || pageSeo.contact.en;
 
-  return [
-    { title: currentMeta.title },
-    { name: "description", content: currentMeta.description },
-    { property: "og:title", content: currentMeta.title },
-    { property: "og:description", content: currentMeta.description },
-  ];
+  return generateMeta({
+    title: seo.title,
+    description: seo.description,
+    url: `${SITE_URL}/${lang}/contact`,
+    locale: getOgLocale(lang),
+  });
 }
 
 const containerVariants: Variants = {

@@ -11,6 +11,7 @@ import {
 import type { Route } from "./+types/root";
 import "./app.css";
 import { defaultLanguage, isValidLanguage } from "~/lib/i18n";
+import { LocalBusinessSchema, WebSiteSchema, PersonSchema } from "~/components/seo";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -34,6 +35,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         {children}
+        <LocalBusinessSchema />
+        <WebSiteSchema />
+        <PersonSchema />
         <ScrollRestoration />
         <Scripts />
       </body>

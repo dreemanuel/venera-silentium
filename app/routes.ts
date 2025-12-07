@@ -9,6 +9,9 @@ export default [
   // Root redirects to /en
   index("routes/home-redirect.tsx"),
 
+  // SEO routes (no layout)
+  route("sitemap.xml", "routes/sitemap[.]xml.tsx"),
+
   // Language-prefixed routes
   layout("routes/$lang/layout.tsx", [
     route(":lang", "routes/$lang/home.tsx"),

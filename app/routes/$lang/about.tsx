@@ -11,6 +11,7 @@ import {
   type Language,
   type PortableTextBlock,
 } from '~/lib/sanity';
+import { generateMeta, pageSeo, getOgLocale, SITE_URL } from '~/lib/seo';
 
 export async function loader({ params }: Route.LoaderArgs) {
   const lang = (params.lang || 'en') as Language;
@@ -26,39 +27,16 @@ export async function loader({ params }: Route.LoaderArgs) {
 }
 
 export function meta({ params }: Route.MetaArgs) {
-  const defaultMeta = {
-    title: 'About | Silentium - Aesthetic Cosmetology',
-    description:
-      'Learn about Dr. Venera Frolova and the Silentium philosophy. Where science meets spirit in aesthetic cosmetology.',
-  };
-
-  const langMeta: Record<string, { title: string; description: string }> = {
-    en: defaultMeta,
-    ru: {
-      title: 'О нас | Silentium - Эстетическая косметология',
-      description:
-        'Узнайте о Др. Венере Фроловой и философии Silentium. Где наука встречается с духом.',
-    },
-    id: {
-      title: 'Tentang | Silentium - Kosmetologi Estetika',
-      description:
-        'Pelajari tentang Dr. Venera Frolova dan filosofi Silentium. Di mana sains bertemu jiwa.',
-    },
-  };
-
   const lang = params.lang || 'en';
-  const currentMeta = langMeta[lang] || defaultMeta;
+  const seo = pageSeo.about[lang as keyof typeof pageSeo.about] || pageSeo.about.en;
 
-  return [
-    { title: currentMeta.title },
-    { name: 'description', content: currentMeta.description },
-    { property: 'og:title', content: currentMeta.title },
-    { property: 'og:description', content: currentMeta.description },
-    {
-      property: 'og:locale',
-      content: lang === 'ru' ? 'ru_RU' : lang === 'id' ? 'id_ID' : 'en_US',
-    },
-  ];
+  return generateMeta({
+    title: seo.title,
+    description: seo.description,
+    url: `${SITE_URL}/${lang}/about`,
+    locale: getOgLocale(lang),
+    type: 'profile',
+  });
 }
 
 const headerVariants: Variants = {

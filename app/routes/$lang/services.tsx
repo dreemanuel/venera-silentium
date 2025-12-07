@@ -9,6 +9,7 @@ import {
   type Service,
   type Language,
 } from '~/lib/sanity';
+import { generateMeta, pageSeo, getOgLocale, SITE_URL } from '~/lib/seo';
 
 export async function loader({ params }: Route.LoaderArgs) {
   const lang = (params.lang || 'en') as Language;
@@ -26,25 +27,14 @@ export async function loader({ params }: Route.LoaderArgs) {
 
 export function meta({ params }: Route.MetaArgs) {
   const lang = params.lang || 'en';
+  const seo = pageSeo.services[lang as keyof typeof pageSeo.services] || pageSeo.services.en;
 
-  const titles: Record<string, string> = {
-    en: 'Services | Silentium - Aesthetic Cosmetology in Bali',
-    ru: 'Услуги | Silentium - Эстетическая косметология на Бали',
-    id: 'Layanan | Silentium - Kosmetologi Estetika di Bali',
-  };
-
-  const descriptions: Record<string, string> = {
-    en: 'Discover our range of aesthetic treatments at Silentium. From anti-aging injectables to skin rejuvenation, find the perfect treatment for your needs.',
-    ru: 'Откройте для себя наш спектр эстетических процедур в Silentium. От инъекций против старения до омоложения кожи — найдите идеальную процедуру.',
-    id: 'Temukan berbagai perawatan estetika kami di Silentium. Dari suntikan anti-penuaan hingga peremajaan kulit, temukan perawatan yang tepat.',
-  };
-
-  return [
-    { title: titles[lang] || titles.en },
-    { name: 'description', content: descriptions[lang] || descriptions.en },
-    { property: 'og:title', content: titles[lang] || titles.en },
-    { property: 'og:description', content: descriptions[lang] || descriptions.en },
-  ];
+  return generateMeta({
+    title: seo.title,
+    description: seo.description,
+    url: `${SITE_URL}/${lang}/services`,
+    locale: getOgLocale(lang),
+  });
 }
 
 export default function Services() {

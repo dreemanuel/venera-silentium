@@ -5,6 +5,7 @@ import { useInView } from 'react-intersection-observer';
 import type { Route } from './+types/services.$slug';
 import { Button } from '~/components/ui';
 import { ContactCTA } from '~/components/sections';
+import { ServiceSchema, BreadcrumbSchema } from '~/components/seo';
 import { sanityClient } from '~/lib/sanity/client.server';
 import {
   serviceBySlugQuery,
@@ -15,6 +16,7 @@ import {
   type Language,
   type PortableTextBlock,
 } from '~/lib/sanity';
+import { generateMeta, getOgLocale, SITE_URL, SITE_NAME } from '~/lib/seo';
 import { Clock, Sparkles, Users, ChevronLeft } from 'lucide-react';
 
 export async function loader({ params }: Route.LoaderArgs) {
@@ -52,7 +54,7 @@ export function meta({ data, params }: Route.MetaArgs) {
   const lang = (params.lang || 'en') as Language;
 
   if (!data?.service) {
-    return [{ title: 'Service Not Found | Silentium' }];
+    return [{ title: `Service Not Found | ${SITE_NAME}` }];
   }
 
   const title = getLocalizedValue(data.service.title, lang) || 'Service';
@@ -60,12 +62,18 @@ export function meta({ data, params }: Route.MetaArgs) {
     getLocalizedValue(data.service.shortDescription, lang) ||
     'Aesthetic cosmetology treatment at Silentium';
 
-  return [
-    { title: `${title} | Silentium` },
-    { name: 'description', content: description },
-    { property: 'og:title', content: `${title} | Silentium` },
-    { property: 'og:description', content: description },
-  ];
+  // Get OG image from service or use default
+  const ogImage = data.service.image
+    ? urlFor(data.service.image).width(1200).height(630).quality(85).url()
+    : undefined;
+
+  return generateMeta({
+    title: `${title} | ${SITE_NAME}`,
+    description,
+    url: `${SITE_URL}/${lang}/services/${data.service.slug?.current}`,
+    locale: getOgLocale(lang),
+    image: ogImage,
+  });
 }
 
 const containerVariants: Variants = {
@@ -176,8 +184,24 @@ export default function ServiceDetail() {
     ? urlFor(service.image).width(1200).height(600).quality(85).auto('format').url()
     : null;
 
+  // Breadcrumb data for structured data
+  const breadcrumbItems = [
+    { name: 'Home', url: `/${lang}` },
+    { name: t('nav.services'), url: `/${lang}/services` },
+    { name: title, url: `/${lang}/services/${service.slug?.current}` },
+  ];
+
   return (
     <>
+      {/* Structured Data for Service */}
+      <ServiceSchema
+        name={title}
+        description={shortDescription || ''}
+        url={`${SITE_URL}/${lang}/services/${service.slug?.current}`}
+        image={heroImageUrl || undefined}
+      />
+      <BreadcrumbSchema items={breadcrumbItems} />
+
       {/* Hero Section */}
       <section className="relative min-h-[40vh] md:min-h-[50vh] flex items-end">
         {heroImageUrl ? (

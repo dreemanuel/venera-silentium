@@ -1,0 +1,12 @@
+# Robots.txt for Silentium - Aesthetic Cosmetology
+# https://silentium.com
+
+User-agent: *
+Allow: /
+
+# Disallow API routes and admin paths
+Disallow: /api/
+Disallow: /sanity/
+
+# Sitemap location
+Sitemap: https://silentium.com/sitemap.xml
