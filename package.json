@@ -14,7 +14,12 @@
     "sanity": "cd sanity && npm run dev",
     "sanity:build": "cd sanity && npm run build",
     "sanity:deploy": "cd sanity && npm run deploy",
-    "seed:services": "npx tsx sanity/scripts/seed-services.ts"
+    "seed:services": "npx tsx sanity/scripts/seed-services.ts",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:headed": "playwright test --headed",
+    "test:e2e:chromium": "playwright test --project=chromium",
+    "test:e2e:webkit": "playwright test --project=webkit"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
@@ -43,6 +48,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
+    "@playwright/test": "^1.57.0",
     "@react-router/dev": "7.10.1",
     "@tailwindcss/vite": "^4.1.13",
     "@types/node": "^22",

@@ -146,3 +146,78 @@ p {
   outline: 2px solid var(--color-paynes-gray);
   outline-offset: 2px;
 }
+
+/* =========================================
+   Glassmorphism Fallback
+   For browsers that don't support backdrop-filter
+   ========================================= */
+@supports not (backdrop-filter: blur(12px)) {
+  .glass {
+    background: rgba(254, 250, 224, 0.95);
+    box-shadow: var(--shadow-glass);
+  }
+
+  .glass-light {
+    background: rgba(254, 250, 224, 0.98);
+    box-shadow: var(--shadow-glass);
+  }
+
+  .glass-dark {
+    background: rgba(92, 107, 115, 0.98);
+    box-shadow: var(--shadow-glass-lg);
+  }
+}
+
+/* =========================================
+   Reduced Motion Support
+   Respects user preference for reduced motion
+   ========================================= */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* =========================================
+   High Contrast Mode Support
+   ========================================= */
+@media (prefers-contrast: high) {
+  :root {
+    --color-paynes-gray: #2d3436;
+    --color-tea-green: #a8c686;
+  }
+
+  .glass,
+  .glass-light,
+  .glass-dark {
+    border-width: 2px;
+  }
+}
+
+/* =========================================
+   Print Styles
+   ========================================= */
+@media print {
+  .glass,
+  .glass-light,
+  .glass-dark {
+    background: white;
+    backdrop-filter: none;
+    box-shadow: none;
+    border: 1px solid #ccc;
+  }
+
+  body {
+    background: white;
+    color: black;
+  }
+}
