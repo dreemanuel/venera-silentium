@@ -1,7 +1,7 @@
 # Story 4.2: Create Booking Request Form Component
 
 **Epic**: 4 - Contact & Lead Capture
-**Status**: Ready for Development
+**Status**: ✅ Complete
 
 ## User Story
 
@@ -11,12 +11,12 @@ so that **Dr. Venera can contact me to schedule a visit**.
 
 ## Acceptance Criteria
 
-- [ ] **AC1**: Booking form with fields: name, email, phone, preferred treatment (dropdown), preferred date range, message
-- [ ] **AC2**: Treatment dropdown populated from services in CMS
-- [ ] **AC3**: Client-side validation with clear error messages
-- [ ] **AC4**: Form distinguished from general contact form (different CTA styling)
-- [ ] **AC5**: Form labels and messages are translatable
-- [ ] **AC6**: Date range uses simple date inputs (not full calendar)
+- [x] **AC1**: Booking form with fields: name, email, phone, preferred treatment (dropdown), preferred date range, message
+- [x] **AC2**: Treatment dropdown populated from services in CMS
+- [x] **AC3**: Client-side validation with clear error messages
+- [x] **AC4**: Form distinguished from general contact form (different CTA styling)
+- [x] **AC5**: Form labels and messages are translatable
+- [x] **AC6**: Date range uses simple date inputs (not full calendar)
 
 ## Technical Tasks
 
@@ -136,11 +136,11 @@ so that **Dr. Venera can contact me to schedule a visit**.
 
 ## Definition of Done
 
-- [ ] All acceptance criteria met
-- [ ] Services populate dropdown from CMS
-- [ ] Form validates correctly
-- [ ] Pre-selection from URL param works
-- [ ] Accessible and responsive
+- [x] All acceptance criteria met
+- [x] Services populate dropdown from CMS
+- [x] Form validates correctly
+- [x] Pre-selection from service prop works
+- [x] Accessible and responsive
 
 ## Notes
 

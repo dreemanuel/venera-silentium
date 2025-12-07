@@ -1,7 +1,7 @@
 # Story 4.1: Create Contact Form Component
 
 **Epic**: 4 - Contact & Lead Capture
-**Status**: Ready for Development
+**Status**: ✅ Complete
 
 ## User Story
 
@@ -11,12 +11,12 @@ so that **I can ask questions before deciding to book**.
 
 ## Acceptance Criteria
 
-- [ ] **AC1**: Contact form with fields: name, email, phone (optional), message
-- [ ] **AC2**: Client-side validation using React Hook Form + Zod
-- [ ] **AC3**: Form submission handled by Remix action
-- [ ] **AC4**: Success and error states clearly communicated to user
-- [ ] **AC5**: Form labels and messages are translatable
-- [ ] **AC6**: Honeypot field for basic spam protection
+- [x] **AC1**: Contact form with fields: name, email, phone (optional), message
+- [x] **AC2**: Client-side validation using React Hook Form + Zod
+- [x] **AC3**: Form submission handled by Remix action (via useFetcher)
+- [x] **AC4**: Success and error states clearly communicated to user
+- [x] **AC5**: Form labels and messages are translatable
+- [x] **AC6**: Honeypot field for basic spam protection
 
 ## Technical Tasks
 
@@ -149,12 +149,12 @@ so that **I can ask questions before deciding to book**.
 
 ## Definition of Done
 
-- [ ] All acceptance criteria met
-- [ ] Form validates on client side
-- [ ] Error messages display correctly
-- [ ] Form submits (action handler in next story)
-- [ ] Accessible (labels, error announcements)
-- [ ] Responsive on all breakpoints
+- [x] All acceptance criteria met
+- [x] Form validates on client side
+- [x] Error messages display correctly
+- [x] Form submits (action handler in next story)
+- [x] Accessible (labels, error announcements)
+- [x] Responsive on all breakpoints
 
 ## Notes
 

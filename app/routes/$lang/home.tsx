@@ -3,8 +3,8 @@ import { useLoaderData } from 'react-router';
 import type { Route } from './+types/home';
 import { HeroSection, AboutPreview, SilentiumPhilosophy, ServicesGallery } from '~/components/sections';
 import { Button } from '~/components/ui';
+import { sanityClient } from '~/lib/sanity/client.server';
 import {
-  sanityClient,
   siteSettingsQuery,
   featuredServicesQuery,
   getLocalizedValue,

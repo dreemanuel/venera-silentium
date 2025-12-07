@@ -30,10 +30,20 @@
     "cta": "Learn More About Us"
   },
   "contact": {
+    "pageTitle": "Get in Touch",
+    "pageSubtitle": "We'd love to hear from you. Reach out for a consultation or any questions.",
     "ctaHeading": "Ready to begin your journey?",
     "ctaSubheading": "Book a consultation to discover how we can help you feel your most confident self.",
     "bookConsultation": "Book Consultation",
-    "whatsappUs": "WhatsApp Us"
+    "sendMessage": "Send Message",
+    "whatsappUs": "WhatsApp Us",
+    "chatOnWhatsApp": "Chat with Dr. Venera",
+    "location": "Location",
+    "email": "Email",
+    "phone": "Phone",
+    "responseTime": "Response Time",
+    "responseTimeText": "We typically respond within 24 hours",
+    "followUs": "Follow Us"
   },
   "common": {
     "comingSoon": "Coming Soon",
@@ -68,5 +78,34 @@
     "en": "English",
     "ru": "Russian",
     "id": "Indonesian"
+  },
+  "form": {
+    "name": "Your Name",
+    "namePlaceholder": "Enter your name",
+    "email": "Email Address",
+    "emailPlaceholder": "your@email.com",
+    "phone": "Phone Number",
+    "phonePlaceholder": "+62 xxx xxxx xxxx",
+    "message": "Your Message",
+    "messagePlaceholder": "How can we help you?",
+    "service": "Select Service",
+    "servicePlaceholder": "Choose a service",
+    "preferredDate": "Preferred Date",
+    "optional": "optional",
+    "sendMessage": "Send Message",
+    "sending": "Sending...",
+    "bookNow": "Book Now",
+    "booking": "Booking...",
+    "success": "Thank you! Your message has been sent successfully. We will get back to you soon.",
+    "bookingSuccess": "Thank you! Your booking request has been received. We will confirm your appointment shortly.",
+    "error": "Something went wrong. Please try again or contact us directly via WhatsApp.",
+    "whatsappFollowUp": "Or message us directly on WhatsApp for faster response"
+  },
+  "booking": {
+    "title": "Request a Consultation",
+    "subtitle": "Book your personalized aesthetic consultation",
+    "success": "Thank you! Your booking request has been received. Dr. Venera will contact you within 24 hours to confirm your appointment.",
+    "submitting": "Submitting...",
+    "notesPlaceholder": "Tell us about your concerns or what you'd like to achieve..."
   }
 }

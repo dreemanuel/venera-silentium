@@ -3,8 +3,8 @@ import { useLoaderData } from 'react-router';
 import type { Route } from './+types/about';
 import { motion, type Variants } from 'framer-motion';
 import { AboutPreview, SilentiumPhilosophy, ContactCTA } from '~/components/sections';
+import { sanityClient } from '~/lib/sanity/client.server';
 import {
-  sanityClient,
   siteSettingsQuery,
   getLocalizedValue,
   type SiteSettings,

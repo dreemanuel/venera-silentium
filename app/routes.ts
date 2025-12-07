@@ -16,5 +16,8 @@ export default [
     route(":lang/contact", "routes/$lang/contact.tsx"),
     route(":lang/services", "routes/$lang/services.tsx"),
     route(":lang/services/:slug", "routes/$lang/services.$slug.tsx"),
+    // API routes (no layout needed)
+    route(":lang/api/contact", "routes/$lang/api/contact.tsx"),
+    route(":lang/api/booking", "routes/$lang/api/booking.tsx"),
   ]),
 ] satisfies RouteConfig;

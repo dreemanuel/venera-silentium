@@ -3,8 +3,8 @@ import { useLoaderData } from 'react-router';
 import { motion } from 'framer-motion';
 import type { Route } from './+types/services';
 import { ServicesGallery, ContactCTA } from '~/components/sections';
+import { sanityClient } from '~/lib/sanity/client.server';
 import {
-  sanityClient,
   servicesQuery,
   type Service,
   type Language,

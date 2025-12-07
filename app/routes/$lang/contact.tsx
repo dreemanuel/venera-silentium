@@ -1,56 +1,70 @@
-import { useTranslation } from 'react-i18next';
-import { useLoaderData } from 'react-router';
-import type { Route } from './+types/contact';
-import { motion, type Variants } from 'framer-motion';
+import { useTranslation } from "react-i18next";
+import { useLoaderData } from "react-router";
+import type { Route } from "./+types/contact";
+import { motion, type Variants } from "framer-motion";
+import { Mail, Phone, MessageCircle, MapPin, Clock, Instagram } from "lucide-react";
+import { sanityClient } from "~/lib/sanity/client.server";
 import {
-  sanityClient,
   siteSettingsQuery,
+  servicesQuery,
   type SiteSettings,
+  type Service,
   type Language,
-} from '~/lib/sanity';
+} from "~/lib/sanity";
+import { ContactForm, BookingForm } from "~/components/forms";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "~/components/ui/Tabs";
 
-export async function loader({ params }: Route.LoaderArgs) {
-  const lang = (params.lang || 'en') as Language;
+export async function loader({ params, request }: Route.LoaderArgs) {
+  const lang = (params.lang || "en") as Language;
+
+  // Get preselected service from URL
+  const url = new URL(request.url);
+  const preselectedService = url.searchParams.get("service");
 
   let siteSettings: SiteSettings | null = null;
+  let services: Service[] = [];
+
   try {
-    siteSettings = await sanityClient.fetch<SiteSettings>(siteSettingsQuery);
+    [siteSettings, services] = await Promise.all([
+      sanityClient.fetch<SiteSettings>(siteSettingsQuery),
+      sanityClient.fetch<Service[]>(servicesQuery),
+    ]);
   } catch {
-    console.log('Sanity fetch failed');
+    console.log("Sanity fetch failed");
   }
 
-  return { siteSettings, lang };
+  return { siteSettings, services, lang, preselectedService };
 }
 
 export function meta({ params }: Route.MetaArgs) {
   const defaultMeta = {
-    title: 'Contact | Silentium - Aesthetic Cosmetology',
+    title: "Contact | Silentium - Aesthetic Cosmetology",
     description:
-      'Book a consultation with Dr. Venera Frolova. Contact Silentium for premium aesthetic cosmetology in Bali.',
+      "Book a consultation with Dr. Venera Frolova. Contact Silentium for premium aesthetic cosmetology in Bali.",
   };
 
   const langMeta: Record<string, { title: string; description: string }> = {
     en: defaultMeta,
     ru: {
-      title: 'Контакты | Silentium - Эстетическая косметология',
+      title: "Контакты | Silentium - Эстетическая косметология",
       description:
-        'Запишитесь на консультацию к Др. Венере Фроловой. Свяжитесь с Silentium для премиум эстетической косметологии на Бали.',
+        "Запишитесь на консультацию к Др. Венере Фроловой. Свяжитесь с Silentium для премиум эстетической косметологии на Бали.",
     },
     id: {
-      title: 'Kontak | Silentium - Kosmetologi Estetika',
+      title: "Kontak | Silentium - Kosmetologi Estetika",
       description:
-        'Pesan konsultasi dengan Dr. Venera Frolova. Hubungi Silentium untuk kosmetologi estetika premium di Bali.',
+        "Pesan konsultasi dengan Dr. Venera Frolova. Hubungi Silentium untuk kosmetologi estetika premium di Bali.",
     },
   };
 
-  const lang = params.lang || 'en';
+  const lang = params.lang || "en";
   const currentMeta = langMeta[lang] || defaultMeta;
 
   return [
     { title: currentMeta.title },
-    { name: 'description', content: currentMeta.description },
-    { property: 'og:title', content: currentMeta.title },
-    { property: 'og:description', content: currentMeta.description },
+    { name: "description", content: currentMeta.description },
+    { property: "og:title", content: currentMeta.title },
+    { property: "og:description", content: currentMeta.description },
   ];
 }
 
@@ -71,14 +85,18 @@ const itemVariants: Variants = {
     y: 0,
     transition: {
       duration: 0.5,
-      ease: 'easeOut',
+      ease: "easeOut",
     },
   },
 };
 
 export default function Contact() {
   const { t } = useTranslation();
-  const { siteSettings } = useLoaderData<typeof loader>();
+  const { siteSettings, services, lang, preselectedService } =
+    useLoaderData<typeof loader>();
+
+  // Determine default tab based on preselected service
+  const defaultTab = preselectedService ? "booking" : "booking";
 
   return (
     <main className="min-h-screen bg-cornsilk">
@@ -94,18 +112,18 @@ export default function Contact() {
             variants={itemVariants}
             className="text-4xl md:text-5xl lg:text-6xl text-paynes-gray mb-4"
           >
-            {t('nav.contact')}
+            {t("contact.pageTitle")}
           </motion.h1>
           <motion.p
             variants={itemVariants}
             className="text-paynes-gray/70 font-heading text-lg md:text-xl max-w-2xl mx-auto"
           >
-            {t('contact.ctaSubheading')}
+            {t("contact.pageSubtitle")}
           </motion.p>
         </motion.div>
       </section>
 
-      {/* Contact Info - Coming in Epic 4 */}
+      {/* Contact Content */}
       <section className="py-20">
         <motion.div
           className="container mx-auto px-6"
@@ -113,49 +131,163 @@ export default function Contact() {
           animate="visible"
           variants={containerVariants}
         >
-          <div className="max-w-2xl mx-auto">
-            <motion.div variants={itemVariants} className="glass p-8 text-center">
-              <h2 className="text-2xl text-paynes-gray mb-4 font-heading">
-                {t('common.comingSoon')}
-              </h2>
-              <p className="text-paynes-gray/60 mb-6">
-                {t('common.location')}
-              </p>
+          <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+            {/* Forms Column */}
+            <motion.div variants={itemVariants}>
+              <div className="glass p-8">
+                <Tabs defaultValue={defaultTab}>
+                  <TabsList>
+                    <TabsTrigger value="booking">
+                      {t("contact.bookConsultation")}
+                    </TabsTrigger>
+                    <TabsTrigger value="contact">
+                      {t("contact.sendMessage")}
+                    </TabsTrigger>
+                  </TabsList>
 
-              {/* Contact details from Sanity */}
-              <div className="space-y-3 text-paynes-gray/70">
-                {siteSettings?.contactEmail && (
-                  <p>
-                    <a
-                      href={`mailto:${siteSettings.contactEmail}`}
-                      className="hover:text-paynes-gray transition-colors"
-                    >
-                      {siteSettings.contactEmail}
-                    </a>
-                  </p>
+                  <TabsContent value="booking">
+                    <BookingForm
+                      lang={lang}
+                      services={services}
+                      preselectedService={preselectedService || undefined}
+                    />
+                  </TabsContent>
+
+                  <TabsContent value="contact">
+                    <ContactForm lang={lang} />
+                  </TabsContent>
+                </Tabs>
+              </div>
+            </motion.div>
+
+            {/* Contact Info Column */}
+            <motion.div variants={itemVariants} className="space-y-6">
+              <div className="glass p-8">
+                <h2 className="text-2xl text-paynes-gray mb-6 font-heading">
+                  {t("contact.ctaHeading")}
+                </h2>
+
+                <div className="space-y-5">
+                  {/* WhatsApp - Primary */}
+                  {siteSettings?.whatsappNumber && (
+                    <div className="flex items-start gap-4">
+                      <div className="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center flex-shrink-0">
+                        <MessageCircle className="w-5 h-5 text-green-600" />
+                      </div>
+                      <div>
+                        <p className="font-heading text-paynes-gray font-medium">
+                          WhatsApp
+                        </p>
+                        <a
+                          href={`https://wa.me/${siteSettings.whatsappNumber.replace(/[^0-9]/g, "")}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-green-600 hover:text-green-700 transition-colors font-medium"
+                        >
+                          {t("contact.chatOnWhatsApp")}
+                        </a>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Location */}
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 rounded-full bg-tea-green/30 flex items-center justify-center flex-shrink-0">
+                      <MapPin className="w-5 h-5 text-paynes-gray" />
+                    </div>
+                    <div>
+                      <p className="font-heading text-paynes-gray font-medium">
+                        {t("contact.location")}
+                      </p>
+                      <p className="text-paynes-gray/70">Bali, Indonesia</p>
+                    </div>
+                  </div>
+
+                  {/* Email */}
+                  {siteSettings?.contactEmail && (
+                    <div className="flex items-start gap-4">
+                      <div className="w-10 h-10 rounded-full bg-tea-green/30 flex items-center justify-center flex-shrink-0">
+                        <Mail className="w-5 h-5 text-paynes-gray" />
+                      </div>
+                      <div>
+                        <p className="font-heading text-paynes-gray font-medium">
+                          {t("contact.email")}
+                        </p>
+                        <a
+                          href={`mailto:${siteSettings.contactEmail}`}
+                          className="text-paynes-gray/70 hover:text-paynes-gray transition-colors"
+                        >
+                          {siteSettings.contactEmail}
+                        </a>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Phone */}
+                  {siteSettings?.contactPhone && (
+                    <div className="flex items-start gap-4">
+                      <div className="w-10 h-10 rounded-full bg-tea-green/30 flex items-center justify-center flex-shrink-0">
+                        <Phone className="w-5 h-5 text-paynes-gray" />
+                      </div>
+                      <div>
+                        <p className="font-heading text-paynes-gray font-medium">
+                          {t("contact.phone")}
+                        </p>
+                        <a
+                          href={`tel:${siteSettings.contactPhone}`}
+                          className="text-paynes-gray/70 hover:text-paynes-gray transition-colors"
+                        >
+                          {siteSettings.contactPhone}
+                        </a>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Response Time */}
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 rounded-full bg-tea-green/30 flex items-center justify-center flex-shrink-0">
+                      <Clock className="w-5 h-5 text-paynes-gray" />
+                    </div>
+                    <div>
+                      <p className="font-heading text-paynes-gray font-medium">
+                        {t("contact.responseTime")}
+                      </p>
+                      <p className="text-paynes-gray/70">
+                        {t("contact.responseTimeText")}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Social Links */}
+                {siteSettings?.socialLinks && (
+                  <div className="pt-6 mt-6 border-t border-tea-green/30">
+                    <h3 className="font-heading text-paynes-gray font-medium mb-4">
+                      {t("contact.followUs")}
+                    </h3>
+                    <div className="flex gap-4">
+                      {siteSettings.socialLinks.instagram && (
+                        <a
+                          href={siteSettings.socialLinks.instagram}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label="Instagram"
+                          className="w-10 h-10 rounded-full bg-tea-green/30 flex items-center justify-center hover:bg-tea-green/50 transition-colors"
+                        >
+                          <Instagram className="w-5 h-5 text-paynes-gray" />
+                        </a>
+                      )}
+                      {/* Add more social links as needed */}
+                    </div>
+                  </div>
                 )}
-                {siteSettings?.contactPhone && (
-                  <p>
-                    <a
-                      href={`tel:${siteSettings.contactPhone}`}
-                      className="hover:text-paynes-gray transition-colors"
-                    >
-                      {siteSettings.contactPhone}
-                    </a>
-                  </p>
-                )}
-                {siteSettings?.whatsappNumber && (
-                  <p>
-                    <a
-                      href={`https://wa.me/${siteSettings.whatsappNumber.replace(/[^0-9]/g, '')}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="hover:text-paynes-gray transition-colors"
-                    >
-                      WhatsApp: {siteSettings.whatsappNumber}
-                    </a>
-                  </p>
-                )}
+              </div>
+
+              {/* Additional info */}
+              <div className="glass-light p-6 text-center">
+                <p className="text-paynes-gray/70 font-body text-sm">
+                  {t("common.location")}
+                </p>
               </div>
             </motion.div>
           </div>

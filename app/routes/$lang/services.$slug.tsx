@@ -5,8 +5,8 @@ import { useInView } from 'react-intersection-observer';
 import type { Route } from './+types/services.$slug';
 import { Button } from '~/components/ui';
 import { ContactCTA } from '~/components/sections';
+import { sanityClient } from '~/lib/sanity/client.server';
 import {
-  sanityClient,
   serviceBySlugQuery,
   servicesByCategoryQuery,
   urlFor,

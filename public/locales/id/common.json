@@ -30,10 +30,20 @@
     "cta": "Pelajari Lebih Lanjut Tentang Kami"
   },
   "contact": {
+    "pageTitle": "Hubungi Kami",
+    "pageSubtitle": "Kami senang mendengar dari Anda. Hubungi kami untuk konsultasi atau pertanyaan apapun.",
     "ctaHeading": "Siap memulai perjalanan Anda?",
     "ctaSubheading": "Pesan konsultasi untuk menemukan bagaimana kami dapat membantu Anda merasa paling percaya diri.",
     "bookConsultation": "Pesan Konsultasi",
-    "whatsappUs": "Hubungi via WhatsApp"
+    "sendMessage": "Kirim Pesan",
+    "whatsappUs": "Hubungi via WhatsApp",
+    "chatOnWhatsApp": "Chat dengan Dr. Venera",
+    "location": "Lokasi",
+    "email": "Email",
+    "phone": "Telepon",
+    "responseTime": "Waktu Respons",
+    "responseTimeText": "Kami biasanya merespons dalam 24 jam",
+    "followUs": "Ikuti Kami"
   },
   "common": {
     "comingSoon": "Segera Hadir",
@@ -68,5 +78,34 @@
     "en": "Inggris",
     "ru": "Rusia",
     "id": "Indonesia"
+  },
+  "form": {
+    "name": "Nama Anda",
+    "namePlaceholder": "Masukkan nama Anda",
+    "email": "Alamat Email",
+    "emailPlaceholder": "email@anda.com",
+    "phone": "Nomor Telepon",
+    "phonePlaceholder": "+62 xxx xxxx xxxx",
+    "message": "Pesan Anda",
+    "messagePlaceholder": "Bagaimana kami dapat membantu Anda?",
+    "service": "Pilih Layanan",
+    "servicePlaceholder": "Pilih layanan",
+    "preferredDate": "Tanggal yang Diinginkan",
+    "optional": "opsional",
+    "sendMessage": "Kirim Pesan",
+    "sending": "Mengirim...",
+    "bookNow": "Pesan Sekarang",
+    "booking": "Memproses...",
+    "success": "Terima kasih! Pesan Anda telah berhasil dikirim. Kami akan segera menghubungi Anda.",
+    "bookingSuccess": "Terima kasih! Permintaan pemesanan Anda telah diterima. Kami akan segera mengkonfirmasi janji temu Anda.",
+    "error": "Terjadi kesalahan. Silakan coba lagi atau hubungi kami langsung melalui WhatsApp.",
+    "whatsappFollowUp": "Atau hubungi kami langsung di WhatsApp untuk respons lebih cepat"
+  },
+  "booking": {
+    "title": "Minta Konsultasi",
+    "subtitle": "Pesan konsultasi estetika personal Anda",
+    "success": "Terima kasih! Permintaan pemesanan Anda telah diterima. Dr. Venera akan menghubungi Anda dalam 24 jam untuk mengkonfirmasi janji temu.",
+    "submitting": "Mengirim...",
+    "notesPlaceholder": "Ceritakan tentang kekhawatiran Anda atau apa yang ingin Anda capai..."
   }
 }

@@ -21,81 +21,91 @@ so that **I can add, edit, and organize treatment information**.
 ## Technical Tasks
 
 1. Update service schema in `/sanity/schemas/documents/service.ts`:
+
    ```typescript
    export default {
-     name: 'service',
-     title: 'Service',
-     type: 'document',
+     name: "service",
+     title: "Service",
+     type: "document",
      fields: [
        {
-         name: 'title',
-         title: 'Title',
-         type: 'localizedString',
+         name: "title",
+         title: "Title",
+         type: "localizedString",
          validation: (Rule) => Rule.required(),
        },
        {
-         name: 'slug',
-         title: 'Slug',
-         type: 'slug',
-         options: { source: 'title.en', maxLength: 96 },
+         name: "slug",
+         title: "Slug",
+         type: "slug",
+         options: { source: "title.en", maxLength: 96 },
        },
        {
-         name: 'category',
-         title: 'Category',
-         type: 'string',
+         name: "category",
+         title: "Category",
+         type: "string",
          options: {
            list: [
-             { title: 'Anti-Aging Injectables', value: 'anti-aging' },
-             { title: 'Skin Rejuvenation', value: 'rejuvenation' },
-             { title: 'Problem-Specific', value: 'problem-specific' },
-             { title: 'Specialized', value: 'specialized' },
-             { title: 'Preparatory', value: 'preparatory' },
+             { title: "Anti-Aging Injectables", value: "anti-aging" },
+             { title: "Skin Rejuvenation", value: "rejuvenation" },
+             { title: "Problem-Specific", value: "problem-specific" },
+             { title: "Specialized", value: "specialized" },
+             { title: "Preparatory", value: "preparatory" },
            ],
          },
        },
        {
-         name: 'shortDescription',
-         title: 'Short Description',
-         type: 'localizedString',
-         description: 'Brief description for service cards (max 150 chars)',
+         name: "shortDescription",
+         title: "Short Description",
+         type: "localizedString",
+         description: "Brief description for service cards (max 150 chars)",
        },
        {
-         name: 'description',
-         title: 'Full Description',
-         type: 'localizedText',
+         name: "description",
+         title: "Full Description",
+         type: "localizedText",
        },
        {
-         name: 'benefits',
-         title: 'Benefits',
-         type: 'array',
-         of: [{ type: 'localizedString' }],
+         name: "benefits",
+         title: "Benefits",
+         type: "array",
+         of: [{ type: "localizedString" }],
        },
        {
-         name: 'image',
-         title: 'Service Image',
-         type: 'image',
+         name: "image",
+         title: "Service Image",
+         type: "image",
          options: { hotspot: true },
        },
        {
-         name: 'order',
-         title: 'Display Order',
-         type: 'number',
+         name: "order",
+         title: "Display Order",
+         type: "number",
        },
        {
-         name: 'relatedServices',
-         title: 'Related Services',
-         type: 'array',
-         of: [{ type: 'reference', to: [{ type: 'service' }] }],
+         name: "relatedServices",
+         title: "Related Services",
+         type: "array",
+         of: [{ type: "reference", to: [{ type: "service" }] }],
        },
      ],
      orderings: [
-       { title: 'Category', name: 'categoryAsc', by: [{ field: 'category', direction: 'asc' }] },
-       { title: 'Order', name: 'orderAsc', by: [{ field: 'order', direction: 'asc' }] },
+       {
+         title: "Category",
+         name: "categoryAsc",
+         by: [{ field: "category", direction: "asc" }],
+       },
+       {
+         title: "Order",
+         name: "orderAsc",
+         by: [{ field: "order", direction: "asc" }],
+       },
      ],
    };
    ```
 
 2. Create GROQ queries in `/app/lib/sanity.server.ts`:
+
    ```typescript
    export const servicesListQuery = groq`
      *[_type == "service"] | order(category asc, order asc) {
