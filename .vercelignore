@@ -1,0 +1,20 @@
+# Large documentation and media files
+venera_docs/
+bmad-agent/
+copywriting/
+
+# Sanity Studio (root level - separate deployment)
+# Note: This is /sanity/ not /app/lib/sanity/
+/sanity/
+
+# Test files
+test/
+playwright-report/
+test-results/
+
+# Development files
+__ai-grok-summary1.md
+CLAUDE.md
+
+# Config files not needed for deployment
+playwright.config.ts
