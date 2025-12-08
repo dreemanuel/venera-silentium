@@ -3,9 +3,9 @@ import imageUrlBuilder from '@sanity/image-url';
 import type { SanityImage } from './types';
 
 // Server-side Sanity client for use in Remix loaders
-// Fallback to hardcoded projectId if env var not available (projectId is public)
-const projectId = process.env.SANITY_PROJECT_ID || 'qibofery';
-const dataset = process.env.SANITY_DATASET || 'production';
+// ProjectId and dataset are public, hardcoded for reliability on Vercel
+const projectId = 'qibofery';
+const dataset = 'production';
 const apiVersion = '2024-01-01';
 
 export const sanityClient = createClient({
