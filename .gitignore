@@ -55,3 +55,4 @@ sanity/.env
 # Large media directories (raw/unprocessed)
 venera_docs/venera_images/
 venera_docs/venera_videos/
+.vercel

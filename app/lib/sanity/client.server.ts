@@ -3,7 +3,8 @@ import imageUrlBuilder from '@sanity/image-url';
 import type { SanityImage } from './types';
 
 // Server-side Sanity client for use in Remix loaders
-const projectId = process.env.SANITY_PROJECT_ID || '';
+// Fallback to hardcoded projectId if env var not available (projectId is public)
+const projectId = process.env.SANITY_PROJECT_ID || 'qibofery';
 const dataset = process.env.SANITY_DATASET || 'production';
 const apiVersion = '2024-01-01';
 
