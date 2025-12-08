@@ -1,15 +1,32 @@
 import { useTranslation } from 'react-i18next';
 import { useLoaderData } from 'react-router';
 import type { Route } from './+types/home';
-import { HeroSection, AboutPreview, SilentiumPhilosophy, ServicesGallery } from '~/components/sections';
+import {
+  HeroSection,
+  AboutPreview,
+  SilentiumPhilosophy,
+  ServicesGallery,
+  TestimonialsSection,
+  BlogsSection,
+  BrandsSection,
+  GallerySection,
+} from '~/components/sections';
 import { Button } from '~/components/ui';
 import { sanityClient } from '~/lib/sanity/client.server';
 import {
   siteSettingsQuery,
-  featuredServicesQuery,
+  servicesQuery,
+  featuredTestimonialsQuery,
+  featuredBlogPostsQuery,
+  brandsQuery,
+  featuredGalleryImagesQuery,
   getLocalizedValue,
   type SiteSettings,
   type Service,
+  type Testimonial,
+  type BlogPost,
+  type Brand,
+  type GalleryImage,
   type Language,
   type PortableTextBlock,
 } from '~/lib/sanity';
@@ -21,20 +38,33 @@ export async function loader({ params }: Route.LoaderArgs) {
   // Try to fetch from Sanity, but gracefully handle if not configured
   let siteSettings: SiteSettings | null = null;
   let featuredServices: Service[] = [];
+  let testimonials: Testimonial[] = [];
+  let blogPosts: BlogPost[] = [];
+  let brands: Brand[] = [];
+  let galleryImages: GalleryImage[] = [];
 
   try {
-    const [settings, services] = await Promise.all([
+    const [settings, services, testimonialsData, blogData, brandsData, galleryData] = await Promise.all([
       sanityClient.fetch<SiteSettings>(siteSettingsQuery),
-      sanityClient.fetch<Service[]>(featuredServicesQuery),
+      sanityClient.fetch<Service[]>(servicesQuery),
+      sanityClient.fetch<Testimonial[]>(featuredTestimonialsQuery),
+      sanityClient.fetch<BlogPost[]>(featuredBlogPostsQuery),
+      sanityClient.fetch<Brand[]>(brandsQuery),
+      sanityClient.fetch<GalleryImage[]>(featuredGalleryImagesQuery),
     ]);
     siteSettings = settings;
     featuredServices = services || [];
+    testimonials = testimonialsData || [];
+    blogPosts = blogData || [];
+    brands = brandsData || [];
+    galleryImages = galleryData || [];
+
   } catch {
     // Sanity not configured or no content yet - use fallback
     console.log('Sanity fetch failed, using i18n fallback');
   }
 
-  return { siteSettings, featuredServices, lang };
+  return { siteSettings, featuredServices, testimonials, blogPosts, brands, galleryImages, lang };
 }
 
 export function meta({ params }: Route.MetaArgs) {
@@ -52,7 +82,7 @@ export function meta({ params }: Route.MetaArgs) {
 
 export default function Home() {
   const { t } = useTranslation();
-  const { siteSettings, featuredServices, lang } = useLoaderData<typeof loader>();
+  const { siteSettings, featuredServices, testimonials, blogPosts, brands, galleryImages, lang } = useLoaderData<typeof loader>();
 
   // Get Hero content from Sanity or fall back to i18n
   const heroTitle =
@@ -143,6 +173,14 @@ export default function Home() {
         </section>
       )}
 
+      {/* Gallery Section */}
+      {galleryImages.length > 0 && (
+        <GallerySection
+          images={galleryImages}
+          lang={lang}
+        />
+      )}
+
       {/* About Dr. Venera Preview Section */}
       <AboutPreview
         photo={drVeneraPhoto}
@@ -166,6 +204,37 @@ export default function Home() {
         philosophyText={t('about.silentium.philosophy')}
         image={siteSettings?.aboutSilentium?.image}
       />
+
+      {/* Testimonials Section */}
+      {testimonials.length > 0 && (
+        <TestimonialsSection
+          testimonials={testimonials}
+          lang={lang}
+          title={t('testimonials.heading')}
+          subtitle={t('testimonials.subheading')}
+        />
+      )}
+
+      {/* Blog Section */}
+      {blogPosts.length > 0 && (
+        <BlogsSection
+          posts={blogPosts}
+          lang={lang}
+          title={t('blogs.heading')}
+          subtitle={t('blogs.subheading')}
+          showViewAll={true}
+        />
+      )}
+
+      {/* Brands Section */}
+      {brands.length > 0 && (
+        <BrandsSection
+          brands={brands}
+          lang={lang}
+          title={t('brands.heading')}
+          subtitle={t('brands.subheading')}
+        />
+      )}
 
       {/* Contact CTA Section */}
       <section className="py-20 bg-tea-green/30">

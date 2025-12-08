@@ -10,7 +10,7 @@ export function LocalBusinessSchema() {
     '@type': 'MedicalBusiness',
     '@id': `${SITE_URL}/#business`,
     name: `${SITE_NAME} - Dr. Venera Frolova`,
-    alternateName: 'Silentium Aesthetic Cosmetology',
+    alternateName: 'Woman Silentium Aesthetic Cosmetology',
     description:
       'Premium aesthetic cosmetology practice specializing in non-surgical injectable treatments. Where science meets spirit.',
     url: SITE_URL,

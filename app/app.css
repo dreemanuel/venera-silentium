@@ -3,6 +3,11 @@
 
 @import "tailwindcss";
 
+/* HeroUI Plugin */
+@plugin './hero.ts';
+@source '../../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}';
+@custom-variant dark (&:is(.dark *));
+
 /* Local Fonts - Ashford Serif (optional for H1/H2) */
 @font-face {
   font-family: "Ashford";

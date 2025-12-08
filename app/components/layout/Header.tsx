@@ -27,6 +27,7 @@ export function Header({ lang }: HeaderProps) {
   const navItems: NavItem[] = [
     { key: "about", href: `/${lang}/about` },
     { key: "services", href: `/${lang}/services` },
+    { key: "blog", href: `/${lang}/blog` },
     { key: "contact", href: `/${lang}/contact` },
   ];
 
@@ -40,7 +41,7 @@ export function Header({ lang }: HeaderProps) {
               to={`/${lang}`}
               className="text-paynes-gray font-display text-xl md:text-2xl hover:opacity-80 transition-opacity"
             >
-              Silentium
+              Woman Silentium
             </Link>
 
             {/* Desktop Navigation */}

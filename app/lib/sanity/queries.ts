@@ -161,3 +161,148 @@ export const contactInfoQuery = groq`
     socialLinks
   }
 `;
+
+// All Blog Posts Query
+export const blogPostsQuery = groq`
+  *[_type == "blogPost"] | order(publishedAt desc) {
+    _id,
+    title,
+    slug,
+    excerpt,
+    featuredImage,
+    category,
+    author,
+    publishedAt,
+    featured
+  }
+`;
+
+// Featured Blog Posts Query (for homepage)
+export const featuredBlogPostsQuery = groq`
+  *[_type == "blogPost" && featured == true] | order(publishedAt desc)[0...3] {
+    _id,
+    title,
+    slug,
+    excerpt,
+    featuredImage,
+    category,
+    author,
+    publishedAt
+  }
+`;
+
+// Single Blog Post Query
+export const blogPostBySlugQuery = groq`
+  *[_type == "blogPost" && slug.current == $slug][0] {
+    _id,
+    title,
+    slug,
+    excerpt,
+    content,
+    featuredImage,
+    category,
+    author,
+    publishedAt,
+    relatedServices[]-> {
+      _id,
+      title,
+      slug
+    }
+  }
+`;
+
+// Blog Posts by Category Query
+export const blogPostsByCategoryQuery = groq`
+  *[_type == "blogPost" && category == $category] | order(publishedAt desc) {
+    _id,
+    title,
+    slug,
+    excerpt,
+    featuredImage,
+    category,
+    author,
+    publishedAt
+  }
+`;
+
+// All Brands Query
+export const brandsQuery = groq`
+  *[_type == "brand"] | order(order asc) {
+    _id,
+    name,
+    logo,
+    website,
+    description,
+    order
+  }
+`;
+
+// All Gallery Images Query
+export const galleryImagesQuery = groq`
+  *[_type == "galleryImage"] | order(order asc) {
+    _id,
+    title,
+    image,
+    category,
+    order,
+    featured
+  }
+`;
+
+// Featured Gallery Images Query (for homepage)
+export const featuredGalleryImagesQuery = groq`
+  *[_type == "galleryImage" && featured == true] | order(order asc) {
+    _id,
+    title,
+    image,
+    category
+  }
+`;
+
+// Gallery Images by Category Query
+export const galleryImagesByCategoryQuery = groq`
+  *[_type == "galleryImage" && category == $category] | order(order asc) {
+    _id,
+    title,
+    image,
+    category
+  }
+`;
+
+// Active Promo Banners Query
+export const activePromoBannersQuery = groq`
+  *[_type == "promoBanner" && isActive == true &&
+    (startDate == null || startDate <= now()) &&
+    (endDate == null || endDate >= now())] | order(priority desc) {
+    _id,
+    title,
+    message,
+    backgroundColor,
+    textColor,
+    linkUrl,
+    linkText,
+    position,
+    dismissible,
+    showOnPages,
+    priority
+  }
+`;
+
+// Promo Banners for Specific Page Query
+export const promoBannersForPageQuery = groq`
+  *[_type == "promoBanner" && isActive == true &&
+    (startDate == null || startDate <= now()) &&
+    (endDate == null || endDate >= now()) &&
+    ($page in showOnPages || "all" in showOnPages)] | order(priority desc) {
+    _id,
+    title,
+    message,
+    backgroundColor,
+    textColor,
+    linkUrl,
+    linkText,
+    position,
+    dismissible,
+    priority
+  }
+`;

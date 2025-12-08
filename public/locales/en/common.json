@@ -3,18 +3,19 @@
     "home": "Home",
     "about": "About",
     "services": "Services",
+    "blog": "Blog",
     "contact": "Contact"
   },
   "hero": {
-    "title": "Silentium",
+    "title": "Woman Silentium",
     "tagline": "Where science meets spirit",
     "quote": "Beauty is born in silence; in the stillness is where a woman finally hears herself.",
     "cta": "Book Consultation"
   },
   "about": {
-    "pageTitle": "About | Silentium",
-    "pageDescription": "Learn about Dr. Venera Frolova and the Silentium philosophy. Where science meets spirit in aesthetic cosmetology.",
-    "pageHeading": "About Silentium",
+    "pageTitle": "About | Woman Silentium",
+    "pageDescription": "Learn about Dr. Venera Frolova and the Woman Silentium philosophy. Where science meets spirit in aesthetic cosmetology.",
+    "pageHeading": "About Woman Silentium",
     "pageSubheading": "Where beauty finds its voice in silence",
     "drVenera": {
       "name": "Dr. Venera Frolova",
@@ -55,7 +56,7 @@
     "close": "Close"
   },
   "services": {
-    "pageTitle": "Services | Silentium",
+    "pageTitle": "Services | Woman Silentium",
     "pageDescription": "Discover our range of aesthetic treatments. From anti-aging injectables to skin rejuvenation, find the perfect treatment for your needs.",
     "heading": "Our Services",
     "subheading": "Treatments designed to enhance your natural beauty",
@@ -67,6 +68,27 @@
     "idealFor": "Ideal For",
     "benefits": "Benefits",
     "relatedServices": "You Might Also Like"
+  },
+  "testimonials": {
+    "heading": "What Our Customers Say",
+    "subheading": "Real experiences from our valued clients"
+  },
+  "blogs": {
+    "heading": "More About Cosmetology",
+    "subheading": "Expert insights and skincare tips",
+    "readMore": "Read More",
+    "viewAll": "View All Articles"
+  },
+  "brands": {
+    "heading": "Brands We Use",
+    "subheading": "Premium products from trusted partners"
+  },
+  "gallery": {
+    "heading": "Our Gallery",
+    "subheading": "A glimpse into our sanctuary"
+  },
+  "promo": {
+    "close": "Close"
   },
   "footer": {
     "copyright": "All rights reserved",
@@ -133,7 +155,7 @@
     "privacy": {
       "title": "Privacy Policy",
       "lastUpdated": "Last Updated",
-      "intro": "At Silentium, we are committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your personal information when you visit our website or use our services.",
+      "intro": "At Woman Silentium, we are committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your personal information when you visit our website or use our services.",
       "dataCollection": {
         "title": "Information We Collect",
         "description": "We collect information that you voluntarily provide to us when you:",
@@ -180,14 +202,14 @@
     "terms": {
       "title": "Terms of Service",
       "lastUpdated": "Last Updated",
-      "intro": "Welcome to Silentium. By accessing our website and using our services, you agree to be bound by these Terms of Service. Please read them carefully.",
+      "intro": "Welcome to Woman Silentium. By accessing our website and using our services, you agree to be bound by these Terms of Service. Please read them carefully.",
       "acceptance": {
         "title": "Acceptance of Terms",
         "description": "By using our website or booking our services, you acknowledge that you have read, understood, and agree to be bound by these terms. If you do not agree, please do not use our services."
       },
       "services": {
         "title": "Our Services",
-        "description": "Silentium provides aesthetic cosmetology services. Please note:",
+        "description": "Woman Silentium provides aesthetic cosmetology services. Please note:",
         "items": {
           "consultation": "All treatments require an initial consultation",
           "medical": "Results may vary based on individual factors",
@@ -209,7 +231,7 @@
       },
       "liability": {
         "title": "Limitation of Liability",
-        "description": "To the fullest extent permitted by law, Silentium shall not be liable for any indirect, incidental, or consequential damages arising from the use of our services."
+        "description": "To the fullest extent permitted by law, Woman Silentium shall not be liable for any indirect, incidental, or consequential damages arising from the use of our services."
       },
       "medical": {
         "title": "Medical Disclaimer",

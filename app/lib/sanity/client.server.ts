@@ -12,7 +12,7 @@ export const sanityClient = createClient({
   projectId,
   dataset,
   apiVersion,
-  useCdn: true, // Enable CDN for read-only operations
+  useCdn: false, // Disable CDN to ensure fresh data
   perspective: 'published', // Only fetch published content
 });
 

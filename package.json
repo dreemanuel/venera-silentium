@@ -15,6 +15,11 @@
     "sanity:build": "cd sanity && npm run build",
     "sanity:deploy": "cd sanity && npm run deploy",
     "seed:services": "npx tsx sanity/scripts/seed-services.ts",
+    "seed:testimonials": "npx tsx sanity/scripts/seed-testimonials.ts",
+    "seed:brands": "npx tsx sanity/scripts/seed-brands.ts",
+    "seed:gallery": "npx tsx sanity/scripts/seed-gallery.ts",
+    "seed:blog": "npx tsx sanity/scripts/seed-blog-posts.ts",
+    "seed:all": "npm run seed:services && npm run seed:testimonials && npm run seed:brands && npm run seed:gallery && npm run seed:blog",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
     "test:e2e:headed": "playwright test --headed",
@@ -22,6 +27,7 @@
     "test:e2e:webkit": "playwright test --project=webkit"
   },
   "dependencies": {
+    "@heroui/react": "^2.8.5",
     "@hookform/resolvers": "^5.2.2",
     "@radix-ui/react-tabs": "^1.1.13",
     "@react-router/node": "7.10.1",

@@ -123,7 +123,7 @@ export function SilentiumPhilosophy({
               <span className="w-8 h-px bg-tea-green/50" />
               <span className="text-tea-green text-4xl font-display">&ldquo;</span>
               <span className="text-paynes-gray/50 text-sm font-heading tracking-widest uppercase">
-                Silentium
+                Woman Silentium
               </span>
               <span className="text-tea-green text-4xl font-display">&rdquo;</span>
               <span className="w-8 h-px bg-tea-green/50" />

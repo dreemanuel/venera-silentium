@@ -3,3 +3,7 @@ export { AboutPreview } from './AboutPreview';
 export { SilentiumPhilosophy } from './SilentiumPhilosophy';
 export { ContactCTA } from './ContactCTA';
 export { ServicesGallery } from './ServicesGallery';
+export { TestimonialsSection } from './TestimonialsSection';
+export { BlogsSection } from './BlogsSection';
+export { BrandsSection } from './BrandsSection';
+export { GallerySection } from './GallerySection';

@@ -9,6 +9,7 @@ import {
   Link,
 } from "react-router";
 import { Analytics } from "@vercel/analytics/react";
+import { HeroUIProvider } from "@heroui/react";
 
 import type { Route } from "./+types/root";
 import "./app.css";
@@ -59,10 +60,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
 export default function App() {
   return (
-    <>
+    <HeroUIProvider>
       <Outlet />
       <Analytics />
-    </>
+    </HeroUIProvider>
   );
 }
 

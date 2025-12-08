@@ -6,7 +6,7 @@
 export const SITE_URL = typeof process !== 'undefined' && process.env?.SITE_URL
   ? process.env.SITE_URL
   : 'https://silentium.com';
-export const SITE_NAME = 'Silentium';
+export const SITE_NAME = 'Woman Silentium';
 export const DEFAULT_OG_IMAGE = '/images/og-default.jpg';
 
 export const SUPPORTED_LANGUAGES = ['en', 'ru', 'id'] as const;
@@ -132,58 +132,58 @@ export function getLocalizedSeo(
 export const pageSeo = {
   home: {
     en: {
-      title: 'Silentium - Aesthetic Cosmetology in Bali',
-      description: 'Silentium by Dr. Venera Frolova - Where science meets spirit. Premium aesthetic cosmetology in Bali.',
+      title: 'Woman Silentium - Aesthetic Cosmetology in Bali',
+      description: 'Woman Silentium by Dr. Venera Frolova - Where science meets spirit. Premium aesthetic cosmetology in Bali.',
     },
     ru: {
-      title: 'Silentium - Эстетическая косметология на Бали',
-      description: 'Silentium от Др. Венеры Фроловой - Где наука встречается с духом. Премиум эстетическая косметология на Бали.',
+      title: 'Woman Silentium - Эстетическая косметология на Бали',
+      description: 'Woman Silentium от Др. Венеры Фроловой - Где наука встречается с духом. Премиум эстетическая косметология на Бали.',
     },
     id: {
-      title: 'Silentium - Kosmetologi Estetika di Bali',
-      description: 'Silentium oleh Dr. Venera Frolova - Di mana sains bertemu jiwa. Kosmetologi estetika premium di Bali.',
+      title: 'Woman Silentium - Kosmetologi Estetika di Bali',
+      description: 'Woman Silentium oleh Dr. Venera Frolova - Di mana sains bertemu jiwa. Kosmetologi estetika premium di Bali.',
     },
   },
   about: {
     en: {
-      title: 'About | Silentium - Aesthetic Cosmetology',
-      description: 'Learn about Dr. Venera Frolova and the Silentium philosophy. Where science meets spirit in aesthetic cosmetology.',
+      title: 'About | Woman Silentium - Aesthetic Cosmetology',
+      description: 'Learn about Dr. Venera Frolova and the Woman Silentium philosophy. Where science meets spirit in aesthetic cosmetology.',
     },
     ru: {
-      title: 'О нас | Silentium - Эстетическая косметология',
-      description: 'Узнайте о Др. Венере Фроловой и философии Silentium. Где наука встречается с духом.',
+      title: 'О нас | Woman Silentium - Эстетическая косметология',
+      description: 'Узнайте о Др. Венере Фроловой и философии Woman Silentium. Где наука встречается с духом.',
     },
     id: {
-      title: 'Tentang | Silentium - Kosmetologi Estetika',
-      description: 'Pelajari tentang Dr. Venera Frolova dan filosofi Silentium. Di mana sains bertemu jiwa.',
+      title: 'Tentang | Woman Silentium - Kosmetologi Estetika',
+      description: 'Pelajari tentang Dr. Venera Frolova dan filosofi Woman Silentium. Di mana sains bertemu jiwa.',
     },
   },
   services: {
     en: {
-      title: 'Services | Silentium - Aesthetic Cosmetology in Bali',
-      description: 'Discover our range of aesthetic treatments at Silentium. From anti-aging injectables to skin rejuvenation, find the perfect treatment for your needs.',
+      title: 'Services | Woman Silentium - Aesthetic Cosmetology in Bali',
+      description: 'Discover our range of aesthetic treatments at Woman Silentium. From anti-aging injectables to skin rejuvenation, find the perfect treatment for your needs.',
     },
     ru: {
-      title: 'Услуги | Silentium - Эстетическая косметология на Бали',
-      description: 'Откройте для себя наш спектр эстетических процедур в Silentium. От инъекций против старения до омоложения кожи — найдите идеальную процедуру.',
+      title: 'Услуги | Woman Silentium - Эстетическая косметология на Бали',
+      description: 'Откройте для себя наш спектр эстетических процедур в Woman Silentium. От инъекций против старения до омоложения кожи — найдите идеальную процедуру.',
     },
     id: {
-      title: 'Layanan | Silentium - Kosmetologi Estetika di Bali',
-      description: 'Temukan berbagai perawatan estetika kami di Silentium. Dari suntikan anti-penuaan hingga peremajaan kulit, temukan perawatan yang tepat.',
+      title: 'Layanan | Woman Silentium - Kosmetologi Estetika di Bali',
+      description: 'Temukan berbagai perawatan estetika kami di Woman Silentium. Dari suntikan anti-penuaan hingga peremajaan kulit, temukan perawatan yang tepat.',
     },
   },
   contact: {
     en: {
-      title: 'Contact | Silentium - Aesthetic Cosmetology',
-      description: 'Book a consultation with Dr. Venera Frolova. Contact Silentium for premium aesthetic cosmetology in Bali.',
+      title: 'Contact | Woman Silentium - Aesthetic Cosmetology',
+      description: 'Book a consultation with Dr. Venera Frolova. Contact Woman Silentium for premium aesthetic cosmetology in Bali.',
     },
     ru: {
-      title: 'Контакты | Silentium - Эстетическая косметология',
-      description: 'Запишитесь на консультацию к Др. Венере Фроловой. Свяжитесь с Silentium для премиум эстетической косметологии на Бали.',
+      title: 'Контакты | Woman Silentium - Эстетическая косметология',
+      description: 'Запишитесь на консультацию к Др. Венере Фроловой. Свяжитесь с Woman Silentium для премиум эстетической косметологии на Бали.',
     },
     id: {
-      title: 'Kontak | Silentium - Kosmetologi Estetika',
-      description: 'Pesan konsultasi dengan Dr. Venera Frolova. Hubungi Silentium untuk kosmetologi estetika premium di Bali.',
+      title: 'Kontak | Woman Silentium - Kosmetologi Estetika',
+      description: 'Pesan konsultasi dengan Dr. Venera Frolova. Hubungi Woman Silentium untuk kosmetologi estetika premium di Bali.',
     },
   },
 };

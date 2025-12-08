@@ -152,6 +152,72 @@ export interface Testimonial {
   publishedAt?: string;
 }
 
+export type BlogPostCategory = 'skincare-tips' | 'treatment-guides' | 'wellness' | 'news';
+
+export interface BlogPost {
+  _id: string;
+  title: LocalizedString;
+  slug: {
+    current: string;
+  };
+  excerpt?: LocalizedString;
+  content?: LocalizedText;
+  featuredImage?: SanityImage & { alt?: string };
+  category: BlogPostCategory;
+  author?: string;
+  publishedAt: string;
+  featured?: boolean;
+  relatedServices?: {
+    _id: string;
+    title: LocalizedString;
+    slug: {
+      current: string;
+    };
+  }[];
+}
+
+export interface Brand {
+  _id: string;
+  name: string;
+  logo: SanityImage & { alt?: string };
+  website?: string;
+  description?: LocalizedString;
+  order?: number;
+}
+
+export type GalleryCategory = 'clinic' | 'treatments' | 'before-after' | 'team';
+
+export interface GalleryImage {
+  _id: string;
+  title?: LocalizedString;
+  image: SanityImage & { alt: string };
+  category: GalleryCategory;
+  order?: number;
+  featured?: boolean;
+}
+
+export type PromoBannerColor = 'tea-green' | 'beige' | 'paynes-gray' | 'cornsilk' | 'papaya-whip';
+export type PromoBannerTextColor = 'dark' | 'light';
+export type PromoBannerPosition = 'top' | 'bottom';
+export type PromoBannerPage = 'all' | 'home' | 'about' | 'services' | 'contact' | 'blog';
+
+export interface PromoBanner {
+  _id: string;
+  title: string;
+  message: LocalizedString;
+  backgroundColor?: PromoBannerColor;
+  textColor?: PromoBannerTextColor;
+  linkUrl?: string;
+  linkText?: LocalizedString;
+  startDate?: string;
+  endDate?: string;
+  isActive: boolean;
+  position?: PromoBannerPosition;
+  dismissible?: boolean;
+  showOnPages?: PromoBannerPage[];
+  priority?: number;
+}
+
 // Helper type for getting localized value
 export type Language = 'en' | 'ru' | 'id';
 

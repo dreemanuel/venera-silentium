@@ -1,8 +1,11 @@
-import { motion, type Variants } from 'framer-motion';
+import { useState, useEffect, useCallback } from 'react';
+import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Link } from 'react-router';
-import { getThumbnailUrl } from '~/lib/image';
-import type { Service, Language, ServiceCategory } from '~/lib/sanity';
+import { Accordion, AccordionItem, Image } from '@heroui/react';
+import { ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
+import { getHeroImageUrl } from '~/lib/image';
+import type { Service, Language, ServiceCategory, SanityImage } from '~/lib/sanity';
 import { getLocalizedValue } from '~/lib/sanity';
 
 interface ServicesGalleryProps {
@@ -42,124 +45,118 @@ const categoryInfo: Record<ServiceCategory, { label: Record<Language, string>; o
   },
 };
 
-const containerVariants: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.1,
-    },
-  },
-};
+// Image slideshow component for the selected service
+function ServiceImageSlideshow({
+  images,
+  serviceName,
+}: {
+  images: SanityImage[];
+  serviceName: string;
+}) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
-const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.5,
-      ease: 'easeOut',
-    },
-  },
-};
+  // Ensure currentIndex is valid for current images array
+  const safeIndex = images.length > 0 ? currentIndex % images.length : 0;
 
-function ServiceCard({ service, lang }: { service: Service; lang: Language }) {
-  const title = getLocalizedValue(service.title, lang) || 'Untitled Service';
-  const shortDescription = getLocalizedValue(service.shortDescription, lang);
-  const imageUrl = service.image
-    ? getThumbnailUrl(service.image, 400, 300, 80)
-    : null;
+  const nextSlide = useCallback(() => {
+    setCurrentIndex((prev) => (prev + 1) % images.length);
+  }, [images.length]);
+
+  const prevSlide = useCallback(() => {
+    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+  }, [images.length]);
+
+  // Auto-advance slides every 4 seconds
+  useEffect(() => {
+    if (!isAutoPlaying || images.length <= 1) return;
+
+    const interval = window.setInterval(nextSlide, 4000);
+    return () => window.clearInterval(interval);
+  }, [isAutoPlaying, nextSlide, images.length]);
+
+  if (images.length === 0) {
+    return (
+      <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-beige to-tea-green/30 rounded-xl">
+        <span className="text-6xl text-paynes-gray/20">✦</span>
+      </div>
+    );
+  }
+
+  const currentImage = images[safeIndex];
+  const imageUrl = currentImage ? getHeroImageUrl(currentImage, 1200, 85) : null;
 
   return (
-    <motion.div variants={itemVariants} className="group">
-      <Link
-        to={`/${lang}/services/${service.slug.current}`}
-        className="block relative overflow-hidden rounded-xl bg-white shadow-md hover:shadow-xl transition-all duration-500"
-      >
-        {/* Image container */}
-        <div className="relative h-48 md:h-56 overflow-hidden bg-beige">
-          {imageUrl ? (
-            <img
-              src={imageUrl}
-              alt={title}
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-              loading="lazy"
-              decoding="async"
-              width={400}
-              height={300}
-            />
-          ) : (
-            <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-tea-green/30 to-beige">
-              <span className="text-4xl text-paynes-gray/20">✦</span>
-            </div>
-          )}
-          {/* Overlay on hover */}
-          <div className="absolute inset-0 bg-paynes-gray/0 group-hover:bg-paynes-gray/40 transition-colors duration-500" />
-        </div>
-
-        {/* Content */}
-        <div className="p-5">
-          <h3 className="font-heading text-lg font-medium text-paynes-gray mb-2 group-hover:text-tea-green transition-colors duration-300">
-            {title}
-          </h3>
-          {shortDescription && (
-            <p className="text-sm text-paynes-gray/70 line-clamp-2 leading-relaxed">
-              {shortDescription}
-            </p>
-          )}
-
-          {/* View more indicator */}
-          <div className="mt-4 flex items-center text-sm font-heading text-paynes-gray/50 group-hover:text-paynes-gray transition-colors duration-300">
-            <span className="mr-2">Learn More</span>
-            <svg
-              className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
+    <div
+      className="relative w-full h-full"
+      onMouseEnter={() => setIsAutoPlaying(false)}
+      onMouseLeave={() => setIsAutoPlaying(true)}
+    >
+      {/* Main Image with zoom effect */}
+      <div className="w-full h-full overflow-hidden rounded-xl">
+        {imageUrl ? (
+          <Image
+            isZoomed
+            src={imageUrl}
+            alt={serviceName}
+            classNames={{
+              wrapper: 'w-full h-full !max-w-none',
+              img: 'w-full h-full object-cover',
+              zoomedWrapper: 'rounded-xl',
+            }}
+            radius="lg"
+          />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-beige to-tea-green/30">
+            <span className="text-6xl text-paynes-gray/20">✦</span>
           </div>
-        </div>
-      </Link>
-    </motion.div>
+        )}
+      </div>
+
+      {/* Navigation arrows - only show if multiple images */}
+      {images.length > 1 && (
+        <>
+          <button
+            onClick={prevSlide}
+            className="absolute left-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/80 backdrop-blur-sm shadow-lg text-paynes-gray hover:bg-white hover:scale-110 transition-all duration-300 z-10"
+            aria-label="Previous image"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+          <button
+            onClick={nextSlide}
+            className="absolute right-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/80 backdrop-blur-sm shadow-lg text-paynes-gray hover:bg-white hover:scale-110 transition-all duration-300 z-10"
+            aria-label="Next image"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
+
+          {/* Dots indicator */}
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+            {images.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentIndex(index)}
+                className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                  index === safeIndex
+                    ? 'bg-white w-6'
+                    : 'bg-white/50 hover:bg-white/70'
+                }`}
+                aria-label={`Go to image ${index + 1}`}
+              />
+            ))}
+          </div>
+        </>
+      )}
+    </div>
   );
 }
 
-function CategorySection({
-  category,
-  services,
-  lang,
-}: {
-  category: ServiceCategory;
-  services: Service[];
-  lang: Language;
-}) {
-  const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
-  const categoryLabel = categoryInfo[category]?.label[lang] || category;
-
+// Skeleton placeholder for image area
+function ImageSkeleton() {
   return (
-    <div ref={ref} className="mb-16 last:mb-0">
-      <motion.h3
-        initial={{ opacity: 0, x: -20 }}
-        animate={inView ? { opacity: 1, x: 0 } : {}}
-        transition={{ duration: 0.5 }}
-        className="font-heading text-xl md:text-2xl text-paynes-gray mb-8 pb-3 border-b border-tea-green/30"
-      >
-        {categoryLabel}
-      </motion.h3>
-      <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        animate={inView ? 'visible' : 'hidden'}
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
-      >
-        {services.map((service) => (
-          <ServiceCard key={service._id} service={service} lang={lang} />
-        ))}
-      </motion.div>
+    <div className="w-full h-full rounded-xl bg-gradient-to-br from-beige to-tea-green/30 animate-pulse flex items-center justify-center">
+      <span className="text-6xl text-paynes-gray/10">✦</span>
     </div>
   );
 }
@@ -173,6 +170,8 @@ export function ServicesGallery({
   limit,
 }: ServicesGalleryProps) {
   const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
+  const [selectedServiceId, setSelectedServiceId] = useState<string | null>(null);
+  const [hoveredServiceId, setHoveredServiceId] = useState<string | null>(null);
 
   // Apply limit if specified
   const displayServices = limit ? services.slice(0, limit) : services;
@@ -194,6 +193,29 @@ export function ServicesGallery({
     const orderB = categoryInfo[b as ServiceCategory]?.order || 99;
     return orderA - orderB;
   }) as ServiceCategory[];
+
+  // Get the currently active service (hovered takes priority over selected)
+  const activeServiceId = hoveredServiceId || selectedServiceId || displayServices[0]?._id;
+  const activeService = displayServices.find((s) => s._id === activeServiceId);
+
+  // Get all images for the active service (main image + gallery)
+  const getServiceImages = (service: Service | undefined): SanityImage[] => {
+    if (!service) return [];
+    const images: SanityImage[] = [];
+    if (service.image) images.push(service.image);
+    if (service.gallery) images.push(...service.gallery);
+    return images;
+  };
+
+  const activeImages = getServiceImages(activeService);
+  const activeServiceName = activeService ? getLocalizedValue(activeService.title, lang) || '' : '';
+
+  // Handle accordion selection change
+  const handleSelectionChange = (keys: 'all' | Set<React.Key>) => {
+    if (keys === 'all') return;
+    const selectedKey = Array.from(keys)[0];
+    setSelectedServiceId(selectedKey ? String(selectedKey) : null);
+  };
 
   return (
     <section ref={ref} className="py-16 md:py-24 bg-cornsilk">
@@ -219,30 +241,140 @@ export function ServicesGallery({
           </motion.div>
         )}
 
-        {/* Services Grid */}
-        {showCategories ? (
-          // Grouped by category
-          sortedCategories.map((category) => (
-            <CategorySection
-              key={category}
-              category={category}
-              services={servicesByCategory[category]}
-              lang={lang}
-            />
-          ))
-        ) : (
-          // Flat grid without categories
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate={inView ? 'visible' : 'hidden'}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
-          >
-            {displayServices.map((service) => (
-              <ServiceCard key={service._id} service={service} lang={lang} />
-            ))}
-          </motion.div>
-        )}
+        {/* Main Content - Accordion + Image */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="flex flex-col lg:flex-row gap-8"
+        >
+          {/* Left: Accordion List (1/3 width on desktop) */}
+          <div className="w-full lg:w-1/3 order-2 lg:order-1">
+            {showCategories ? (
+              // Grouped by category
+              <div className="space-y-6">
+                {sortedCategories.map((category) => (
+                  <div key={category}>
+                    <h3 className="font-heading text-lg font-medium text-paynes-gray mb-4 px-2 text-left">
+                      {categoryInfo[category]?.label[lang] || category}
+                    </h3>
+                    <Accordion
+                      variant="light"
+                      selectionMode="single"
+                      selectedKeys={selectedServiceId ? new Set([selectedServiceId]) : new Set()}
+                      onSelectionChange={handleSelectionChange}
+                      className="px-0"
+                      itemClasses={{
+                        base: 'py-0',
+                        title: 'font-heading text-lg text-paynes-gray text-left',
+                        trigger: 'py-3 px-2 rounded-lg hover:bg-tea-green/10 transition-colors data-[open=true]:bg-tea-green/20 justify-start',
+                        content: 'px-2 pb-4 text-left',
+                        indicator: 'text-paynes-gray/50',
+                        titleWrapper: 'text-left',
+                      }}
+                    >
+                      {servicesByCategory[category].map((service) => {
+                        const serviceTitle = getLocalizedValue(service.title, lang) || 'Untitled';
+                        const shortDesc = getLocalizedValue(service.shortDescription, lang);
+
+                        return (
+                          <AccordionItem
+                            key={service._id}
+                            aria-label={serviceTitle}
+                            title={serviceTitle}
+                            onMouseEnter={() => setHoveredServiceId(service._id)}
+                            onMouseLeave={() => setHoveredServiceId(null)}
+                          >
+                            <div className="space-y-3">
+                              {shortDesc && (
+                                <p className="text-sm text-paynes-gray/70 leading-relaxed">
+                                  {shortDesc}
+                                </p>
+                              )}
+                              <Link
+                                to={`/${lang}/services/${service.slug.current}`}
+                                className="inline-flex items-center gap-2 text-sm font-heading text-paynes-gray hover:text-tea-green transition-colors"
+                              >
+                                <span>
+                                  {lang === 'ru' ? 'Подробнее' : lang === 'id' ? 'Selengkapnya' : 'Learn More'}
+                                </span>
+                                <ArrowRight className="w-4 h-4" />
+                              </Link>
+                            </div>
+                          </AccordionItem>
+                        );
+                      })}
+                    </Accordion>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              // Flat list without categories
+              <Accordion
+                variant="light"
+                selectionMode="single"
+                selectedKeys={selectedServiceId ? new Set([selectedServiceId]) : new Set()}
+                onSelectionChange={handleSelectionChange}
+                className="px-0"
+                itemClasses={{
+                  base: 'py-0',
+                  title: 'font-heading text-lg text-paynes-gray text-left',
+                  trigger: 'py-3 px-2 rounded-lg hover:bg-tea-green/10 transition-colors data-[open=true]:bg-tea-green/20 justify-start',
+                  content: 'px-2 pb-4 text-left',
+                  indicator: 'text-paynes-gray/50',
+                  titleWrapper: 'text-left',
+                }}
+              >
+                {displayServices.map((service) => {
+                  const serviceTitle = getLocalizedValue(service.title, lang) || 'Untitled';
+                  const shortDesc = getLocalizedValue(service.shortDescription, lang);
+
+                  return (
+                    <AccordionItem
+                      key={service._id}
+                      aria-label={serviceTitle}
+                      title={serviceTitle}
+                      onMouseEnter={() => setHoveredServiceId(service._id)}
+                      onMouseLeave={() => setHoveredServiceId(null)}
+                    >
+                      <div className="space-y-3">
+                        {shortDesc && (
+                          <p className="text-sm text-paynes-gray/70 leading-relaxed">
+                            {shortDesc}
+                          </p>
+                        )}
+                        <Link
+                          to={`/${lang}/services/${service.slug.current}`}
+                          className="inline-flex items-center gap-2 text-sm font-heading text-paynes-gray hover:text-tea-green transition-colors"
+                        >
+                          <span>
+                            {lang === 'ru' ? 'Подробнее' : lang === 'id' ? 'Selengkapnya' : 'Learn More'}
+                          </span>
+                          <ArrowRight className="w-4 h-4" />
+                        </Link>
+                      </div>
+                    </AccordionItem>
+                  );
+                })}
+              </Accordion>
+            )}
+          </div>
+
+          {/* Right: Image Slideshow (2/3 width on desktop) */}
+          <div className="w-full lg:w-2/3 order-1 lg:order-2">
+            <div className="sticky top-24 aspect-[4/3] lg:aspect-[16/10] rounded-xl overflow-hidden bg-beige/30">
+              {activeService ? (
+                <ServiceImageSlideshow
+                  key={activeService._id}
+                  images={activeImages}
+                  serviceName={activeServiceName}
+                />
+              ) : (
+                <ImageSkeleton />
+              )}
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

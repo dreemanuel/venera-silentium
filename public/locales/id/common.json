@@ -3,18 +3,19 @@
     "home": "Beranda",
     "about": "Tentang",
     "services": "Layanan",
+    "blog": "Blog",
     "contact": "Kontak"
   },
   "hero": {
-    "title": "Silentium",
+    "title": "Woman Silentium",
     "tagline": "Di mana sains bertemu jiwa",
     "quote": "Kecantikan lahir dalam keheningan; dalam kesunyian seorang wanita akhirnya mendengar dirinya sendiri.",
     "cta": "Pesan Konsultasi"
   },
   "about": {
-    "pageTitle": "Tentang | Silentium",
-    "pageDescription": "Pelajari tentang Dr. Venera Frolova dan filosofi Silentium. Di mana sains bertemu jiwa dalam kosmetologi estetika.",
-    "pageHeading": "Tentang Silentium",
+    "pageTitle": "Tentang | Woman Silentium",
+    "pageDescription": "Pelajari tentang Dr. Venera Frolova dan filosofi Woman Silentium. Di mana sains bertemu jiwa dalam kosmetologi estetika.",
+    "pageHeading": "Tentang Woman Silentium",
     "pageSubheading": "Di mana kecantikan menemukan suaranya dalam keheningan",
     "drVenera": {
       "name": "Dr. Venera Frolova",
@@ -55,7 +56,7 @@
     "close": "Tutup"
   },
   "services": {
-    "pageTitle": "Layanan | Silentium",
+    "pageTitle": "Layanan | Woman Silentium",
     "pageDescription": "Temukan berbagai perawatan estetika kami. Dari suntikan anti-penuaan hingga peremajaan kulit, temukan perawatan yang tepat untuk kebutuhan Anda.",
     "heading": "Layanan Kami",
     "subheading": "Perawatan yang dirancang untuk meningkatkan kecantikan alami Anda",
@@ -67,6 +68,27 @@
     "idealFor": "Ideal Untuk",
     "benefits": "Manfaat",
     "relatedServices": "Anda Mungkin Juga Suka"
+  },
+  "testimonials": {
+    "heading": "Apa Kata Pelanggan Kami",
+    "subheading": "Pengalaman nyata dari klien-klien berharga kami"
+  },
+  "blogs": {
+    "heading": "Lebih Lanjut Tentang Kosmetologi",
+    "subheading": "Wawasan ahli dan tips perawatan kulit",
+    "readMore": "Baca Selengkapnya",
+    "viewAll": "Lihat Semua Artikel"
+  },
+  "brands": {
+    "heading": "Brand yang Kami Gunakan",
+    "subheading": "Produk premium dari mitra terpercaya"
+  },
+  "gallery": {
+    "heading": "Galeri Kami",
+    "subheading": "Sekilas tentang tempat suci kami"
+  },
+  "promo": {
+    "close": "Tutup"
   },
   "footer": {
     "copyright": "Hak cipta dilindungi",
@@ -133,7 +155,7 @@
     "privacy": {
       "title": "Kebijakan Privasi",
       "lastUpdated": "Terakhir Diperbarui",
-      "intro": "Di Silentium, kami berkomitmen untuk melindungi privasi Anda. Kebijakan Privasi ini menjelaskan bagaimana kami mengumpulkan, menggunakan, dan melindungi informasi pribadi Anda saat Anda mengunjungi situs web kami atau menggunakan layanan kami.",
+      "intro": "Di Woman Silentium, kami berkomitmen untuk melindungi privasi Anda. Kebijakan Privasi ini menjelaskan bagaimana kami mengumpulkan, menggunakan, dan melindungi informasi pribadi Anda saat Anda mengunjungi situs web kami atau menggunakan layanan kami.",
       "dataCollection": {
         "title": "Informasi yang Kami Kumpulkan",
         "description": "Kami mengumpulkan informasi yang Anda berikan secara sukarela kepada kami saat Anda:",
@@ -180,14 +202,14 @@
     "terms": {
       "title": "Ketentuan Layanan",
       "lastUpdated": "Terakhir Diperbarui",
-      "intro": "Selamat datang di Silentium. Dengan mengakses situs web kami dan menggunakan layanan kami, Anda setuju untuk terikat dengan Ketentuan Layanan ini. Harap baca dengan saksama.",
+      "intro": "Selamat datang di Woman Silentium. Dengan mengakses situs web kami dan menggunakan layanan kami, Anda setuju untuk terikat dengan Ketentuan Layanan ini. Harap baca dengan saksama.",
       "acceptance": {
         "title": "Penerimaan Ketentuan",
         "description": "Dengan menggunakan situs web kami atau memesan layanan kami, Anda mengakui bahwa Anda telah membaca, memahami, dan setuju untuk terikat dengan ketentuan ini. Jika Anda tidak setuju, harap jangan gunakan layanan kami."
       },
       "services": {
         "title": "Layanan Kami",
-        "description": "Silentium menyediakan layanan kosmetologi estetika. Harap perhatikan:",
+        "description": "Woman Silentium menyediakan layanan kosmetologi estetika. Harap perhatikan:",
         "items": {
           "consultation": "Semua perawatan memerlukan konsultasi awal",
           "medical": "Hasil dapat bervariasi berdasarkan faktor individu",
@@ -209,7 +231,7 @@
       },
       "liability": {
         "title": "Batasan Tanggung Jawab",
-        "description": "Sejauh diizinkan oleh hukum, Silentium tidak bertanggung jawab atas kerusakan tidak langsung, insidental, atau konsekuensial yang timbul dari penggunaan layanan kami."
+        "description": "Sejauh diizinkan oleh hukum, Woman Silentium tidak bertanggung jawab atas kerusakan tidak langsung, insidental, atau konsekuensial yang timbul dari penggunaan layanan kami."
       },
       "medical": {
         "title": "Penafian Medis",

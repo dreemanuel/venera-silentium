@@ -19,6 +19,9 @@ export default [
     route(":lang/contact", "routes/$lang/contact.tsx"),
     route(":lang/services", "routes/$lang/services.tsx"),
     route(":lang/services/:slug", "routes/$lang/services.$slug.tsx"),
+    // Blog routes
+    route(":lang/blog", "routes/$lang/blog.tsx"),
+    route(":lang/blog/:slug", "routes/$lang/blog.$slug.tsx"),
     // Legal pages
     route(":lang/privacy", "routes/$lang/privacy.tsx"),
     route(":lang/terms", "routes/$lang/terms.tsx"),

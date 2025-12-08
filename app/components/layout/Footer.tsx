@@ -55,7 +55,7 @@ export function Footer({ lang }: FooterProps) {
               to={`/${lang}`}
               className="inline-block text-paynes-gray font-display text-2xl mb-4"
             >
-              Silentium
+              Woman Silentium
             </Link>
             <p className="text-paynes-gray/70 text-sm leading-relaxed max-w-sm mb-6">
               {t("hero.tagline")}
@@ -120,7 +120,7 @@ export function Footer({ lang }: FooterProps) {
         {/* Bottom Bar */}
         <div className="mt-12 pt-8 border-t border-tea-green/30">
           <p className="text-paynes-gray/50 text-sm text-center">
-            &copy; {currentYear} Silentium. {t("footer.copyright")}.
+            &copy; {currentYear} Woman Silentium. {t("footer.copyright")}.
           </p>
         </div>
       </div>
