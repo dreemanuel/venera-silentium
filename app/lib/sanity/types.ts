@@ -180,8 +180,19 @@ export interface Page {
 export interface Testimonial {
   _id: string;
   clientName: string;
+  // Card mode fields
   clientTitle?: LocalizedString;
-  quote: LocalizedString;
+  quote?: LocalizedString;
+  rating?: number;
+  clientPhoto?: SanityImage;
+  // Media mode fields
+  isMediaTestimonial?: boolean;
+  mediaType?: 'image' | 'video';
+  mediaImage?: SanityImage & { alt?: string };
+  mediaVideoUrl?: string; // Resolved URL from GROQ query
+  videoPoster?: SanityImage;
+  enableAudio?: boolean;
+  // Common fields
   service?: {
     _id: string;
     title: LocalizedString;
@@ -189,8 +200,6 @@ export interface Testimonial {
       current: string;
     };
   };
-  rating?: number;
-  clientPhoto?: SanityImage;
   featured?: boolean;
   publishedAt?: string;
 }

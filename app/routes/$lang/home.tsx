@@ -154,7 +154,7 @@ export default function Home() {
 
       {/* Services Preview Section */}
       {featuredServices.length > 0 ? (
-        <div className="bg-beige/30">
+        <div className="bg-cornsilk">
           <ServicesGallery
             services={featuredServices}
             lang={lang}

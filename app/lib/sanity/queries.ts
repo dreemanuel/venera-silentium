@@ -163,13 +163,20 @@ export const testimonialsQuery = groq`
     rating,
     clientPhoto,
     featured,
-    publishedAt
+    publishedAt,
+    // Media mode fields
+    isMediaTestimonial,
+    mediaType,
+    mediaImage,
+    "mediaVideoUrl": mediaVideo.asset->url,
+    videoPoster,
+    enableAudio
   }
 `;
 
 // Featured Testimonials Query (for homepage)
 export const featuredTestimonialsQuery = groq`
-  *[_type == "testimonial" && featured == true] | order(publishedAt desc)[0...3] {
+  *[_type == "testimonial" && featured == true] | order(coalesce(publishedAt, _createdAt) desc)[0...12] {
     _id,
     clientName,
     clientTitle,
@@ -179,7 +186,14 @@ export const featuredTestimonialsQuery = groq`
       slug
     },
     rating,
-    clientPhoto
+    clientPhoto,
+    // Media mode fields
+    isMediaTestimonial,
+    mediaType,
+    mediaImage,
+    "mediaVideoUrl": mediaVideo.asset->url,
+    videoPoster,
+    enableAudio
   }
 `;
 

@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence, type Variants, type TargetAndTransition } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 import { Button } from '~/components/ui';
 import { getResponsiveImageProps } from '~/lib/image';
 import type { SanityImage, HeroMediaItem, KenBurnsDirection } from '~/lib/sanity';
@@ -79,6 +80,25 @@ export function HeroSection({
   const [currentIndex, setCurrentIndex] = useState(0);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+
+  // Track if hero section is in viewport for auto-pause
+  const { ref: heroRef, inView: isHeroInView } = useInView({
+    threshold: 0.1,
+    triggerOnce: false,
+  });
+
+  // Auto-pause video when hero scrolls out of view
+  useEffect(() => {
+    if (!videoRef.current) return;
+
+    if (isHeroInView && isVideoLoaded) {
+      videoRef.current.play().catch(() => {
+        // Autoplay may be blocked by browser
+      });
+    } else if (!isHeroInView) {
+      videoRef.current.pause();
+    }
+  }, [isHeroInView, isVideoLoaded]);
 
   // Determine if we should use slideshow mode
   const useSlideshow = slideshowEnabled && media.length > 0;
@@ -272,7 +292,10 @@ export function HeroSection({
   );
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section
+      ref={heroRef}
+      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+    >
       {/* Background Media */}
       {useSlideshow ? (
         renderSlideshow()

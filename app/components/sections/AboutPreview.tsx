@@ -1,5 +1,6 @@
 import { motion, type Variants, useInView, AnimatePresence } from 'framer-motion';
 import { useRef, useState, useEffect, useCallback } from 'react';
+import { useInView as useInViewObserver } from 'react-intersection-observer';
 import { Volume2, VolumeX } from 'lucide-react';
 import { Button } from '~/components/ui';
 import { urlFor } from '~/lib/sanity';
@@ -187,12 +188,35 @@ export function AboutPreview({
     );
   };
 
+  // Lazy loading for videos - only load when section is near viewport
+  const { ref: lazyVideoRef, inView: isNearViewport } = useInViewObserver({
+    threshold: 0,
+    triggerOnce: false,
+    rootMargin: '200px', // Start loading 200px before visible
+  });
+
+  // Pause video when not in viewport to save resources
+  useEffect(() => {
+    if (videoRef.current && currentMedia?.mediaType === 'video') {
+      if (!isNearViewport) {
+        videoRef.current.pause();
+      } else if (isVideoLoaded) {
+        videoRef.current.play().catch(() => {
+          // Autoplay may be blocked
+        });
+      }
+    }
+  }, [isNearViewport, isVideoLoaded, currentMedia?.mediaType]);
+
   // Render slideshow
   const renderSlideshow = () => {
     if (!useSlideshow || !currentMedia) return null;
 
     return (
-      <div className="relative w-full max-w-md mx-auto aspect-[4/5] overflow-hidden shadow-xl">
+      <div
+        ref={lazyVideoRef}
+        className="relative w-full max-w-md mx-auto aspect-[4/5] overflow-hidden shadow-xl"
+      >
         <AnimatePresence mode="wait">
           <motion.div
             key={currentIndex}
@@ -207,29 +231,39 @@ export function AboutPreview({
                 src={getImageUrl(currentMedia.image) || ''}
                 alt={currentMedia.image.alt || name}
                 className="w-full h-full object-cover"
+                loading="lazy"
               />
             )}
 
             {currentMedia.mediaType === 'video' && (
               <>
-                {/* Video poster while loading */}
-                {currentMedia.videoPoster && !isVideoLoaded && (
+                {/* Video poster while loading or not in viewport */}
+                {currentMedia.videoPoster && (!isVideoLoaded || !isNearViewport) && (
                   <img
                     src={getImageUrl(currentMedia.videoPoster) || ''}
                     alt={name}
                     className="absolute inset-0 w-full h-full object-cover"
                   />
                 )}
-                {/* Video element - click to toggle mute */}
-                {currentMedia.videoFileUrl && (
+                {/* Loading indicator */}
+                {isNearViewport && !isVideoLoaded && (
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/20 z-10">
+                    <div className="w-10 h-10 border-4 border-white/30 border-t-white rounded-full animate-spin" />
+                  </div>
+                )}
+                {/* Video element - only render when near viewport (lazy load) */}
+                {currentMedia.videoFileUrl && isNearViewport && (
                   <video
                     ref={videoRef}
-                    className="w-full h-full object-cover cursor-pointer"
+                    className={`w-full h-full object-cover cursor-pointer transition-opacity duration-300 ${
+                      isVideoLoaded ? 'opacity-100' : 'opacity-0'
+                    }`}
                     src={currentMedia.videoFileUrl}
                     autoPlay
                     muted={isMuted}
                     loop={media.length === 1}
                     playsInline
+                    preload="metadata"
                     onEnded={handleVideoEnded}
                     onLoadedData={() => setIsVideoLoaded(true)}
                     onClick={toggleMute}
