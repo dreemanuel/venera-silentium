@@ -1,5 +1,5 @@
-import { useState, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useRef } from 'react';
+import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { getHeroImageUrl } from '~/lib/image';
@@ -14,12 +14,6 @@ interface GallerySectionProps {
   subtitle?: string;
 }
 
-function GallerySkeleton() {
-  return (
-    <div className="w-full aspect-[16/9] rounded-xl bg-gradient-to-br from-beige to-tea-green/30 animate-pulse" />
-  );
-}
-
 export function GallerySection({
   images,
   lang,
@@ -27,24 +21,20 @@ export function GallerySection({
   subtitle,
 }: GallerySectionProps) {
   const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
-  const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
-
-  const totalSlides = images.length;
-
-  const nextSlide = useCallback(() => {
-    setCurrentIndex((prev) => (prev + 1) % totalSlides);
-  }, [totalSlides]);
-
-  const prevSlide = useCallback(() => {
-    setCurrentIndex((prev) => (prev - 1 + totalSlides) % totalSlides);
-  }, [totalSlides]);
+  const carouselRef = useRef<HTMLDivElement>(null);
 
   if (images.length === 0) return null;
 
-  const currentImage = images[currentIndex];
-  const imageTitle = currentImage ? getLocalizedValue(currentImage.title, lang) : '';
-  const imageUrl = currentImage?.image ? getHeroImageUrl(currentImage.image, 1400, 85) : null;
+  // Scroll the carousel
+  const scroll = (direction: 'left' | 'right') => {
+    if (!carouselRef.current) return;
+    const scrollAmount = carouselRef.current.clientWidth * 0.6;
+    carouselRef.current.scrollBy({
+      left: direction === 'left' ? -scrollAmount : scrollAmount,
+      behavior: 'smooth',
+    });
+  };
 
   // Get full-size URL for lightbox
   const getLightboxUrl = (image: GalleryImage) => {
@@ -53,18 +43,17 @@ export function GallerySection({
   };
 
   return (
-    <section ref={ref} className="py-12 md:py-16 bg-beige/20">
+    <section ref={ref} className="py-12 md:py-16 bg-beige/20 overflow-hidden">
       <motion.div
-        className="container mx-auto px-6"
         initial={{ opacity: 0 }}
         animate={inView ? { opacity: 1 } : { opacity: 0 }}
         transition={{ duration: 0.6 }}
       >
         {/* Section Header */}
         {(title || subtitle) && (
-          <div className="text-center mb-8">
+          <div className="text-center mb-8 px-6">
             {title && (
-              <h2 className="text-3xl md:text-4xl lg:text-5xl text-paynes-gray mb-4">
+              <h2 className="font-display text-5xl md:text-6xl lg:text-7xl text-paynes-gray mb-2 leading-[0.75]">
                 {title}
               </h2>
             )}
@@ -76,80 +65,66 @@ export function GallerySection({
           </div>
         )}
 
-        {/* Carousel */}
-        <div className="relative">
-          {/* Main Image */}
-          <div className="relative overflow-hidden rounded-xl">
-            <AnimatePresence mode="wait">
-              {imageUrl ? (
+        {/* Horizontal Carousel */}
+        <div className="relative group">
+          {/* Navigation Arrows */}
+          <button
+            onClick={() => scroll('left')}
+            className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-10 p-2 md:p-3 bg-white/80 backdrop-blur-sm shadow-lg text-paynes-gray hover:bg-white hover:scale-110 transition-all duration-300 opacity-0 group-hover:opacity-100"
+            aria-label="Scroll left"
+          >
+            <ChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
+          </button>
+          <button
+            onClick={() => scroll('right')}
+            className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-10 p-2 md:p-3 bg-white/80 backdrop-blur-sm shadow-lg text-paynes-gray hover:bg-white hover:scale-110 transition-all duration-300 opacity-0 group-hover:opacity-100"
+            aria-label="Scroll right"
+          >
+            <ChevronRight className="w-5 h-5 md:w-6 md:h-6" />
+          </button>
+
+          {/* Scrollable Container */}
+          <div
+            ref={carouselRef}
+            className="flex gap-4 overflow-x-auto scrollbar-hide px-6 md:px-12 py-4 scroll-smooth"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
+            {images.map((image, index) => {
+              const imageUrl = image.image ? getHeroImageUrl(image.image, 800, 85) : null;
+              const imageTitle = getLocalizedValue(image.title, lang);
+
+              if (!imageUrl) return null;
+
+              return (
                 <motion.div
-                  key={currentIndex}
-                  initial={{ opacity: 0, x: 100 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -100 }}
-                  transition={{ duration: 0.4, ease: 'easeInOut' }}
-                  className="w-full aspect-[16/9] cursor-pointer"
-                  onClick={() => currentImage && setSelectedImage(currentImage)}
+                  key={image._id || index}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={inView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="flex-shrink-0 cursor-pointer group/item"
+                  onClick={() => setSelectedImage(image)}
                 >
-                  <img
-                    src={imageUrl}
-                    alt={currentImage?.image?.alt || imageTitle || 'Gallery image'}
-                    className="w-full h-full object-cover"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  {/* Caption overlay */}
+                  <div className="relative h-[300px] md:h-[400px] lg:h-[500px] overflow-hidden">
+                    <img
+                      src={imageUrl}
+                      alt={image.image?.alt || imageTitle || 'Gallery image'}
+                      className="h-full w-auto object-contain transition-transform duration-500 group-hover/item:scale-105"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    {/* Hover overlay */}
+                    <div className="absolute inset-0 bg-paynes-gray/0 group-hover/item:bg-paynes-gray/20 transition-colors duration-300" />
+                  </div>
+                  {/* Caption */}
                   {imageTitle && (
-                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-paynes-gray/70 to-transparent p-6">
-                      <p className="text-cornsilk font-heading text-lg md:text-xl">
-                        {imageTitle}
-                      </p>
-                    </div>
+                    <p className="mt-2 text-sm text-paynes-gray/70 font-heading text-center max-w-[250px]">
+                      {imageTitle}
+                    </p>
                   )}
                 </motion.div>
-              ) : (
-                <GallerySkeleton />
-              )}
-            </AnimatePresence>
+              );
+            })}
           </div>
-
-          {/* Navigation Arrows */}
-          {totalSlides > 1 && (
-            <>
-              <button
-                onClick={prevSlide}
-                className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 p-2 md:p-3 rounded-full bg-white/80 backdrop-blur-sm shadow-lg text-paynes-gray hover:bg-white hover:scale-110 transition-all duration-300"
-                aria-label="Previous image"
-              >
-                <ChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
-              </button>
-              <button
-                onClick={nextSlide}
-                className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 p-2 md:p-3 rounded-full bg-white/80 backdrop-blur-sm shadow-lg text-paynes-gray hover:bg-white hover:scale-110 transition-all duration-300"
-                aria-label="Next image"
-              >
-                <ChevronRight className="w-5 h-5 md:w-6 md:h-6" />
-              </button>
-            </>
-          )}
-
-          {/* Dots indicator */}
-          {totalSlides > 1 && (
-            <div className="flex justify-center gap-2 mt-4">
-              {images.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentIndex(index)}
-                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                    index === currentIndex
-                      ? 'bg-paynes-gray w-6'
-                      : 'bg-paynes-gray/30 hover:bg-paynes-gray/50'
-                  }`}
-                  aria-label={`Go to image ${index + 1}`}
-                />
-              ))}
-            </div>
-          )}
         </div>
       </motion.div>
 

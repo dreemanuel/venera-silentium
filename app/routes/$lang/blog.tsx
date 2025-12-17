@@ -122,7 +122,7 @@ function BlogCard({ post, lang }: { post: BlogPost; lang: Language }) {
     <motion.article variants={itemVariants} className="group">
       <Link
         to={`/${lang}/blog/${post.slug.current}`}
-        className="block bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-500"
+        className="block bg-white  overflow-hidden shadow-md hover:shadow-xl transition-all duration-500"
       >
         {/* Image */}
         <div className="relative h-48 md:h-56 overflow-hidden bg-beige">
@@ -229,7 +229,7 @@ export default function Blog() {
             transition={{ duration: 0.6 }}
             className="max-w-3xl"
           >
-            <h1 className="text-4xl md:text-5xl lg:text-6xl text-paynes-gray mb-6">
+            <h1 className="font-display text-5xl md:text-6xl lg:text-7xl text-paynes-gray mb-2 leading-[0.75]">
               {headings[lang]}
             </h1>
             <p className="font-heading text-lg md:text-xl text-paynes-gray/70">

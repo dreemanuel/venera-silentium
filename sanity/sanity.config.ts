@@ -33,10 +33,19 @@ export default defineConfig({
             S.divider(),
             // Services
             S.documentTypeListItem('service').title('Services'),
-            // Pages
-            S.documentTypeListItem('page').title('Pages'),
+            // Blog Posts
+            S.documentTypeListItem('blogPost').title('Blog Posts'),
+            // Gallery Images
+            S.documentTypeListItem('galleryImage').title('Gallery Images'),
             // Testimonials
             S.documentTypeListItem('testimonial').title('Testimonials'),
+            // Brands
+            S.documentTypeListItem('brand').title('Brands'),
+            S.divider(),
+            // Pages
+            S.documentTypeListItem('page').title('Pages'),
+            // Promo Banners
+            S.documentTypeListItem('promoBanner').title('Promo Banners'),
           ]),
     }),
     visionTool(),

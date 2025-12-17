@@ -11,7 +11,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
     const baseStyles = `
       w-full px-4 py-3 pr-10
       bg-cornsilk/50 border border-beige
-      rounded-lg
+      
       font-body text-paynes-gray
       appearance-none
       transition-all duration-200

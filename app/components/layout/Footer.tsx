@@ -53,7 +53,7 @@ export function Footer({ lang }: FooterProps) {
           <div className="md:col-span-2">
             <Link
               to={`/${lang}`}
-              className="inline-block text-paynes-gray font-display text-2xl mb-4"
+              className="inline-block text-paynes-gray font-display text-4xl mb-4"
             >
               Woman Silentium
             </Link>
@@ -69,7 +69,7 @@ export function Footer({ lang }: FooterProps) {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 text-paynes-gray/60 hover:text-paynes-gray hover:bg-tea-green/30 rounded-lg transition-colors"
+                  className="p-2 text-paynes-gray/60 hover:text-paynes-gray hover:bg-tea-green/30  transition-colors"
                   aria-label={social.name}
                 >
                   <social.icon className="w-5 h-5" />

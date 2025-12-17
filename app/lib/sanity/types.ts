@@ -49,6 +49,22 @@ export interface SanityImage {
   };
 }
 
+// Hero slideshow types
+export type KenBurnsDirection = 'zoomIn' | 'zoomOut' | 'panLeft' | 'panRight';
+
+export interface HeroMediaItem {
+  _key: string;
+  mediaType: 'image' | 'video';
+  // Image fields
+  image?: SanityImage & { alt?: string };
+  // Video fields
+  videoFileUrl?: string; // Resolved URL from GROQ query
+  videoPoster?: SanityImage;
+  // Common fields
+  duration?: number;
+  kenBurnsDirection?: KenBurnsDirection;
+}
+
 export interface SocialLinks {
   instagram?: string;
   facebook?: string;
@@ -75,6 +91,11 @@ export interface SiteSettings {
   heroSubtitle?: LocalizedString;
   heroImage?: SanityImage;
   heroCtaText?: LocalizedString;
+  // Slideshow fields
+  heroSlideshowEnabled?: boolean;
+  heroMedia?: HeroMediaItem[];
+  heroSlideshowInterval?: number;
+  // Contact fields
   contactEmail?: string;
   contactPhone?: string;
   whatsappNumber?: string;

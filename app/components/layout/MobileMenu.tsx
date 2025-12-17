@@ -83,14 +83,14 @@ export function MobileMenu({
             <div className="flex flex-col h-full">
               {/* Header */}
               <div className="flex items-center justify-between p-4 border-b border-beige/50">
-                <span className="font-display text-xl text-paynes-gray">
+                <span className="font-display text-3xl text-paynes-gray">
                   Silentium
                 </span>
                 <button
                   ref={closeButtonRef}
                   type="button"
                   onClick={onClose}
-                  className="p-2 text-paynes-gray hover:bg-beige/50 rounded-lg transition-colors"
+                  className="p-2 text-paynes-gray hover:bg-beige/50  transition-colors"
                   aria-label="Close menu"
                 >
                   <X className="w-6 h-6" />
@@ -110,7 +110,7 @@ export function MobileMenu({
                       <Link
                         to={item.href}
                         onClick={onClose}
-                        className="block px-4 py-3 text-lg font-heading text-paynes-gray hover:bg-beige/50 rounded-lg transition-colors"
+                        className="block px-4 py-3 text-lg font-heading text-paynes-gray hover:bg-beige/50  transition-colors"
                       >
                         {t(`nav.${item.key}`)}
                       </Link>

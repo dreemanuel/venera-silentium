@@ -69,7 +69,7 @@ export function SilentiumPhilosophy({
             className="absolute inset-0 bg-cover bg-center bg-no-repeat"
             style={{ backgroundImage: `url(${backgroundImageUrl})` }}
           />
-          <div className="absolute inset-0 bg-cornsilk/85" />
+          <div className="absolute inset-0 bg-cornsilk/40" />
         </>
       ) : (
         <div className="absolute inset-0 bg-gradient-to-br from-cornsilk via-papaya-whip/30 to-beige/40">
@@ -95,7 +95,7 @@ export function SilentiumPhilosophy({
           {/* Tagline */}
           <motion.h2
             variants={itemVariants}
-            className="text-3xl md:text-4xl lg:text-5xl text-paynes-gray mb-8"
+            className="font-display text-5xl md:text-6xl lg:text-7xl text-paynes-gray mb-2 leading-[0.75]"
           >
             {tagline}
           </motion.h2>
@@ -121,11 +121,11 @@ export function SilentiumPhilosophy({
           >
             <div className="flex items-center gap-4">
               <span className="w-8 h-px bg-tea-green/50" />
-              <span className="text-tea-green text-4xl font-display">&ldquo;</span>
+              <span className="text-tea-green text-8xl font-display">&ldquo;</span>
               <span className="text-paynes-gray/50 text-sm font-heading tracking-widest uppercase">
                 Woman Silentium
               </span>
-              <span className="text-tea-green text-4xl font-display">&rdquo;</span>
+              <span className="text-tea-green text-8xl font-display">&rdquo;</span>
               <span className="w-8 h-px bg-tea-green/50" />
             </div>
           </motion.div>

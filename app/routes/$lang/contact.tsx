@@ -91,7 +91,7 @@ export default function Contact() {
         >
           <motion.h1
             variants={itemVariants}
-            className="text-4xl md:text-5xl lg:text-6xl text-paynes-gray mb-4"
+            className="font-display text-5xl md:text-6xl lg:text-7xl text-paynes-gray mb-2 leading-[0.75]"
           >
             {t("contact.pageTitle")}
           </motion.h1>

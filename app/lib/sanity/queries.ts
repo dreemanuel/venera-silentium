@@ -7,6 +7,20 @@ export const siteSettingsQuery = groq`
     heroSubtitle,
     heroImage,
     heroCtaText,
+    heroSlideshowEnabled,
+    heroSlideshowInterval,
+    heroMedia[] {
+      _key,
+      mediaType,
+      image {
+        ...,
+        "alt": alt
+      },
+      "videoFileUrl": videoFile.asset->url,
+      videoPoster,
+      duration,
+      kenBurnsDirection
+    },
     contactEmail,
     contactPhone,
     whatsappNumber,

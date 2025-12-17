@@ -97,7 +97,7 @@ export default function About() {
           animate="visible"
           variants={headerVariants}
         >
-          <h1 className="text-4xl md:text-5xl lg:text-6xl text-paynes-gray mb-4">
+          <h1 className="font-display text-5xl md:text-6xl lg:text-7xl text-paynes-gray mb-2 leading-[0.75]">
             {t('about.pageHeading')}
           </h1>
           <p className="text-paynes-gray/70 font-heading text-lg md:text-xl max-w-2xl mx-auto">

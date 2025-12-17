@@ -61,7 +61,7 @@ export function ContactCTA({
         <div className="max-w-2xl mx-auto text-center">
           <motion.h2
             variants={itemVariants}
-            className="text-2xl md:text-3xl lg:text-4xl text-paynes-gray mb-4"
+            className="font-display text-4xl md:text-5xl lg:text-6xl text-paynes-gray mb-2 leading-[0.75]"
           >
             {heading}
           </motion.h2>

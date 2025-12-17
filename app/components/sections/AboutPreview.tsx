@@ -81,19 +81,19 @@ export function AboutPreview({
             {photoUrl ? (
               <div className="relative">
                 {/* Decorative background shape */}
-                <div className="absolute -inset-4 bg-tea-green/20 rounded-3xl -rotate-3" />
+                <div className="absolute -inset-4 bg-tea-green/20  -rotate-3" />
                 <img
                   src={photoUrl}
                   alt={name}
-                  className="relative w-full max-w-md mx-auto rounded-2xl shadow-xl object-cover aspect-[4/5]"
+                  className="relative w-full max-w-md mx-auto  shadow-xl object-cover aspect-[4/5]"
                   loading="lazy"
                 />
               </div>
             ) : (
               /* Placeholder when no photo */
               <div className="relative">
-                <div className="absolute -inset-4 bg-tea-green/20 rounded-3xl -rotate-3" />
-                <div className="relative w-full max-w-md mx-auto rounded-2xl shadow-xl bg-beige/50 aspect-[4/5] flex items-center justify-center">
+                <div className="absolute -inset-4 bg-tea-green/20  -rotate-3" />
+                <div className="relative w-full max-w-md mx-auto  shadow-xl bg-beige/50 aspect-[4/5] flex items-center justify-center">
                   <div className="text-center text-paynes-gray/40">
                     <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-tea-green/30" />
                     <p className="font-heading text-sm">Photo Coming Soon</p>
@@ -117,7 +117,7 @@ export function AboutPreview({
             {/* Name */}
             <motion.h2
               variants={itemVariants}
-              className="text-3xl md:text-4xl lg:text-5xl text-paynes-gray"
+              className="font-display text-5xl md:text-6xl lg:text-7xl text-paynes-gray leading-[0.75]"
             >
               {name}
             </motion.h2>
@@ -125,7 +125,7 @@ export function AboutPreview({
             {/* Title */}
             <motion.p
               variants={itemVariants}
-              className="text-lg md:text-xl text-paynes-gray/70 font-heading"
+              className="text-lg md:text-xl text-paynes-gray/70 font-heading mt-2"
             >
               {title}
             </motion.p>
@@ -146,7 +146,7 @@ export function AboutPreview({
                 {credentials.map((credential, index) => (
                   <span
                     key={index}
-                    className="px-3 py-1 bg-cornsilk border border-paynes-gray/10 text-paynes-gray/80 rounded-lg text-sm"
+                    className="px-3 py-1 bg-cornsilk border border-paynes-gray/10 text-paynes-gray/80  text-sm"
                   >
                     {credential}
                   </span>

@@ -94,6 +94,11 @@ export default function Home() {
   const heroQuote = t('hero.quote');
   const heroImage = siteSettings?.heroImage;
 
+  // Slideshow settings
+  const heroSlideshowEnabled = siteSettings?.heroSlideshowEnabled ?? false;
+  const heroMedia = siteSettings?.heroMedia ?? [];
+  const heroSlideshowInterval = siteSettings?.heroSlideshowInterval ?? 6;
+
   // Get About Dr. Venera content from Sanity or fall back to i18n
   const aboutDrVenera = siteSettings?.aboutDrVenera;
   const drVeneraName =
@@ -137,6 +142,9 @@ export default function Home() {
         image={heroImage}
         ctaText={heroCtaText}
         ctaLink={`/${lang}/contact`}
+        slideshowEnabled={heroSlideshowEnabled}
+        media={heroMedia}
+        slideshowInterval={heroSlideshowInterval}
       />
 
       {/* Services Preview Section */}

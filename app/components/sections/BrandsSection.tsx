@@ -99,7 +99,7 @@ export function BrandsSection({
             className="text-center mb-12"
           >
             {title && (
-              <h2 className="text-3xl md:text-4xl lg:text-5xl text-paynes-gray mb-4">
+              <h2 className="font-display text-5xl md:text-6xl lg:text-7xl text-paynes-gray mb-2 leading-[0.75]">
                 {title}
               </h2>
             )}

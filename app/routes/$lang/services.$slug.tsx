@@ -140,7 +140,7 @@ function RelatedServiceCard({ service, lang }: { service: Service; lang: Languag
   return (
     <Link
       to={`/${lang}/services/${service.slug.current}`}
-      className="group block bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow overflow-hidden"
+      className="group block bg-white  shadow-md hover:shadow-lg transition-shadow overflow-hidden"
     >
       <div className="h-32 bg-beige overflow-hidden">
         {imageUrl ? (
@@ -231,7 +231,7 @@ export default function ServiceDetail() {
           </Link>
 
           <h1
-            className={`text-3xl md:text-4xl lg:text-5xl max-w-3xl ${
+            className={`font-display text-4xl md:text-5xl lg:text-6xl max-w-3xl leading-[0.75] ${
               heroImageUrl ? 'text-cornsilk' : 'text-paynes-gray'
             }`}
           >
@@ -290,7 +290,7 @@ export default function ServiceDetail() {
                     {benefits.map((benefit, index) => (
                       <li
                         key={index}
-                        className="flex items-start p-4 bg-white rounded-lg shadow-sm"
+                        className="flex items-start p-4 bg-white  shadow-sm"
                       >
                         <span className="w-2 h-2 bg-tea-green rounded-full mt-2 mr-3 flex-shrink-0" />
                         <span className="text-paynes-gray/80">{benefit}</span>
@@ -307,7 +307,7 @@ export default function ServiceDetail() {
                     <Users className="w-5 h-5 mr-3 text-tea-green" />
                     {t('services.idealFor')}
                   </h2>
-                  <p className="text-paynes-gray/80 bg-papaya-whip/50 p-6 rounded-xl">
+                  <p className="text-paynes-gray/80 bg-papaya-whip/50 p-6 ">
                     {idealFor}
                   </p>
                 </motion.div>
@@ -317,7 +317,7 @@ export default function ServiceDetail() {
             {/* Sidebar */}
             <motion.div variants={itemVariants} className="lg:col-span-1">
               {/* CTA Card */}
-              <div className="bg-white rounded-xl shadow-lg p-6 sticky top-24">
+              <div className="bg-white  shadow-lg p-6 sticky top-24">
                 <h3 className="font-heading text-lg text-paynes-gray mb-4">
                   {t('contact.ctaHeading')}
                 </h3>
@@ -338,7 +338,7 @@ export default function ServiceDetail() {
                     href="https://wa.me/yourphonenumber"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 font-heading font-medium tracking-wide rounded-lg transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 bg-transparent border-2 border-paynes-gray text-paynes-gray hover:bg-paynes-gray hover:text-cornsilk focus-visible:ring-paynes-gray px-7 py-3.5 text-lg w-full"
+                    className="inline-flex items-center justify-center gap-2 font-heading font-medium tracking-wide  transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 bg-transparent border-2 border-paynes-gray text-paynes-gray hover:bg-paynes-gray hover:text-cornsilk focus-visible:ring-paynes-gray px-7 py-3.5 text-lg w-full"
                   >
                     {t('contact.whatsappUs')}
                   </a>

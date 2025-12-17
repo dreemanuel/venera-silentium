@@ -16,7 +16,7 @@ export function Skeleton({ className }: SkeletonProps) {
   return (
     <div
       className={cn(
-        "animate-pulse rounded-md bg-paynes-gray/10",
+        "animate-pulse  bg-paynes-gray/10",
         className
       )}
     />
@@ -90,7 +90,7 @@ export function SkeletonButton({ className, size = "md" }: SkeletonProps & { siz
   };
 
   return (
-    <Skeleton className={cn("rounded-lg", sizeClasses[size], className)} />
+    <Skeleton className={cn("", sizeClasses[size], className)} />
   );
 }
 
@@ -98,7 +98,7 @@ export function SkeletonButton({ className, size = "md" }: SkeletonProps & { siz
  * Input field skeleton
  */
 export function SkeletonInput({ className }: SkeletonProps) {
-  return <Skeleton className={cn("h-10 w-full rounded-lg", className)} />;
+  return <Skeleton className={cn("h-10 w-full ", className)} />;
 }
 
 /**
@@ -106,7 +106,7 @@ export function SkeletonInput({ className }: SkeletonProps) {
  */
 export function SkeletonServiceCard({ className }: SkeletonProps) {
   return (
-    <div className={cn("rounded-xl bg-white shadow-md overflow-hidden", className)}>
+    <div className={cn(" bg-white shadow-md overflow-hidden", className)}>
       <SkeletonImage aspectRatio="video" className="rounded-none" />
       <div className="p-5 space-y-3">
         <Skeleton className="h-5 w-3/4" />
@@ -203,7 +203,7 @@ export function SkeletonContactForm({ className }: SkeletonProps) {
       </div>
       <div className="space-y-2">
         <Skeleton className="h-4 w-28" />
-        <Skeleton className="h-32 w-full rounded-lg" />
+        <Skeleton className="h-32 w-full " />
       </div>
       <SkeletonButton size="lg" className="w-full" />
     </div>

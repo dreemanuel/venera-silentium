@@ -33,13 +33,13 @@ export function Header({ lang }: HeaderProps) {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-50 bg-cornsilk/80 backdrop-blur-md border-b border-beige/50">
+      <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-lg border-b border-beige/30" style={{ backgroundColor: 'rgba(254, 250, 224, 0.5)' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 md:h-20">
             {/* Logo */}
             <Link
               to={`/${lang}`}
-              className="text-paynes-gray font-display text-xl md:text-2xl hover:opacity-80 transition-opacity"
+              className="text-paynes-gray font-display text-2xl md:text-4xl hover:opacity-80 transition-opacity"
             >
               Woman Silentium
             </Link>
@@ -68,7 +68,7 @@ export function Header({ lang }: HeaderProps) {
             {/* Mobile Menu Button */}
             <button
               type="button"
-              className="md:hidden p-2 text-paynes-gray hover:bg-beige/50 rounded-lg transition-colors"
+              className="md:hidden p-2 text-paynes-gray hover:bg-beige/50  transition-colors"
               onClick={() => setIsMobileMenuOpen(true)}
               aria-label="Open menu"
               aria-expanded={isMobileMenuOpen}

@@ -83,7 +83,7 @@ function BlogCard({ post, lang }: { post: BlogPost; lang: Language }) {
     <motion.article variants={itemVariants} className="group">
       <Link
         to={`/${lang}/blog/${post.slug.current}`}
-        className="block bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-500"
+        className="block bg-white  overflow-hidden shadow-md hover:shadow-xl transition-all duration-500"
       >
         {/* Image */}
         <div className="relative h-48 overflow-hidden bg-beige">
@@ -167,7 +167,7 @@ export function BlogsSection({
         {(title || subtitle) && (
           <motion.div variants={itemVariants} className="text-center mb-12">
             {title && (
-              <h2 className="text-3xl md:text-4xl lg:text-5xl text-paynes-gray mb-4">
+              <h2 className="font-display text-5xl md:text-6xl lg:text-7xl text-paynes-gray mb-2 leading-[0.75]">
                 {title}
               </h2>
             )}
@@ -198,7 +198,7 @@ export function BlogsSection({
           <motion.div variants={itemVariants} className="text-center mt-10">
             <Link
               to={`/${lang}/blog`}
-              className="inline-flex items-center gap-2 px-6 py-3 font-heading text-paynes-gray border-2 border-paynes-gray/30 rounded-lg hover:bg-paynes-gray hover:text-cornsilk transition-all duration-300"
+              className="inline-flex items-center gap-2 px-6 py-3 font-heading text-paynes-gray border-2 border-paynes-gray/30  hover:bg-paynes-gray hover:text-cornsilk transition-all duration-300"
             >
               <span>{viewAllText[lang]}</span>
               <ArrowRight className="w-4 h-4" />

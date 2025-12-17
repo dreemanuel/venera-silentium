@@ -58,7 +58,7 @@ export default function Services() {
             transition={{ duration: 0.6 }}
             className="max-w-3xl"
           >
-            <h1 className="text-4xl md:text-5xl lg:text-6xl text-paynes-gray mb-6">
+            <h1 className="font-display text-5xl md:text-6xl lg:text-7xl text-paynes-gray mb-2 leading-[0.75]">
               {t('services.heading')}
             </h1>
             <p className="font-heading text-lg md:text-xl text-paynes-gray/70">

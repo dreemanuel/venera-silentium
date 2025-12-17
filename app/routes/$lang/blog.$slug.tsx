@@ -174,7 +174,7 @@ function RelatedPostCard({ post, lang }: { post: BlogPost; lang: Language }) {
   return (
     <Link
       to={`/${lang}/blog/${post.slug.current}`}
-      className="group block bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow overflow-hidden"
+      className="group block bg-white  shadow-md hover:shadow-lg transition-shadow overflow-hidden"
     >
       <div className="h-32 bg-beige overflow-hidden">
         {imageUrl ? (
@@ -277,7 +277,7 @@ export default function BlogPostDetail() {
           </span>
 
           <h1
-            className={`text-3xl md:text-4xl lg:text-5xl max-w-4xl mb-4 ${
+            className={`font-display text-4xl md:text-5xl lg:text-6xl max-w-4xl mb-2 leading-[0.75] ${
               heroImageUrl ? 'text-cornsilk' : 'text-paynes-gray'
             }`}
           >
@@ -368,7 +368,7 @@ export default function BlogPostDetail() {
             <motion.aside variants={itemVariants} className="lg:col-span-1">
               {/* Author Card */}
               {post.author && (
-                <div className="bg-white rounded-xl shadow-md p-6 mb-8">
+                <div className="bg-white  shadow-md p-6 mb-8">
                   <div className="flex items-center gap-4 mb-4">
                     <div className="w-12 h-12 rounded-full bg-tea-green/20 flex items-center justify-center">
                       <User className="w-6 h-6 text-paynes-gray/60" />
@@ -386,7 +386,7 @@ export default function BlogPostDetail() {
               )}
 
               {/* CTA Card */}
-              <div className="bg-white rounded-xl shadow-lg p-6 sticky top-24">
+              <div className="bg-white  shadow-lg p-6 sticky top-24">
                 <h3 className="font-heading text-lg text-paynes-gray mb-3">
                   {t('contact.ctaHeading')}
                 </h3>
@@ -395,7 +395,7 @@ export default function BlogPostDetail() {
                 </p>
                 <Link
                   to={`/${lang}/contact`}
-                  className="inline-flex items-center justify-center gap-2 w-full px-5 py-3 bg-paynes-gray text-cornsilk rounded-lg font-heading font-medium hover:bg-paynes-gray/90 transition-colors"
+                  className="inline-flex items-center justify-center gap-2 w-full px-5 py-3 bg-paynes-gray text-cornsilk  font-heading font-medium hover:bg-paynes-gray/90 transition-colors"
                 >
                   {t('contact.bookConsultation')}
                 </Link>

@@ -9,7 +9,7 @@ const TabsList = forwardRef<
 >(({ className, ...props }, ref) => (
   <TabsPrimitive.List
     ref={ref}
-    className={`inline-flex w-full rounded-lg bg-tea-green/20 p-1 ${className || ""}`}
+    className={`inline-flex w-full  bg-tea-green/20 p-1 ${className || ""}`}
     {...props}
   />
 ));
@@ -23,7 +23,7 @@ const TabsTrigger = forwardRef<
     ref={ref}
     className={`
       flex-1 inline-flex items-center justify-center whitespace-nowrap
-      rounded-md px-3 py-2 text-sm font-heading font-medium text-paynes-gray/70
+       px-3 py-2 text-sm font-heading font-medium text-paynes-gray/70
       ring-offset-cornsilk transition-all
       focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paynes-gray focus-visible:ring-offset-2
       disabled:pointer-events-none disabled:opacity-50

@@ -34,7 +34,7 @@ export default function TermsOfService() {
       <div className="container mx-auto px-6 py-16 md:py-24">
         <div className="max-w-3xl mx-auto">
           {/* Header */}
-          <h1 className="text-3xl md:text-4xl font-display text-paynes-gray mb-8">
+          <h1 className="text-5xl md:text-6xl font-display text-paynes-gray mb-8">
             {t("legal.terms.title")}
           </h1>
 

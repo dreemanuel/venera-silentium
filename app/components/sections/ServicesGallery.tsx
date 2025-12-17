@@ -77,7 +77,7 @@ function ServiceImageSlideshow({
 
   if (images.length === 0) {
     return (
-      <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-beige to-tea-green/30 rounded-xl">
+      <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-beige to-tea-green/30 ">
         <span className="text-6xl text-paynes-gray/20">✦</span>
       </div>
     );
@@ -93,7 +93,7 @@ function ServiceImageSlideshow({
       onMouseLeave={() => setIsAutoPlaying(true)}
     >
       {/* Main Image with zoom effect */}
-      <div className="w-full h-full overflow-hidden rounded-xl">
+      <div className="w-full h-full overflow-hidden ">
         {imageUrl ? (
           <Image
             isZoomed
@@ -102,7 +102,7 @@ function ServiceImageSlideshow({
             classNames={{
               wrapper: 'w-full h-full !max-w-none',
               img: 'w-full h-full object-cover',
-              zoomedWrapper: 'rounded-xl',
+              zoomedWrapper: '',
             }}
             radius="lg"
           />
@@ -155,7 +155,7 @@ function ServiceImageSlideshow({
 // Skeleton placeholder for image area
 function ImageSkeleton() {
   return (
-    <div className="w-full h-full rounded-xl bg-gradient-to-br from-beige to-tea-green/30 animate-pulse flex items-center justify-center">
+    <div className="w-full h-full  bg-gradient-to-br from-beige to-tea-green/30 animate-pulse flex items-center justify-center">
       <span className="text-6xl text-paynes-gray/10">✦</span>
     </div>
   );
@@ -229,7 +229,7 @@ export function ServicesGallery({
             className="text-center mb-12 md:mb-16"
           >
             {title && (
-              <h2 className="text-3xl md:text-4xl lg:text-5xl text-paynes-gray mb-4">
+              <h2 className="font-display text-5xl md:text-6xl lg:text-7xl text-paynes-gray mb-2 leading-[0.75]">
                 {title}
               </h2>
             )}
@@ -267,7 +267,7 @@ export function ServicesGallery({
                       itemClasses={{
                         base: 'py-0',
                         title: 'font-heading text-lg text-paynes-gray text-left',
-                        trigger: 'py-3 px-2 rounded-lg hover:bg-tea-green/10 transition-colors data-[open=true]:bg-tea-green/20 justify-start',
+                        trigger: 'py-3 px-2  hover:bg-tea-green/10 transition-colors data-[open=true]:bg-tea-green/20 justify-start',
                         content: 'px-2 pb-4 text-left',
                         indicator: 'text-paynes-gray/50',
                         titleWrapper: 'text-left',
@@ -319,7 +319,7 @@ export function ServicesGallery({
                 itemClasses={{
                   base: 'py-0',
                   title: 'font-heading text-lg text-paynes-gray text-left',
-                  trigger: 'py-3 px-2 rounded-lg hover:bg-tea-green/10 transition-colors data-[open=true]:bg-tea-green/20 justify-start',
+                  trigger: 'py-3 px-2  hover:bg-tea-green/10 transition-colors data-[open=true]:bg-tea-green/20 justify-start',
                   content: 'px-2 pb-4 text-left',
                   indicator: 'text-paynes-gray/50',
                   titleWrapper: 'text-left',
@@ -362,7 +362,7 @@ export function ServicesGallery({
 
           {/* Right: Image Slideshow (2/3 width on desktop) */}
           <div className="w-full lg:w-2/3 order-1 lg:order-2">
-            <div className="sticky top-24 aspect-[4/3] lg:aspect-[16/10] rounded-xl overflow-hidden bg-beige/30">
+            <div className="sticky top-24 aspect-[4/3] lg:aspect-[16/10]  overflow-hidden bg-beige/30">
               {activeService ? (
                 <ServiceImageSlideshow
                   key={activeService._id}

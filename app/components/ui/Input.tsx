@@ -9,7 +9,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     const baseStyles = `
       w-full px-4 py-3
       bg-cornsilk/50 border border-beige
-      rounded-lg
+      
       font-body text-paynes-gray
       placeholder:text-paynes-gray/50
       transition-all duration-200

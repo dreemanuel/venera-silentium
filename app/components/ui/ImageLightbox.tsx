@@ -72,7 +72,7 @@ export function ImageLightbox({ isOpen, onClose, imageUrl, alt, title }: ImageLi
             <img
               src={imageUrl}
               alt={alt}
-              className="max-w-full max-h-[85vh] w-auto h-auto object-contain rounded-lg shadow-2xl"
+              className="max-w-full max-h-[85vh] w-auto h-auto object-contain  shadow-2xl"
             />
 
             {/* Title caption */}
@@ -81,7 +81,7 @@ export function ImageLightbox({ isOpen, onClose, imageUrl, alt, title }: ImageLi
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
-                className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-paynes-gray/80 to-transparent rounded-b-lg"
+                className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-paynes-gray/80 to-transparent "
               >
                 <p className="text-cornsilk text-center font-heading">{title}</p>
               </motion.div>

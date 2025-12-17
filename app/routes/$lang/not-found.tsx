@@ -43,7 +43,7 @@ export function NotFoundPage({ lang }: { lang: SupportedLanguage }) {
         </motion.div>
 
         {/* Heading */}
-        <h1 className="text-2xl md:text-3xl font-display text-paynes-gray mb-4">
+        <h1 className="text-4xl md:text-5xl font-display text-paynes-gray mb-4">
           {t("errors.notFound.title")}
         </h1>
 

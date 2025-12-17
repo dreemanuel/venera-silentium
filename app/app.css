@@ -47,10 +47,10 @@
   --color-surface: #e9edc9;
 
   /* Typography - Font Families */
-  --font-display: "Playwrite IE", cursive;
+  --font-display: "Ashford", serif;
   --font-heading: "Bricolage Grotesque", sans-serif;
   --font-body: "EB Garamond", serif;
-  --font-ashford: "Ashford", serif;
+  --font-playwrite: "Playwrite IE", cursive;
 
   /* Custom Breakpoints */
   --breakpoint-xs: 320px;
