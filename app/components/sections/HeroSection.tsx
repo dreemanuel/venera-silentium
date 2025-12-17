@@ -85,6 +85,10 @@ export function HeroSection({
   const currentMedia = useSlideshow ? media[currentIndex] : null;
   const hasMedia = useSlideshow || !!image;
 
+  // Check if current slide is a video that should use its full duration
+  const isVideoWithFullDuration = currentMedia?.mediaType === 'video' &&
+    (currentMedia.useVideoDuration ?? true); // Default to true for videos
+
   // Get duration for current slide (use override or default)
   const getCurrentDuration = useCallback(() => {
     if (!currentMedia) return slideshowInterval;
@@ -97,12 +101,13 @@ export function HeroSection({
     setCurrentIndex((prev) => (prev + 1) % media.length);
   }, [media.length]);
 
-  // Auto-advance slideshow
+  // Auto-advance slideshow (skip for videos using full duration - they advance via onEnded)
   useEffect(() => {
     if (!useSlideshow || media.length <= 1) return;
 
-    // Always use interval for consistent auto-advance behavior
-    // Videos will also advance via onEnded, but interval acts as fallback
+    // Don't use timer for videos that should play their full duration
+    if (isVideoWithFullDuration) return;
+
     const duration = getCurrentDuration();
 
     const interval = window.setInterval(() => {
@@ -110,9 +115,9 @@ export function HeroSection({
     }, duration * 1000);
 
     return () => window.clearInterval(interval);
-  }, [useSlideshow, media.length, currentIndex, getCurrentDuration, advanceSlide]);
+  }, [useSlideshow, media.length, currentIndex, getCurrentDuration, advanceSlide, isVideoWithFullDuration]);
 
-  // Handle video end
+  // Handle video end - always advance when video ends (for multi-slide shows)
   const handleVideoEnded = useCallback(() => {
     if (useSlideshow && media.length > 1) {
       advanceSlide();
@@ -211,7 +216,7 @@ export function HeroSection({
                   className="absolute inset-0 w-full h-full object-cover"
                   src={currentMedia.videoFileUrl}
                   autoPlay
-                  muted
+                  muted={!currentMedia.enableAudio}
                   loop={media.length === 1} // Only loop if single video
                   playsInline
                   onEnded={handleVideoEnded}

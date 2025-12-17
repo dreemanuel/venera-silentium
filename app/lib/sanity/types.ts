@@ -60,9 +60,26 @@ export interface HeroMediaItem {
   // Video fields
   videoFileUrl?: string; // Resolved URL from GROQ query
   videoPoster?: SanityImage;
+  enableAudio?: boolean;
+  useVideoDuration?: boolean;
   // Common fields
   duration?: number;
   kenBurnsDirection?: KenBurnsDirection;
+}
+
+// About section slideshow types
+export interface AboutMediaItem {
+  _key: string;
+  mediaType: 'image' | 'video';
+  // Image fields
+  image?: SanityImage & { alt?: string };
+  // Video fields
+  videoFileUrl?: string; // Resolved URL from GROQ query
+  videoPoster?: SanityImage;
+  enableAudio?: boolean;
+  useVideoDuration?: boolean;
+  // Common fields
+  duration?: number;
 }
 
 export interface SocialLinks {
@@ -73,6 +90,11 @@ export interface SocialLinks {
 
 export interface AboutDrVenera {
   photo?: SanityImage;
+  // Slideshow fields
+  slideshowEnabled?: boolean;
+  media?: AboutMediaItem[];
+  slideshowInterval?: number;
+  // Content fields
   name?: LocalizedString;
   title?: LocalizedString;
   story?: LocalizedText;

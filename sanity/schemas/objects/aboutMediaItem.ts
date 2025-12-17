@@ -1,9 +1,9 @@
 import { defineType, defineField } from 'sanity';
 import { ImageIcon, PlayIcon } from 'lucide-react';
 
-export const heroMediaItem = defineType({
-  name: 'heroMediaItem',
-  title: 'Hero Media Item',
+export const aboutMediaItem = defineType({
+  name: 'aboutMediaItem',
+  title: 'About Media Item',
   type: 'object',
   fields: [
     defineField({
@@ -44,7 +44,7 @@ export const heroMediaItem = defineType({
       options: {
         accept: 'video/mp4,video/webm',
       },
-      description: 'Upload MP4 or WebM video (recommended: under 50MB, 10-15 seconds)',
+      description: 'Upload MP4 or WebM video (recommended: under 30MB, 10-15 seconds)',
       hidden: ({ parent }) => parent?.mediaType !== 'video',
     }),
     defineField({
@@ -79,22 +79,6 @@ export const heroMediaItem = defineType({
       description: 'Override default interval. For videos, only used if "Use Full Video Duration" is off.',
       validation: (Rule) => Rule.min(3).max(60),
     }),
-    defineField({
-      name: 'kenBurnsDirection',
-      title: 'Ken Burns Direction',
-      type: 'string',
-      description: 'Direction of zoom/pan animation (images only)',
-      options: {
-        list: [
-          { title: 'Zoom In', value: 'zoomIn' },
-          { title: 'Zoom Out', value: 'zoomOut' },
-          { title: 'Pan Left', value: 'panLeft' },
-          { title: 'Pan Right', value: 'panRight' },
-        ],
-      },
-      hidden: ({ parent }) => parent?.mediaType !== 'image',
-      initialValue: 'zoomIn',
-    }),
   ],
   preview: {
     select: {
@@ -105,7 +89,7 @@ export const heroMediaItem = defineType({
     prepare({ mediaType, imageMedia, videoPoster }) {
       const isVideo = mediaType === 'video';
       return {
-        title: isVideo ? 'Video Slide' : 'Image Slide',
+        title: isVideo ? 'Video' : 'Image',
         media: isVideo ? videoPoster || PlayIcon : imageMedia || ImageIcon,
         subtitle: mediaType,
       };

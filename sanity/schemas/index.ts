@@ -1,4 +1,4 @@
-import { localizedString, localizedText, portableText, heroMediaItem } from './objects';
+import { localizedString, localizedText, portableText, heroMediaItem, aboutMediaItem } from './objects';
 import { siteSettings, service, page, testimonial, blogPost, brand, galleryImage, promoBanner } from './documents';
 
 export const schemaTypes = [
@@ -7,6 +7,7 @@ export const schemaTypes = [
   localizedText,
   portableText,
   heroMediaItem,
+  aboutMediaItem,
   // Document types
   siteSettings,
   service,

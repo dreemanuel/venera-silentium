@@ -122,9 +122,38 @@ export const siteSettings = defineType({
       fields: [
         defineField({
           name: 'photo',
-          title: 'Photo',
+          title: 'Photo (Single Image)',
           type: 'image',
           options: { hotspot: true },
+          description: 'Main photo (used when slideshow is disabled)',
+        }),
+        defineField({
+          name: 'slideshowEnabled',
+          title: 'Enable Photo Slideshow',
+          type: 'boolean',
+          description: 'Toggle between single photo and slideshow mode',
+          initialValue: false,
+        }),
+        defineField({
+          name: 'media',
+          title: 'Slideshow Media',
+          type: 'array',
+          of: [{ type: 'aboutMediaItem' }],
+          description: 'Add images and/or videos for the photo slideshow',
+          options: {
+            sortable: true,
+          },
+          hidden: ({ parent }) => !parent?.slideshowEnabled,
+          validation: (Rule) => Rule.max(8).warning('Consider limiting to 8 items for performance'),
+        }),
+        defineField({
+          name: 'slideshowInterval',
+          title: 'Slideshow Interval (seconds)',
+          type: 'number',
+          description: 'Default time between slides (3-10 seconds)',
+          initialValue: 5,
+          validation: (Rule) => Rule.min(3).max(10),
+          hidden: ({ parent }) => !parent?.slideshowEnabled,
         }),
         defineField({
           name: 'name',

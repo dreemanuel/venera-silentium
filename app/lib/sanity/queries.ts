@@ -18,6 +18,8 @@ export const siteSettingsQuery = groq`
       },
       "videoFileUrl": videoFile.asset->url,
       videoPoster,
+      enableAudio,
+      useVideoDuration,
       duration,
       kenBurnsDirection
     },
@@ -30,6 +32,21 @@ export const siteSettingsQuery = groq`
     seoDescription,
     aboutDrVenera {
       photo,
+      slideshowEnabled,
+      slideshowInterval,
+      media[] {
+        _key,
+        mediaType,
+        image {
+          ...,
+          "alt": alt
+        },
+        "videoFileUrl": videoFile.asset->url,
+        videoPoster,
+        enableAudio,
+        useVideoDuration,
+        duration
+      },
       name,
       title,
       story,

@@ -115,6 +115,11 @@ export default function Home() {
     (t('about.drVenera.credentials', { returnObjects: true }) as string[]);
   const drVeneraPhoto = aboutDrVenera?.photo;
 
+  // About section slideshow settings
+  const aboutSlideshowEnabled = aboutDrVenera?.slideshowEnabled ?? false;
+  const aboutMedia = aboutDrVenera?.media ?? [];
+  const aboutSlideshowInterval = aboutDrVenera?.slideshowInterval ?? 5;
+
   // Create fallback story as PortableText-like structure
   const fallbackStory: PortableTextBlock[] = drVeneraStory
     ? []
@@ -200,6 +205,9 @@ export default function Home() {
         ctaText={t('about.cta')}
         ctaLink={`/${lang}/about`}
         lang={lang}
+        slideshowEnabled={aboutSlideshowEnabled}
+        media={aboutMedia}
+        slideshowInterval={aboutSlideshowInterval}
       />
 
       {/* Silentium Philosophy Section */}

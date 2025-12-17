@@ -1,8 +1,9 @@
-import { motion, type Variants, useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { motion, type Variants, useInView, AnimatePresence } from 'framer-motion';
+import { useRef, useState, useEffect, useCallback } from 'react';
+import { Volume2, VolumeX } from 'lucide-react';
 import { Button } from '~/components/ui';
 import { urlFor } from '~/lib/sanity';
-import type { SanityImage, PortableTextBlock } from '~/lib/sanity';
+import type { SanityImage, PortableTextBlock, AboutMediaItem } from '~/lib/sanity';
 
 interface AboutPreviewProps {
   photo?: SanityImage;
@@ -14,6 +15,10 @@ interface AboutPreviewProps {
   ctaText: string;
   ctaLink: string;
   lang: string;
+  // Slideshow props
+  slideshowEnabled?: boolean;
+  media?: AboutMediaItem[];
+  slideshowInterval?: number;
 }
 
 const containerVariants: Variants = {
@@ -57,15 +62,268 @@ export function AboutPreview({
   experience,
   ctaText,
   ctaLink,
+  slideshowEnabled = false,
+  media = [],
+  slideshowInterval = 5,
 }: AboutPreviewProps) {
   const ref = useRef<HTMLElement>(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
+  const [volume, setVolume] = useState(0.7);
+  const [showVolumeSlider, setShowVolumeSlider] = useState(false);
 
-  const photoUrl = photo
-    ? urlFor(photo).width(600).height(750).quality(85).auto('format').url()
-    : null;
+  // Determine if we should use slideshow mode
+  const useSlideshow = slideshowEnabled && media.length > 0;
+  const currentMedia = useSlideshow ? media[currentIndex] : null;
 
+  // Check if current slide is a video that should use its full duration
+  const isVideoWithFullDuration = currentMedia?.mediaType === 'video' &&
+    (currentMedia.useVideoDuration ?? true); // Default to true for videos
+
+  // Get duration for current slide (only used for images or videos without full duration)
+  const getCurrentDuration = useCallback(() => {
+    if (!currentMedia) return slideshowInterval;
+    return currentMedia.duration || slideshowInterval;
+  }, [currentMedia, slideshowInterval]);
+
+  // Advance to next slide
+  const advanceSlide = useCallback(() => {
+    setIsVideoLoaded(false);
+    setCurrentIndex((prev) => (prev + 1) % media.length);
+  }, [media.length]);
+
+  // Auto-advance slideshow (skip for videos using full duration - they advance via onEnded)
+  useEffect(() => {
+    if (!useSlideshow || media.length <= 1) return;
+
+    // Don't use timer for videos that should play their full duration
+    if (isVideoWithFullDuration) return;
+
+    const duration = getCurrentDuration();
+    const interval = window.setInterval(() => {
+      advanceSlide();
+    }, duration * 1000);
+
+    return () => window.clearInterval(interval);
+  }, [useSlideshow, media.length, currentIndex, getCurrentDuration, advanceSlide, isVideoWithFullDuration]);
+
+  // Handle video end - always advance when video ends (for multi-slide shows)
+  const handleVideoEnded = useCallback(() => {
+    if (useSlideshow && media.length > 1) {
+      advanceSlide();
+    }
+  }, [useSlideshow, media.length, advanceSlide]);
+
+  // Navigate to specific slide
+  const goToSlide = useCallback((index: number) => {
+    setIsVideoLoaded(false);
+    setCurrentIndex(index);
+    if (videoRef.current) {
+      videoRef.current.currentTime = 0;
+    }
+  }, []);
+
+  // Reset to muted when slide changes (videos start muted by default)
+  useEffect(() => {
+    if (currentMedia?.mediaType === 'video') {
+      setIsMuted(true);
+    }
+  }, [currentIndex, currentMedia]);
+
+  // Apply volume to video element
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.volume = volume;
+      videoRef.current.muted = isMuted;
+    }
+  }, [volume, isMuted, isVideoLoaded]);
+
+  // Toggle mute
+  const toggleMute = useCallback(() => {
+    setIsMuted((prev) => !prev);
+  }, []);
+
+  // Handle volume change
+  const handleVolumeChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    const newVolume = parseFloat(e.target.value);
+    setVolume(newVolume);
+    if (newVolume > 0 && isMuted) {
+      setIsMuted(false);
+    }
+  }, [isMuted]);
+
+  // Generate image URL
+  const getImageUrl = (image: SanityImage | undefined, width = 600, height = 750) => {
+    if (!image) return null;
+    return urlFor(image).width(width).height(height).quality(85).auto('format').url();
+  };
+
+  const photoUrl = photo ? getImageUrl(photo) : null;
   const storyText = getPlainText(story);
+
+  // Render single photo (non-slideshow mode)
+  const renderSinglePhoto = () => {
+    if (!photoUrl) {
+      return (
+        <div className="relative w-full max-w-md mx-auto shadow-xl bg-beige/50 aspect-[4/5] flex items-center justify-center">
+          <div className="text-center text-paynes-gray/40">
+            <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-tea-green/30" />
+            <p className="font-heading text-sm">Photo Coming Soon</p>
+          </div>
+        </div>
+      );
+    }
+
+    return (
+      <img
+        src={photoUrl}
+        alt={name}
+        className="relative w-full max-w-md mx-auto shadow-xl object-cover aspect-[4/5]"
+        loading="lazy"
+      />
+    );
+  };
+
+  // Render slideshow
+  const renderSlideshow = () => {
+    if (!useSlideshow || !currentMedia) return null;
+
+    return (
+      <div className="relative w-full max-w-md mx-auto aspect-[4/5] overflow-hidden shadow-xl">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentIndex}
+            className="absolute inset-0"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.6, ease: 'easeInOut' }}
+          >
+            {currentMedia.mediaType === 'image' && currentMedia.image && (
+              <img
+                src={getImageUrl(currentMedia.image) || ''}
+                alt={currentMedia.image.alt || name}
+                className="w-full h-full object-cover"
+              />
+            )}
+
+            {currentMedia.mediaType === 'video' && (
+              <>
+                {/* Video poster while loading */}
+                {currentMedia.videoPoster && !isVideoLoaded && (
+                  <img
+                    src={getImageUrl(currentMedia.videoPoster) || ''}
+                    alt={name}
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                )}
+                {/* Video element - click to toggle mute */}
+                {currentMedia.videoFileUrl && (
+                  <video
+                    ref={videoRef}
+                    className="w-full h-full object-cover cursor-pointer"
+                    src={currentMedia.videoFileUrl}
+                    autoPlay
+                    muted={isMuted}
+                    loop={media.length === 1}
+                    playsInline
+                    onEnded={handleVideoEnded}
+                    onLoadedData={() => setIsVideoLoaded(true)}
+                    onClick={toggleMute}
+                  />
+                )}
+              </>
+            )}
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Volume controls - only shown for videos */}
+        {currentMedia?.mediaType === 'video' && isVideoLoaded && (
+          <div
+            className="absolute top-4 right-4 z-10 flex items-center gap-2"
+            onMouseEnter={() => setShowVolumeSlider(true)}
+            onMouseLeave={() => setShowVolumeSlider(false)}
+          >
+            {/* Volume slider */}
+            <AnimatePresence>
+              {showVolumeSlider && (
+                <motion.div
+                  initial={{ opacity: 0, width: 0 }}
+                  animate={{ opacity: 1, width: 80 }}
+                  exit={{ opacity: 0, width: 0 }}
+                  transition={{ duration: 0.2 }}
+                  className="overflow-hidden"
+                >
+                  <input
+                    type="range"
+                    min="0"
+                    max="1"
+                    step="0.1"
+                    value={volume}
+                    onChange={handleVolumeChange}
+                    className="w-20 h-1 bg-cornsilk/30 rounded-full appearance-none cursor-pointer
+                      [&::-webkit-slider-thumb]:appearance-none
+                      [&::-webkit-slider-thumb]:w-3
+                      [&::-webkit-slider-thumb]:h-3
+                      [&::-webkit-slider-thumb]:rounded-full
+                      [&::-webkit-slider-thumb]:bg-cornsilk
+                      [&::-webkit-slider-thumb]:cursor-pointer
+                      [&::-moz-range-thumb]:w-3
+                      [&::-moz-range-thumb]:h-3
+                      [&::-moz-range-thumb]:rounded-full
+                      [&::-moz-range-thumb]:bg-cornsilk
+                      [&::-moz-range-thumb]:border-0
+                      [&::-moz-range-thumb]:cursor-pointer"
+                    aria-label="Volume"
+                  />
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            {/* Mute/unmute button */}
+            <button
+              onClick={toggleMute}
+              className="p-2 bg-paynes-gray/50 backdrop-blur-sm rounded-full text-cornsilk hover:bg-paynes-gray/70 transition-colors"
+              aria-label={isMuted ? 'Unmute' : 'Mute'}
+            >
+              {isMuted ? (
+                <VolumeX className="w-4 h-4" />
+              ) : (
+                <Volume2 className="w-4 h-4" />
+              )}
+            </button>
+          </div>
+        )}
+
+        {/* Navigation dots */}
+        {media.length > 1 && (
+          <div
+            className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 flex gap-2"
+            role="tablist"
+            aria-label="Photo slideshow navigation"
+          >
+            {media.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => goToSlide(index)}
+                className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                  index === currentIndex
+                    ? 'bg-cornsilk w-5'
+                    : 'bg-cornsilk/50 hover:bg-cornsilk/70'
+                }`}
+                role="tab"
+                aria-selected={index === currentIndex}
+                aria-label={`Go to photo ${index + 1}`}
+              />
+            ))}
+          </div>
+        )}
+      </div>
+    );
+  };
 
   return (
     <section ref={ref} className="py-20 md:py-28 bg-papaya-whip/30 overflow-hidden">
@@ -78,29 +336,13 @@ export function AboutPreview({
         <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Photo Column */}
           <motion.div variants={itemVariants} className="relative">
-            {photoUrl ? (
+            <div className="relative">
+              {/* Decorative background shape */}
+              <div className="absolute -inset-4 bg-tea-green/20 -rotate-3" />
               <div className="relative">
-                {/* Decorative background shape */}
-                <div className="absolute -inset-4 bg-tea-green/20  -rotate-3" />
-                <img
-                  src={photoUrl}
-                  alt={name}
-                  className="relative w-full max-w-md mx-auto  shadow-xl object-cover aspect-[4/5]"
-                  loading="lazy"
-                />
+                {useSlideshow ? renderSlideshow() : renderSinglePhoto()}
               </div>
-            ) : (
-              /* Placeholder when no photo */
-              <div className="relative">
-                <div className="absolute -inset-4 bg-tea-green/20  -rotate-3" />
-                <div className="relative w-full max-w-md mx-auto  shadow-xl bg-beige/50 aspect-[4/5] flex items-center justify-center">
-                  <div className="text-center text-paynes-gray/40">
-                    <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-tea-green/30" />
-                    <p className="font-heading text-sm">Photo Coming Soon</p>
-                  </div>
-                </div>
-              </div>
-            )}
+            </div>
           </motion.div>
 
           {/* Content Column */}
@@ -146,7 +388,7 @@ export function AboutPreview({
                 {credentials.map((credential, index) => (
                   <span
                     key={index}
-                    className="px-3 py-1 bg-cornsilk border border-paynes-gray/10 text-paynes-gray/80  text-sm"
+                    className="px-3 py-1 bg-cornsilk border border-paynes-gray/10 text-paynes-gray/80 text-sm"
                   >
                     {credential}
                   </span>
