@@ -6,23 +6,23 @@
 
 **🎉 ALL EPICS COMPLETE + UI REFINEMENTS - PRODUCTION READY!**
 
-**Latest Session: December 17, 2025**
-- ✅ Hero Media Slideshow with Ken Burns effect
-- ✅ Typography overhaul (Ashford font, tight line stacking)
-- ✅ Gallery horizontal carousel redesign
-- ✅ Sanity CMS sidebar expanded (all content types)
-- ✅ Visual polish (sharp corners, refined translucency)
+**Latest Session: December 18, 2025**
+- ✅ Fixed hero/navbar gap (hero now full-screen under header)
+- ✅ About section slideshow (CMS-managed images/videos)
+- ✅ Video audio controls for Hero & About sections
+- ✅ Mute/volume UI controls with click-to-toggle
+- ✅ Videos start muted by default
 
 **What's New This Session:**
-- ✅ **Hero Slideshow:** CMS-managed images/videos with Ken Burns animations (zoomIn, zoomOut, panLeft, panRight)
-- ✅ **Typography:** Ashford font with oversized titles (`md:text-[8rem] lg:text-[11rem]`) and negative margin stacking
-- ✅ **Gallery Carousel:** Horizontal scrolling with height-fitted images (300-500px)
-- ✅ **Sanity Sidebar:** Added Gallery Images, Blog Posts, Brands, Promo Banners
-- ✅ **Silentium Section:** Reduced background overlay (85% → 40%)
+- ✅ **Hero Gap Fix:** Removed layout padding, hero now `min-h-screen`
+- ✅ **About Slideshow:** New `aboutMediaItem` schema, up to 8 images/videos
+- ✅ **Video Options:** `enableAudio` and `useVideoDuration` for both Hero & About
+- ✅ **Volume Controls:** Mute button + slider (hover to reveal), click video to toggle mute
+- ✅ **Smart Defaults:** Videos always start muted, reset on slide change
 
 **What to Read First:**
-1. `/venera_docs/devlogs/DEVLOG-DEC17-2025-UI-REFINEMENTS-COMPLETE.md` - Latest session details
-2. `/venera_docs/devlogs/DEVLOG-DEC10-2025-UXUI-OPTIMIZATION-COMPLETE.md` - Previous session
+1. `/venera_docs/devlogs/DEVLOG-DEC18-2025-ABOUT-SLIDESHOW-VIDEO-CONTROLS.md` - Latest session details
+2. `/venera_docs/devlogs/DEVLOG-DEC17-2025-UI-REFINEMENTS-COMPLETE.md` - Previous session
 3. This file (continue reading below)
 
 **Production Site:** Deployed to Vercel (auto-deploy from main branch)
@@ -311,6 +311,30 @@ When starting a new session:
 ---
 
 ## Recent Session Log
+
+### December 18, 2025 - About Slideshow & Video Controls
+**Status:** COMPLETE
+**Commit:** `b109cbf`
+
+**Key Changes:**
+1. **Hero/Navbar Gap Fix** - Hero now full-screen under header
+   - Removed padding from layout's main element
+   - Hero uses `min-h-screen` instead of calc
+
+2. **About Section Slideshow** - CMS-managed like hero
+   - New schema: `sanity/schemas/objects/aboutMediaItem.ts`
+   - Supports images + videos with auto-advance
+   - Navigation dots for manual control
+
+3. **Video Audio Controls** - For both Hero & About
+   - `enableAudio` option in Sanity
+   - `useVideoDuration` to play full video length
+   - Mute/volume UI controls (About section)
+   - Click video to toggle mute
+
+**Files Modified:** 10 files, +477/-38 lines
+
+---
 
 ### December 17, 2025 - UI Refinements
 **Status:** COMPLETE
