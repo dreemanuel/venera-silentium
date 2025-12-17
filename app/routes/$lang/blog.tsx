@@ -215,7 +215,7 @@ export default function Blog() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative py-20 md:py-28 bg-gradient-to-b from-beige/50 to-cornsilk">
+      <section className="relative pt-32 pb-20 md:pb-28 bg-gradient-to-b from-beige/50 to-cornsilk">
         {/* Decorative elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-1/4 left-0 w-64 h-64 bg-tea-green/20 rounded-full blur-3xl" />
