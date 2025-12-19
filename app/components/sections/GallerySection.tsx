@@ -7,11 +7,6 @@ import type { GalleryImage, Language } from '~/lib/sanity';
 import { getLocalizedValue } from '~/lib/sanity';
 import { ImageLightbox } from '~/components/ui/ImageLightbox';
 
-// Check for reduced motion preference
-const prefersReducedMotion = typeof window !== 'undefined'
-  ? window.matchMedia('(prefers-reduced-motion: reduce)').matches
-  : false;
-
 // Auto-scroll interval in milliseconds
 const AUTO_SCROLL_INTERVAL = 4000; // 4 seconds
 
@@ -31,8 +26,27 @@ export function GallerySection({
   const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
   const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
   const [isHovered, setIsHovered] = useState(false);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const carouselRef = useRef<HTMLDivElement>(null);
   const autoScrollRef = useRef<number | null>(null);
+
+  // Check for reduced motion preference on client
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    // Use setTimeout to avoid synchronous setState warning
+    const timeoutId = window.setTimeout(() => {
+      setPrefersReducedMotion(mediaQuery.matches);
+    }, 0);
+
+    const handler = (e: { matches: boolean }) => {
+      setPrefersReducedMotion(e.matches);
+    };
+    mediaQuery.addEventListener('change', handler);
+    return () => {
+      window.clearTimeout(timeoutId);
+      mediaQuery.removeEventListener('change', handler);
+    };
+  }, []);
 
   // Scroll the carousel
   const scroll = useCallback((direction: 'left' | 'right') => {
@@ -66,8 +80,8 @@ export function GallerySection({
 
   // Auto-scroll effect
   useEffect(() => {
-    // Don't auto-scroll if reduced motion, hovered, or not enough images
-    if (prefersReducedMotion || isHovered || images.length <= 2) return;
+    // Don't auto-scroll if reduced motion, hovered, not in view, or only 1 image
+    if (prefersReducedMotion || isHovered || !inView || images.length <= 1) return;
 
     autoScrollRef.current = window.setInterval(autoScroll, AUTO_SCROLL_INTERVAL);
 
@@ -76,7 +90,7 @@ export function GallerySection({
         window.clearInterval(autoScrollRef.current);
       }
     };
-  }, [isHovered, images.length, autoScroll]);
+  }, [prefersReducedMotion, isHovered, inView, images.length, autoScroll]);
 
   if (images.length === 0) return null;
 

@@ -363,7 +363,7 @@ export function HeroSection({
         )}
 
         {/* CTA Buttons */}
-        <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4">
+        <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Button
             variant={hasMedia ? 'secondary' : 'primary'}
             size="lg"
