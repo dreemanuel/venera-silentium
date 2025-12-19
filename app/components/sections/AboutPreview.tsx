@@ -4,7 +4,8 @@ import { useInView as useInViewObserver } from 'react-intersection-observer';
 import { Volume2, VolumeX } from 'lucide-react';
 import { Button } from '~/components/ui';
 import { urlFor } from '~/lib/sanity';
-import type { SanityImage, PortableTextBlock, AboutMediaItem } from '~/lib/sanity';
+import type { SanityImage, PortableTextBlock, AboutMediaItem, KenBurnsDirection } from '~/lib/sanity';
+import type { TargetAndTransition } from 'framer-motion';
 
 interface AboutPreviewProps {
   photo?: SanityImage;
@@ -44,6 +45,34 @@ const itemVariants: Variants = {
     },
   },
 };
+
+// Ken Burns animation configurations (same as HeroSection)
+const kenBurnsConfig: Record<KenBurnsDirection, { initial: TargetAndTransition; animate: TargetAndTransition }> = {
+  zoomIn: {
+    initial: { scale: 1, x: '0%', y: '0%' },
+    animate: { scale: 1.1, x: '0%', y: '0%' },
+  },
+  zoomOut: {
+    initial: { scale: 1.1, x: '0%', y: '0%' },
+    animate: { scale: 1, x: '0%', y: '0%' },
+  },
+  panLeft: {
+    initial: { scale: 1.05, x: '2%', y: '0%' },
+    animate: { scale: 1.05, x: '-2%', y: '0%' },
+  },
+  panRight: {
+    initial: { scale: 1.05, x: '-2%', y: '0%' },
+    animate: { scale: 1.05, x: '2%', y: '0%' },
+  },
+};
+
+// Order of Ken Burns effects to cycle through
+const kenBurnsOrder: KenBurnsDirection[] = ['zoomIn', 'panRight', 'zoomOut', 'panLeft'];
+
+// Check for reduced motion preference
+const prefersReducedMotion = typeof window !== 'undefined'
+  ? window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  : false;
 
 // Simple portable text renderer - just extracts plain text
 function getPlainText(blocks?: PortableTextBlock[]): string {
@@ -93,6 +122,7 @@ export function AboutPreview({
   // Advance to next slide
   const advanceSlide = useCallback(() => {
     setIsVideoLoaded(false);
+    setIsMuted(true); // Reset mute when changing slides (videos start muted)
     setCurrentIndex((prev) => (prev + 1) % media.length);
   }, [media.length]);
 
@@ -121,18 +151,12 @@ export function AboutPreview({
   // Navigate to specific slide
   const goToSlide = useCallback((index: number) => {
     setIsVideoLoaded(false);
+    setIsMuted(true); // Reset mute when changing slides (videos start muted)
     setCurrentIndex(index);
     if (videoRef.current) {
       videoRef.current.currentTime = 0;
     }
   }, []);
-
-  // Reset to muted when slide changes (videos start muted by default)
-  useEffect(() => {
-    if (currentMedia?.mediaType === 'video') {
-      setIsMuted(true);
-    }
-  }, [currentIndex, currentMedia]);
 
   // Apply volume to video element
   useEffect(() => {
@@ -212,6 +236,11 @@ export function AboutPreview({
   const renderSlideshow = () => {
     if (!useSlideshow || !currentMedia) return null;
 
+    // Get Ken Burns direction for current slide (cycle through the 4 directions)
+    const kenBurnsDirection = kenBurnsOrder[currentIndex % kenBurnsOrder.length] ?? 'zoomIn';
+    const kenBurns = kenBurnsConfig[kenBurnsDirection];
+    const duration = getCurrentDuration();
+
     return (
       <div
         ref={lazyVideoRef}
@@ -227,12 +256,19 @@ export function AboutPreview({
             transition={{ duration: 0.6, ease: 'easeInOut' }}
           >
             {currentMedia.mediaType === 'image' && currentMedia.image && (
-              <img
-                src={getImageUrl(currentMedia.image) || ''}
-                alt={currentMedia.image.alt || name}
-                className="w-full h-full object-cover"
-                loading="lazy"
-              />
+              <motion.div
+                className="absolute inset-0 overflow-hidden"
+                initial={prefersReducedMotion ? undefined : kenBurns.initial}
+                animate={prefersReducedMotion ? undefined : kenBurns.animate}
+                transition={prefersReducedMotion ? undefined : { duration, ease: 'linear' }}
+              >
+                <img
+                  src={getImageUrl(currentMedia.image) || ''}
+                  alt={currentMedia.image.alt || name}
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
+              </motion.div>
             )}
 
             {currentMedia.mediaType === 'video' && (
