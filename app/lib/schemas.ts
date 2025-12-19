@@ -26,3 +26,16 @@ export const bookingFormSchema = z.object({
 });
 
 export type BookingFormData = z.infer<typeof bookingFormSchema>;
+
+// Quick lead capture form (for CTA section)
+export const quickLeadSchema = z.object({
+  name: z.string().min(2, "Name must be at least 2 characters"),
+  email: z.string().email("Please enter a valid email"),
+  phone: z.string().optional(),
+  instagram: z.string().optional(),
+  // Honeypot field
+  website: z.string().max(0).optional(),
+  language: z.enum(["en", "ru", "id"]).optional(),
+});
+
+export type QuickLeadData = z.infer<typeof quickLeadSchema>;

@@ -32,7 +32,7 @@ export function GallerySection({
   const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
   const [isHovered, setIsHovered] = useState(false);
   const carouselRef = useRef<HTMLDivElement>(null);
-  const autoScrollRef = useRef<NodeJS.Timeout | null>(null);
+  const autoScrollRef = useRef<number | null>(null);
 
   // Scroll the carousel
   const scroll = useCallback((direction: 'left' | 'right') => {
@@ -69,11 +69,11 @@ export function GallerySection({
     // Don't auto-scroll if reduced motion, hovered, or not enough images
     if (prefersReducedMotion || isHovered || images.length <= 2) return;
 
-    autoScrollRef.current = setInterval(autoScroll, AUTO_SCROLL_INTERVAL);
+    autoScrollRef.current = window.setInterval(autoScroll, AUTO_SCROLL_INTERVAL);
 
     return () => {
       if (autoScrollRef.current) {
-        clearInterval(autoScrollRef.current);
+        window.clearInterval(autoScrollRef.current);
       }
     };
   }, [isHovered, images.length, autoScroll]);

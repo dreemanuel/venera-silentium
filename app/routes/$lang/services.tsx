@@ -93,6 +93,7 @@ export default function Services() {
         whatsappButtonText={t('contact.whatsappUs')}
         bookLink={`/${lang}/contact`}
         whatsappNumber="yourphonenumber"
+        lang={lang}
       />
     </>
   );

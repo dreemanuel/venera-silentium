@@ -435,6 +435,7 @@ export default function BlogPostDetail() {
         whatsappButtonText={t('contact.whatsappUs')}
         bookLink={`/${lang}/contact`}
         whatsappNumber="yourphonenumber"
+        lang={lang}
       />
     </>
   );

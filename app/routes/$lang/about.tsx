@@ -138,6 +138,7 @@ export default function About() {
         whatsappButtonText={t('contact.whatsappUs')}
         bookLink={`/${lang}/contact`}
         whatsappNumber={siteSettings?.whatsappNumber}
+        lang={lang}
       />
     </main>
   );

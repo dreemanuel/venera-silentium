@@ -10,6 +10,7 @@ import {
   BlogsSection,
   BrandsSection,
   GallerySection,
+  ContactCTA,
 } from '~/components/sections';
 import { Button } from '~/components/ui';
 import { sanityClient } from '~/lib/sanity/client.server';
@@ -259,17 +260,17 @@ export default function Home() {
         />
       )}
 
-      {/* Contact CTA Section */}
-      <section className="py-20 bg-tea-green/30">
-        <div className="container mx-auto px-6 text-center">
-          <h2 className="text-paynes-gray text-2xl md:text-3xl mb-4">
-            {t('hero.cta')}
-          </h2>
-          <p className="text-paynes-gray/60 text-sm font-heading">
-            {t('common.location')}
-          </p>
-        </div>
-      </section>
+      {/* Contact CTA Section with Lead Capture Form */}
+      <ContactCTA
+        heading={t('contact.ctaHeading')}
+        subheading={t('contact.ctaSubheading')}
+        bookButtonText={t('contact.bookConsultation')}
+        whatsappButtonText={t('common.whatsappCta')}
+        bookLink={`/${lang}/contact`}
+        whatsappNumber={whatsappNumber}
+        lang={lang}
+        showForm={true}
+      />
     </>
   );
 }
