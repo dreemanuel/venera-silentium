@@ -99,6 +99,9 @@ export default function Home() {
   const heroMedia = siteSettings?.heroMedia ?? [];
   const heroSlideshowInterval = siteSettings?.heroSlideshowInterval ?? 6;
 
+  // WhatsApp number from site settings
+  const whatsappNumber = siteSettings?.whatsappNumber;
+
   // Get About Dr. Venera content from Sanity or fall back to i18n
   const aboutDrVenera = siteSettings?.aboutDrVenera;
   const drVeneraName =
@@ -147,6 +150,8 @@ export default function Home() {
         image={heroImage}
         ctaText={heroCtaText}
         ctaLink={`/${lang}/contact`}
+        whatsappNumber={whatsappNumber}
+        whatsappText={t('common.whatsappCta')}
         slideshowEnabled={heroSlideshowEnabled}
         media={heroMedia}
         slideshowInterval={heroSlideshowInterval}
@@ -204,6 +209,8 @@ export default function Home() {
         experience={drVeneraExperience}
         ctaText={t('about.cta')}
         ctaLink={`/${lang}/about`}
+        whatsappNumber={whatsappNumber}
+        whatsappText={t('common.whatsappCta')}
         lang={lang}
         slideshowEnabled={aboutSlideshowEnabled}
         media={aboutMedia}

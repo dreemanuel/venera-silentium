@@ -15,8 +15,11 @@ interface ButtonProps {
   disabled?: boolean;
   type?: "button" | "submit" | "reset";
   onClick?: () => void;
-  as?: "button" | "link";
+  as?: "button" | "link" | "a";
   to?: string;
+  href?: string;
+  target?: string;
+  rel?: string;
 }
 
 const variantStyles: Record<ButtonVariant, string> = {
@@ -49,6 +52,9 @@ export function Button({
   onClick,
   as = "button",
   to,
+  href,
+  target,
+  rel,
 }: ButtonProps) {
   const baseStyles = `
     inline-flex items-center justify-center gap-2
@@ -79,6 +85,20 @@ export function Button({
       <Link to={to} className={combinedClassName} onClick={onClick}>
         {content}
       </Link>
+    );
+  }
+
+  if (as === "a" && href) {
+    return (
+      <a
+        href={href}
+        className={combinedClassName}
+        target={target}
+        rel={rel || (target === "_blank" ? "noopener noreferrer" : undefined)}
+        onClick={onClick}
+      >
+        {content}
+      </a>
     );
   }
 

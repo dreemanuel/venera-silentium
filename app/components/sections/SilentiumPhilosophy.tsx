@@ -1,7 +1,12 @@
-import { motion, type Variants, useInView } from 'framer-motion';
+import { motion, type Variants, useInView, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 import { urlFor } from '~/lib/sanity';
 import type { SanityImage, PortableTextBlock } from '~/lib/sanity';
+
+// Check for reduced motion preference
+const prefersReducedMotion = typeof window !== 'undefined'
+  ? window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  : false;
 
 interface SilentiumPhilosophyProps {
   tagline: string;
@@ -51,6 +56,18 @@ export function SilentiumPhilosophy({
   const ref = useRef<HTMLElement>(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
+  // Parallax scroll effect
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ['start end', 'end start'],
+  });
+
+  // Parallax: Image moves slower than scroll (creates depth effect)
+  // Y offset: 0% at start -> 30% at end (image moves up slower than scroll)
+  const y = useTransform(scrollYProgress, [0, 1], ['0%', '30%']);
+  // Subtle scale for additional depth (starts slightly zoomed, ends at normal)
+  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [1.15, 1.1, 1.05]);
+
   const backgroundImageUrl = image
     ? urlFor(image).width(1920).quality(75).auto('format').url()
     : null;
@@ -62,13 +79,24 @@ export function SilentiumPhilosophy({
       ref={ref}
       className="relative py-24 md:py-32 overflow-hidden"
     >
-      {/* Background */}
+      {/* Background with Parallax */}
       {backgroundImageUrl ? (
         <>
-          <div
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-            style={{ backgroundImage: `url(${backgroundImageUrl})` }}
-          />
+          {/* Parallax image container - extra height to accommodate movement */}
+          <div className="absolute inset-0 overflow-hidden">
+            <motion.div
+              className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+              style={{
+                backgroundImage: `url(${backgroundImageUrl})`,
+                // Apply parallax transforms (respects reduced motion)
+                y: prefersReducedMotion ? 0 : y,
+                scale: prefersReducedMotion ? 1 : scale,
+                // Extend height to prevent gaps during parallax
+                height: '130%',
+                top: '-15%',
+              }}
+            />
+          </div>
           <div className="absolute inset-0 bg-cornsilk/40" />
         </>
       ) : (

@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
@@ -6,6 +6,14 @@ import { getHeroImageUrl } from '~/lib/image';
 import type { GalleryImage, Language } from '~/lib/sanity';
 import { getLocalizedValue } from '~/lib/sanity';
 import { ImageLightbox } from '~/components/ui/ImageLightbox';
+
+// Check for reduced motion preference
+const prefersReducedMotion = typeof window !== 'undefined'
+  ? window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  : false;
+
+// Auto-scroll interval in milliseconds
+const AUTO_SCROLL_INTERVAL = 4000; // 4 seconds
 
 interface GallerySectionProps {
   images: GalleryImage[];
@@ -22,19 +30,55 @@ export function GallerySection({
 }: GallerySectionProps) {
   const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
   const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
+  const [isHovered, setIsHovered] = useState(false);
   const carouselRef = useRef<HTMLDivElement>(null);
-
-  if (images.length === 0) return null;
+  const autoScrollRef = useRef<NodeJS.Timeout | null>(null);
 
   // Scroll the carousel
-  const scroll = (direction: 'left' | 'right') => {
+  const scroll = useCallback((direction: 'left' | 'right') => {
     if (!carouselRef.current) return;
     const scrollAmount = carouselRef.current.clientWidth * 0.6;
     carouselRef.current.scrollBy({
       left: direction === 'left' ? -scrollAmount : scrollAmount,
       behavior: 'smooth',
     });
-  };
+  }, []);
+
+  // Check if at the end of scroll and loop back
+  const checkScrollEnd = useCallback(() => {
+    if (!carouselRef.current) return false;
+    const { scrollLeft, scrollWidth, clientWidth } = carouselRef.current;
+    // If we're near the end (within 10px), we should loop
+    return scrollLeft + clientWidth >= scrollWidth - 10;
+  }, []);
+
+  // Auto-scroll to the right, loop when reaching end
+  const autoScroll = useCallback(() => {
+    if (!carouselRef.current) return;
+
+    if (checkScrollEnd()) {
+      // Loop back to start with smooth animation
+      carouselRef.current.scrollTo({ left: 0, behavior: 'smooth' });
+    } else {
+      scroll('right');
+    }
+  }, [scroll, checkScrollEnd]);
+
+  // Auto-scroll effect
+  useEffect(() => {
+    // Don't auto-scroll if reduced motion, hovered, or not enough images
+    if (prefersReducedMotion || isHovered || images.length <= 2) return;
+
+    autoScrollRef.current = setInterval(autoScroll, AUTO_SCROLL_INTERVAL);
+
+    return () => {
+      if (autoScrollRef.current) {
+        clearInterval(autoScrollRef.current);
+      }
+    };
+  }, [isHovered, images.length, autoScroll]);
+
+  if (images.length === 0) return null;
 
   // Get full-size URL for lightbox
   const getLightboxUrl = (image: GalleryImage) => {
@@ -66,7 +110,11 @@ export function GallerySection({
         )}
 
         {/* Horizontal Carousel */}
-        <div className="relative group">
+        <div
+          className="relative group"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
           {/* Navigation Arrows */}
           <button
             onClick={() => scroll('left')}

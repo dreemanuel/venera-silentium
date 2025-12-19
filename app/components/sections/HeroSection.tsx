@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence, type Variants, type TargetAndTransition } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { MessageCircle } from 'lucide-react';
 import { Button } from '~/components/ui';
 import { getResponsiveImageProps } from '~/lib/image';
 import type { SanityImage, HeroMediaItem, KenBurnsDirection } from '~/lib/sanity';
@@ -12,6 +13,9 @@ interface HeroSectionProps {
   image?: SanityImage;
   ctaText: string;
   ctaLink: string;
+  // WhatsApp CTA props
+  whatsappNumber?: string;
+  whatsappText?: string;
   // Slideshow props
   slideshowEnabled?: boolean;
   media?: HeroMediaItem[];
@@ -73,6 +77,8 @@ export function HeroSection({
   image,
   ctaText,
   ctaLink,
+  whatsappNumber,
+  whatsappText,
   slideshowEnabled = false,
   media = [],
   slideshowInterval = 6,
@@ -356,8 +362,8 @@ export function HeroSection({
           </motion.blockquote>
         )}
 
-        {/* CTA Button */}
-        <motion.div variants={itemVariants}>
+        {/* CTA Buttons */}
+        <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4">
           <Button
             variant={hasMedia ? 'secondary' : 'primary'}
             size="lg"
@@ -367,6 +373,19 @@ export function HeroSection({
           >
             {ctaText}
           </Button>
+          {whatsappNumber && whatsappText && (
+            <Button
+              variant="outline"
+              size="lg"
+              as="a"
+              href={`https://wa.me/${whatsappNumber.replace(/[^0-9]/g, '')}`}
+              target="_blank"
+              leftIcon={<MessageCircle className="w-5 h-5" />}
+              className="shadow-lg hover:shadow-xl transition-shadow duration-300"
+            >
+              {whatsappText}
+            </Button>
+          )}
         </motion.div>
       </motion.div>
 

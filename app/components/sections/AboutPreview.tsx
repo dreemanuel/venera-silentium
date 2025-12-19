@@ -1,7 +1,7 @@
 import { motion, type Variants, useInView, AnimatePresence } from 'framer-motion';
 import { useRef, useState, useEffect, useCallback } from 'react';
 import { useInView as useInViewObserver } from 'react-intersection-observer';
-import { Volume2, VolumeX } from 'lucide-react';
+import { Volume2, VolumeX, MessageCircle } from 'lucide-react';
 import { Button } from '~/components/ui';
 import { urlFor } from '~/lib/sanity';
 import type { SanityImage, PortableTextBlock, AboutMediaItem, KenBurnsDirection } from '~/lib/sanity';
@@ -17,6 +17,9 @@ interface AboutPreviewProps {
   ctaText: string;
   ctaLink: string;
   lang: string;
+  // WhatsApp CTA props
+  whatsappNumber?: string;
+  whatsappText?: string;
   // Slideshow props
   slideshowEnabled?: boolean;
   media?: AboutMediaItem[];
@@ -92,6 +95,8 @@ export function AboutPreview({
   experience,
   ctaText,
   ctaLink,
+  whatsappNumber,
+  whatsappText,
   slideshowEnabled = false,
   media = [],
   slideshowInterval = 5,
@@ -466,11 +471,22 @@ export function AboutPreview({
               </motion.div>
             )}
 
-            {/* CTA */}
-            <motion.div variants={itemVariants} className="pt-4">
+            {/* CTA Buttons */}
+            <motion.div variants={itemVariants} className="pt-4 flex flex-wrap gap-3">
               <Button variant="outline" as="link" to={ctaLink}>
                 {ctaText}
               </Button>
+              {whatsappNumber && whatsappText && (
+                <Button
+                  variant="outline"
+                  as="a"
+                  href={`https://wa.me/${whatsappNumber.replace(/[^0-9]/g, '')}`}
+                  target="_blank"
+                  leftIcon={<MessageCircle className="w-4 h-4" />}
+                >
+                  {whatsappText}
+                </Button>
+              )}
             </motion.div>
           </div>
         </div>
