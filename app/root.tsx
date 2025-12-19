@@ -17,12 +17,14 @@ import { defaultLanguage, isValidLanguage, type SupportedLanguage } from "~/lib/
 import { LocalBusinessSchema, WebSiteSchema, PersonSchema } from "~/components/seo";
 
 export const links: Route.LinksFunction = () => [
-  // DNS prefetch for external resources
-  { rel: "dns-prefetch", href: "https://cdn.sanity.io" },
+  // Preconnect to Sanity CDN (images and videos)
+  { rel: "preconnect", href: "https://cdn.sanity.io", crossOrigin: "anonymous" },
   // Preconnect to Google Fonts
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
   { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-  // Preload local fonts
+  // DNS prefetch for analytics (lower priority)
+  { rel: "dns-prefetch", href: "https://va.vercel-scripts.com" },
+  // Preload critical local fonts
   { rel: "preload", href: "/fonts/ashford-bold.otf", as: "font", type: "font/otf", crossOrigin: "anonymous" },
   // Favicon
   { rel: "icon", href: "/favicon.ico", sizes: "32x32" },
