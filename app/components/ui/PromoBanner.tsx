@@ -5,6 +5,20 @@ import { X } from 'lucide-react';
 import type { PromoBanner as PromoBannerType, Language } from '~/lib/sanity';
 import { getLocalizedValue } from '~/lib/sanity';
 
+// Marquee component for scrolling text effect
+function Marquee({ children, className }: { children: React.ReactNode; className?: string }) {
+  return (
+    <div className={`overflow-hidden whitespace-nowrap ${className || ''}`}>
+      <div className="inline-flex animate-marquee">
+        <span className="mx-8">{children}</span>
+        <span className="mx-8">{children}</span>
+        <span className="mx-8">{children}</span>
+        <span className="mx-8">{children}</span>
+      </div>
+    </div>
+  );
+}
+
 interface PromoBannerProps {
   banner: PromoBannerType;
   lang: Language;
@@ -78,45 +92,89 @@ export function PromoBanner({ banner, lang }: PromoBannerProps) {
           isTop ? 'top-0 z-[60]' : 'bottom-0 z-40'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 py-3 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between flex-wrap gap-2">
-            <p className="flex-1 text-sm font-heading tracking-wide text-center sm:text-left">
-              {message}
-              {banner.linkUrl && linkText && (
-                <>
-                  {' '}
-                  {isInternalLink ? (
-                    <Link
-                      to={banner.linkUrl}
-                      className="font-semibold underline underline-offset-2 hover:opacity-80 transition-opacity"
-                    >
-                      {linkText}
-                    </Link>
-                  ) : (
-                    <a
-                      href={banner.linkUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="font-semibold underline underline-offset-2 hover:opacity-80 transition-opacity"
-                    >
-                      {linkText}
-                    </a>
-                  )}
-                </>
-              )}
-            </p>
+        {banner.enableMarquee ? (
+          /* Marquee mode - full width scrolling text */
+          <div className="flex items-center justify-between py-3 px-4">
+            <Marquee className="flex-1">
+              <span className="text-sm font-heading tracking-wide">
+                {message}
+                {banner.linkUrl && linkText && (
+                  <>
+                    {' — '}
+                    {isInternalLink ? (
+                      <Link
+                        to={banner.linkUrl}
+                        className="font-semibold underline underline-offset-2 hover:opacity-80 transition-opacity"
+                      >
+                        {linkText}
+                      </Link>
+                    ) : (
+                      <a
+                        href={banner.linkUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-semibold underline underline-offset-2 hover:opacity-80 transition-opacity"
+                      >
+                        {linkText}
+                      </a>
+                    )}
+                  </>
+                )}
+              </span>
+            </Marquee>
 
             {banner.dismissible && (
               <button
                 onClick={handleDismiss}
-                className={`p-1 rounded-full hover:bg-black/10 transition-colors ${textColor}`}
+                className={`p-1 rounded-full hover:bg-black/10 transition-colors flex-shrink-0 ml-4 ${textColor}`}
                 aria-label="Dismiss banner"
               >
                 <X className="w-4 h-4" />
               </button>
             )}
           </div>
-        </div>
+        ) : (
+          /* Static mode - centered text */
+          <div className="max-w-7xl mx-auto px-4 py-3 sm:px-6 lg:px-8">
+            <div className="flex items-center justify-between flex-wrap gap-2">
+              <p className="flex-1 text-sm font-heading tracking-wide text-center sm:text-left">
+                {message}
+                {banner.linkUrl && linkText && (
+                  <>
+                    {' '}
+                    {isInternalLink ? (
+                      <Link
+                        to={banner.linkUrl}
+                        className="font-semibold underline underline-offset-2 hover:opacity-80 transition-opacity"
+                      >
+                        {linkText}
+                      </Link>
+                    ) : (
+                      <a
+                        href={banner.linkUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-semibold underline underline-offset-2 hover:opacity-80 transition-opacity"
+                      >
+                        {linkText}
+                      </a>
+                    )}
+                  </>
+                )}
+              </p>
+
+              {banner.dismissible && (
+                <button
+                  onClick={handleDismiss}
+                  className={`p-1 rounded-full hover:bg-black/10 transition-colors ${textColor}`}
+                  aria-label="Dismiss banner"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              )}
+            </div>
+          </div>
+        )}
       </motion.div>
     </AnimatePresence>
   );

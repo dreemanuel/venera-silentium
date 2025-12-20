@@ -99,6 +99,13 @@ export const promoBanner = defineType({
       initialValue: true,
     }),
     defineField({
+      name: 'enableMarquee',
+      title: 'Enable Marquee Effect',
+      type: 'boolean',
+      description: 'Animate the text in a scrolling marquee style',
+      initialValue: false,
+    }),
+    defineField({
       name: 'showOnPages',
       title: 'Show on Pages',
       type: 'array',
