@@ -66,8 +66,8 @@ export function GallerySection({
       const visibleHeight = Math.max(0, visibleBottom - visibleTop);
       const visibilityRatio = visibleHeight / sectionHeight;
 
-      // Only hijack scroll when section is mostly visible (>50%)
-      if (visibilityRatio < 0.5) return;
+      // Only hijack scroll when section is fully visible (100%)
+      if (visibilityRatio < 1.0) return;
 
       const { scrollLeft, scrollWidth, clientWidth } = carouselRef.current;
       const isAtStart = scrollLeft <= 5;
