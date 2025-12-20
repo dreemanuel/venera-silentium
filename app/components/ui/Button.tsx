@@ -24,11 +24,11 @@ interface ButtonProps {
 
 const variantStyles: Record<ButtonVariant, string> = {
   primary:
-    "bg-paynes-gray text-cornsilk hover:bg-paynes-gray/90 focus-visible:ring-paynes-gray",
+    "bg-paynes-gray border-2 border-paynes-gray text-cornsilk hover:bg-paynes-gray/90 hover:border-paynes-gray/90 focus-visible:ring-paynes-gray",
   secondary:
-    "bg-tea-green text-paynes-gray hover:bg-tea-green/90 focus-visible:ring-tea-green",
+    "bg-tea-green border-2 border-tea-green text-paynes-gray hover:bg-tea-green/90 hover:border-tea-green/90 focus-visible:ring-tea-green",
   ghost:
-    "bg-transparent text-paynes-gray hover:bg-beige/50 focus-visible:ring-paynes-gray",
+    "bg-transparent border-2 border-transparent text-paynes-gray hover:bg-beige/50 focus-visible:ring-paynes-gray",
   outline:
     "bg-transparent border-2 border-paynes-gray text-paynes-gray hover:bg-paynes-gray hover:text-cornsilk focus-visible:ring-paynes-gray",
 };
