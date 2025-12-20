@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
@@ -56,20 +56,31 @@ export function PromoBanner({ banner, lang }: PromoBannerProps) {
   const { setTopBannerVisible } = usePromoBanner();
   const isTopBanner = banner.position !== 'bottom';
 
-  const [isDismissed, setIsDismissed] = useState(() => {
-    // Check localStorage on mount (only runs on client)
-    if (typeof window !== 'undefined' && banner.dismissible) {
+  // Start with false to avoid hydration mismatch - check localStorage in useEffect
+  const [isDismissed, setIsDismissed] = useState(false);
+
+  // Check localStorage on mount and update state
+  // This handles banners that were previously dismissed
+  // We need to sync with localStorage (external store) on mount - this is a valid pattern
+  useEffect(() => {
+    if (banner.dismissible && typeof window !== 'undefined') {
       try {
         const dismissedBanners = JSON.parse(
           window.localStorage.getItem('dismissedBanners') || '[]'
         ) as string[];
-        return dismissedBanners.includes(banner._id);
+        if (dismissedBanners.includes(banner._id)) {
+          // eslint-disable-next-line react-hooks/set-state-in-effect -- Syncing with localStorage on mount is valid
+          setIsDismissed(true);
+          // Notify layout that banner should not be visible
+          if (isTopBanner) {
+            setTopBannerVisible(false);
+          }
+        }
       } catch {
-        return false;
+        // Ignore localStorage errors
       }
     }
-    return false;
-  });
+  }, [banner._id, banner.dismissible, isTopBanner, setTopBannerVisible]);
 
   const handleDismiss = () => {
     setIsDismissed(true);
