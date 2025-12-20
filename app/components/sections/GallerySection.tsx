@@ -26,6 +26,7 @@ export function GallerySection({
   const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
   const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
   const [isHovered, setIsHovered] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
   const carouselRef = useRef<HTMLDivElement>(null);
   const autoScrollRef = useRef<number | null>(null);
   const isHoveredRef = useRef(false);
@@ -44,6 +45,51 @@ export function GallerySection({
       behavior: 'smooth',
     });
   };
+
+  // Scroll hijacking - convert vertical scroll to horizontal when gallery is in view
+  useEffect(() => {
+    if (images.length <= 1) return;
+
+    const handleWheel = (e: globalThis.WheelEvent) => {
+      if (!carouselRef.current || !sectionRef.current) return;
+
+      // Check if section is in viewport (at least 50% visible)
+      const rect = sectionRef.current.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+      const sectionTop = rect.top;
+      const sectionBottom = rect.bottom;
+      const sectionHeight = rect.height;
+
+      // Calculate how much of the section is visible
+      const visibleTop = Math.max(0, sectionTop);
+      const visibleBottom = Math.min(viewportHeight, sectionBottom);
+      const visibleHeight = Math.max(0, visibleBottom - visibleTop);
+      const visibilityRatio = visibleHeight / sectionHeight;
+
+      // Only hijack scroll when section is mostly visible (>50%)
+      if (visibilityRatio < 0.5) return;
+
+      const { scrollLeft, scrollWidth, clientWidth } = carouselRef.current;
+      const isAtStart = scrollLeft <= 5;
+      const isAtEnd = scrollLeft + clientWidth >= scrollWidth - 5;
+      const isScrollingDown = e.deltaY > 0;
+      const isScrollingUp = e.deltaY < 0;
+
+      // Allow normal scroll if at boundaries
+      if (isScrollingUp && isAtStart) return;
+      if (isScrollingDown && isAtEnd) return;
+
+      // Hijack scroll and convert to horizontal
+      e.preventDefault();
+      carouselRef.current.scrollBy({
+        left: e.deltaY * 2, // Multiply for faster horizontal scroll
+        behavior: 'auto',
+      });
+    };
+
+    window.addEventListener('wheel', handleWheel, { passive: false });
+    return () => window.removeEventListener('wheel', handleWheel);
+  }, [images.length]);
 
   // Auto-scroll effect - runs once when inView becomes true
   useEffect(() => {
@@ -88,8 +134,17 @@ export function GallerySection({
     return getHeroImageUrl(image.image, 1600, 90);
   };
 
+  // Combine refs for section element
+  const setSectionRefs = (el: HTMLElement | null) => {
+    sectionRef.current = el;
+    // Also set the inView ref
+    if (typeof ref === 'function') {
+      ref(el);
+    }
+  };
+
   return (
-    <section ref={ref} className="py-12 md:py-16 bg-beige/20 overflow-hidden">
+    <section ref={setSectionRefs} className="py-12 md:py-16 bg-beige/20 overflow-hidden">
       <motion.div
         initial={{ opacity: 0 }}
         animate={inView ? { opacity: 1 } : { opacity: 0 }}
