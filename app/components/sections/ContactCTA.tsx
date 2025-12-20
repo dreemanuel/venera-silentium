@@ -124,7 +124,7 @@ export function ContactCTA({
 
           <motion.p
             variants={itemVariants}
-            className="text-paynes-gray/70 mb-8 font-heading"
+            className="text-paynes-gray/70 mb-12 font-heading"
           >
             {subheading}
           </motion.p>
@@ -240,7 +240,7 @@ export function ContactCTA({
                 <input type="hidden" {...register('language')} value={lang} />
 
                 {/* Submit buttons */}
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-6">
                   <Button
                     type="submit"
                     variant="primary"
