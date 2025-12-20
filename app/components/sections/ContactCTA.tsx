@@ -19,6 +19,10 @@ interface ContactCTAProps {
   lang: string;
   /** If true, shows the quick lead form instead of buttons */
   showForm?: boolean;
+  /** Optional background image URL */
+  backgroundImageUrl?: string;
+  /** Overlay opacity (0-100) */
+  overlayOpacity?: number;
 }
 
 interface ActionResponse {
@@ -57,6 +61,8 @@ export function ContactCTA({
   whatsappNumber,
   lang,
   showForm = false,
+  backgroundImageUrl,
+  overlayOpacity = 50,
 }: ContactCTAProps) {
   const ref = useRef<HTMLElement>(null);
   const isInView = useInView(ref, { once: true, margin: '-50px' });
@@ -106,10 +112,30 @@ export function ContactCTA({
     ? `https://wa.me/${whatsappNumber.replace(/[^0-9]/g, '')}`
     : '#';
 
+  // Determine if we have a background image
+  const hasBackgroundImage = !!backgroundImageUrl;
+
   return (
-    <section ref={ref} className="py-20 md:py-24 bg-tea-green/30">
+    <section
+      ref={ref}
+      className={`py-20 md:py-24 relative overflow-hidden ${!hasBackgroundImage ? 'bg-tea-green/30' : ''}`}
+    >
+      {/* Background Image with Overlay */}
+      {hasBackgroundImage && (
+        <>
+          <div
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{ backgroundImage: `url(${backgroundImageUrl})` }}
+          />
+          <div
+            className="absolute inset-0 bg-paynes-gray"
+            style={{ opacity: overlayOpacity / 100 }}
+          />
+        </>
+      )}
+
       <motion.div
-        className="container mx-auto px-6"
+        className="container mx-auto px-6 relative z-10"
         variants={containerVariants}
         initial="hidden"
         animate={isInView ? 'visible' : 'hidden'}
@@ -117,14 +143,18 @@ export function ContactCTA({
         <div className="max-w-2xl mx-auto text-center">
           <motion.h2
             variants={itemVariants}
-            className="font-display text-4xl md:text-5xl lg:text-6xl text-paynes-gray mb-2 leading-[0.75]"
+            className={`font-display text-4xl md:text-5xl lg:text-6xl mb-2 leading-[0.75] ${
+              hasBackgroundImage ? 'text-cornsilk' : 'text-paynes-gray'
+            }`}
           >
             {heading}
           </motion.h2>
 
           <motion.p
             variants={itemVariants}
-            className="text-paynes-gray/70 mb-24 font-heading"
+            className={`mb-24 font-heading ${
+              hasBackgroundImage ? 'text-cornsilk/80' : 'text-paynes-gray/70'
+            }`}
           >
             {subheading}
           </motion.p>

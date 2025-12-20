@@ -67,6 +67,10 @@ export const siteSettingsQuery = groq`
       showBlog,
       showBrands,
       showContactCTA
+    },
+    contactCTA {
+      backgroundImage,
+      overlayOpacity
     }
   }
 `;

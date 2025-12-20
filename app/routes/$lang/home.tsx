@@ -22,6 +22,7 @@ import {
   brandsQuery,
   featuredGalleryImagesQuery,
   getLocalizedValue,
+  urlFor,
   type SiteSettings,
   type Service,
   type Testimonial,
@@ -135,6 +136,13 @@ export default function Home() {
   const showBlog = sectionVisibility?.showBlog === true || sectionVisibility?.showBlog === undefined;
   const showBrands = sectionVisibility?.showBrands === true || sectionVisibility?.showBrands === undefined;
   const showContactCTA = sectionVisibility?.showContactCTA === true || sectionVisibility?.showContactCTA === undefined;
+
+  // Contact CTA settings
+  const contactCTASettings = siteSettings?.contactCTA;
+  const ctaBackgroundImageUrl = contactCTASettings?.backgroundImage
+    ? urlFor(contactCTASettings.backgroundImage).width(1920).quality(80).url()
+    : undefined;
+  const ctaOverlayOpacity = contactCTASettings?.overlayOpacity ?? 50;
 
   // Create fallback story as PortableText-like structure
   const fallbackStory: PortableTextBlock[] = drVeneraStory
@@ -289,6 +297,8 @@ export default function Home() {
           whatsappNumber={whatsappNumber}
           lang={lang}
           showForm={true}
+          backgroundImageUrl={ctaBackgroundImageUrl}
+          overlayOpacity={ctaOverlayOpacity}
         />
       )}
     </>

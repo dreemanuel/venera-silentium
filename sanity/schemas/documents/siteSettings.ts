@@ -270,6 +270,30 @@ export const siteSettings = defineType({
         }),
       ],
     }),
+    // Contact CTA Section
+    defineField({
+      name: 'contactCTA',
+      title: 'Contact CTA Section',
+      type: 'object',
+      description: 'Configuration for the final call-to-action section',
+      fields: [
+        defineField({
+          name: 'backgroundImage',
+          title: 'Background Image',
+          type: 'image',
+          options: { hotspot: true },
+          description: 'Optional background image for the CTA section',
+        }),
+        defineField({
+          name: 'overlayOpacity',
+          title: 'Overlay Opacity',
+          type: 'number',
+          description: 'Darkness of the overlay (0-100). Higher = darker.',
+          initialValue: 50,
+          validation: (Rule) => Rule.min(0).max(100),
+        }),
+      ],
+    }),
   ],
   preview: {
     prepare() {

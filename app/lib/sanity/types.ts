@@ -119,6 +119,11 @@ export interface SectionVisibility {
   showContactCTA?: boolean;
 }
 
+export interface ContactCTASettings {
+  backgroundImage?: SanityImage;
+  overlayOpacity?: number;
+}
+
 export interface SiteSettings {
   heroTitle?: LocalizedString;
   heroSubtitle?: LocalizedString;
@@ -139,6 +144,7 @@ export interface SiteSettings {
   sectionVisibility?: SectionVisibility;
   aboutDrVenera?: AboutDrVenera;
   aboutSilentium?: AboutSilentium;
+  contactCTA?: ContactCTASettings;
 }
 
 export type ServiceCategory =
