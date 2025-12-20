@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, useCallback } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
@@ -26,71 +26,59 @@ export function GallerySection({
   const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
   const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
   const [isHovered, setIsHovered] = useState(false);
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const carouselRef = useRef<HTMLDivElement>(null);
   const autoScrollRef = useRef<number | null>(null);
+  const isHoveredRef = useRef(false);
 
-  // Check for reduced motion preference on client
+  // Keep ref in sync with state for use in interval callback
   useEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-    // Use setTimeout to avoid synchronous setState warning
-    const timeoutId = window.setTimeout(() => {
-      setPrefersReducedMotion(mediaQuery.matches);
-    }, 0);
+    isHoveredRef.current = isHovered;
+  }, [isHovered]);
 
-    const handler = (e: { matches: boolean }) => {
-      setPrefersReducedMotion(e.matches);
-    };
-    mediaQuery.addEventListener('change', handler);
-    return () => {
-      window.clearTimeout(timeoutId);
-      mediaQuery.removeEventListener('change', handler);
-    };
-  }, []);
-
-  // Scroll the carousel
-  const scroll = useCallback((direction: 'left' | 'right') => {
+  // Scroll the carousel (used by manual buttons)
+  const scroll = (direction: 'left' | 'right') => {
     if (!carouselRef.current) return;
     const scrollAmount = carouselRef.current.clientWidth * 0.6;
     carouselRef.current.scrollBy({
       left: direction === 'left' ? -scrollAmount : scrollAmount,
       behavior: 'smooth',
     });
-  }, []);
+  };
 
-  // Check if at the end of scroll and loop back
-  const checkScrollEnd = useCallback(() => {
-    if (!carouselRef.current) return false;
-    const { scrollLeft, scrollWidth, clientWidth } = carouselRef.current;
-    // If we're near the end (within 10px), we should loop
-    return scrollLeft + clientWidth >= scrollWidth - 10;
-  }, []);
-
-  // Auto-scroll to the right, loop when reaching end
-  const autoScroll = useCallback(() => {
-    if (!carouselRef.current) return;
-
-    if (checkScrollEnd()) {
-      // Loop back to start with smooth animation
-      carouselRef.current.scrollTo({ left: 0, behavior: 'smooth' });
-    } else {
-      scroll('right');
-    }
-  }, [scroll, checkScrollEnd]);
-
-  // Auto-scroll effect
+  // Auto-scroll effect - runs once when inView becomes true
   useEffect(() => {
-    // Don't auto-scroll if reduced motion, hovered, not in view, or only 1 image
-    if (prefersReducedMotion || isHovered || !inView || images.length <= 1) return;
+    // Only start auto-scroll when section is in view and has multiple images
+    if (!inView || images.length <= 1) return;
 
-    autoScrollRef.current = window.setInterval(autoScroll, AUTO_SCROLL_INTERVAL);
+    // Check for reduced motion preference
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
+    const doAutoScroll = () => {
+      // Skip if hovered or no carousel ref
+      if (isHoveredRef.current || !carouselRef.current) return;
+
+      const { scrollLeft, scrollWidth, clientWidth } = carouselRef.current;
+      const isAtEnd = scrollLeft + clientWidth >= scrollWidth - 10;
+
+      if (isAtEnd) {
+        // Loop back to start
+        carouselRef.current.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        // Scroll right
+        const scrollAmount = clientWidth * 0.6;
+        carouselRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+      }
+    };
+
+    autoScrollRef.current = window.setInterval(doAutoScroll, AUTO_SCROLL_INTERVAL);
 
     return () => {
       if (autoScrollRef.current) {
         window.clearInterval(autoScrollRef.current);
       }
     };
-  }, [prefersReducedMotion, isHovered, inView, images.length, autoScroll]);
+  }, [inView, images.length]);
 
   if (images.length === 0) return null;
 
