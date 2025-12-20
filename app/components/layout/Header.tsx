@@ -13,6 +13,7 @@ const MobileMenu = lazy(() =>
 
 interface HeaderProps {
   lang: SupportedLanguage;
+  hasTopBanner?: boolean;
 }
 
 interface NavItem {
@@ -20,7 +21,7 @@ interface NavItem {
   href: string;
 }
 
-export function Header({ lang }: HeaderProps) {
+export function Header({ lang, hasTopBanner = false }: HeaderProps) {
   const { t } = useTranslation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -31,9 +32,12 @@ export function Header({ lang }: HeaderProps) {
     { key: "contact", href: `/${lang}/contact` },
   ];
 
+  // Offset header when promo banner is present (banner height ~48px)
+  const topOffset = hasTopBanner ? 'top-12' : 'top-0';
+
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-lg border-b border-beige/30" style={{ backgroundColor: 'rgba(254, 250, 224, 0.5)' }}>
+      <header className={`fixed ${topOffset} left-0 right-0 z-50 backdrop-blur-lg border-b border-beige/30 transition-[top] duration-300`} style={{ backgroundColor: 'rgba(254, 250, 224, 0.5)' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 md:h-20">
             {/* Logo */}

@@ -65,16 +65,18 @@ export function PromoBanner({ banner, lang }: PromoBannerProps) {
 
   const isInternalLink = banner.linkUrl?.startsWith('/');
 
+  const isTop = banner.position !== 'bottom';
+
   return (
     <AnimatePresence>
       <motion.div
-        initial={{ opacity: 0, y: banner.position === 'top' ? -20 : 20 }}
+        initial={{ opacity: 0, y: isTop ? -20 : 20 }}
         animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: banner.position === 'top' ? -20 : 20 }}
+        exit={{ opacity: 0, y: isTop ? -20 : 20 }}
         transition={{ duration: 0.3 }}
-        className={`${bgColor} ${textColor} ${
-          banner.position === 'bottom' ? 'fixed bottom-0 left-0 right-0' : 'relative'
-        } z-40`}
+        className={`${bgColor} ${textColor} fixed left-0 right-0 ${
+          isTop ? 'top-0 z-[60]' : 'bottom-0 z-40'
+        }`}
       >
         <div className="max-w-7xl mx-auto px-4 py-3 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between flex-wrap gap-2">

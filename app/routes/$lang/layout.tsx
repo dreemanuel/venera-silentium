@@ -1,6 +1,6 @@
 import { Outlet, redirect, useLocation } from "react-router";
 import { I18nextProvider } from "react-i18next";
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo, createContext, useContext } from "react";
 import type { Route } from "./+types/layout";
 import {
   isValidLanguage,
@@ -15,6 +15,10 @@ import { NavigationProgress } from "~/components/ui/NavigationProgress";
 import { PromoBannersList } from "~/components/ui/PromoBanner";
 import { sanityClient } from "~/lib/sanity/client.server";
 import { activePromoBannersQuery, type PromoBanner, type PromoBannerPage, type Language } from "~/lib/sanity";
+
+// Context to share promo banner state
+const PromoBannerContext = createContext<{ hasTopBanner: boolean }>({ hasTopBanner: false });
+export const usePromoBanner = () => useContext(PromoBannerContext);
 
 export async function loader({ params }: Route.LoaderArgs) {
   const lang = params.lang;
@@ -55,6 +59,17 @@ export default function LangLayout({ loaderData }: Route.ComponentProps) {
   // Determine current page from location
   const currentPage = useMemo(() => getCurrentPage(location.pathname), [location.pathname]);
 
+  // Check if there are visible top banners for this page
+  const hasTopBanner = useMemo(() => {
+    return promoBanners.some((banner) => {
+      const position = banner.position || 'top';
+      if (position !== 'top') return false;
+      const showOnPages = banner.showOnPages || ['all'];
+      if (showOnPages.includes('all')) return true;
+      return showOnPages.includes(currentPage as 'home' | 'about' | 'services' | 'contact' | 'blog');
+    });
+  }, [promoBanners, currentPage]);
+
   useEffect(() => {
     initI18nClient(lang).then(() => {
       setIsI18nReady(true);
@@ -79,32 +94,34 @@ export default function LangLayout({ loaderData }: Route.ComponentProps) {
 
   return (
     <I18nextProvider i18n={i18next}>
-      <HreflangLinks currentLang={typedLang} />
-      <NavigationProgress />
+      <PromoBannerContext.Provider value={{ hasTopBanner }}>
+        <HreflangLinks currentLang={typedLang} />
+        <NavigationProgress />
 
-      {/* Top Promo Banners */}
-      <PromoBannersList
-        banners={promoBanners}
-        lang={typedLang as Language}
-        currentPage={currentPage}
-        position="top"
-      />
+        {/* Top Promo Banners - fixed at very top */}
+        <PromoBannersList
+          banners={promoBanners}
+          lang={typedLang as Language}
+          currentPage={currentPage}
+          position="top"
+        />
 
-      <div className="flex flex-col min-h-screen">
-        <Header lang={typedLang} />
-        <main className="flex-1">
-          <Outlet context={{ lang: typedLang }} />
-        </main>
-        <Footer lang={typedLang} />
-      </div>
+        <div className="flex flex-col min-h-screen">
+          <Header lang={typedLang} hasTopBanner={hasTopBanner} />
+          <main className="flex-1">
+            <Outlet context={{ lang: typedLang }} />
+          </main>
+          <Footer lang={typedLang} />
+        </div>
 
-      {/* Bottom Promo Banners */}
-      <PromoBannersList
-        banners={promoBanners}
-        lang={typedLang as Language}
-        currentPage={currentPage}
-        position="bottom"
-      />
+        {/* Bottom Promo Banners */}
+        <PromoBannersList
+          banners={promoBanners}
+          lang={typedLang as Language}
+          currentPage={currentPage}
+          position="bottom"
+        />
+      </PromoBannerContext.Provider>
     </I18nextProvider>
   );
 }

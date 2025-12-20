@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { motion, AnimatePresence, type Variants, type TargetAndTransition } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useTransform, type Variants, type TargetAndTransition } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { MessageCircle } from 'lucide-react';
 import { Button } from '~/components/ui';
@@ -85,13 +85,32 @@ export function HeroSection({
 }: HeroSectionProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
 
   // Track if hero section is in viewport for auto-pause
-  const { ref: heroRef, inView: isHeroInView } = useInView({
+  const { ref: heroInViewRef, inView: isHeroInView } = useInView({
     threshold: 0.1,
     triggerOnce: false,
   });
+
+  // Parallax scroll effect
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start start', 'end start'],
+  });
+
+  // Parallax transforms: background moves slower than scroll (depth effect)
+  // Y offset: 0% at start -> 30% at end (background scrolls up slower)
+  const parallaxY = useTransform(scrollYProgress, [0, 1], ['0%', '30%']);
+  // Subtle scale for depth (starts slightly zoomed, ends at normal)
+  const parallaxScale = useTransform(scrollYProgress, [0, 1], [1.05, 1]);
+
+  // Combine refs for section element
+  const setSectionRefs = useCallback((el: HTMLElement | null) => {
+    sectionRef.current = el;
+    heroInViewRef(el);
+  }, [heroInViewRef]);
 
   // Auto-pause video when hero scrolls out of view
   useEffect(() => {
@@ -299,17 +318,28 @@ export function HeroSection({
 
   return (
     <section
-      ref={heroRef}
+      ref={setSectionRefs}
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
-      {/* Background Media */}
-      {useSlideshow ? (
-        renderSlideshow()
-      ) : singleImageProps ? (
-        renderSingleImage()
-      ) : (
-        renderFallbackBackground()
-      )}
+      {/* Background Media with Parallax */}
+      <motion.div
+        className="absolute inset-0"
+        style={{
+          y: prefersReducedMotion ? 0 : parallaxY,
+          scale: prefersReducedMotion ? 1 : parallaxScale,
+          // Extend dimensions to prevent gaps during parallax movement
+          height: prefersReducedMotion ? '100%' : '130%',
+          top: prefersReducedMotion ? '0%' : '-15%',
+        }}
+      >
+        {useSlideshow ? (
+          renderSlideshow()
+        ) : singleImageProps ? (
+          renderSingleImage()
+        ) : (
+          renderFallbackBackground()
+        )}
+      </motion.div>
 
       {/* Navigation Dots */}
       {renderDots()}

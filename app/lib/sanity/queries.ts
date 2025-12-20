@@ -57,6 +57,16 @@ export const siteSettingsQuery = groq`
       tagline,
       philosophy,
       image
+    },
+    sectionVisibility {
+      showServices,
+      showGallery,
+      showAboutDrVenera,
+      showSilentiumPhilosophy,
+      showTestimonials,
+      showBlog,
+      showBrands,
+      showContactCTA
     }
   }
 `;
