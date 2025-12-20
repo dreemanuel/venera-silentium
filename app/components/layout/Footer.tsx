@@ -57,19 +57,8 @@ export function Footer({ lang }: FooterProps) {
             >
               Woman Silentium
             </Link>
-            <p className="text-paynes-gray/70 text-sm leading-relaxed max-w-sm mb-2">
+            <p className="text-paynes-gray/70 text-sm leading-relaxed max-w-sm mb-6">
               {t("hero.tagline")}
-            </p>
-            <p className="text-paynes-gray/50 text-xs mb-6">
-              Site Designed and Developed by{" "}
-              <a
-                href="https://andreemanuel.dev"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="underline hover:text-paynes-gray transition-colors"
-              >
-                andreemanuel.dev
-              </a>
             </p>
 
             {/* Social Links */}
@@ -129,9 +118,20 @@ export function Footer({ lang }: FooterProps) {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-12 pt-8 border-t border-tea-green/30">
-          <p className="text-paynes-gray/50 text-sm text-center">
+        <div className="mt-12 pt-8 border-t border-tea-green/30 text-center">
+          <p className="text-paynes-gray/50 text-sm">
             &copy; {currentYear} Woman Silentium. {t("footer.copyright")}.
+          </p>
+          <p className="text-paynes-gray/40 text-xs mt-1">
+            Site Designed and Developed by{" "}
+            <a
+              href="https://andreemanuel.dev"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline hover:text-paynes-gray/60 transition-colors"
+            >
+              andreemanuel.dev
+            </a>
           </p>
         </div>
       </div>
