@@ -57,8 +57,19 @@ export function Footer({ lang }: FooterProps) {
             >
               Woman Silentium
             </Link>
-            <p className="text-paynes-gray/70 text-sm leading-relaxed max-w-sm mb-6">
+            <p className="text-paynes-gray/70 text-sm leading-relaxed max-w-sm mb-2">
               {t("hero.tagline")}
+            </p>
+            <p className="text-paynes-gray/50 text-xs mb-6">
+              Site Designed and Developed by{" "}
+              <a
+                href="https://andreemanuel.dev"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline hover:text-paynes-gray transition-colors"
+              >
+                andreemanuel.dev
+              </a>
             </p>
 
             {/* Social Links */}
