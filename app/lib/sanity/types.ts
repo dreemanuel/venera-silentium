@@ -108,6 +108,17 @@ export interface AboutSilentium {
   image?: SanityImage;
 }
 
+export interface SectionVisibility {
+  showServices?: boolean;
+  showGallery?: boolean;
+  showAboutDrVenera?: boolean;
+  showSilentiumPhilosophy?: boolean;
+  showTestimonials?: boolean;
+  showBlog?: boolean;
+  showBrands?: boolean;
+  showContactCTA?: boolean;
+}
+
 export interface SiteSettings {
   heroTitle?: LocalizedString;
   heroSubtitle?: LocalizedString;
@@ -125,6 +136,7 @@ export interface SiteSettings {
   socialLinks?: SocialLinks;
   seoTitle?: LocalizedString;
   seoDescription?: LocalizedString;
+  sectionVisibility?: SectionVisibility;
   aboutDrVenera?: AboutDrVenera;
   aboutSilentium?: AboutSilentium;
 }

@@ -124,6 +124,17 @@ export default function Home() {
   const aboutMedia = aboutDrVenera?.media ?? [];
   const aboutSlideshowInterval = aboutDrVenera?.slideshowInterval ?? 5;
 
+  // Section visibility toggles (default to true if not set)
+  const sectionVisibility = siteSettings?.sectionVisibility;
+  const showServices = sectionVisibility?.showServices !== false;
+  const showGallery = sectionVisibility?.showGallery !== false;
+  const showAboutDrVenera = sectionVisibility?.showAboutDrVenera !== false;
+  const showSilentiumPhilosophy = sectionVisibility?.showSilentiumPhilosophy !== false;
+  const showTestimonials = sectionVisibility?.showTestimonials !== false;
+  const showBlog = sectionVisibility?.showBlog !== false;
+  const showBrands = sectionVisibility?.showBrands !== false;
+  const showContactCTA = sectionVisibility?.showContactCTA !== false;
+
   // Create fallback story as PortableText-like structure
   const fallbackStory: PortableTextBlock[] = drVeneraStory
     ? []
@@ -159,41 +170,43 @@ export default function Home() {
       />
 
       {/* Services Preview Section */}
-      {featuredServices.length > 0 ? (
-        <div className="bg-cornsilk">
-          <ServicesGallery
-            services={featuredServices}
-            lang={lang}
-            title={t('services.homeHeading')}
-            subtitle={t('services.homeSubheading')}
-            showCategories={false}
-          />
-          <div className="container mx-auto px-6 pb-16 text-center">
-            <Button
-              as="link"
-              to={`/${lang}/services`}
-              variant="outline"
-              size="lg"
-            >
-              {t('services.viewAllServices')}
-            </Button>
+      {showServices && (
+        featuredServices.length > 0 ? (
+          <div className="bg-cornsilk">
+            <ServicesGallery
+              services={featuredServices}
+              lang={lang}
+              title={t('services.homeHeading')}
+              subtitle={t('services.homeSubheading')}
+              showCategories={false}
+            />
+            <div className="container mx-auto px-6 pb-16 text-center">
+              <Button
+                as="link"
+                to={`/${lang}/services`}
+                variant="outline"
+                size="lg"
+              >
+                {t('services.viewAllServices')}
+              </Button>
+            </div>
           </div>
-        </div>
-      ) : (
-        <section className="py-20 bg-beige/30">
-          <div className="container mx-auto px-6 text-center">
-            <h2 className="text-paynes-gray text-3xl md:text-4xl mb-4">
-              {t('services.homeHeading')}
-            </h2>
-            <p className="text-paynes-gray/70 font-heading mb-8">
-              {t('common.comingSoon')}
-            </p>
-          </div>
-        </section>
+        ) : (
+          <section className="py-20 bg-beige/30">
+            <div className="container mx-auto px-6 text-center">
+              <h2 className="text-paynes-gray text-3xl md:text-4xl mb-4">
+                {t('services.homeHeading')}
+              </h2>
+              <p className="text-paynes-gray/70 font-heading mb-8">
+                {t('common.comingSoon')}
+              </p>
+            </div>
+          </section>
+        )
       )}
 
       {/* Gallery Section */}
-      {galleryImages.length > 0 && (
+      {showGallery && galleryImages.length > 0 && (
         <GallerySection
           images={galleryImages}
           lang={lang}
@@ -201,36 +214,40 @@ export default function Home() {
       )}
 
       {/* About Dr. Venera Preview Section */}
-      <AboutPreview
-        photo={drVeneraPhoto}
-        name={drVeneraName}
-        title={drVeneraTitle}
-        story={drVeneraStory || fallbackStory}
-        credentials={drVeneraCredentials.filter(Boolean)}
-        experience={drVeneraExperience}
-        ctaText={t('about.cta')}
-        ctaLink={`/${lang}/about`}
-        whatsappNumber={whatsappNumber}
-        whatsappText={t('common.whatsappCta')}
-        lang={lang}
-        slideshowEnabled={aboutSlideshowEnabled}
-        media={aboutMedia}
-        slideshowInterval={aboutSlideshowInterval}
-      />
+      {showAboutDrVenera && (
+        <AboutPreview
+          photo={drVeneraPhoto}
+          name={drVeneraName}
+          title={drVeneraTitle}
+          story={drVeneraStory || fallbackStory}
+          credentials={drVeneraCredentials.filter(Boolean)}
+          experience={drVeneraExperience}
+          ctaText={t('about.cta')}
+          ctaLink={`/${lang}/about`}
+          whatsappNumber={whatsappNumber}
+          whatsappText={t('common.whatsappCta')}
+          lang={lang}
+          slideshowEnabled={aboutSlideshowEnabled}
+          media={aboutMedia}
+          slideshowInterval={aboutSlideshowInterval}
+        />
+      )}
 
       {/* Silentium Philosophy Section */}
-      <SilentiumPhilosophy
-        tagline={
-          getLocalizedValue(siteSettings?.aboutSilentium?.tagline, lang) ||
-          t('about.silentium.tagline')
-        }
-        philosophy={getLocalizedValue(siteSettings?.aboutSilentium?.philosophy, lang)}
-        philosophyText={t('about.silentium.philosophy')}
-        image={siteSettings?.aboutSilentium?.image}
-      />
+      {showSilentiumPhilosophy && (
+        <SilentiumPhilosophy
+          tagline={
+            getLocalizedValue(siteSettings?.aboutSilentium?.tagline, lang) ||
+            t('about.silentium.tagline')
+          }
+          philosophy={getLocalizedValue(siteSettings?.aboutSilentium?.philosophy, lang)}
+          philosophyText={t('about.silentium.philosophy')}
+          image={siteSettings?.aboutSilentium?.image}
+        />
+      )}
 
       {/* Testimonials Section */}
-      {testimonials.length > 0 && (
+      {showTestimonials && testimonials.length > 0 && (
         <TestimonialsSection
           testimonials={testimonials}
           lang={lang}
@@ -240,7 +257,7 @@ export default function Home() {
       )}
 
       {/* Blog Section */}
-      {blogPosts.length > 0 && (
+      {showBlog && blogPosts.length > 0 && (
         <BlogsSection
           posts={blogPosts}
           lang={lang}
@@ -251,7 +268,7 @@ export default function Home() {
       )}
 
       {/* Brands Section */}
-      {brands.length > 0 && (
+      {showBrands && brands.length > 0 && (
         <BrandsSection
           brands={brands}
           lang={lang}
@@ -261,16 +278,18 @@ export default function Home() {
       )}
 
       {/* Contact CTA Section with Lead Capture Form */}
-      <ContactCTA
-        heading={t('contact.ctaHeading')}
-        subheading={t('contact.ctaSubheading')}
-        bookButtonText={t('contact.bookConsultation')}
-        whatsappButtonText={t('common.whatsappCta')}
-        bookLink={`/${lang}/contact`}
-        whatsappNumber={whatsappNumber}
-        lang={lang}
-        showForm={true}
-      />
+      {showContactCTA && (
+        <ContactCTA
+          heading={t('contact.ctaHeading')}
+          subheading={t('contact.ctaSubheading')}
+          bookButtonText={t('contact.bookConsultation')}
+          whatsappButtonText={t('common.whatsappCta')}
+          bookLink={`/${lang}/contact`}
+          whatsappNumber={whatsappNumber}
+          lang={lang}
+          showForm={true}
+        />
+      )}
     </>
   );
 }

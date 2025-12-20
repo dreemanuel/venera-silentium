@@ -114,6 +114,63 @@ export const siteSettings = defineType({
       title: 'Default SEO Description',
       type: 'localizedString',
     }),
+    // Section Visibility Toggles
+    defineField({
+      name: 'sectionVisibility',
+      title: 'Homepage Section Visibility',
+      type: 'object',
+      description: 'Enable or disable sections on the homepage',
+      fields: [
+        defineField({
+          name: 'showServices',
+          title: 'Show Services Section',
+          type: 'boolean',
+          initialValue: true,
+        }),
+        defineField({
+          name: 'showGallery',
+          title: 'Show Gallery Section',
+          type: 'boolean',
+          initialValue: true,
+        }),
+        defineField({
+          name: 'showAboutDrVenera',
+          title: 'Show About Dr. Venera Section',
+          type: 'boolean',
+          initialValue: true,
+        }),
+        defineField({
+          name: 'showSilentiumPhilosophy',
+          title: 'Show Silentium Philosophy Section',
+          type: 'boolean',
+          initialValue: true,
+        }),
+        defineField({
+          name: 'showTestimonials',
+          title: 'Show Testimonials Section',
+          type: 'boolean',
+          initialValue: true,
+        }),
+        defineField({
+          name: 'showBlog',
+          title: 'Show Blog Section',
+          type: 'boolean',
+          initialValue: true,
+        }),
+        defineField({
+          name: 'showBrands',
+          title: 'Show Brands Section',
+          type: 'boolean',
+          initialValue: true,
+        }),
+        defineField({
+          name: 'showContactCTA',
+          title: 'Show Contact CTA Section',
+          type: 'boolean',
+          initialValue: true,
+        }),
+      ],
+    }),
     // About Dr. Venera Section
     defineField({
       name: 'aboutDrVenera',
