@@ -240,7 +240,7 @@ export function ContactCTA({
                 <input type="hidden" {...register('language')} value={lang} />
 
                 {/* Submit buttons */}
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-12">
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-24">
                   <Button
                     type="submit"
                     variant="primary"
