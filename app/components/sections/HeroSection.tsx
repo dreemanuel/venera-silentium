@@ -375,7 +375,7 @@ export function HeroSection({
           </Button>
           {whatsappNumber && whatsappText && (
             <Button
-              variant="outline"
+              variant="primary"
               size="lg"
               as="a"
               href={`https://wa.me/${whatsappNumber.replace(/[^0-9]/g, '')}`}

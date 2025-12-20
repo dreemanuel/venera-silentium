@@ -478,7 +478,7 @@ export function AboutPreview({
               </Button>
               {whatsappNumber && whatsappText && (
                 <Button
-                  variant="outline"
+                  variant="primary"
                   as="a"
                   href={`https://wa.me/${whatsappNumber.replace(/[^0-9]/g, '')}`}
                   target="_blank"
