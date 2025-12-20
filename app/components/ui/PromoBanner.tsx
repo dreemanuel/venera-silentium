@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
@@ -56,50 +56,15 @@ export function PromoBanner({ banner, lang }: PromoBannerProps) {
   const { setTopBannerVisible } = usePromoBanner();
   const isTopBanner = banner.position !== 'bottom';
 
-  // Start with false to avoid hydration mismatch - check localStorage in useEffect
+  // Dismiss state - resets on page reload (no localStorage persistence)
+  // This ensures important messages are shown on every visit
   const [isDismissed, setIsDismissed] = useState(false);
-
-  // Check localStorage on mount and update state
-  // This handles banners that were previously dismissed
-  // We need to sync with localStorage (external store) on mount - this is a valid pattern
-  useEffect(() => {
-    if (banner.dismissible && typeof window !== 'undefined') {
-      try {
-        const dismissedBanners = JSON.parse(
-          window.localStorage.getItem('dismissedBanners') || '[]'
-        ) as string[];
-        if (dismissedBanners.includes(banner._id)) {
-          // eslint-disable-next-line react-hooks/set-state-in-effect -- Syncing with localStorage on mount is valid
-          setIsDismissed(true);
-          // Notify layout that banner should not be visible
-          if (isTopBanner) {
-            setTopBannerVisible(false);
-          }
-        }
-      } catch {
-        // Ignore localStorage errors
-      }
-    }
-  }, [banner._id, banner.dismissible, isTopBanner, setTopBannerVisible]);
 
   const handleDismiss = () => {
     setIsDismissed(true);
     // Notify layout that banner is no longer visible
     if (isTopBanner) {
       setTopBannerVisible(false);
-    }
-    if (banner.dismissible && typeof window !== 'undefined') {
-      try {
-        const dismissedBanners = JSON.parse(
-          window.localStorage.getItem('dismissedBanners') || '[]'
-        ) as string[];
-        if (!dismissedBanners.includes(banner._id)) {
-          dismissedBanners.push(banner._id);
-          window.localStorage.setItem('dismissedBanners', JSON.stringify(dismissedBanners));
-        }
-      } catch {
-        // Ignore localStorage errors
-      }
     }
   };
 
