@@ -4,7 +4,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
 import type { PromoBanner as PromoBannerType, Language } from '~/lib/sanity';
 import { getLocalizedValue } from '~/lib/sanity';
-import { usePromoBanner } from '~/routes/$lang/layout';
 
 // Map speed setting (1-5) to animation duration in seconds
 // 1 = slowest (60s), 5 = fastest (15s)
@@ -37,6 +36,7 @@ function Marquee({ children, className, speed = 3 }: { children: React.ReactNode
 interface PromoBannerProps {
   banner: PromoBannerType;
   lang: Language;
+  onDismiss?: () => void;
 }
 
 const bgColorMap: Record<string, string> = {
@@ -52,20 +52,15 @@ const textColorMap: Record<string, string> = {
   'light': 'text-cornsilk',
 };
 
-export function PromoBanner({ banner, lang }: PromoBannerProps) {
-  const { setTopBannerVisible } = usePromoBanner();
-  const isTopBanner = banner.position !== 'bottom';
-
+export function PromoBanner({ banner, lang, onDismiss }: PromoBannerProps) {
   // Dismiss state - resets on page reload (no localStorage persistence)
   // This ensures important messages are shown on every visit
   const [isDismissed, setIsDismissed] = useState(false);
 
   const handleDismiss = () => {
     setIsDismissed(true);
-    // Notify layout that banner is no longer visible
-    if (isTopBanner) {
-      setTopBannerVisible(false);
-    }
+    // Notify parent that banner was dismissed
+    onDismiss?.();
   };
 
   const message = getLocalizedValue(banner.message, lang);
@@ -183,9 +178,10 @@ interface PromoBannersListProps {
   lang: Language;
   position?: 'top' | 'bottom';
   currentPage?: string;
+  onBannerDismiss?: () => void;
 }
 
-export function PromoBannersList({ banners, lang, position = 'top', currentPage = 'home' }: PromoBannersListProps) {
+export function PromoBannersList({ banners, lang, position = 'top', currentPage = 'home', onBannerDismiss }: PromoBannersListProps) {
   // Filter banners by position and current page
   const filteredBanners = banners.filter((banner) => {
     // Check position
@@ -203,5 +199,5 @@ export function PromoBannersList({ banners, lang, position = 'top', currentPage 
   const topBanner = filteredBanners[0];
   if (!topBanner) return null;
 
-  return <PromoBanner banner={topBanner} lang={lang} />;
+  return <PromoBanner banner={topBanner} lang={lang} onDismiss={onBannerDismiss} />;
 }
