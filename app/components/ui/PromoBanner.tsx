@@ -6,13 +6,24 @@ import type { PromoBanner as PromoBannerType, Language } from '~/lib/sanity';
 import { getLocalizedValue } from '~/lib/sanity';
 import { usePromoBanner } from '~/routes/$lang/layout';
 
+// Map speed setting (1-5) to animation duration in seconds
+// 1 = slowest (60s), 5 = fastest (15s)
+const speedToDuration: Record<number, number> = {
+  1: 60,
+  2: 45,
+  3: 30,
+  4: 20,
+  5: 15,
+};
+
 // Marquee component for scrolling text effect
-function Marquee({ children, className, speed = 30 }: { children: React.ReactNode; className?: string; speed?: number }) {
+function Marquee({ children, className, speed = 3 }: { children: React.ReactNode; className?: string; speed?: number }) {
+  const duration = speedToDuration[speed] || 30;
   return (
     <div className={`overflow-hidden whitespace-nowrap ${className || ''}`}>
       <div
         className="inline-flex animate-marquee"
-        style={{ animationDuration: `${speed}s` }}
+        style={{ animationDuration: `${duration}s` }}
       >
         <span className="mx-8">{children}</span>
         <span className="mx-8">{children}</span>
@@ -106,7 +117,7 @@ export function PromoBanner({ banner, lang }: PromoBannerProps) {
         {banner.enableMarquee ? (
           /* Marquee mode - full width scrolling text */
           <div className="flex items-center justify-between py-3 px-4">
-            <Marquee className="flex-1" speed={banner.marqueeSpeed || 30}>
+            <Marquee className="flex-1" speed={banner.marqueeSpeed || 3}>
               <span className="text-sm font-heading tracking-wide">
                 {message}
                 {banner.linkUrl && linkText && (

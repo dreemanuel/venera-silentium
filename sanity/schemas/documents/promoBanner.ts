@@ -107,11 +107,19 @@ export const promoBanner = defineType({
     }),
     defineField({
       name: 'marqueeSpeed',
-      title: 'Marquee Speed (seconds)',
+      title: 'Marquee Speed',
       type: 'number',
-      description: 'Duration for one complete scroll cycle (higher = slower). Default: 30',
-      initialValue: 30,
-      validation: (Rule) => Rule.min(10).max(120),
+      description: '1 = slowest, 5 = fastest',
+      initialValue: 3,
+      options: {
+        list: [
+          { title: '1 - Slowest', value: 1 },
+          { title: '2 - Slow', value: 2 },
+          { title: '3 - Normal', value: 3 },
+          { title: '4 - Fast', value: 4 },
+          { title: '5 - Fastest', value: 5 },
+        ],
+      },
       hidden: ({ document }) => !document?.enableMarquee,
     }),
     defineField({
