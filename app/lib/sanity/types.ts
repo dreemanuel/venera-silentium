@@ -279,6 +279,7 @@ export interface PromoBanner {
   position?: PromoBannerPosition;
   dismissible?: boolean;
   enableMarquee?: boolean;
+  marqueeSpeed?: number;
   showOnPages?: PromoBannerPage[];
   priority?: number;
 }

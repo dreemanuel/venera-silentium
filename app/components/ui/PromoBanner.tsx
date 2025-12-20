@@ -7,10 +7,13 @@ import { getLocalizedValue } from '~/lib/sanity';
 import { usePromoBanner } from '~/routes/$lang/layout';
 
 // Marquee component for scrolling text effect
-function Marquee({ children, className }: { children: React.ReactNode; className?: string }) {
+function Marquee({ children, className, speed = 30 }: { children: React.ReactNode; className?: string; speed?: number }) {
   return (
     <div className={`overflow-hidden whitespace-nowrap ${className || ''}`}>
-      <div className="inline-flex animate-marquee">
+      <div
+        className="inline-flex animate-marquee"
+        style={{ animationDuration: `${speed}s` }}
+      >
         <span className="mx-8">{children}</span>
         <span className="mx-8">{children}</span>
         <span className="mx-8">{children}</span>
@@ -103,7 +106,7 @@ export function PromoBanner({ banner, lang }: PromoBannerProps) {
         {banner.enableMarquee ? (
           /* Marquee mode - full width scrolling text */
           <div className="flex items-center justify-between py-3 px-4">
-            <Marquee className="flex-1">
+            <Marquee className="flex-1" speed={banner.marqueeSpeed || 30}>
               <span className="text-sm font-heading tracking-wide">
                 {message}
                 {banner.linkUrl && linkText && (

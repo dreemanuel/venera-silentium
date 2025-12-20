@@ -339,6 +339,7 @@ export const activePromoBannersQuery = groq`
     position,
     dismissible,
     enableMarquee,
+    marqueeSpeed,
     showOnPages,
     priority
   }

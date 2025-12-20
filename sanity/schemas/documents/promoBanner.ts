@@ -106,6 +106,15 @@ export const promoBanner = defineType({
       initialValue: false,
     }),
     defineField({
+      name: 'marqueeSpeed',
+      title: 'Marquee Speed (seconds)',
+      type: 'number',
+      description: 'Duration for one complete scroll cycle (higher = slower). Default: 30',
+      initialValue: 30,
+      validation: (Rule) => Rule.min(10).max(120),
+      hidden: ({ document }) => !document?.enableMarquee,
+    }),
+    defineField({
       name: 'showOnPages',
       title: 'Show on Pages',
       type: 'array',
