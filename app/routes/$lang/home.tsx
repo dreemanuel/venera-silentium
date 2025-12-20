@@ -124,16 +124,17 @@ export default function Home() {
   const aboutMedia = aboutDrVenera?.media ?? [];
   const aboutSlideshowInterval = aboutDrVenera?.slideshowInterval ?? 5;
 
-  // Section visibility toggles (default to true if not set)
+  // Section visibility toggles (default to true if not explicitly set to false)
+  // Note: Sanity may return null/undefined for unset fields, so we check for explicit true
   const sectionVisibility = siteSettings?.sectionVisibility;
-  const showServices = sectionVisibility?.showServices !== false;
-  const showGallery = sectionVisibility?.showGallery !== false;
-  const showAboutDrVenera = sectionVisibility?.showAboutDrVenera !== false;
-  const showSilentiumPhilosophy = sectionVisibility?.showSilentiumPhilosophy !== false;
-  const showTestimonials = sectionVisibility?.showTestimonials !== false;
-  const showBlog = sectionVisibility?.showBlog !== false;
-  const showBrands = sectionVisibility?.showBrands !== false;
-  const showContactCTA = sectionVisibility?.showContactCTA !== false;
+  const showServices = sectionVisibility?.showServices === true || sectionVisibility?.showServices === undefined;
+  const showGallery = sectionVisibility?.showGallery === true || sectionVisibility?.showGallery === undefined;
+  const showAboutDrVenera = sectionVisibility?.showAboutDrVenera === true || sectionVisibility?.showAboutDrVenera === undefined;
+  const showSilentiumPhilosophy = sectionVisibility?.showSilentiumPhilosophy === true || sectionVisibility?.showSilentiumPhilosophy === undefined;
+  const showTestimonials = sectionVisibility?.showTestimonials === true || sectionVisibility?.showTestimonials === undefined;
+  const showBlog = sectionVisibility?.showBlog === true || sectionVisibility?.showBlog === undefined;
+  const showBrands = sectionVisibility?.showBrands === true || sectionVisibility?.showBrands === undefined;
+  const showContactCTA = sectionVisibility?.showContactCTA === true || sectionVisibility?.showContactCTA === undefined;
 
   // Create fallback story as PortableText-like structure
   const fallbackStory: PortableTextBlock[] = drVeneraStory
