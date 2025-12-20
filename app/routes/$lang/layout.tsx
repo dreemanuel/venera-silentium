@@ -17,7 +17,10 @@ import { sanityClient } from "~/lib/sanity/client.server";
 import { activePromoBannersQuery, type PromoBanner, type PromoBannerPage, type Language } from "~/lib/sanity";
 
 // Context to share promo banner state
-const PromoBannerContext = createContext<{ hasTopBanner: boolean }>({ hasTopBanner: false });
+const PromoBannerContext = createContext<{
+  hasTopBanner: boolean;
+  setTopBannerVisible: (visible: boolean) => void;
+}>({ hasTopBanner: false, setTopBannerVisible: () => {} });
 export const usePromoBanner = () => useContext(PromoBannerContext);
 
 export async function loader({ params }: Route.LoaderArgs) {
@@ -59,8 +62,8 @@ export default function LangLayout({ loaderData }: Route.ComponentProps) {
   // Determine current page from location
   const currentPage = useMemo(() => getCurrentPage(location.pathname), [location.pathname]);
 
-  // Check if there are visible top banners for this page
-  const hasTopBanner = useMemo(() => {
+  // Check if there are visible top banners for this page (initial state from server data)
+  const initialHasTopBanner = useMemo(() => {
     return promoBanners.some((banner) => {
       const position = banner.position || 'top';
       if (position !== 'top') return false;
@@ -69,6 +72,14 @@ export default function LangLayout({ loaderData }: Route.ComponentProps) {
       return showOnPages.includes(currentPage as 'home' | 'about' | 'services' | 'contact' | 'blog');
     });
   }, [promoBanners, currentPage]);
+
+  // Track actual visibility (can be updated when banner is dismissed)
+  const [topBannerVisible, setTopBannerVisible] = useState(initialHasTopBanner);
+
+  // Update when initial value changes (e.g., page navigation)
+  useEffect(() => {
+    setTopBannerVisible(initialHasTopBanner);
+  }, [initialHasTopBanner]);
 
   useEffect(() => {
     initI18nClient(lang).then(() => {
@@ -94,7 +105,7 @@ export default function LangLayout({ loaderData }: Route.ComponentProps) {
 
   return (
     <I18nextProvider i18n={i18next}>
-      <PromoBannerContext.Provider value={{ hasTopBanner }}>
+      <PromoBannerContext.Provider value={{ hasTopBanner: topBannerVisible, setTopBannerVisible }}>
         <HreflangLinks currentLang={typedLang} />
         <NavigationProgress />
 
@@ -107,7 +118,7 @@ export default function LangLayout({ loaderData }: Route.ComponentProps) {
         />
 
         <div className="flex flex-col min-h-screen">
-          <Header lang={typedLang} hasTopBanner={hasTopBanner} />
+          <Header lang={typedLang} hasTopBanner={topBannerVisible} />
           <main className="flex-1">
             <Outlet context={{ lang: typedLang }} />
           </main>

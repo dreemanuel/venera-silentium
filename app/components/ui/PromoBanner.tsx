@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
 import type { PromoBanner as PromoBannerType, Language } from '~/lib/sanity';
 import { getLocalizedValue } from '~/lib/sanity';
+import { usePromoBanner } from '~/routes/$lang/layout';
 
 // Marquee component for scrolling text effect
 function Marquee({ children, className }: { children: React.ReactNode; className?: string }) {
@@ -38,6 +39,9 @@ const textColorMap: Record<string, string> = {
 };
 
 export function PromoBanner({ banner, lang }: PromoBannerProps) {
+  const { setTopBannerVisible } = usePromoBanner();
+  const isTopBanner = banner.position !== 'bottom';
+
   const [isDismissed, setIsDismissed] = useState(() => {
     // Check localStorage on mount (only runs on client)
     if (typeof window !== 'undefined' && banner.dismissible) {
@@ -55,6 +59,10 @@ export function PromoBanner({ banner, lang }: PromoBannerProps) {
 
   const handleDismiss = () => {
     setIsDismissed(true);
+    // Notify layout that banner is no longer visible
+    if (isTopBanner) {
+      setTopBannerVisible(false);
+    }
     if (banner.dismissible && typeof window !== 'undefined') {
       try {
         const dismissedBanners = JSON.parse(
