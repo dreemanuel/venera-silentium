@@ -114,7 +114,7 @@ WCAG 2.1 Level AA compliance for:
 ### Branding
 
 - **Typography**: Elegant serif for headings (from provided font collection), clean sans-serif for body
-- **Color Palette**: Soft, earthy tones—cream backgrounds, muted gold accents, deep greens, charcoal text
+- **Color Palette**: Warm, elegant tones—cornsilk/cream backgrounds, yellow/gold accents (Golden Bronze #BA9D26, Sand #D2BE78, or Vanilla Custard #E6D6A3), Payne's Gray/Blue Slate (#5C6B73) for text and anchoring elements
 - **Imagery**: High-quality photography emphasizing calm, luxury, natural beauty
 - **Visual Effects**: Glassmorphism cards, subtle background blurs, soft shadows
 - **Animation**: Gentle fade-ins, parallax hints, smooth hover states

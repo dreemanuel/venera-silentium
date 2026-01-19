@@ -436,8 +436,10 @@ Browse Interactive Gallery
 
 #### Button (Primary)
 ```
-Background: Gold gradient (from #C9A961 to #B8934A)
-Text: White (#FFFFFF)
+Background: Payne's Gray (#5C6B73) or selected gold accent
+  - Option A: Gold gradient (from #BA9D26 to #D2BE78)
+  - Option B: Solid Payne's Gray (#5C6B73)
+Text: Cornsilk (#FEFAE0) or White (#FFFFFF)
 Font: Sans-serif, 600 weight, 16px
 Padding: 12px 32px
 Border-radius: 8px
@@ -479,21 +481,33 @@ Text: Appears from bottom on hover with slide-up animation
 
 ### Color Palette
 
-**Primary Colors**
-| Name | Hex | Usage |
-|------|-----|-------|
-| Cream | `#FAF7F2` | Page backgrounds, light surfaces |
-| Warm White | `#FFFFFF` | Cards, inputs, highlights |
-| Charcoal | `#2D2D2D` | Primary text |
-| Soft Charcoal | `#4A4A4A` | Secondary text |
+> **Note (Jan 2026):** Color palette updated to yellow/gold direction per client request. Three gold options provided—final selection TBD after visual testing.
 
-**Accent Colors**
+**Background Colors**
 | Name | Hex | Usage |
 |------|-----|-------|
-| Gold | `#C9A961` | CTAs, highlights, links |
-| Deep Gold | `#B8934A` | Hover states, gradient ends |
-| Sage Green | `#8B9A7D` | Secondary accents, nature elements |
-| Deep Teal | `#2D4A4A` | Footer, dark sections |
+| Cornsilk | `#FEFAE0` | Primary page backgrounds |
+| Papaya Whip | `#FAEDCD` | Secondary backgrounds, cards |
+| Beige | `#E9EDC9` | Subtle contrast areas |
+| Warm White | `#FFFFFF` | Inputs, highlights, overlays |
+
+**Text Colors**
+| Name | Hex | Usage |
+|------|-----|-------|
+| Payne's Gray (Blue Slate) | `#5C6B73` | Primary text, headings, CTAs |
+| Cornsilk | `#FEFAE0` | Light text on dark backgrounds |
+
+**Yellow/Gold Accent Options** (choose one as primary)
+| Name | Hex | Character | Usage |
+|------|-----|-----------|-------|
+| Golden Bronze | `#BA9D26` | Bold, saturated gold | High-impact accents, CTAs, hover states |
+| Sand | `#D2BE78` | Muted, warm gold | Subtle highlights, borders, secondary accents |
+| Vanilla Custard | `#E6D6A3` | Light, soft gold | Background tints, gentle accents, cards |
+
+**Accent Color Recommendations**
+- **Option A (Bold):** Use Golden Bronze `#BA9D26` for CTAs and primary accents
+- **Option B (Subtle):** Use Sand `#D2BE78` for CTAs, Vanilla Custard for backgrounds
+- **Option C (Soft):** Use Vanilla Custard `#E6D6A3` for accents, rely on Payne's Gray for CTAs
 
 **Feedback Colors**
 | Name | Hex | Usage |
@@ -682,3 +696,4 @@ WCAG 2.1 Level AA
 | Change | Date | Version | Description | Author |
 |--------|------|---------|-------------|--------|
 | Initial Draft | 2025-12-07 | 1.0 | Complete UI/UX specification | BMAD Design Architect (Dez) |
+| Color Palette Update | 2026-01-20 | 1.1 | Replace green tones with yellow/gold palette per client request | Claude Code |

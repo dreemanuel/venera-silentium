@@ -4,22 +4,25 @@
 
 ## 🎯 QUICK START - NEW SESSION
 
-**🎉 ALL EPICS COMPLETE + FONT UPDATE IN PROGRESS**
+**🎉 ALL EPICS COMPLETE + COLOR PALETTE UPDATE IN PROGRESS**
 
-**Latest Session: January 19, 2026**
-- ✅ Project reassessment after 1-month hiatus
-- ✅ Changed display font from Gilmoray to Meganoli Sans
-- ✅ Adjusted hero typography (right-aligned, reduced margins)
-- ✅ Improved SilentiumPhilosophy section legibility (darker overlay)
-- ⚠️ **Uncommitted changes on `font-testing` branch**
+**Latest Session: January 20, 2026**
+- ✅ Font change committed (Meganoli Sans)
+- ✅ Documentation updated for new yellow/gold color palette
+- ⏳ **Pending:** Select gold shade and implement in code
 
 **What's New This Session:**
-- ✅ **Font Change:** Display font now uses Meganoli Sans (`public/fonts/meganoli-sans.otf`)
-- ✅ **Hero Typography:** Right-aligned title with adjusted negative margins for new font
-- ✅ **Section Legibility:** SilentiumPhilosophy overlay darkened from 40% to 60%
+- ✅ **Font Changes Committed:** `64686de` - Meganoli Sans now display font
+- ✅ **Color Palette Proposal:** Replace Tea Green with yellow/gold accents
+  - Option A: Golden Bronze `#BA9D26` (bold, saturated)
+  - Option B: Sand `#D2BE78` (muted, warm)
+  - Option C: Vanilla Custard `#E6D6A3` (light, soft)
+- ✅ **Docs Updated:** PRD, UX/UI Spec, CLAUDE.md reflect new palette direction
 
 **⚠️ IMMEDIATE NEXT STEP:**
-Review font changes visually, then commit and merge `font-testing` → `main`
+1. Test gold shades visually in the live site
+2. Select primary gold accent color
+3. Update Tailwind config and components
 
 **What to Read First:**
 1. `/venera_docs/devlogs/DEVLOG-JAN19-2026-FONT-CHANGE-MEGANOLI.md` - Latest session details
@@ -35,7 +38,7 @@ Review font changes visually, then commit and merge `font-testing` → `main`
 npm run sanity        # Start Sanity Studio at localhost:3333
 ```
 
-**Current Branch:** `font-testing` (uncommitted changes)
+**Current Branch:** `font-testing`
 **Repository:** https://github.com/dreemanuel/venera-silentium
 
 **Quick Commands:**
@@ -93,14 +96,34 @@ npm run lint       # ESLint
 
 ## 🎨 BRAND SPECIFICATIONS (User Provided)
 
-### Color Palette
+### Color Palette (Updated Jan 20, 2026)
+
+> **Note:** Transitioning from green-based to yellow/gold-based palette per client request.
+
+**Background Colors**
 | Color | Hex | Usage |
 |-------|-----|-------|
-| Tea Green | `#CCD5AE` | Dark BGs, secondary accents |
-| Beige | `#E9EDC9` | Dark BGs, secondary accents |
-| Cornsilk | `#FEFAE0` | Light BGs (main background) |
-| Papaya Whip | `#FAEDCD` | Light BGs, contrast texts |
-| Payne's Gray | `#5C6B73` | Primary text, CTA, accents |
+| Cornsilk | `#FEFAE0` | Primary page backgrounds |
+| Papaya Whip | `#FAEDCD` | Secondary backgrounds, cards |
+| Beige | `#E9EDC9` | Subtle contrast areas |
+
+**Text Colors**
+| Color | Hex | Usage |
+|-------|-----|-------|
+| Payne's Gray | `#5C6B73` | Primary text, headings, CTAs |
+| Cornsilk | `#FEFAE0` | Light text on dark backgrounds |
+
+**Yellow/Gold Accent Options** (TBD - select one as primary)
+| Color | Hex | Character |
+|-------|-----|-----------|
+| Golden Bronze | `#BA9D26` | Bold, saturated gold |
+| Sand | `#D2BE78` | Muted, warm gold |
+| Vanilla Custard | `#E6D6A3` | Light, soft gold |
+
+~~**Deprecated Colors**~~
+| Color | Hex | Status |
+|-------|-----|--------|
+| Tea Green | `#CCD5AE` | Replaced by yellow/gold accents |
 
 ### Typography
 | Element | Font | Source |
@@ -112,9 +135,17 @@ npm run lint       # ESLint
 
 ### Tailwind Classes
 ```css
-/* Colors */
-bg-tea-green, bg-beige, bg-cornsilk, bg-papaya-whip, bg-paynes-gray
-text-tea-green, text-beige, text-cornsilk, text-papaya-whip, text-paynes-gray
+/* Background Colors */
+bg-cornsilk, bg-papaya-whip, bg-beige, bg-paynes-gray
+
+/* Text Colors */
+text-paynes-gray, text-cornsilk
+
+/* Gold Accents (TBD - will add after selection) */
+bg-golden-bronze (#BA9D26), bg-sand (#D2BE78), bg-vanilla-custard (#E6D6A3)
+
+/* Deprecated */
+bg-tea-green, text-tea-green  /* Being replaced */
 
 /* Fonts */
 font-display   /* Meganoli Sans (updated Jan 19, 2026) */
@@ -252,7 +283,7 @@ Reference agent personas from `/bmad-agent/personas/` and use templates from `/b
 ## Design Direction
 
 **Aesthetic Keywords**: Elegance, Calmness, Comfortable Confidence
-**Color Palette**: Subtle, soft, earthy tones with Balinese influences
+**Color Palette**: Warm, elegant tones—cornsilk/cream backgrounds, yellow/gold accents, Payne's Gray anchoring
 **Style References**:
 - Webflow Purezai template (modern skincare, glassmorphism)
 - Webflow Arcoria template (elegant, minimal, editorial luxury)
@@ -313,8 +344,34 @@ When starting a new session:
 
 ## Recent Session Log
 
+### January 20, 2026 - Color Palette Update (Yellow/Gold Direction)
+**Status:** DOCUMENTATION COMPLETE
+**Branch:** `font-testing`
+
+**Key Changes:**
+1. **Font Changes Committed** - Previous session's font work now committed
+   - Commit: `64686de` - feat: Replace display font with Meganoli Sans
+
+2. **Color Palette Documentation Updated** - New yellow/gold direction
+   - Updated PRD branding section
+   - Updated UX/UI Spec with full color options
+   - Updated CLAUDE.md brand specifications
+   - Three gold accent options provided for client selection
+
+**New Color Palette:**
+- Backgrounds: Cornsilk `#FEFAE0`, Papaya Whip `#FAEDCD`, Beige `#E9EDC9`
+- Text: Payne's Gray `#5C6B73`, Cornsilk (on dark)
+- Gold Options: Golden Bronze `#BA9D26`, Sand `#D2BE78`, Vanilla Custard `#E6D6A3`
+- Deprecated: Tea Green `#CCD5AE`
+
+**Files Modified:** PRD, UX/UI Spec, CLAUDE.md
+
+**Next:** Visual testing of gold shades, select primary, implement in Tailwind config
+
+---
+
 ### January 19, 2026 - Font Change to Meganoli Sans
-**Status:** UNCOMMITTED (on `font-testing` branch)
+**Status:** COMMITTED (`64686de`)
 **Branch:** `font-testing`
 
 **Key Changes:**
