@@ -30,11 +30,60 @@ export function GallerySection({
   const carouselRef = useRef<HTMLDivElement>(null);
   const autoScrollRef = useRef<number | null>(null);
   const isHoveredRef = useRef(false);
+  const hasInitialized = useRef(false);
+
+  // Triple the images for infinite loop effect
+  const loopedImages = images.length > 1 ? [...images, ...images, ...images] : images;
+  const singleSetWidth = useRef(0);
 
   // Keep ref in sync with state for use in interval callback
   useEffect(() => {
     isHoveredRef.current = isHovered;
   }, [isHovered]);
+
+  // Initialize scroll position to middle set and calculate single set width
+  useEffect(() => {
+    if (!carouselRef.current || images.length <= 1 || hasInitialized.current) return;
+
+    // Wait for images to load and layout to complete
+    const initializeScroll = () => {
+      if (!carouselRef.current) return;
+      const { scrollWidth } = carouselRef.current;
+      singleSetWidth.current = scrollWidth / 3;
+      // Start at the middle set
+      carouselRef.current.scrollLeft = singleSetWidth.current;
+      hasInitialized.current = true;
+    };
+
+    // Small delay to ensure layout is complete
+    const timer = setTimeout(initializeScroll, 100);
+    return () => clearTimeout(timer);
+  }, [images.length]);
+
+  // Handle infinite loop - jump when reaching boundaries
+  useEffect(() => {
+    if (images.length <= 1) return;
+
+    const handleScroll = () => {
+      if (!carouselRef.current || !singleSetWidth.current) return;
+
+      const { scrollLeft, scrollWidth, clientWidth } = carouselRef.current;
+      const maxScroll = scrollWidth - clientWidth;
+
+      // If scrolled to the start (first set), jump to middle set
+      if (scrollLeft < 50) {
+        carouselRef.current.scrollLeft = singleSetWidth.current + scrollLeft;
+      }
+      // If scrolled to the end (third set), jump to middle set
+      else if (scrollLeft > maxScroll - 50) {
+        carouselRef.current.scrollLeft = singleSetWidth.current - (maxScroll - scrollLeft);
+      }
+    };
+
+    const carousel = carouselRef.current;
+    carousel?.addEventListener('scroll', handleScroll);
+    return () => carousel?.removeEventListener('scroll', handleScroll);
+  }, [images.length]);
 
   // Scroll the carousel (used by manual buttons)
   const scroll = (direction: 'left' | 'right') => {
@@ -46,43 +95,18 @@ export function GallerySection({
     });
   };
 
-  // Scroll hijacking - convert vertical scroll to horizontal when gallery is in view
+  // Wheel scroll when hovering - convert vertical scroll to horizontal
   useEffect(() => {
     if (images.length <= 1) return;
 
     const handleWheel = (e: globalThis.WheelEvent) => {
-      if (!carouselRef.current || !sectionRef.current) return;
-
-      // Check if section is in viewport (at least 50% visible)
-      const rect = sectionRef.current.getBoundingClientRect();
-      const viewportHeight = window.innerHeight;
-      const sectionTop = rect.top;
-      const sectionBottom = rect.bottom;
-      const sectionHeight = rect.height;
-
-      // Calculate how much of the section is visible
-      const visibleTop = Math.max(0, sectionTop);
-      const visibleBottom = Math.min(viewportHeight, sectionBottom);
-      const visibleHeight = Math.max(0, visibleBottom - visibleTop);
-      const visibilityRatio = visibleHeight / sectionHeight;
-
-      // Only hijack scroll when section is fully visible (100%)
-      if (visibilityRatio < 1.0) return;
-
-      const { scrollLeft, scrollWidth, clientWidth } = carouselRef.current;
-      const isAtStart = scrollLeft <= 5;
-      const isAtEnd = scrollLeft + clientWidth >= scrollWidth - 5;
-      const isScrollingDown = e.deltaY > 0;
-      const isScrollingUp = e.deltaY < 0;
-
-      // Allow normal scroll if at boundaries
-      if (isScrollingUp && isAtStart) return;
-      if (isScrollingDown && isAtEnd) return;
+      // Only handle wheel when hovering over the carousel
+      if (!isHoveredRef.current || !carouselRef.current) return;
 
       // Hijack scroll and convert to horizontal
       e.preventDefault();
       carouselRef.current.scrollBy({
-        left: e.deltaY * 2, // Multiply for faster horizontal scroll
+        left: e.deltaY * 2.5, // Multiply for faster horizontal scroll
         behavior: 'auto',
       });
     };
@@ -104,17 +128,9 @@ export function GallerySection({
       // Skip if hovered or no carousel ref
       if (isHoveredRef.current || !carouselRef.current) return;
 
-      const { scrollLeft, scrollWidth, clientWidth } = carouselRef.current;
-      const isAtEnd = scrollLeft + clientWidth >= scrollWidth - 10;
-
-      if (isAtEnd) {
-        // Loop back to start
-        carouselRef.current.scrollTo({ left: 0, behavior: 'smooth' });
-      } else {
-        // Scroll right
-        const scrollAmount = clientWidth * 0.6;
-        carouselRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-      }
+      // Simply scroll right - infinite loop handling takes care of boundaries
+      const scrollAmount = carouselRef.current.clientWidth * 0.4;
+      carouselRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
     };
 
     autoScrollRef.current = window.setInterval(doAutoScroll, AUTO_SCROLL_INTERVAL);
@@ -144,7 +160,7 @@ export function GallerySection({
   };
 
   return (
-    <section ref={setSectionRefs} className="min-h-screen py-12 md:py-16 bg-sand/20 overflow-hidden flex flex-col justify-center">
+    <section ref={setSectionRefs} className="h-screen mt-16 md:mt-24 py-16 md:py-24 bg-dark-khaki overflow-hidden flex flex-col justify-center">
       <motion.div
         initial={{ opacity: 0 }}
         animate={inView ? { opacity: 1 } : { opacity: 0 }}
@@ -194,18 +210,21 @@ export function GallerySection({
             className="flex gap-4 overflow-x-auto scrollbar-hide px-6 md:px-12 py-4 scroll-smooth"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
-            {images.map((image, index) => {
+            {loopedImages.map((image, index) => {
               const imageUrl = image.image ? getHeroImageUrl(image.image, 800, 85) : null;
               const imageTitle = getLocalizedValue(image.title, lang);
 
               if (!imageUrl) return null;
 
+              // Use modulo to get correct delay for repeated images
+              const delayIndex = index % images.length;
+
               return (
                 <motion.div
-                  key={image._id || index}
+                  key={`${image._id}-${index}`}
                   initial={{ opacity: 0, y: 20 }}
                   animate={inView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  transition={{ duration: 0.5, delay: delayIndex * 0.1 }}
                   className="flex-shrink-0 cursor-pointer group/item"
                   onClick={() => setSelectedImage(image)}
                 >
@@ -222,7 +241,7 @@ export function GallerySection({
                   </div>
                   {/* Caption */}
                   {imageTitle && (
-                    <p className="mt-2 text-sm text-deep-slate/70 font-heading text-center max-w-[250px]">
+                    <p className="mt-2 text-sm text-cornsilk font-heading text-center max-w-[250px]">
                       {imageTitle}
                     </p>
                   )}
