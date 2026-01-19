@@ -16,7 +16,7 @@ export function Skeleton({ className }: SkeletonProps) {
   return (
     <div
       className={cn(
-        "animate-pulse  bg-paynes-gray/10",
+        "animate-pulse  bg-deep-slate/10",
         className
       )}
     />

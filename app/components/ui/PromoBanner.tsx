@@ -41,14 +41,18 @@ interface PromoBannerProps {
 
 const bgColorMap: Record<string, string> = {
   'tea-green': 'bg-tea-green',
-  'beige': 'bg-beige',
-  'paynes-gray': 'bg-paynes-gray',
+  'beige': 'bg-sand',
+  'sand': 'bg-sand',
+  'paynes-gray': 'bg-deep-slate',
+  'deep-slate': 'bg-deep-slate',
   'cornsilk': 'bg-cornsilk',
   'papaya-whip': 'bg-papaya-whip',
+  'vanilla-custard': 'bg-vanilla-custard',
+  'golden-bronze': 'bg-golden-bronze',
 };
 
 const textColorMap: Record<string, string> = {
-  'dark': 'text-paynes-gray',
+  'dark': 'text-deep-slate',
   'light': 'text-cornsilk',
 };
 
@@ -66,7 +70,7 @@ export function PromoBanner({ banner, lang, onDismiss }: PromoBannerProps) {
   const message = getLocalizedValue(banner.message, lang);
   const linkText = getLocalizedValue(banner.linkText, lang);
   const bgColor = bgColorMap[banner.backgroundColor || 'tea-green'] || 'bg-tea-green';
-  const textColor = textColorMap[banner.textColor || 'dark'] || 'text-paynes-gray';
+  const textColor = textColorMap[banner.textColor || 'dark'] || 'text-deep-slate';
 
   if (isDismissed || !message) return null;
 

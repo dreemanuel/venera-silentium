@@ -106,7 +106,7 @@ export function BackgroundImage({
   children,
   priority = false,
   overlay = false,
-  overlayClassName = 'bg-gradient-to-b from-paynes-gray/40 via-paynes-gray/30 to-paynes-gray/50',
+  overlayClassName = 'bg-gradient-to-b from-deep-slate/40 via-deep-slate/30 to-deep-slate/50',
 }: BackgroundImageProps) {
   if (!source) {
     return (

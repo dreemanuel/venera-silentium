@@ -44,7 +44,7 @@ export function ImageLightbox({ isOpen, onClose, imageUrl, alt, title }: ImageLi
           onClick={onClose}
         >
           {/* Backdrop */}
-          <div className="absolute inset-0 bg-paynes-gray/90 backdrop-blur-sm" />
+          <div className="absolute inset-0 bg-deep-slate/90 backdrop-blur-sm" />
 
           {/* Close button */}
           <motion.button
@@ -53,7 +53,7 @@ export function ImageLightbox({ isOpen, onClose, imageUrl, alt, title }: ImageLi
             exit={{ opacity: 0, scale: 0.8 }}
             transition={{ delay: 0.1 }}
             className="absolute top-4 right-4 z-10 p-2 text-cornsilk/80 hover:text-cornsilk
-                       bg-paynes-gray/50 hover:bg-paynes-gray/70 rounded-full transition-colors"
+                       bg-deep-slate/50 hover:bg-deep-slate/70 rounded-full transition-colors"
             onClick={onClose}
             aria-label="Close lightbox"
           >
@@ -81,7 +81,7 @@ export function ImageLightbox({ isOpen, onClose, imageUrl, alt, title }: ImageLi
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
-                className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-paynes-gray/80 to-transparent "
+                className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-deep-slate/80 to-transparent "
               >
                 <p className="text-cornsilk text-center font-heading">{title}</p>
               </motion.div>

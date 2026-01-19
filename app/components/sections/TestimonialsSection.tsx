@@ -46,7 +46,7 @@ function StarRating({ rating }: { rating: number }) {
           className={`w-4 h-4 ${
             star <= rating
               ? 'fill-tea-green text-tea-green'
-              : 'fill-transparent text-paynes-gray/30'
+              : 'fill-transparent text-deep-slate/30'
           }`}
         />
       ))}
@@ -73,12 +73,12 @@ function TestimonialCard({
       <Quote className="w-8 h-8 text-tea-green/40 mb-4 flex-shrink-0" />
 
       {/* Quote text */}
-      <p className="text-paynes-gray/80 text-lg leading-relaxed flex-grow mb-6 italic">
+      <p className="text-deep-slate/80 text-lg leading-relaxed flex-grow mb-6 italic">
         &ldquo;{quote}&rdquo;
       </p>
 
       {/* Client info */}
-      <div className="flex items-center gap-4 mt-auto pt-4 border-t border-beige/50">
+      <div className="flex items-center gap-4 mt-auto pt-4 border-t border-sand/50">
         {imageUrl ? (
           <img
             src={imageUrl}
@@ -88,18 +88,18 @@ function TestimonialCard({
           />
         ) : (
           <div className="w-12 h-12 rounded-full bg-tea-green/20 flex items-center justify-center">
-            <span className="text-paynes-gray font-heading text-lg">
+            <span className="text-deep-slate font-heading text-lg">
               {testimonial.clientName.charAt(0).toUpperCase()}
             </span>
           </div>
         )}
 
         <div className="flex-1">
-          <h4 className="font-heading font-medium text-paynes-gray">
+          <h4 className="font-heading font-medium text-deep-slate">
             {testimonial.clientName}
           </h4>
           {clientTitle && (
-            <p className="text-sm text-paynes-gray/60">{clientTitle}</p>
+            <p className="text-sm text-deep-slate/60">{clientTitle}</p>
           )}
         </div>
 
@@ -186,7 +186,7 @@ function MediaTestimonialItem({
           lazyRef(node);
           (containerRef as React.MutableRefObject<HTMLDivElement | null>).current = node;
         }}
-        className="relative h-[400px] md:h-[500px] lg:h-[600px] w-[250px] md:w-[320px] lg:w-[380px] flex-shrink-0 group/item bg-beige/30"
+        className="relative h-[400px] md:h-[500px] lg:h-[600px] w-[250px] md:w-[320px] lg:w-[380px] flex-shrink-0 group/item bg-sand/30"
       >
         {/* Show poster/placeholder until video is loaded or in view */}
         {(!isInView || !isVideoLoaded) && posterUrl && (
@@ -278,10 +278,10 @@ function MediaTestimonialItem({
             decoding="async"
           />
         ) : (
-          <div className="h-full w-full bg-beige/50 animate-pulse" />
+          <div className="h-full w-full bg-sand/50 animate-pulse" />
         )}
         {/* Hover overlay */}
-        <div className="absolute inset-0 bg-paynes-gray/0 group-hover/item:bg-paynes-gray/20 transition-colors duration-300" />
+        <div className="absolute inset-0 bg-deep-slate/0 group-hover/item:bg-deep-slate/20 transition-colors duration-300" />
         {/* Client name overlay */}
         <div className="absolute bottom-4 right-4 bg-black/50 backdrop-blur-sm px-3 py-1 rounded opacity-0 group-hover/item:opacity-100 transition-opacity">
           <span className="text-white text-sm font-heading">{testimonial.clientName}</span>
@@ -346,7 +346,7 @@ export function TestimonialsSection({
   if (testimonials.length === 0) return null;
 
   return (
-    <section ref={ref} className="py-16 md:py-24 bg-beige/30 overflow-hidden">
+    <section ref={ref} className="py-16 md:py-24 bg-sand/30 overflow-hidden">
       <motion.div
         className="container mx-auto px-6"
         variants={containerVariants}
@@ -357,12 +357,12 @@ export function TestimonialsSection({
         {(title || subtitle) && (
           <motion.div variants={itemVariants} className="text-center mb-12">
             {title && (
-              <h2 className="font-display text-5xl md:text-6xl lg:text-7xl text-paynes-gray mb-2 leading-[0.75]">
+              <h2 className="font-display text-5xl md:text-6xl lg:text-7xl text-deep-slate mb-2 leading-[0.75]">
                 {title}
               </h2>
             )}
             {subtitle && (
-              <p className="font-heading text-lg text-paynes-gray/70 max-w-2xl mx-auto">
+              <p className="font-heading text-lg text-deep-slate/70 max-w-2xl mx-auto">
                 {subtitle}
               </p>
             )}
@@ -376,14 +376,14 @@ export function TestimonialsSection({
               {/* Navigation Arrows */}
               <button
                 onClick={() => scrollCarousel('left')}
-                className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-10 p-2 md:p-3 bg-white/80 backdrop-blur-sm shadow-lg text-paynes-gray hover:bg-white hover:scale-110 transition-all duration-300 opacity-0 group-hover:opacity-100"
+                className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-10 p-2 md:p-3 bg-white/80 backdrop-blur-sm shadow-lg text-deep-slate hover:bg-white hover:scale-110 transition-all duration-300 opacity-0 group-hover:opacity-100"
                 aria-label="Scroll left"
               >
                 <ChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
               </button>
               <button
                 onClick={() => scrollCarousel('right')}
-                className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-10 p-2 md:p-3 bg-white/80 backdrop-blur-sm shadow-lg text-paynes-gray hover:bg-white hover:scale-110 transition-all duration-300 opacity-0 group-hover:opacity-100"
+                className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-10 p-2 md:p-3 bg-white/80 backdrop-blur-sm shadow-lg text-deep-slate hover:bg-white hover:scale-110 transition-all duration-300 opacity-0 group-hover:opacity-100"
                 aria-label="Scroll right"
               >
                 <ChevronRight className="w-5 h-5 md:w-6 md:h-6" />
@@ -449,8 +449,8 @@ export function TestimonialsSection({
                       onClick={() => setCurrentIndex(index)}
                       className={`w-2 h-2 rounded-full transition-all duration-300 ${
                         index === currentIndex
-                          ? 'bg-paynes-gray w-6'
-                          : 'bg-paynes-gray/30 hover:bg-paynes-gray/50'
+                          ? 'bg-deep-slate w-6'
+                          : 'bg-deep-slate/30 hover:bg-deep-slate/50'
                       }`}
                       aria-label={`Go to testimonial ${index + 1}`}
                     />
@@ -477,14 +477,14 @@ export function TestimonialsSection({
           <div className="flex md:hidden justify-center gap-4 mt-6">
             <button
               onClick={prevSlide}
-              className="p-2 rounded-full bg-white shadow-md text-paynes-gray hover:bg-tea-green/20 transition-colors"
+              className="p-2 rounded-full bg-white shadow-md text-deep-slate hover:bg-tea-green/20 transition-colors"
               aria-label="Previous testimonial"
             >
               <ChevronLeft className="w-5 h-5" />
             </button>
             <button
               onClick={nextSlide}
-              className="p-2 rounded-full bg-white shadow-md text-paynes-gray hover:bg-tea-green/20 transition-colors"
+              className="p-2 rounded-full bg-white shadow-md text-deep-slate hover:bg-tea-green/20 transition-colors"
               aria-label="Next testimonial"
             >
               <ChevronRight className="w-5 h-5" />

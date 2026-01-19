@@ -23,11 +23,11 @@ const TabsTrigger = forwardRef<
     ref={ref}
     className={`
       flex-1 inline-flex items-center justify-center whitespace-nowrap
-       px-3 py-2 text-sm font-heading font-medium text-paynes-gray/70
+       px-3 py-2 text-sm font-heading font-medium text-deep-slate/70
       ring-offset-cornsilk transition-all
-      focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paynes-gray focus-visible:ring-offset-2
+      focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-deep-slate focus-visible:ring-offset-2
       disabled:pointer-events-none disabled:opacity-50
-      data-[state=active]:bg-cornsilk data-[state=active]:text-paynes-gray
+      data-[state=active]:bg-cornsilk data-[state=active]:text-deep-slate
       data-[state=active]:shadow-sm
       ${className || ""}
     `}
@@ -44,7 +44,7 @@ const TabsContent = forwardRef<
     ref={ref}
     className={`
       mt-6 ring-offset-cornsilk
-      focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paynes-gray focus-visible:ring-offset-2
+      focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-deep-slate focus-visible:ring-offset-2
       ${className || ""}
     `}
     {...props}

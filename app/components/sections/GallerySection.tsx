@@ -144,7 +144,7 @@ export function GallerySection({
   };
 
   return (
-    <section ref={setSectionRefs} className="py-12 md:py-16 bg-beige/20 overflow-hidden">
+    <section ref={setSectionRefs} className="min-h-screen py-12 md:py-16 bg-sand/20 overflow-hidden flex flex-col justify-center">
       <motion.div
         initial={{ opacity: 0 }}
         animate={inView ? { opacity: 1 } : { opacity: 0 }}
@@ -154,12 +154,12 @@ export function GallerySection({
         {(title || subtitle) && (
           <div className="text-center mb-8 px-6">
             {title && (
-              <h2 className="font-display text-5xl md:text-6xl lg:text-7xl text-paynes-gray mb-2 leading-[0.75]">
+              <h2 className="font-display text-5xl md:text-6xl lg:text-7xl text-deep-slate mb-2 leading-[0.75]">
                 {title}
               </h2>
             )}
             {subtitle && (
-              <p className="font-heading text-lg text-paynes-gray/70 max-w-2xl mx-auto">
+              <p className="font-heading text-lg text-deep-slate/70 max-w-2xl mx-auto">
                 {subtitle}
               </p>
             )}
@@ -175,14 +175,14 @@ export function GallerySection({
           {/* Navigation Arrows */}
           <button
             onClick={() => scroll('left')}
-            className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-10 p-2 md:p-3 bg-white/80 backdrop-blur-sm shadow-lg text-paynes-gray hover:bg-white hover:scale-110 transition-all duration-300 opacity-0 group-hover:opacity-100"
+            className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-10 p-2 md:p-3 bg-white/80 backdrop-blur-sm shadow-lg text-deep-slate hover:bg-white hover:scale-110 transition-all duration-300 opacity-0 group-hover:opacity-100"
             aria-label="Scroll left"
           >
             <ChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
           </button>
           <button
             onClick={() => scroll('right')}
-            className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-10 p-2 md:p-3 bg-white/80 backdrop-blur-sm shadow-lg text-paynes-gray hover:bg-white hover:scale-110 transition-all duration-300 opacity-0 group-hover:opacity-100"
+            className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-10 p-2 md:p-3 bg-white/80 backdrop-blur-sm shadow-lg text-deep-slate hover:bg-white hover:scale-110 transition-all duration-300 opacity-0 group-hover:opacity-100"
             aria-label="Scroll right"
           >
             <ChevronRight className="w-5 h-5 md:w-6 md:h-6" />
@@ -209,7 +209,7 @@ export function GallerySection({
                   className="flex-shrink-0 cursor-pointer group/item"
                   onClick={() => setSelectedImage(image)}
                 >
-                  <div className="relative h-[300px] md:h-[400px] lg:h-[500px] overflow-hidden">
+                  <div className="relative h-[350px] md:h-[500px] lg:h-[600px] overflow-hidden">
                     <img
                       src={imageUrl}
                       alt={image.image?.alt || imageTitle || 'Gallery image'}
@@ -218,11 +218,11 @@ export function GallerySection({
                       decoding="async"
                     />
                     {/* Hover overlay */}
-                    <div className="absolute inset-0 bg-paynes-gray/0 group-hover/item:bg-paynes-gray/20 transition-colors duration-300" />
+                    <div className="absolute inset-0 bg-deep-slate/0 group-hover/item:bg-deep-slate/20 transition-colors duration-300" />
                   </div>
                   {/* Caption */}
                   {imageTitle && (
-                    <p className="mt-2 text-sm text-paynes-gray/70 font-heading text-center max-w-[250px]">
+                    <p className="mt-2 text-sm text-deep-slate/70 font-heading text-center max-w-[250px]">
                       {imageTitle}
                     </p>
                   )}

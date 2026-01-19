@@ -115,7 +115,7 @@ export function NavigationProgress() {
       aria-label="Page loading"
     >
       <div
-        className="h-full bg-gradient-to-r from-tea-green via-paynes-gray to-tea-green transition-all duration-200 ease-out"
+        className="h-full bg-gradient-to-r from-tea-green via-deep-slate to-tea-green transition-all duration-200 ease-out"
         style={{
           width: `${progressState.progress}%`,
           boxShadow: "0 0 10px rgba(204, 213, 174, 0.5)",
@@ -139,8 +139,8 @@ export function NavigationLoadingOverlay() {
   return (
     <div className="fixed inset-0 z-[90] bg-cornsilk/60 backdrop-blur-sm flex items-center justify-center pointer-events-none opacity-0 animate-[fadeIn_0.5s_0.5s_forwards]">
       <div className="flex flex-col items-center gap-4">
-        <div className="w-10 h-10 border-4 border-tea-green border-t-paynes-gray rounded-full animate-spin" />
-        <span className="text-paynes-gray/70 font-heading text-sm">Loading...</span>
+        <div className="w-10 h-10 border-4 border-tea-green border-t-deep-slate rounded-full animate-spin" />
+        <span className="text-deep-slate/70 font-heading text-sm">Loading...</span>
       </div>
     </div>
   );

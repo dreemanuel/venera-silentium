@@ -266,7 +266,7 @@ export interface GalleryImage {
   featured?: boolean;
 }
 
-export type PromoBannerColor = 'tea-green' | 'beige' | 'paynes-gray' | 'cornsilk' | 'papaya-whip';
+export type PromoBannerColor = 'tea-green' | 'beige' | 'paynes-gray' | 'deep-slate' | 'cornsilk' | 'papaya-whip' | 'sand' | 'vanilla-custard' | 'golden-bronze';
 export type PromoBannerTextColor = 'dark' | 'light';
 export type PromoBannerPosition = 'top' | 'bottom';
 export type PromoBannerPage = 'all' | 'home' | 'about' | 'services' | 'contact' | 'blog';

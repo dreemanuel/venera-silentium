@@ -206,7 +206,7 @@ export function HeroSection({
           className="absolute inset-0 w-full h-full object-cover"
           aria-hidden="true"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-paynes-gray/40 via-paynes-gray/30 to-paynes-gray/50" />
+        <div className="absolute inset-0 bg-gradient-to-b from-deep-slate/40 via-deep-slate/30 to-deep-slate/50" />
       </>
     );
   };
@@ -273,7 +273,7 @@ export function HeroSection({
           )}
 
           {/* Overlay gradient */}
-          <div className="absolute inset-0 bg-gradient-to-b from-paynes-gray/40 via-paynes-gray/30 to-paynes-gray/50" />
+          <div className="absolute inset-0 bg-gradient-to-b from-deep-slate/40 via-deep-slate/30 to-deep-slate/50" />
         </motion.div>
       </AnimatePresence>
     );
@@ -311,7 +311,7 @@ export function HeroSection({
   const renderFallbackBackground = () => (
     <div className="absolute inset-0 bg-cornsilk">
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-tea-green/30 rounded-full blur-3xl" />
-      <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-beige/50 rounded-full blur-3xl" />
+      <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-sand/50 rounded-full blur-3xl" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-papaya-whip/40 rounded-full blur-3xl" />
     </div>
   );
@@ -355,7 +355,7 @@ export function HeroSection({
         <motion.h1
           variants={itemVariants}
           className={`font-display text-7xl xs:text-8xl md:text-[8rem] lg:text-[11rem] mb-2 text-right ${
-            hasMedia ? 'text-cornsilk' : 'text-paynes-gray'
+            hasMedia ? 'text-cornsilk' : 'text-deep-slate'
           }`}
         >
           {title.split(/[\n\s]+/).map((word, index) => (
@@ -373,7 +373,7 @@ export function HeroSection({
           <motion.p
             variants={itemVariants}
             className={`font-heading text-lg md:text-xl lg:text-2xl mb-8 max-w-xl mx-auto ${
-              hasMedia ? 'text-cornsilk/90' : 'text-paynes-gray/80'
+              hasMedia ? 'text-cornsilk/90' : 'text-deep-slate/80'
             }`}
           >
             {subtitle}
@@ -385,7 +385,7 @@ export function HeroSection({
           <motion.blockquote
             variants={itemVariants}
             className={`italic text-base md:text-lg mb-12 max-w-md mx-auto ${
-              hasMedia ? 'text-cornsilk/80' : 'text-paynes-gray/60'
+              hasMedia ? 'text-cornsilk/80' : 'text-deep-slate/60'
             }`}
           >
             &ldquo;{quote}&rdquo;

@@ -20,7 +20,7 @@ export function FormSuccess({
     >
       <div className="flex items-center gap-3">
         <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0" />
-        <p className="text-paynes-gray font-body">{message}</p>
+        <p className="text-deep-slate font-body">{message}</p>
       </div>
 
       {whatsappLink && whatsappText && (
@@ -29,7 +29,7 @@ export function FormSuccess({
             href={whatsappLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-paynes-gray hover:text-green-700 font-body transition-colors"
+            className="inline-flex items-center gap-2 text-deep-slate hover:text-green-700 font-body transition-colors"
           >
             <MessageCircle className="w-4 h-4" />
             <span>{whatsappText}</span>

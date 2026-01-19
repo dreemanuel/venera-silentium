@@ -86,7 +86,7 @@ function BlogCard({ post, lang }: { post: BlogPost; lang: Language }) {
         className="block bg-white  overflow-hidden shadow-md hover:shadow-xl transition-all duration-500"
       >
         {/* Image */}
-        <div className="relative h-48 overflow-hidden bg-beige">
+        <div className="relative h-48 overflow-hidden bg-sand">
           {imageUrl ? (
             <img
               src={imageUrl}
@@ -96,13 +96,13 @@ function BlogCard({ post, lang }: { post: BlogPost; lang: Language }) {
               decoding="async"
             />
           ) : (
-            <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-tea-green/30 to-beige">
-              <span className="text-5xl text-paynes-gray/20">&#x2766;</span>
+            <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-tea-green/30 to-sand">
+              <span className="text-5xl text-deep-slate/20">&#x2766;</span>
             </div>
           )}
 
           {/* Category badge */}
-          <span className="absolute top-3 left-3 px-3 py-1 text-xs font-heading uppercase tracking-wider bg-white/90 text-paynes-gray rounded-full">
+          <span className="absolute top-3 left-3 px-3 py-1 text-xs font-heading uppercase tracking-wider bg-white/90 text-deep-slate rounded-full">
             {categoryLabel}
           </span>
         </div>
@@ -110,25 +110,25 @@ function BlogCard({ post, lang }: { post: BlogPost; lang: Language }) {
         {/* Content */}
         <div className="p-5">
           {/* Date */}
-          <div className="flex items-center gap-2 text-sm text-paynes-gray/50 mb-2">
+          <div className="flex items-center gap-2 text-sm text-deep-slate/50 mb-2">
             <Calendar className="w-4 h-4" />
             <span>{formattedDate}</span>
           </div>
 
           {/* Title */}
-          <h3 className="font-heading text-lg font-medium text-paynes-gray mb-2 line-clamp-2 group-hover:text-tea-green transition-colors duration-300">
+          <h3 className="font-heading text-lg font-medium text-deep-slate mb-2 line-clamp-2 group-hover:text-tea-green transition-colors duration-300">
             {title}
           </h3>
 
           {/* Excerpt */}
           {excerpt && (
-            <p className="text-sm text-paynes-gray/70 line-clamp-2 leading-relaxed mb-4">
+            <p className="text-sm text-deep-slate/70 line-clamp-2 leading-relaxed mb-4">
               {excerpt}
             </p>
           )}
 
           {/* Read more */}
-          <div className="flex items-center text-sm font-heading text-paynes-gray/50 group-hover:text-paynes-gray transition-colors duration-300">
+          <div className="flex items-center text-sm font-heading text-deep-slate/50 group-hover:text-deep-slate transition-colors duration-300">
             <span className="mr-2">Read More</span>
             <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" />
           </div>
@@ -167,12 +167,12 @@ export function BlogsSection({
         {(title || subtitle) && (
           <motion.div variants={itemVariants} className="text-center mb-12">
             {title && (
-              <h2 className="font-display text-5xl md:text-6xl lg:text-7xl text-paynes-gray mb-2 leading-[0.75]">
+              <h2 className="font-display text-5xl md:text-6xl lg:text-7xl text-deep-slate mb-2 leading-[0.75]">
                 {title}
               </h2>
             )}
             {subtitle && (
-              <p className="font-heading text-lg text-paynes-gray/70 max-w-2xl mx-auto">
+              <p className="font-heading text-lg text-deep-slate/70 max-w-2xl mx-auto">
                 {subtitle}
               </p>
             )}
@@ -198,7 +198,7 @@ export function BlogsSection({
           <motion.div variants={itemVariants} className="text-center mt-10">
             <Link
               to={`/${lang}/blog`}
-              className="inline-flex items-center gap-2 px-6 py-3 font-heading text-paynes-gray border-2 border-paynes-gray/30  hover:bg-paynes-gray hover:text-cornsilk transition-all duration-300"
+              className="inline-flex items-center gap-2 px-6 py-3 font-heading text-deep-slate border-2 border-deep-slate/30  hover:bg-deep-slate hover:text-cornsilk transition-all duration-300"
             >
               <span>{viewAllText[lang]}</span>
               <ArrowRight className="w-4 h-4" />

@@ -146,12 +146,12 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
         )}
 
         {/* Heading */}
-        <h1 className="text-4xl md:text-5xl font-display text-paynes-gray mb-4">
+        <h1 className="text-4xl md:text-5xl font-display text-deep-slate mb-4">
           {is404 ? notFoundContent.title : generalContent.title}
         </h1>
 
         {/* Description */}
-        <p className="text-paynes-gray/70 font-body text-lg mb-8 leading-relaxed">
+        <p className="text-deep-slate/70 font-body text-lg mb-8 leading-relaxed">
           {is404 ? notFoundContent.description : generalContent.description}
         </p>
 
@@ -159,14 +159,14 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Link
             to={`/${lang}`}
-            className="inline-flex items-center justify-center px-6 py-3 bg-paynes-gray text-cornsilk font-heading text-sm tracking-wide  hover:bg-paynes-gray/90 transition-colors"
+            className="inline-flex items-center justify-center px-6 py-3 bg-deep-slate text-cornsilk font-heading text-sm tracking-wide  hover:bg-deep-slate/90 transition-colors"
           >
             {is404 ? notFoundContent.backHome : generalContent.backHome}
           </Link>
           {is404 && (
             <Link
               to={`/${lang}/services`}
-              className="inline-flex items-center justify-center px-6 py-3 border border-paynes-gray text-paynes-gray font-heading text-sm tracking-wide  hover:bg-paynes-gray/10 transition-colors"
+              className="inline-flex items-center justify-center px-6 py-3 border border-deep-slate text-deep-slate font-heading text-sm tracking-wide  hover:bg-deep-slate/10 transition-colors"
             >
               {notFoundContent.viewServices}
             </Link>
@@ -176,10 +176,10 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
         {/* Dev stack trace */}
         {stack && (
           <details className="mt-8 text-left">
-            <summary className="text-sm text-paynes-gray/50 cursor-pointer hover:text-paynes-gray">
+            <summary className="text-sm text-deep-slate/50 cursor-pointer hover:text-deep-slate">
               Developer Details
             </summary>
-            <pre className="mt-4 p-4 bg-paynes-gray/10  overflow-x-auto text-xs text-paynes-gray/70">
+            <pre className="mt-4 p-4 bg-deep-slate/10  overflow-x-auto text-xs text-deep-slate/70">
               <code>{stack}</code>
             </pre>
           </details>

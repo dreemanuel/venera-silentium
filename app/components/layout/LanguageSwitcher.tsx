@@ -29,7 +29,7 @@ export function LanguageSwitcher({
         return (
           <span key={lang} className="flex items-center">
             {index > 0 && (
-              <span className="text-paynes-gray/30 mx-1">|</span>
+              <span className="text-deep-slate/30 mx-1">|</span>
             )}
             <Link
               to={path}
@@ -37,8 +37,8 @@ export function LanguageSwitcher({
                 px-2 py-1 text-sm font-heading tracking-wide transition-colors
                 ${
                   isActive
-                    ? "text-paynes-gray font-medium"
-                    : "text-paynes-gray/50 hover:text-paynes-gray"
+                    ? "text-deep-slate font-medium"
+                    : "text-deep-slate/50 hover:text-deep-slate"
                 }
               `}
               aria-current={isActive ? "page" : undefined}

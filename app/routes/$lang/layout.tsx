@@ -94,7 +94,7 @@ export default function LangLayout({ loaderData }: Route.ComponentProps) {
   if (!isI18nReady) {
     return (
       <div className="min-h-screen bg-cornsilk flex items-center justify-center">
-        <div className="text-paynes-gray/50 font-heading">Loading...</div>
+        <div className="text-deep-slate/50 font-heading">Loading...</div>
       </div>
     );
   }

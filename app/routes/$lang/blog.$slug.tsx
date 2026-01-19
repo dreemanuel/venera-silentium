@@ -133,14 +133,14 @@ function renderPortableText(blocks: PortableTextBlock[] | undefined): React.Reac
 
       if (block.style === 'h2') {
         return (
-          <h2 key={block._key || index} className="text-2xl md:text-3xl text-paynes-gray mt-10 mb-4">
+          <h2 key={block._key || index} className="text-2xl md:text-3xl text-deep-slate mt-10 mb-4">
             {text}
           </h2>
         );
       }
       if (block.style === 'h3') {
         return (
-          <h3 key={block._key || index} className="font-heading text-xl md:text-2xl text-paynes-gray mt-8 mb-3">
+          <h3 key={block._key || index} className="font-heading text-xl md:text-2xl text-deep-slate mt-8 mb-3">
             {text}
           </h3>
         );
@@ -149,7 +149,7 @@ function renderPortableText(blocks: PortableTextBlock[] | undefined): React.Reac
         return (
           <blockquote
             key={block._key || index}
-            className="border-l-4 border-tea-green pl-6 my-6 text-paynes-gray/80 italic text-lg"
+            className="border-l-4 border-tea-green pl-6 my-6 text-deep-slate/80 italic text-lg"
           >
             {text}
           </blockquote>
@@ -176,7 +176,7 @@ function RelatedPostCard({ post, lang }: { post: BlogPost; lang: Language }) {
       to={`/${lang}/blog/${post.slug.current}`}
       className="group block bg-white  shadow-md hover:shadow-lg transition-shadow overflow-hidden"
     >
-      <div className="h-32 bg-beige overflow-hidden">
+      <div className="h-32 bg-sand overflow-hidden">
         {imageUrl ? (
           <img
             src={imageUrl}
@@ -185,13 +185,13 @@ function RelatedPostCard({ post, lang }: { post: BlogPost; lang: Language }) {
             loading="lazy"
           />
         ) : (
-          <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-tea-green/30 to-beige">
-            <span className="text-3xl text-paynes-gray/20">&#x2766;</span>
+          <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-tea-green/30 to-sand">
+            <span className="text-3xl text-deep-slate/20">&#x2766;</span>
           </div>
         )}
       </div>
       <div className="p-4">
-        <h4 className="font-heading text-sm font-medium text-paynes-gray group-hover:text-tea-green transition-colors line-clamp-2">
+        <h4 className="font-heading text-sm font-medium text-deep-slate group-hover:text-tea-green transition-colors line-clamp-2">
           {title}
         </h4>
       </div>
@@ -245,10 +245,10 @@ export default function BlogPostDetail() {
               className="absolute inset-0 bg-cover bg-center"
               style={{ backgroundImage: `url(${heroImageUrl})` }}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-paynes-gray/80 via-paynes-gray/40 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-deep-slate/80 via-deep-slate/40 to-transparent" />
           </>
         ) : (
-          <div className="absolute inset-0 bg-gradient-to-br from-tea-green/30 via-beige to-cornsilk" />
+          <div className="absolute inset-0 bg-gradient-to-br from-tea-green/30 via-sand to-cornsilk" />
         )}
 
         <div className="relative z-10 container mx-auto px-6 pb-12 pt-24">
@@ -258,7 +258,7 @@ export default function BlogPostDetail() {
             className={`inline-flex items-center text-sm mb-6 transition-colors ${
               heroImageUrl
                 ? 'text-cornsilk/80 hover:text-cornsilk'
-                : 'text-paynes-gray/60 hover:text-paynes-gray'
+                : 'text-deep-slate/60 hover:text-deep-slate'
             }`}
           >
             <ChevronLeft className="w-4 h-4 mr-1" />
@@ -269,8 +269,8 @@ export default function BlogPostDetail() {
           <span
             className={`inline-block px-3 py-1 text-xs font-heading uppercase tracking-wider rounded-full mb-4 ${
               heroImageUrl
-                ? 'bg-white/90 text-paynes-gray'
-                : 'bg-paynes-gray/10 text-paynes-gray'
+                ? 'bg-white/90 text-deep-slate'
+                : 'bg-deep-slate/10 text-deep-slate'
             }`}
           >
             {categoryLabel}
@@ -278,7 +278,7 @@ export default function BlogPostDetail() {
 
           <h1
             className={`font-display text-4xl md:text-5xl lg:text-6xl max-w-4xl mb-2 leading-[0.75] ${
-              heroImageUrl ? 'text-cornsilk' : 'text-paynes-gray'
+              heroImageUrl ? 'text-cornsilk' : 'text-deep-slate'
             }`}
           >
             {title}
@@ -287,7 +287,7 @@ export default function BlogPostDetail() {
           {/* Meta info */}
           <div
             className={`flex flex-wrap items-center gap-4 text-sm ${
-              heroImageUrl ? 'text-cornsilk/80' : 'text-paynes-gray/60'
+              heroImageUrl ? 'text-cornsilk/80' : 'text-deep-slate/60'
             }`}
           >
             {formattedDate && (
@@ -322,17 +322,17 @@ export default function BlogPostDetail() {
             >
               {/* Excerpt/Intro */}
               {excerpt && (
-                <p className="text-xl text-paynes-gray/80 leading-relaxed mb-8 font-heading">
+                <p className="text-xl text-deep-slate/80 leading-relaxed mb-8 font-heading">
                   {excerpt}
                 </p>
               )}
 
               {/* Full Content */}
-              <div className="text-paynes-gray/80">
+              <div className="text-deep-slate/80">
                 {content ? (
                   renderPortableText(content)
                 ) : (
-                  <p className="text-center py-12 text-paynes-gray/50">
+                  <p className="text-center py-12 text-deep-slate/50">
                     {t('common.comingSoon')}
                   </p>
                 )}
@@ -340,8 +340,8 @@ export default function BlogPostDetail() {
 
               {/* Related Services */}
               {post.relatedServices && post.relatedServices.length > 0 && (
-                <motion.div variants={itemVariants} className="mt-12 pt-8 border-t border-beige">
-                  <h3 className="font-heading text-xl text-paynes-gray mb-4">
+                <motion.div variants={itemVariants} className="mt-12 pt-8 border-t border-sand">
+                  <h3 className="font-heading text-xl text-deep-slate mb-4">
                     {lang === 'ru'
                       ? 'Связанные услуги'
                       : lang === 'id'
@@ -353,7 +353,7 @@ export default function BlogPostDetail() {
                       <Link
                         key={service._id}
                         to={`/${lang}/services/${service.slug.current}`}
-                        className="inline-flex items-center px-4 py-2 bg-tea-green/20 text-paynes-gray rounded-full text-sm font-heading hover:bg-tea-green/40 transition-colors"
+                        className="inline-flex items-center px-4 py-2 bg-tea-green/20 text-deep-slate rounded-full text-sm font-heading hover:bg-tea-green/40 transition-colors"
                       >
                         {getLocalizedValue(service.title, lang)}
                         <ArrowRight className="w-3 h-3 ml-2" />
@@ -371,13 +371,13 @@ export default function BlogPostDetail() {
                 <div className="bg-white  shadow-md p-6 mb-8">
                   <div className="flex items-center gap-4 mb-4">
                     <div className="w-12 h-12 rounded-full bg-tea-green/20 flex items-center justify-center">
-                      <User className="w-6 h-6 text-paynes-gray/60" />
+                      <User className="w-6 h-6 text-deep-slate/60" />
                     </div>
                     <div>
-                      <h4 className="font-heading font-medium text-paynes-gray">
+                      <h4 className="font-heading font-medium text-deep-slate">
                         {post.author}
                       </h4>
-                      <p className="text-sm text-paynes-gray/60">
+                      <p className="text-sm text-deep-slate/60">
                         {lang === 'ru' ? 'Автор' : lang === 'id' ? 'Penulis' : 'Author'}
                       </p>
                     </div>
@@ -387,15 +387,15 @@ export default function BlogPostDetail() {
 
               {/* CTA Card */}
               <div className="bg-white  shadow-lg p-6 sticky top-24">
-                <h3 className="font-heading text-lg text-paynes-gray mb-3">
+                <h3 className="font-heading text-lg text-deep-slate mb-3">
                   {t('contact.ctaHeading')}
                 </h3>
-                <p className="text-sm text-paynes-gray/70 mb-6">
+                <p className="text-sm text-deep-slate/70 mb-6">
                   {t('contact.ctaSubheading')}
                 </p>
                 <Link
                   to={`/${lang}/contact`}
-                  className="inline-flex items-center justify-center gap-2 w-full px-5 py-3 bg-paynes-gray text-cornsilk  font-heading font-medium hover:bg-paynes-gray/90 transition-colors"
+                  className="inline-flex items-center justify-center gap-2 w-full px-5 py-3 bg-deep-slate text-cornsilk  font-heading font-medium hover:bg-deep-slate/90 transition-colors"
                 >
                   {t('contact.bookConsultation')}
                 </Link>
@@ -404,7 +404,7 @@ export default function BlogPostDetail() {
               {/* Related Posts */}
               {relatedPosts.length > 0 && (
                 <div className="mt-8">
-                  <h3 className="font-heading text-lg text-paynes-gray mb-4">
+                  <h3 className="font-heading text-lg text-deep-slate mb-4">
                     {lang === 'ru'
                       ? 'Похожие статьи'
                       : lang === 'id'

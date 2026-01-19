@@ -46,7 +46,7 @@ function BrandLogo({ brand }: { brand: Brand }) {
       decoding="async"
     />
   ) : (
-    <span className="text-paynes-gray/40 font-heading text-lg group-hover:text-paynes-gray transition-colors">
+    <span className="text-deep-slate/40 font-heading text-lg group-hover:text-deep-slate transition-colors">
       {brand.name}
     </span>
   );
@@ -99,12 +99,12 @@ export function BrandsSection({
             className="text-center mb-12"
           >
             {title && (
-              <h2 className="font-display text-5xl md:text-6xl lg:text-7xl text-paynes-gray mb-2 leading-[0.75]">
+              <h2 className="font-display text-5xl md:text-6xl lg:text-7xl text-deep-slate mb-2 leading-[0.75]">
                 {title}
               </h2>
             )}
             {subtitle && (
-              <p className="font-heading text-lg text-paynes-gray/70 max-w-2xl mx-auto">
+              <p className="font-heading text-lg text-deep-slate/70 max-w-2xl mx-auto">
                 {subtitle}
               </p>
             )}

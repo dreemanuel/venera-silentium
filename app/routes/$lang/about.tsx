@@ -90,17 +90,17 @@ export default function About() {
   return (
     <main className="min-h-screen bg-cornsilk">
       {/* Page Header */}
-      <section className="pt-32 pb-16 bg-beige/30">
+      <section className="pt-32 pb-16 bg-sand/30">
         <motion.div
           className="container mx-auto px-6 text-center"
           initial="hidden"
           animate="visible"
           variants={headerVariants}
         >
-          <h1 className="font-display text-5xl md:text-6xl lg:text-7xl text-paynes-gray mb-2 leading-[0.75]">
+          <h1 className="font-display text-5xl md:text-6xl lg:text-7xl text-deep-slate mb-2 leading-[0.75]">
             {t('about.pageHeading')}
           </h1>
-          <p className="text-paynes-gray/70 font-heading text-lg md:text-xl max-w-2xl mx-auto">
+          <p className="text-deep-slate/70 font-heading text-lg md:text-xl max-w-2xl mx-auto">
             {t('about.pageSubheading')}
           </p>
         </motion.div>

@@ -125,7 +125,7 @@ function BlogCard({ post, lang }: { post: BlogPost; lang: Language }) {
         className="block bg-white  overflow-hidden shadow-md hover:shadow-xl transition-all duration-500"
       >
         {/* Image */}
-        <div className="relative h-48 md:h-56 overflow-hidden bg-beige">
+        <div className="relative h-48 md:h-56 overflow-hidden bg-sand">
           {imageUrl ? (
             <img
               src={imageUrl}
@@ -135,13 +135,13 @@ function BlogCard({ post, lang }: { post: BlogPost; lang: Language }) {
               decoding="async"
             />
           ) : (
-            <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-tea-green/30 to-beige">
-              <span className="text-5xl text-paynes-gray/20">&#x2766;</span>
+            <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-tea-green/30 to-sand">
+              <span className="text-5xl text-deep-slate/20">&#x2766;</span>
             </div>
           )}
 
           {/* Category badge */}
-          <span className="absolute top-3 left-3 px-3 py-1 text-xs font-heading uppercase tracking-wider bg-white/90 text-paynes-gray rounded-full">
+          <span className="absolute top-3 left-3 px-3 py-1 text-xs font-heading uppercase tracking-wider bg-white/90 text-deep-slate rounded-full">
             {categoryLabel}
           </span>
         </div>
@@ -149,7 +149,7 @@ function BlogCard({ post, lang }: { post: BlogPost; lang: Language }) {
         {/* Content */}
         <div className="p-5 md:p-6">
           {/* Date & Author */}
-          <div className="flex items-center gap-2 text-sm text-paynes-gray/50 mb-3">
+          <div className="flex items-center gap-2 text-sm text-deep-slate/50 mb-3">
             <Calendar className="w-4 h-4" />
             <span>{formattedDate}</span>
             {post.author && (
@@ -161,19 +161,19 @@ function BlogCard({ post, lang }: { post: BlogPost; lang: Language }) {
           </div>
 
           {/* Title */}
-          <h2 className="font-heading text-xl font-medium text-paynes-gray mb-3 line-clamp-2 group-hover:text-tea-green transition-colors duration-300">
+          <h2 className="font-heading text-xl font-medium text-deep-slate mb-3 line-clamp-2 group-hover:text-tea-green transition-colors duration-300">
             {title}
           </h2>
 
           {/* Excerpt */}
           {excerpt && (
-            <p className="text-sm text-paynes-gray/70 line-clamp-3 leading-relaxed mb-4">
+            <p className="text-sm text-deep-slate/70 line-clamp-3 leading-relaxed mb-4">
               {excerpt}
             </p>
           )}
 
           {/* Read more */}
-          <div className="flex items-center text-sm font-heading text-paynes-gray/50 group-hover:text-paynes-gray transition-colors duration-300">
+          <div className="flex items-center text-sm font-heading text-deep-slate/50 group-hover:text-deep-slate transition-colors duration-300">
             <span className="mr-2">
               {lang === 'ru' ? 'Читать далее' : lang === 'id' ? 'Baca Selengkapnya' : 'Read More'}
             </span>
@@ -215,7 +215,7 @@ export default function Blog() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 md:pb-28 bg-gradient-to-b from-beige/50 to-cornsilk">
+      <section className="relative pt-32 pb-20 md:pb-28 bg-gradient-to-b from-sand/50 to-cornsilk">
         {/* Decorative elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-1/4 left-0 w-64 h-64 bg-tea-green/20 rounded-full blur-3xl" />
@@ -229,10 +229,10 @@ export default function Blog() {
             transition={{ duration: 0.6 }}
             className="max-w-3xl"
           >
-            <h1 className="font-display text-5xl md:text-6xl lg:text-7xl text-paynes-gray mb-2 leading-[0.75]">
+            <h1 className="font-display text-5xl md:text-6xl lg:text-7xl text-deep-slate mb-2 leading-[0.75]">
               {headings[lang]}
             </h1>
-            <p className="font-heading text-lg md:text-xl text-paynes-gray/70">
+            <p className="font-heading text-lg md:text-xl text-deep-slate/70">
               {subheadings[lang]}
             </p>
           </motion.div>
@@ -254,8 +254,8 @@ export default function Blog() {
                 onClick={() => setActiveCategory('all')}
                 className={`px-5 py-2 rounded-full text-sm font-heading transition-all duration-300 ${
                   activeCategory === 'all'
-                    ? 'bg-paynes-gray text-cornsilk'
-                    : 'bg-white text-paynes-gray hover:bg-tea-green/20'
+                    ? 'bg-deep-slate text-cornsilk'
+                    : 'bg-white text-deep-slate hover:bg-tea-green/20'
                 }`}
               >
                 {lang === 'en' ? 'All' : lang === 'ru' ? 'Все' : 'Semua'}
@@ -266,8 +266,8 @@ export default function Blog() {
                   onClick={() => setActiveCategory(category)}
                   className={`px-5 py-2 rounded-full text-sm font-heading transition-all duration-300 ${
                     activeCategory === category
-                      ? 'bg-paynes-gray text-cornsilk'
-                      : 'bg-white text-paynes-gray hover:bg-tea-green/20'
+                      ? 'bg-deep-slate text-cornsilk'
+                      : 'bg-white text-deep-slate hover:bg-tea-green/20'
                   }`}
                 >
                   {categoryLabels[category]?.[lang] || category}
@@ -290,7 +290,7 @@ export default function Blog() {
             </motion.div>
           ) : (
             <div className="text-center py-12">
-              <p className="text-paynes-gray/70 font-heading">
+              <p className="text-deep-slate/70 font-heading">
                 {t('common.comingSoon')}
               </p>
             </div>

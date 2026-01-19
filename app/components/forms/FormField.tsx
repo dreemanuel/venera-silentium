@@ -23,11 +23,11 @@ export function FormField({
     <div className={`space-y-2 ${className}`}>
       <label
         htmlFor={name}
-        className="block font-heading text-sm font-medium text-paynes-gray"
+        className="block font-heading text-sm font-medium text-deep-slate"
       >
         {label}
         {optional && (
-          <span className="ml-1 text-paynes-gray/60 font-normal">
+          <span className="ml-1 text-deep-slate/60 font-normal">
             ({optionalText})
           </span>
         )}

@@ -128,7 +128,7 @@ export function ContactCTA({
             style={{ backgroundImage: `url(${backgroundImageUrl})` }}
           />
           <div
-            className="absolute inset-0 bg-paynes-gray"
+            className="absolute inset-0 bg-deep-slate"
             style={{ opacity: overlayOpacity / 100 }}
           />
         </>
@@ -144,7 +144,7 @@ export function ContactCTA({
           <motion.h2
             variants={itemVariants}
             className={`font-display text-4xl md:text-5xl lg:text-6xl mb-2 leading-[0.75] ${
-              hasBackgroundImage ? 'text-cornsilk' : 'text-paynes-gray'
+              hasBackgroundImage ? 'text-cornsilk' : 'text-deep-slate'
             }`}
           >
             {heading}
@@ -153,7 +153,7 @@ export function ContactCTA({
           <motion.p
             variants={itemVariants}
             className={`mb-24 font-heading ${
-              hasBackgroundImage ? 'text-cornsilk/80' : 'text-paynes-gray/70'
+              hasBackgroundImage ? 'text-cornsilk/80' : 'text-deep-slate/70'
             }`}
           >
             {subheading}
@@ -167,9 +167,9 @@ export function ContactCTA({
                   variants={itemVariants}
                   className="mb-6 p-4 bg-tea-green/50 rounded-lg flex items-center gap-3 text-left"
                 >
-                  <CheckCircle className="w-5 h-5 text-paynes-gray flex-shrink-0" />
+                  <CheckCircle className="w-5 h-5 text-deep-slate flex-shrink-0" />
                   <div>
-                    <p className="text-paynes-gray font-heading text-sm">
+                    <p className="text-deep-slate font-heading text-sm">
                       {t('form.success')}
                     </p>
                     {whatsappNumber && (
@@ -177,7 +177,7 @@ export function ContactCTA({
                         href={whatsappLink}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-paynes-gray/70 text-sm underline hover:text-paynes-gray flex items-center gap-1 mt-1"
+                        className="text-deep-slate/70 text-sm underline hover:text-deep-slate flex items-center gap-1 mt-1"
                       >
                         <MessageCircle className="w-4 h-4" />
                         {t('form.whatsappFollowUp')}

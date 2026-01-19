@@ -91,13 +91,13 @@ export default function Contact() {
         >
           <motion.h1
             variants={itemVariants}
-            className="font-display text-5xl md:text-6xl lg:text-7xl text-paynes-gray mb-2 leading-[0.75]"
+            className="font-display text-5xl md:text-6xl lg:text-7xl text-deep-slate mb-2 leading-[0.75]"
           >
             {t("contact.pageTitle")}
           </motion.h1>
           <motion.p
             variants={itemVariants}
-            className="text-paynes-gray/70 font-heading text-lg md:text-xl max-w-2xl mx-auto"
+            className="text-deep-slate/70 font-heading text-lg md:text-xl max-w-2xl mx-auto"
           >
             {t("contact.pageSubtitle")}
           </motion.p>
@@ -144,7 +144,7 @@ export default function Contact() {
             {/* Contact Info Column */}
             <motion.div variants={itemVariants} className="space-y-6">
               <div className="glass p-8">
-                <h2 className="text-2xl text-paynes-gray mb-6 font-heading">
+                <h2 className="text-2xl text-deep-slate mb-6 font-heading">
                   {t("contact.ctaHeading")}
                 </h2>
 
@@ -156,7 +156,7 @@ export default function Contact() {
                         <MessageCircle className="w-5 h-5 text-green-600" />
                       </div>
                       <div>
-                        <p className="font-heading text-paynes-gray font-medium">
+                        <p className="font-heading text-deep-slate font-medium">
                           WhatsApp
                         </p>
                         <a
@@ -174,13 +174,13 @@ export default function Contact() {
                   {/* Location */}
                   <div className="flex items-start gap-4">
                     <div className="w-10 h-10 rounded-full bg-tea-green/30 flex items-center justify-center flex-shrink-0">
-                      <MapPin className="w-5 h-5 text-paynes-gray" />
+                      <MapPin className="w-5 h-5 text-deep-slate" />
                     </div>
                     <div>
-                      <p className="font-heading text-paynes-gray font-medium">
+                      <p className="font-heading text-deep-slate font-medium">
                         {t("contact.location")}
                       </p>
-                      <p className="text-paynes-gray/70">Bali, Indonesia</p>
+                      <p className="text-deep-slate/70">Bali, Indonesia</p>
                     </div>
                   </div>
 
@@ -188,15 +188,15 @@ export default function Contact() {
                   {siteSettings?.contactEmail && (
                     <div className="flex items-start gap-4">
                       <div className="w-10 h-10 rounded-full bg-tea-green/30 flex items-center justify-center flex-shrink-0">
-                        <Mail className="w-5 h-5 text-paynes-gray" />
+                        <Mail className="w-5 h-5 text-deep-slate" />
                       </div>
                       <div>
-                        <p className="font-heading text-paynes-gray font-medium">
+                        <p className="font-heading text-deep-slate font-medium">
                           {t("contact.email")}
                         </p>
                         <a
                           href={`mailto:${siteSettings.contactEmail}`}
-                          className="text-paynes-gray/70 hover:text-paynes-gray transition-colors"
+                          className="text-deep-slate/70 hover:text-deep-slate transition-colors"
                         >
                           {siteSettings.contactEmail}
                         </a>
@@ -208,15 +208,15 @@ export default function Contact() {
                   {siteSettings?.contactPhone && (
                     <div className="flex items-start gap-4">
                       <div className="w-10 h-10 rounded-full bg-tea-green/30 flex items-center justify-center flex-shrink-0">
-                        <Phone className="w-5 h-5 text-paynes-gray" />
+                        <Phone className="w-5 h-5 text-deep-slate" />
                       </div>
                       <div>
-                        <p className="font-heading text-paynes-gray font-medium">
+                        <p className="font-heading text-deep-slate font-medium">
                           {t("contact.phone")}
                         </p>
                         <a
                           href={`tel:${siteSettings.contactPhone}`}
-                          className="text-paynes-gray/70 hover:text-paynes-gray transition-colors"
+                          className="text-deep-slate/70 hover:text-deep-slate transition-colors"
                         >
                           {siteSettings.contactPhone}
                         </a>
@@ -227,13 +227,13 @@ export default function Contact() {
                   {/* Response Time */}
                   <div className="flex items-start gap-4">
                     <div className="w-10 h-10 rounded-full bg-tea-green/30 flex items-center justify-center flex-shrink-0">
-                      <Clock className="w-5 h-5 text-paynes-gray" />
+                      <Clock className="w-5 h-5 text-deep-slate" />
                     </div>
                     <div>
-                      <p className="font-heading text-paynes-gray font-medium">
+                      <p className="font-heading text-deep-slate font-medium">
                         {t("contact.responseTime")}
                       </p>
-                      <p className="text-paynes-gray/70">
+                      <p className="text-deep-slate/70">
                         {t("contact.responseTimeText")}
                       </p>
                     </div>
@@ -243,7 +243,7 @@ export default function Contact() {
                 {/* Social Links */}
                 {siteSettings?.socialLinks && (
                   <div className="pt-6 mt-6 border-t border-tea-green/30">
-                    <h3 className="font-heading text-paynes-gray font-medium mb-4">
+                    <h3 className="font-heading text-deep-slate font-medium mb-4">
                       {t("contact.followUs")}
                     </h3>
                     <div className="flex gap-4">
@@ -255,7 +255,7 @@ export default function Contact() {
                           aria-label="Instagram"
                           className="w-10 h-10 rounded-full bg-tea-green/30 flex items-center justify-center hover:bg-tea-green/50 transition-colors"
                         >
-                          <Instagram className="w-5 h-5 text-paynes-gray" />
+                          <Instagram className="w-5 h-5 text-deep-slate" />
                         </a>
                       )}
                       {/* Add more social links as needed */}
@@ -266,7 +266,7 @@ export default function Contact() {
 
               {/* Additional info */}
               <div className="glass-light p-6 text-center">
-                <p className="text-paynes-gray/70 font-body text-sm">
+                <p className="text-deep-slate/70 font-body text-sm">
                   {t("common.location")}
                 </p>
               </div>

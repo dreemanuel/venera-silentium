@@ -37,13 +37,13 @@ export function Header({ lang, hasTopBanner = false }: HeaderProps) {
 
   return (
     <>
-      <header className={`fixed ${topOffset} left-0 right-0 z-50 backdrop-blur-lg border-b border-beige/30 transition-[top] duration-300`} style={{ backgroundColor: 'rgba(254, 250, 224, 0.5)' }}>
+      <header className={`fixed ${topOffset} left-0 right-0 z-50 backdrop-blur-lg border-b border-sand/30 transition-[top] duration-300`} style={{ backgroundColor: 'rgba(186, 157, 38, 0.5)' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 md:h-20">
             {/* Logo */}
             <Link
               to={`/${lang}`}
-              className="text-paynes-gray font-display text-2xl md:text-4xl hover:opacity-80 transition-opacity"
+              className="text-deep-slate font-display text-2xl md:text-4xl hover:opacity-80 transition-opacity"
             >
               Woman Silentium
             </Link>
@@ -54,7 +54,7 @@ export function Header({ lang, hasTopBanner = false }: HeaderProps) {
                 <Link
                   key={item.key}
                   to={item.href}
-                  className="text-paynes-gray/70 hover:text-paynes-gray font-heading text-sm tracking-wide transition-colors"
+                  className="text-deep-slate/70 hover:text-deep-slate font-heading text-sm tracking-wide transition-colors"
                 >
                   {t(`nav.${item.key}`)}
                 </Link>
@@ -72,7 +72,7 @@ export function Header({ lang, hasTopBanner = false }: HeaderProps) {
             {/* Mobile Menu Button */}
             <button
               type="button"
-              className="md:hidden p-2 text-paynes-gray hover:bg-beige/50  transition-colors"
+              className="md:hidden p-2 text-deep-slate hover:bg-sand/50  transition-colors"
               onClick={() => setIsMobileMenuOpen(true)}
               aria-label="Open menu"
               aria-expanded={isMobileMenuOpen}

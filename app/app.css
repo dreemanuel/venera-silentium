@@ -33,6 +33,14 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: "Gilmoray";
+  src: url("/fonts/gilmoray.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* Tailwind v4 Theme Configuration */
 @theme {
   /* Custom Colors - Silentium Brand Palette */
@@ -47,6 +55,18 @@
   /* Primary Texts, CTA Main, Primary Accents */
   --color-paynes-gray: #5c6b73;
 
+  /* Dark Color Options (Jan 2026) */
+  --color-deep-slate: #3d4a4f;
+  --color-dark-bronze: #4a3c1f;
+  --color-espresso: #3c2f1c;
+  --color-charcoal-olive: #3d3d29;
+  --color-warm-black: #2c2416;
+
+  /* New Gold/Yellow Accent Options (Jan 2026) */
+  --color-golden-bronze: #ba9d26;
+  --color-sand: #d2be78;
+  --color-vanilla-custard: #e6d6a3;
+
   /* Semantic aliases */
   --color-primary: #5c6b73;
   --color-accent: #ccd5ae;
@@ -55,7 +75,9 @@
   --color-surface: #e9edc9;
 
   /* Typography - Font Families */
-  --font-display: "Meganoli", sans-serif;
+  /* Display font options: "Gilmoray", "Meganoli", "Ashford" */
+  --font-display: "Gilmoray", sans-serif;
+  /* Heading font options: "Bricolage Grotesque", "Gilmoray", "Meganoli" */
   --font-heading: "Bricolage Grotesque", sans-serif;
   --font-body: "EB Garamond", serif;
   --font-playwrite: "Playwrite IE", cursive;
@@ -84,8 +106,8 @@ html {
 
 body {
   font-family: var(--font-body);
-  background-color: var(--color-cornsilk);
-  color: var(--color-paynes-gray);
+  background-color: var(--color-vanilla-custard);
+  color: var(--color-deep-slate);
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -97,14 +119,14 @@ h2 {
   font-family: var(--font-display);
   font-weight: 300;
   line-height: 1.2;
-  color: var(--color-paynes-gray);
+  color: var(--color-deep-slate);
 }
 
 h3 {
   font-family: var(--font-heading);
   font-weight: 500;
   line-height: 1.3;
-  color: var(--color-paynes-gray);
+  color: var(--color-deep-slate);
 }
 
 h4,
@@ -113,7 +135,7 @@ h6 {
   font-family: var(--font-heading);
   font-weight: 400;
   line-height: 1.4;
-  color: var(--color-paynes-gray);
+  color: var(--color-deep-slate);
 }
 
 p {
@@ -151,12 +173,12 @@ p {
 /* Selection Styles */
 ::selection {
   background-color: var(--color-tea-green);
-  color: var(--color-paynes-gray);
+  color: var(--color-deep-slate);
 }
 
 /* Focus Styles */
 :focus-visible {
-  outline: 2px solid var(--color-paynes-gray);
+  outline: 2px solid var(--color-deep-slate);
   outline-offset: 2px;
 }
 

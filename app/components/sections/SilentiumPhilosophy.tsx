@@ -100,10 +100,10 @@ export function SilentiumPhilosophy({
           <div className="absolute inset-0 bg-cornsilk/60" />
         </>
       ) : (
-        <div className="absolute inset-0 bg-gradient-to-br from-cornsilk via-papaya-whip/30 to-beige/40">
+        <div className="absolute inset-0 bg-gradient-to-br from-cornsilk via-papaya-whip/30 to-sand/40">
           {/* Decorative elements */}
           <div className="absolute top-0 left-0 w-72 h-72 bg-tea-green/20 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
-          <div className="absolute bottom-0 right-0 w-96 h-96 bg-beige/40 rounded-full blur-3xl translate-x-1/3 translate-y-1/3" />
+          <div className="absolute bottom-0 right-0 w-96 h-96 bg-sand/40 rounded-full blur-3xl translate-x-1/3 translate-y-1/3" />
         </div>
       )}
 
@@ -117,13 +117,13 @@ export function SilentiumPhilosophy({
           {/* Decorative line */}
           <motion.div
             variants={itemVariants}
-            className="w-16 h-px bg-paynes-gray/30 mx-auto mb-8"
+            className="w-16 h-px bg-deep-slate/30 mx-auto mb-8"
           />
 
           {/* Tagline */}
           <motion.h2
             variants={itemVariants}
-            className="font-display text-5xl md:text-6xl lg:text-7xl text-paynes-gray mb-2 leading-[0.75]"
+            className="font-display text-5xl md:text-6xl lg:text-7xl text-deep-slate mb-2 leading-[0.75]"
           >
             {tagline}
           </motion.h2>
@@ -134,7 +134,7 @@ export function SilentiumPhilosophy({
               {displayText.split('\n\n').map((paragraph, index) => (
                 <p
                   key={index}
-                  className="text-paynes-gray/70 text-lg md:text-xl leading-relaxed"
+                  className="text-deep-slate/70 text-lg md:text-xl leading-relaxed"
                 >
                   {paragraph}
                 </p>
@@ -150,7 +150,7 @@ export function SilentiumPhilosophy({
             <div className="flex items-center gap-4">
               <span className="w-8 h-px bg-tea-green/50" />
               <span className="text-tea-green text-8xl font-display">&ldquo;</span>
-              <span className="text-paynes-gray/50 text-sm font-heading tracking-widest uppercase">
+              <span className="text-deep-slate/50 text-sm font-heading tracking-widest uppercase">
                 Woman Silentium
               </span>
               <span className="text-tea-green text-8xl font-display">&rdquo;</span>

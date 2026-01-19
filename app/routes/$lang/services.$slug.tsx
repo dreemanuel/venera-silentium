@@ -108,14 +108,14 @@ function renderPortableText(blocks: PortableTextBlock[] | undefined): React.Reac
       const text = block.children?.map((child) => child.text).join('') || '';
       if (block.style === 'h2') {
         return (
-          <h2 key={block._key || index} className="text-2xl text-paynes-gray mt-8 mb-4">
+          <h2 key={block._key || index} className="text-2xl text-deep-slate mt-8 mb-4">
             {text}
           </h2>
         );
       }
       if (block.style === 'h3') {
         return (
-          <h3 key={block._key || index} className="font-heading text-xl text-paynes-gray mt-6 mb-3">
+          <h3 key={block._key || index} className="font-heading text-xl text-deep-slate mt-6 mb-3">
             {text}
           </h3>
         );
@@ -142,7 +142,7 @@ function RelatedServiceCard({ service, lang }: { service: Service; lang: Languag
       to={`/${lang}/services/${service.slug.current}`}
       className="group block bg-white  shadow-md hover:shadow-lg transition-shadow overflow-hidden"
     >
-      <div className="h-32 bg-beige overflow-hidden">
+      <div className="h-32 bg-sand overflow-hidden">
         {imageUrl ? (
           <img
             src={imageUrl}
@@ -151,17 +151,17 @@ function RelatedServiceCard({ service, lang }: { service: Service; lang: Languag
             loading="lazy"
           />
         ) : (
-          <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-tea-green/30 to-beige">
-            <Sparkles className="w-8 h-8 text-paynes-gray/20" />
+          <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-tea-green/30 to-sand">
+            <Sparkles className="w-8 h-8 text-deep-slate/20" />
           </div>
         )}
       </div>
       <div className="p-4">
-        <h4 className="font-heading text-sm font-medium text-paynes-gray group-hover:text-tea-green transition-colors">
+        <h4 className="font-heading text-sm font-medium text-deep-slate group-hover:text-tea-green transition-colors">
           {title}
         </h4>
         {shortDescription && (
-          <p className="text-xs text-paynes-gray/60 mt-1 line-clamp-2">{shortDescription}</p>
+          <p className="text-xs text-deep-slate/60 mt-1 line-clamp-2">{shortDescription}</p>
         )}
       </div>
     </Link>
@@ -210,10 +210,10 @@ export default function ServiceDetail() {
               className="absolute inset-0 bg-cover bg-center"
               style={{ backgroundImage: `url(${heroImageUrl})` }}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-paynes-gray/80 via-paynes-gray/40 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-deep-slate/80 via-deep-slate/40 to-transparent" />
           </>
         ) : (
-          <div className="absolute inset-0 bg-gradient-to-br from-tea-green/30 via-beige to-cornsilk" />
+          <div className="absolute inset-0 bg-gradient-to-br from-tea-green/30 via-sand to-cornsilk" />
         )}
 
         <div className="relative z-10 container mx-auto px-6 pb-12 pt-24">
@@ -223,7 +223,7 @@ export default function ServiceDetail() {
             className={`inline-flex items-center text-sm mb-6 transition-colors ${
               heroImageUrl
                 ? 'text-cornsilk/80 hover:text-cornsilk'
-                : 'text-paynes-gray/60 hover:text-paynes-gray'
+                : 'text-deep-slate/60 hover:text-deep-slate'
             }`}
           >
             <ChevronLeft className="w-4 h-4 mr-1" />
@@ -232,7 +232,7 @@ export default function ServiceDetail() {
 
           <h1
             className={`font-display text-4xl md:text-5xl lg:text-6xl max-w-3xl leading-[0.75] ${
-              heroImageUrl ? 'text-cornsilk' : 'text-paynes-gray'
+              heroImageUrl ? 'text-cornsilk' : 'text-deep-slate'
             }`}
           >
             {title}
@@ -241,7 +241,7 @@ export default function ServiceDetail() {
           {shortDescription && (
             <p
               className={`font-heading text-lg mt-4 max-w-2xl ${
-                heroImageUrl ? 'text-cornsilk/90' : 'text-paynes-gray/80'
+                heroImageUrl ? 'text-cornsilk/90' : 'text-deep-slate/80'
               }`}
             >
               {shortDescription}
@@ -264,7 +264,7 @@ export default function ServiceDetail() {
               {/* Quick Info Pills */}
               <div className="flex flex-wrap gap-4 mb-8">
                 {duration && (
-                  <div className="inline-flex items-center px-4 py-2 bg-tea-green/20 rounded-full text-sm text-paynes-gray">
+                  <div className="inline-flex items-center px-4 py-2 bg-tea-green/20 rounded-full text-sm text-deep-slate">
                     <Clock className="w-4 h-4 mr-2" />
                     <span className="font-heading">{t('services.duration')}:</span>
                     <span className="ml-1">{duration}</span>
@@ -274,7 +274,7 @@ export default function ServiceDetail() {
 
               {/* Full Description */}
               {description && (
-                <div className="prose prose-paynes-gray max-w-none text-paynes-gray/80">
+                <div className="prose prose-deep-slate max-w-none text-deep-slate/80">
                   {renderPortableText(description)}
                 </div>
               )}
@@ -282,7 +282,7 @@ export default function ServiceDetail() {
               {/* Benefits Section */}
               {benefits.length > 0 && (
                 <motion.div variants={itemVariants} className="mt-12">
-                  <h2 className="text-2xl text-paynes-gray mb-6 flex items-center">
+                  <h2 className="text-2xl text-deep-slate mb-6 flex items-center">
                     <Sparkles className="w-5 h-5 mr-3 text-tea-green" />
                     {t('services.benefits')}
                   </h2>
@@ -293,7 +293,7 @@ export default function ServiceDetail() {
                         className="flex items-start p-4 bg-white  shadow-sm"
                       >
                         <span className="w-2 h-2 bg-tea-green rounded-full mt-2 mr-3 flex-shrink-0" />
-                        <span className="text-paynes-gray/80">{benefit}</span>
+                        <span className="text-deep-slate/80">{benefit}</span>
                       </li>
                     ))}
                   </ul>
@@ -303,11 +303,11 @@ export default function ServiceDetail() {
               {/* Ideal For Section */}
               {idealFor && (
                 <motion.div variants={itemVariants} className="mt-12">
-                  <h2 className="text-2xl text-paynes-gray mb-4 flex items-center">
+                  <h2 className="text-2xl text-deep-slate mb-4 flex items-center">
                     <Users className="w-5 h-5 mr-3 text-tea-green" />
                     {t('services.idealFor')}
                   </h2>
-                  <p className="text-paynes-gray/80 bg-papaya-whip/50 p-6 ">
+                  <p className="text-deep-slate/80 bg-papaya-whip/50 p-6 ">
                     {idealFor}
                   </p>
                 </motion.div>
@@ -318,10 +318,10 @@ export default function ServiceDetail() {
             <motion.div variants={itemVariants} className="lg:col-span-1">
               {/* CTA Card */}
               <div className="bg-white  shadow-lg p-6 sticky top-24">
-                <h3 className="font-heading text-lg text-paynes-gray mb-4">
+                <h3 className="font-heading text-lg text-deep-slate mb-4">
                   {t('contact.ctaHeading')}
                 </h3>
-                <p className="text-sm text-paynes-gray/70 mb-6">
+                <p className="text-sm text-deep-slate/70 mb-6">
                   {t('contact.ctaSubheading')}
                 </p>
                 <div className="space-y-3">
@@ -338,7 +338,7 @@ export default function ServiceDetail() {
                     href="https://wa.me/yourphonenumber"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 font-heading font-medium tracking-wide  transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 bg-transparent border-2 border-paynes-gray text-paynes-gray hover:bg-paynes-gray hover:text-cornsilk focus-visible:ring-paynes-gray px-7 py-3.5 text-lg w-full"
+                    className="inline-flex items-center justify-center gap-2 font-heading font-medium tracking-wide  transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 bg-transparent border-2 border-deep-slate text-deep-slate hover:bg-deep-slate hover:text-cornsilk focus-visible:ring-deep-slate px-7 py-3.5 text-lg w-full"
                   >
                     {t('contact.whatsappUs')}
                   </a>
@@ -348,7 +348,7 @@ export default function ServiceDetail() {
               {/* Related Services */}
               {relatedServices.length > 0 && (
                 <div className="mt-8">
-                  <h3 className="font-heading text-lg text-paynes-gray mb-4">
+                  <h3 className="font-heading text-lg text-deep-slate mb-4">
                     {t('services.relatedServices')}
                   </h3>
                   <div className="space-y-4">

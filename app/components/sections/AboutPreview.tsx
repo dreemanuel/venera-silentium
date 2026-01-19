@@ -198,8 +198,8 @@ export function AboutPreview({
   const renderSinglePhoto = () => {
     if (!photoUrl) {
       return (
-        <div className="relative w-full max-w-md mx-auto shadow-xl bg-beige/50 aspect-[4/5] flex items-center justify-center">
-          <div className="text-center text-paynes-gray/40">
+        <div className="relative w-full max-w-md mx-auto shadow-xl bg-sand/50 aspect-[4/5] flex items-center justify-center">
+          <div className="text-center text-deep-slate/40">
             <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-tea-green/30" />
             <p className="font-heading text-sm">Photo Coming Soon</p>
           </div>
@@ -361,7 +361,7 @@ export function AboutPreview({
             {/* Mute/unmute button */}
             <button
               onClick={toggleMute}
-              className="p-2 bg-paynes-gray/50 backdrop-blur-sm rounded-full text-cornsilk hover:bg-paynes-gray/70 transition-colors"
+              className="p-2 bg-deep-slate/50 backdrop-blur-sm rounded-full text-cornsilk hover:bg-deep-slate/70 transition-colors"
               aria-label={isMuted ? 'Unmute' : 'Mute'}
             >
               {isMuted ? (
@@ -425,7 +425,7 @@ export function AboutPreview({
             {/* Experience badge */}
             {experience && (
               <motion.div variants={itemVariants}>
-                <span className="inline-block px-4 py-1.5 bg-tea-green/40 text-paynes-gray rounded-full text-sm font-heading tracking-wide">
+                <span className="inline-block px-4 py-1.5 bg-tea-green/40 text-deep-slate rounded-full text-sm font-heading tracking-wide">
                   {experience}
                 </span>
               </motion.div>
@@ -434,7 +434,7 @@ export function AboutPreview({
             {/* Name */}
             <motion.h2
               variants={itemVariants}
-              className="font-display text-5xl md:text-6xl lg:text-7xl text-paynes-gray leading-[0.75]"
+              className="font-display text-5xl md:text-6xl lg:text-7xl text-deep-slate leading-[0.75]"
             >
               {name}
             </motion.h2>
@@ -442,7 +442,7 @@ export function AboutPreview({
             {/* Title */}
             <motion.p
               variants={itemVariants}
-              className="text-lg md:text-xl text-paynes-gray/70 font-heading mt-2"
+              className="text-lg md:text-xl text-deep-slate/70 font-heading mt-2"
             >
               {title}
             </motion.p>
@@ -451,7 +451,7 @@ export function AboutPreview({
             {storyText && (
               <motion.p
                 variants={itemVariants}
-                className="text-paynes-gray/60 leading-relaxed line-clamp-4"
+                className="text-deep-slate/60 leading-relaxed line-clamp-4"
               >
                 {storyText}
               </motion.p>
@@ -463,7 +463,7 @@ export function AboutPreview({
                 {credentials.map((credential, index) => (
                   <span
                     key={index}
-                    className="px-3 py-1 bg-cornsilk border border-paynes-gray/10 text-paynes-gray/80 text-sm"
+                    className="px-3 py-1 bg-cornsilk border border-deep-slate/10 text-deep-slate/80 text-sm"
                   >
                     {credential}
                   </span>

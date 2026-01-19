@@ -34,42 +34,42 @@ export default function TermsOfService() {
       <div className="container mx-auto px-6 py-16 md:py-24">
         <div className="max-w-3xl mx-auto">
           {/* Header */}
-          <h1 className="text-5xl md:text-6xl font-display text-paynes-gray mb-8">
+          <h1 className="text-5xl md:text-6xl font-display text-deep-slate mb-8">
             {t("legal.terms.title")}
           </h1>
 
-          <p className="text-paynes-gray/70 font-body mb-8">
+          <p className="text-deep-slate/70 font-body mb-8">
             {t("legal.terms.lastUpdated")}: December 2025
           </p>
 
           {/* Content */}
-          <div className="prose prose-lg prose-paynes-gray max-w-none space-y-8">
+          <div className="prose prose-lg prose-deep-slate max-w-none space-y-8">
             {/* Introduction */}
             <section>
-              <p className="font-body text-paynes-gray/80 leading-relaxed">
+              <p className="font-body text-deep-slate/80 leading-relaxed">
                 {t("legal.terms.intro")}
               </p>
             </section>
 
             {/* Acceptance of Terms */}
             <section>
-              <h2 className="text-xl font-heading font-medium text-paynes-gray mb-4">
+              <h2 className="text-xl font-heading font-medium text-deep-slate mb-4">
                 {t("legal.terms.acceptance.title")}
               </h2>
-              <p className="font-body text-paynes-gray/80 leading-relaxed">
+              <p className="font-body text-deep-slate/80 leading-relaxed">
                 {t("legal.terms.acceptance.description")}
               </p>
             </section>
 
             {/* Services */}
             <section>
-              <h2 className="text-xl font-heading font-medium text-paynes-gray mb-4">
+              <h2 className="text-xl font-heading font-medium text-deep-slate mb-4">
                 {t("legal.terms.services.title")}
               </h2>
-              <p className="font-body text-paynes-gray/80 leading-relaxed mb-4">
+              <p className="font-body text-deep-slate/80 leading-relaxed mb-4">
                 {t("legal.terms.services.description")}
               </p>
-              <ul className="list-disc pl-6 space-y-2 font-body text-paynes-gray/80">
+              <ul className="list-disc pl-6 space-y-2 font-body text-deep-slate/80">
                 <li>{t("legal.terms.services.items.consultation")}</li>
                 <li>{t("legal.terms.services.items.medical")}</li>
                 <li>{t("legal.terms.services.items.results")}</li>
@@ -78,13 +78,13 @@ export default function TermsOfService() {
 
             {/* Appointments */}
             <section>
-              <h2 className="text-xl font-heading font-medium text-paynes-gray mb-4">
+              <h2 className="text-xl font-heading font-medium text-deep-slate mb-4">
                 {t("legal.terms.appointments.title")}
               </h2>
-              <p className="font-body text-paynes-gray/80 leading-relaxed mb-4">
+              <p className="font-body text-deep-slate/80 leading-relaxed mb-4">
                 {t("legal.terms.appointments.description")}
               </p>
-              <ul className="list-disc pl-6 space-y-2 font-body text-paynes-gray/80">
+              <ul className="list-disc pl-6 space-y-2 font-body text-deep-slate/80">
                 <li>{t("legal.terms.appointments.items.cancellation")}</li>
                 <li>{t("legal.terms.appointments.items.noshow")}</li>
                 <li>{t("legal.terms.appointments.items.rescheduling")}</li>
@@ -93,63 +93,63 @@ export default function TermsOfService() {
 
             {/* Payment */}
             <section>
-              <h2 className="text-xl font-heading font-medium text-paynes-gray mb-4">
+              <h2 className="text-xl font-heading font-medium text-deep-slate mb-4">
                 {t("legal.terms.payment.title")}
               </h2>
-              <p className="font-body text-paynes-gray/80 leading-relaxed">
+              <p className="font-body text-deep-slate/80 leading-relaxed">
                 {t("legal.terms.payment.description")}
               </p>
             </section>
 
             {/* Limitation of Liability */}
             <section>
-              <h2 className="text-xl font-heading font-medium text-paynes-gray mb-4">
+              <h2 className="text-xl font-heading font-medium text-deep-slate mb-4">
                 {t("legal.terms.liability.title")}
               </h2>
-              <p className="font-body text-paynes-gray/80 leading-relaxed">
+              <p className="font-body text-deep-slate/80 leading-relaxed">
                 {t("legal.terms.liability.description")}
               </p>
             </section>
 
             {/* Medical Disclaimer */}
             <section>
-              <h2 className="text-xl font-heading font-medium text-paynes-gray mb-4">
+              <h2 className="text-xl font-heading font-medium text-deep-slate mb-4">
                 {t("legal.terms.medical.title")}
               </h2>
-              <p className="font-body text-paynes-gray/80 leading-relaxed">
+              <p className="font-body text-deep-slate/80 leading-relaxed">
                 {t("legal.terms.medical.description")}
               </p>
             </section>
 
             {/* Changes to Terms */}
             <section>
-              <h2 className="text-xl font-heading font-medium text-paynes-gray mb-4">
+              <h2 className="text-xl font-heading font-medium text-deep-slate mb-4">
                 {t("legal.terms.changes.title")}
               </h2>
-              <p className="font-body text-paynes-gray/80 leading-relaxed">
+              <p className="font-body text-deep-slate/80 leading-relaxed">
                 {t("legal.terms.changes.description")}
               </p>
             </section>
 
             {/* Contact */}
             <section>
-              <h2 className="text-xl font-heading font-medium text-paynes-gray mb-4">
+              <h2 className="text-xl font-heading font-medium text-deep-slate mb-4">
                 {t("legal.terms.contact.title")}
               </h2>
-              <p className="font-body text-paynes-gray/80 leading-relaxed">
+              <p className="font-body text-deep-slate/80 leading-relaxed">
                 {t("legal.terms.contact.description")}
               </p>
-              <p className="font-body text-paynes-gray/80 mt-4">
+              <p className="font-body text-deep-slate/80 mt-4">
                 Email: hello@silentium.co
               </p>
             </section>
           </div>
 
           {/* Back link */}
-          <div className="mt-12 pt-8 border-t border-beige">
+          <div className="mt-12 pt-8 border-t border-sand">
             <a
               href={`/${lang}`}
-              className="text-paynes-gray/70 hover:text-paynes-gray font-heading text-sm transition-colors"
+              className="text-deep-slate/70 hover:text-deep-slate font-heading text-sm transition-colors"
             >
               ← {t("legal.backToHome")}
             </a>

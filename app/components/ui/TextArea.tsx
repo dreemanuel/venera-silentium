@@ -9,10 +9,10 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
   ({ className = "", hasError, ...props }, ref) => {
     const baseStyles = `
       w-full px-4 py-3
-      bg-cornsilk/50 border border-beige
+      bg-cornsilk/50 border border-sand
       
-      font-body text-paynes-gray
-      placeholder:text-paynes-gray/50
+      font-body text-deep-slate
+      placeholder:text-deep-slate/50
       transition-all duration-200
       focus:outline-none focus:ring-2 focus:ring-tea-green focus:border-transparent
       disabled:opacity-50 disabled:cursor-not-allowed

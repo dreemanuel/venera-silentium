@@ -46,18 +46,18 @@ export function Footer({ lang }: FooterProps) {
   ];
 
   return (
-    <footer className="bg-beige/50 border-t border-tea-green/30">
+    <footer className="bg-sand/50 border-t border-tea-green/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12">
           {/* Brand Column */}
           <div className="md:col-span-2">
             <Link
               to={`/${lang}`}
-              className="inline-block text-paynes-gray font-display text-4xl mb-4"
+              className="inline-block text-deep-slate font-display text-4xl mb-4"
             >
               Woman Silentium
             </Link>
-            <p className="text-paynes-gray/70 text-sm leading-relaxed max-w-sm mb-6">
+            <p className="text-deep-slate/70 text-sm leading-relaxed max-w-sm mb-6">
               {t("hero.tagline")}
             </p>
 
@@ -69,7 +69,7 @@ export function Footer({ lang }: FooterProps) {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 text-paynes-gray/60 hover:text-paynes-gray hover:bg-tea-green/30  transition-colors"
+                  className="p-2 text-deep-slate/60 hover:text-deep-slate hover:bg-tea-green/30  transition-colors"
                   aria-label={social.name}
                 >
                   <social.icon className="w-5 h-5" />
@@ -80,7 +80,7 @@ export function Footer({ lang }: FooterProps) {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-paynes-gray font-heading font-medium text-sm uppercase tracking-wider mb-4">
+            <h4 className="text-deep-slate font-heading font-medium text-sm uppercase tracking-wider mb-4">
               {t("nav.home")}
             </h4>
             <ul className="space-y-2">
@@ -88,7 +88,7 @@ export function Footer({ lang }: FooterProps) {
                 <li key={link.key}>
                   <Link
                     to={link.href}
-                    className="text-paynes-gray/70 hover:text-paynes-gray text-sm transition-colors"
+                    className="text-deep-slate/70 hover:text-deep-slate text-sm transition-colors"
                   >
                     {t(`nav.${link.key}`)}
                   </Link>
@@ -99,7 +99,7 @@ export function Footer({ lang }: FooterProps) {
 
           {/* Legal Links */}
           <div>
-            <h4 className="text-paynes-gray font-heading font-medium text-sm uppercase tracking-wider mb-4">
+            <h4 className="text-deep-slate font-heading font-medium text-sm uppercase tracking-wider mb-4">
               Legal
             </h4>
             <ul className="space-y-2">
@@ -107,7 +107,7 @@ export function Footer({ lang }: FooterProps) {
                 <li key={link.key}>
                   <Link
                     to={link.href}
-                    className="text-paynes-gray/70 hover:text-paynes-gray text-sm transition-colors"
+                    className="text-deep-slate/70 hover:text-deep-slate text-sm transition-colors"
                   >
                     {t(`footer.${link.key}`)}
                   </Link>
@@ -119,16 +119,16 @@ export function Footer({ lang }: FooterProps) {
 
         {/* Bottom Bar */}
         <div className="mt-12 pt-8 border-t border-tea-green/30 text-center">
-          <p className="text-paynes-gray/50 text-sm">
+          <p className="text-deep-slate/50 text-sm">
             &copy; {currentYear} Woman Silentium. {t("footer.copyright")}.
           </p>
-          <p className="text-paynes-gray/40 text-xs mt-1">
+          <p className="text-deep-slate/40 text-xs mt-1">
             Site Designed and Developed by{" "}
             <a
               href="https://andreemanuel.dev"
               target="_blank"
               rel="noopener noreferrer"
-              className="underline hover:text-paynes-gray/60 transition-colors"
+              className="underline hover:text-deep-slate/60 transition-colors"
             >
               andreemanuel.dev
             </a>

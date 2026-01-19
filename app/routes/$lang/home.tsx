@@ -12,7 +12,6 @@ import {
   GallerySection,
   ContactCTA,
 } from '~/components/sections';
-import { Button } from '~/components/ui';
 import { sanityClient } from '~/lib/sanity/client.server';
 import {
   siteSettingsQuery,
@@ -181,32 +180,21 @@ export default function Home() {
       {/* Services Preview Section */}
       {showServices && (
         featuredServices.length > 0 ? (
-          <div className="bg-cornsilk">
-            <ServicesGallery
-              services={featuredServices}
-              lang={lang}
-              title={t('services.homeHeading')}
-              subtitle={t('services.homeSubheading')}
-              showCategories={false}
-            />
-            <div className="container mx-auto px-6 pb-16 text-center">
-              <Button
-                as="link"
-                to={`/${lang}/services`}
-                variant="outline"
-                size="lg"
-              >
-                {t('services.viewAllServices')}
-              </Button>
-            </div>
-          </div>
+          <ServicesGallery
+            services={featuredServices}
+            lang={lang}
+            title={t('services.homeHeading')}
+            subtitle={t('services.homeSubheading')}
+            showCategories={false}
+            titleLink={`/${lang}/services`}
+          />
         ) : (
-          <section className="py-20 bg-beige/30">
+          <section className="py-20 bg-sand/30">
             <div className="container mx-auto px-6 text-center">
-              <h2 className="text-paynes-gray text-3xl md:text-4xl mb-4">
+              <h2 className="text-deep-slate text-3xl md:text-4xl mb-4">
                 {t('services.homeHeading')}
               </h2>
-              <p className="text-paynes-gray/70 font-heading mb-8">
+              <p className="text-deep-slate/70 font-heading mb-8">
                 {t('common.comingSoon')}
               </p>
             </div>

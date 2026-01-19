@@ -10,9 +10,9 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
   ({ className = "", hasError, children, ...props }, ref) => {
     const baseStyles = `
       w-full px-4 py-3 pr-10
-      bg-cornsilk/50 border border-beige
+      bg-cornsilk/50 border border-sand
       
-      font-body text-paynes-gray
+      font-body text-deep-slate
       appearance-none
       transition-all duration-200
       focus:outline-none focus:ring-2 focus:ring-tea-green focus:border-transparent
@@ -30,7 +30,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
         >
           {children}
         </select>
-        <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-paynes-gray/60 pointer-events-none" />
+        <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-deep-slate/60 pointer-events-none" />
       </div>
     );
   }

@@ -63,7 +63,7 @@ export function MobileMenu({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 bg-paynes-gray/20 backdrop-blur-sm z-50 md:hidden"
+            className="fixed inset-0 bg-deep-slate/20 backdrop-blur-sm z-50 md:hidden"
             onClick={onClose}
             aria-hidden="true"
           />
@@ -82,15 +82,15 @@ export function MobileMenu({
           >
             <div className="flex flex-col h-full">
               {/* Header */}
-              <div className="flex items-center justify-between p-4 border-b border-beige/50">
-                <span className="font-display text-3xl text-paynes-gray">
+              <div className="flex items-center justify-between p-4 border-b border-sand/50">
+                <span className="font-display text-3xl text-deep-slate">
                   Silentium
                 </span>
                 <button
                   ref={closeButtonRef}
                   type="button"
                   onClick={onClose}
-                  className="p-2 text-paynes-gray hover:bg-beige/50  transition-colors"
+                  className="p-2 text-deep-slate hover:bg-sand/50  transition-colors"
                   aria-label="Close menu"
                 >
                   <X className="w-6 h-6" />
@@ -110,7 +110,7 @@ export function MobileMenu({
                       <Link
                         to={item.href}
                         onClick={onClose}
-                        className="block px-4 py-3 text-lg font-heading text-paynes-gray hover:bg-beige/50  transition-colors"
+                        className="block px-4 py-3 text-lg font-heading text-deep-slate hover:bg-sand/50  transition-colors"
                       >
                         {t(`nav.${item.key}`)}
                       </Link>
@@ -120,7 +120,7 @@ export function MobileMenu({
               </nav>
 
               {/* Footer */}
-              <div className="p-4 border-t border-beige/50 space-y-4">
+              <div className="p-4 border-t border-sand/50 space-y-4">
                 <div className="flex justify-center">
                   <LanguageSwitcher currentLang={lang} />
                 </div>

@@ -43,12 +43,12 @@ export function NotFoundPage({ lang }: { lang: SupportedLanguage }) {
         </motion.div>
 
         {/* Heading */}
-        <h1 className="text-4xl md:text-5xl font-display text-paynes-gray mb-4">
+        <h1 className="text-4xl md:text-5xl font-display text-deep-slate mb-4">
           {t("errors.notFound.title")}
         </h1>
 
         {/* Description */}
-        <p className="text-paynes-gray/70 font-body text-lg mb-8 leading-relaxed">
+        <p className="text-deep-slate/70 font-body text-lg mb-8 leading-relaxed">
           {t("errors.notFound.description")}
         </p>
 
@@ -63,11 +63,11 @@ export function NotFoundPage({ lang }: { lang: SupportedLanguage }) {
         </div>
 
         {/* Help text */}
-        <p className="mt-8 text-sm text-paynes-gray/50 font-heading">
+        <p className="mt-8 text-sm text-deep-slate/50 font-heading">
           {t("errors.notFound.helpText")}{" "}
           <Link
             to={`/${lang}/contact`}
-            className="text-paynes-gray hover:text-tea-green transition-colors underline"
+            className="text-deep-slate hover:text-tea-green transition-colors underline"
           >
             {t("errors.notFound.contactUs")}
           </Link>

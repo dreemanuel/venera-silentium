@@ -15,6 +15,7 @@ interface ServicesGalleryProps {
   subtitle?: string;
   showCategories?: boolean;
   limit?: number;
+  titleLink?: string;
 }
 
 // Category display info
@@ -77,8 +78,8 @@ function ServiceImageSlideshow({
 
   if (images.length === 0) {
     return (
-      <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-beige to-tea-green/30 ">
-        <span className="text-6xl text-paynes-gray/20">✦</span>
+      <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-sand to-tea-green/30 ">
+        <span className="text-6xl text-deep-slate/20">✦</span>
       </div>
     );
   }
@@ -107,8 +108,8 @@ function ServiceImageSlideshow({
             radius="lg"
           />
         ) : (
-          <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-beige to-tea-green/30">
-            <span className="text-6xl text-paynes-gray/20">✦</span>
+          <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-sand to-tea-green/30">
+            <span className="text-6xl text-deep-slate/20">✦</span>
           </div>
         )}
       </div>
@@ -118,14 +119,14 @@ function ServiceImageSlideshow({
         <>
           <button
             onClick={prevSlide}
-            className="absolute left-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/80 backdrop-blur-sm shadow-lg text-paynes-gray hover:bg-white hover:scale-110 transition-all duration-300 z-10"
+            className="absolute left-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/80 backdrop-blur-sm shadow-lg text-deep-slate hover:bg-white hover:scale-110 transition-all duration-300 z-10"
             aria-label="Previous image"
           >
             <ChevronLeft className="w-5 h-5" />
           </button>
           <button
             onClick={nextSlide}
-            className="absolute right-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/80 backdrop-blur-sm shadow-lg text-paynes-gray hover:bg-white hover:scale-110 transition-all duration-300 z-10"
+            className="absolute right-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/80 backdrop-blur-sm shadow-lg text-deep-slate hover:bg-white hover:scale-110 transition-all duration-300 z-10"
             aria-label="Next image"
           >
             <ChevronRight className="w-5 h-5" />
@@ -155,8 +156,8 @@ function ServiceImageSlideshow({
 // Skeleton placeholder for image area
 function ImageSkeleton() {
   return (
-    <div className="w-full h-full  bg-gradient-to-br from-beige to-tea-green/30 animate-pulse flex items-center justify-center">
-      <span className="text-6xl text-paynes-gray/10">✦</span>
+    <div className="w-full h-full  bg-gradient-to-br from-sand to-tea-green/30 animate-pulse flex items-center justify-center">
+      <span className="text-6xl text-deep-slate/10">✦</span>
     </div>
   );
 }
@@ -168,6 +169,7 @@ export function ServicesGallery({
   subtitle,
   showCategories = true,
   limit,
+  titleLink,
 }: ServicesGalleryProps) {
   const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
   const [selectedServiceId, setSelectedServiceId] = useState<string | null>(null);
@@ -218,7 +220,7 @@ export function ServicesGallery({
   };
 
   return (
-    <section ref={ref} className="py-16 md:py-24 bg-cornsilk">
+    <section ref={ref} className="py-16 md:py-24 bg-vanilla-custard">
       <div className="container mx-auto px-6">
         {/* Section Header */}
         {(title || subtitle) && (
@@ -229,12 +231,23 @@ export function ServicesGallery({
             className="text-center mb-12 md:mb-16"
           >
             {title && (
-              <h2 className="font-display text-5xl md:text-6xl lg:text-7xl text-paynes-gray mb-2 leading-[0.75]">
-                {title}
-              </h2>
+              titleLink ? (
+                <Link
+                  to={titleLink}
+                  className="group inline-block"
+                >
+                  <h2 className="font-display text-5xl md:text-6xl lg:text-7xl text-deep-slate mb-2 leading-[0.75] group-hover:text-golden-bronze transition-colors">
+                    {title}
+                  </h2>
+                </Link>
+              ) : (
+                <h2 className="font-display text-5xl md:text-6xl lg:text-7xl text-deep-slate mb-2 leading-[0.75]">
+                  {title}
+                </h2>
+              )
             )}
             {subtitle && (
-              <p className="font-heading text-lg text-paynes-gray/70 max-w-2xl mx-auto">
+              <p className="font-heading text-lg text-deep-slate/70 max-w-2xl mx-auto">
                 {subtitle}
               </p>
             )}
@@ -246,7 +259,7 @@ export function ServicesGallery({
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="flex flex-col lg:flex-row gap-8"
+          className="flex flex-col lg:flex-row lg:items-stretch gap-8"
         >
           {/* Left: Accordion List (1/3 width on desktop) */}
           <div className="w-full lg:w-1/3 order-2 lg:order-1">
@@ -255,7 +268,7 @@ export function ServicesGallery({
               <div className="space-y-6">
                 {sortedCategories.map((category) => (
                   <div key={category}>
-                    <h3 className="font-heading text-lg font-medium text-paynes-gray mb-4 px-2 text-left">
+                    <h3 className="font-heading text-lg font-medium text-deep-slate mb-4 px-2 text-left">
                       {categoryInfo[category]?.label[lang] || category}
                     </h3>
                     <Accordion
@@ -266,10 +279,10 @@ export function ServicesGallery({
                       className="px-0"
                       itemClasses={{
                         base: 'py-0',
-                        title: 'font-heading text-lg text-paynes-gray text-left',
-                        trigger: 'py-3 px-2  hover:bg-tea-green/10 transition-colors data-[open=true]:bg-tea-green/20 justify-start',
-                        content: 'px-2 pb-4 text-left',
-                        indicator: 'text-paynes-gray/50',
+                        title: 'font-heading text-lg text-left',
+                        trigger: 'py-3 px-2 cursor-pointer hover:bg-golden-bronze/20 transition-colors data-[open=true]:bg-deep-slate data-[open=true]:text-vanilla-custard text-deep-slate justify-start',
+                        content: 'px-2 pb-4 text-left bg-golden-bronze/20',
+                        indicator: 'text-deep-slate/50 data-[open=true]:text-vanilla-custard data-[open=true]:-rotate-90 transition-transform duration-300 ease-in-out',
                         titleWrapper: 'text-left',
                       }}
                     >
@@ -287,13 +300,13 @@ export function ServicesGallery({
                           >
                             <div className="space-y-3">
                               {shortDesc && (
-                                <p className="text-sm text-paynes-gray/70 leading-relaxed">
+                                <p className="text-sm text-deep-slate/70 leading-relaxed">
                                   {shortDesc}
                                 </p>
                               )}
                               <Link
                                 to={`/${lang}/services/${service.slug.current}`}
-                                className="inline-flex items-center gap-2 text-sm font-heading text-paynes-gray hover:text-tea-green transition-colors"
+                                className="inline-flex items-center gap-2 text-sm font-heading text-deep-slate hover:text-golden-bronze transition-colors"
                               >
                                 <span>
                                   {lang === 'ru' ? 'Подробнее' : lang === 'id' ? 'Selengkapnya' : 'Learn More'}
@@ -318,10 +331,10 @@ export function ServicesGallery({
                 className="px-0"
                 itemClasses={{
                   base: 'py-0',
-                  title: 'font-heading text-lg text-paynes-gray text-left',
-                  trigger: 'py-3 px-2  hover:bg-tea-green/10 transition-colors data-[open=true]:bg-tea-green/20 justify-start',
-                  content: 'px-2 pb-4 text-left',
-                  indicator: 'text-paynes-gray/50',
+                  title: 'font-heading text-lg text-left',
+                  trigger: 'py-3 px-2 cursor-pointer hover:bg-golden-bronze/20 transition-colors data-[open=true]:bg-deep-slate data-[open=true]:text-vanilla-custard text-deep-slate justify-start',
+                  content: 'px-2 pb-4 text-left bg-golden-bronze/20',
+                  indicator: 'text-deep-slate/50 data-[open=true]:text-vanilla-custard data-[open=true]:-rotate-90 transition-transform duration-300 ease-in-out',
                   titleWrapper: 'text-left',
                 }}
               >
@@ -339,13 +352,13 @@ export function ServicesGallery({
                     >
                       <div className="space-y-3">
                         {shortDesc && (
-                          <p className="text-sm text-paynes-gray/70 leading-relaxed">
+                          <p className="text-sm text-deep-slate/70 leading-relaxed">
                             {shortDesc}
                           </p>
                         )}
                         <Link
                           to={`/${lang}/services/${service.slug.current}`}
-                          className="inline-flex items-center gap-2 text-sm font-heading text-paynes-gray hover:text-tea-green transition-colors"
+                          className="inline-flex items-center gap-2 text-sm font-heading text-deep-slate hover:text-golden-bronze transition-colors"
                         >
                           <span>
                             {lang === 'ru' ? 'Подробнее' : lang === 'id' ? 'Selengkapnya' : 'Learn More'}
@@ -362,7 +375,7 @@ export function ServicesGallery({
 
           {/* Right: Image Slideshow (2/3 width on desktop) */}
           <div className="w-full lg:w-2/3 order-1 lg:order-2">
-            <div className="sticky top-24 aspect-[4/3] lg:aspect-[16/10]  overflow-hidden bg-beige/30">
+            <div className="sticky top-24 w-full aspect-[4/3] lg:aspect-auto lg:h-[75vh] overflow-hidden bg-sand/30">
               {activeService ? (
                 <ServiceImageSlideshow
                   key={activeService._id}
