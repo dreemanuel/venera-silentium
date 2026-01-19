@@ -354,14 +354,14 @@ export function HeroSection({
         {/* Main Title - split by newlines for tight spacing */}
         <motion.h1
           variants={itemVariants}
-          className={`font-display text-7xl xs:text-8xl md:text-[8rem] lg:text-[11rem] mb-2 ${
+          className={`font-display text-7xl xs:text-8xl md:text-[8rem] lg:text-[11rem] mb-2 text-right ${
             hasMedia ? 'text-cornsilk' : 'text-paynes-gray'
           }`}
         >
           {title.split(/[\n\s]+/).map((word, index) => (
             <span
               key={index}
-              className={`block ${index > 0 ? '-mt-6 md:-mt-16 lg:-mt-28' : ''}`}
+              className={`block ${index > 0 ? '-mt-4 md:-mt-10 lg:-mt-16' : ''}`}
             >
               {word}
             </span>

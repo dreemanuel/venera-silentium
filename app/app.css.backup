@@ -26,8 +26,8 @@
 }
 
 @font-face {
-  font-family: "Meganoli";
-  src: url("/fonts/meganoli-sans.otf") format("opentype");
+  font-family: "Gilmoray";
+  src: url("/fonts/gilmoray.otf") format("opentype");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -55,7 +55,7 @@
   --color-surface: #e9edc9;
 
   /* Typography - Font Families */
-  --font-display: "Meganoli", sans-serif;
+  --font-display: "Gilmoray", serif;
   --font-heading: "Bricolage Grotesque", sans-serif;
   --font-body: "EB Garamond", serif;
   --font-playwrite: "Playwrite IE", cursive;

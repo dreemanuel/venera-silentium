@@ -97,7 +97,7 @@ export function SilentiumPhilosophy({
               }}
             />
           </div>
-          <div className="absolute inset-0 bg-cornsilk/40" />
+          <div className="absolute inset-0 bg-cornsilk/60" />
         </>
       ) : (
         <div className="absolute inset-0 bg-gradient-to-br from-cornsilk via-papaya-whip/30 to-beige/40">
