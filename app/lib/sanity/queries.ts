@@ -17,6 +17,7 @@ export const siteSettingsQuery = groq`
         "alt": alt
       },
       "videoFileUrl": videoFile.asset->url,
+      "videoFileFallbackUrl": videoFileFallback.asset->url,
       videoPoster,
       enableAudio,
       useVideoDuration,
@@ -42,6 +43,7 @@ export const siteSettingsQuery = groq`
           "alt": alt
         },
         "videoFileUrl": videoFile.asset->url,
+        "videoFileFallbackUrl": videoFileFallback.asset->url,
         videoPoster,
         enableAudio,
         useVideoDuration,

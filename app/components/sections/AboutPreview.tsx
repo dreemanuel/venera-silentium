@@ -292,14 +292,13 @@ export function AboutPreview({
                     <div className="w-10 h-10 border-4 border-white/30 border-t-white rounded-full animate-spin" />
                   </div>
                 )}
-                {/* Video element - only render when near viewport (lazy load) */}
-                {currentMedia.videoFileUrl && isNearViewport && (
+                {/* Video element with WebM primary + MP4 fallback - only render when near viewport (lazy load) */}
+                {(currentMedia.videoFileUrl || currentMedia.videoFileFallbackUrl) && isNearViewport && (
                   <video
                     ref={videoRef}
                     className={`w-full h-full object-cover cursor-pointer transition-opacity duration-300 ${
                       isVideoLoaded ? 'opacity-100' : 'opacity-0'
                     }`}
-                    src={currentMedia.videoFileUrl}
                     autoPlay
                     muted={isMuted}
                     loop={media.length === 1}
@@ -308,7 +307,14 @@ export function AboutPreview({
                     onEnded={handleVideoEnded}
                     onLoadedData={() => setIsVideoLoaded(true)}
                     onClick={toggleMute}
-                  />
+                  >
+                    {currentMedia.videoFileUrl && (
+                      <source src={currentMedia.videoFileUrl} type="video/webm" />
+                    )}
+                    {currentMedia.videoFileFallbackUrl && (
+                      <source src={currentMedia.videoFileFallbackUrl} type="video/mp4" />
+                    )}
+                  </video>
                 )}
               </>
             )}

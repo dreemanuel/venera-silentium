@@ -254,12 +254,11 @@ export function HeroSection({
                   aria-hidden="true"
                 />
               )}
-              {/* Video element */}
-              {currentMedia.videoFileUrl && (
+              {/* Video element with WebM primary + MP4 fallback */}
+              {(currentMedia.videoFileUrl || currentMedia.videoFileFallbackUrl) && (
                 <video
                   ref={videoRef}
                   className="absolute inset-0 w-full h-full object-cover"
-                  src={currentMedia.videoFileUrl}
                   autoPlay
                   muted={!currentMedia.enableAudio}
                   loop={media.length === 1} // Only loop if single video
@@ -267,7 +266,14 @@ export function HeroSection({
                   onEnded={handleVideoEnded}
                   onLoadedData={() => setIsVideoLoaded(true)}
                   aria-hidden="true"
-                />
+                >
+                  {currentMedia.videoFileUrl && (
+                    <source src={currentMedia.videoFileUrl} type="video/webm" />
+                  )}
+                  {currentMedia.videoFileFallbackUrl && (
+                    <source src={currentMedia.videoFileFallbackUrl} type="video/mp4" />
+                  )}
+                </video>
               )}
             </>
           )}

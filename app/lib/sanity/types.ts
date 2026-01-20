@@ -58,7 +58,8 @@ export interface HeroMediaItem {
   // Image fields
   image?: SanityImage & { alt?: string };
   // Video fields
-  videoFileUrl?: string; // Resolved URL from GROQ query
+  videoFileUrl?: string; // Resolved URL from GROQ query (WebM primary)
+  videoFileFallbackUrl?: string; // Resolved URL from GROQ query (MP4 fallback)
   videoPoster?: SanityImage;
   enableAudio?: boolean;
   useVideoDuration?: boolean;
@@ -74,7 +75,8 @@ export interface AboutMediaItem {
   // Image fields
   image?: SanityImage & { alt?: string };
   // Video fields
-  videoFileUrl?: string; // Resolved URL from GROQ query
+  videoFileUrl?: string; // Resolved URL from GROQ query (WebM primary)
+  videoFileFallbackUrl?: string; // Resolved URL from GROQ query (MP4 fallback)
   videoPoster?: SanityImage;
   enableAudio?: boolean;
   useVideoDuration?: boolean;

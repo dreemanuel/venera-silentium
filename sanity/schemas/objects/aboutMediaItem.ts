@@ -39,12 +39,22 @@ export const aboutMediaItem = defineType({
     // Video fields (shown when mediaType is 'video')
     defineField({
       name: 'videoFile',
-      title: 'Video File',
+      title: 'Video File (WebM - Primary)',
       type: 'file',
       options: {
-        accept: 'video/mp4,video/webm',
+        accept: 'video/webm',
       },
-      description: 'Upload MP4 or WebM video (recommended: under 30MB, 10-15 seconds)',
+      description: 'WebM format for modern browsers (smaller file size)',
+      hidden: ({ parent }) => parent?.mediaType !== 'video',
+    }),
+    defineField({
+      name: 'videoFileFallback',
+      title: 'Video File (MP4 - Fallback)',
+      type: 'file',
+      options: {
+        accept: 'video/mp4',
+      },
+      description: 'MP4 format for Safari and older browsers',
       hidden: ({ parent }) => parent?.mediaType !== 'video',
     }),
     defineField({
