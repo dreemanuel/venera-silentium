@@ -160,7 +160,7 @@ export function GallerySection({
   };
 
   return (
-    <section ref={setSectionRefs} className="h-screen mt-16 md:mt-24 py-16 md:py-24 bg-dark-khaki overflow-hidden flex flex-col justify-center">
+    <section ref={setSectionRefs} className="h-screen mt-16 md:mt-24 py-16 md:py-24 bg-vanilla-custard overflow-hidden flex flex-col justify-center">
       <motion.div
         initial={{ opacity: 0 }}
         animate={inView ? { opacity: 1 } : { opacity: 0 }}

@@ -121,6 +121,13 @@ export interface SectionVisibility {
   showContactCTA?: boolean;
 }
 
+export interface NavigationVisibility {
+  showAbout?: boolean;
+  showServices?: boolean;
+  showBlog?: boolean;
+  showContact?: boolean;
+}
+
 export interface ContactCTASettings {
   backgroundImage?: SanityImage;
   overlayOpacity?: number;
@@ -144,6 +151,7 @@ export interface SiteSettings {
   seoTitle?: LocalizedString;
   seoDescription?: LocalizedString;
   sectionVisibility?: SectionVisibility;
+  navigationVisibility?: NavigationVisibility;
   aboutDrVenera?: AboutDrVenera;
   aboutSilentium?: AboutSilentium;
   contactCTA?: ContactCTASettings;

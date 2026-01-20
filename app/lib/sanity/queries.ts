@@ -223,6 +223,18 @@ export const contactInfoQuery = groq`
   }
 `;
 
+// Navigation Settings Query (lightweight query for header nav visibility)
+export const navigationSettingsQuery = groq`
+  *[_type == "siteSettings"][0] {
+    navigationVisibility {
+      showAbout,
+      showServices,
+      showBlog,
+      showContact
+    }
+  }
+`;
+
 // All Blog Posts Query
 export const blogPostsQuery = groq`
   *[_type == "blogPost"] | order(publishedAt desc) {

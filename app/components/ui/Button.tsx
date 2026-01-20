@@ -24,7 +24,7 @@ interface ButtonProps {
 
 const variantStyles: Record<ButtonVariant, string> = {
   primary:
-    "bg-deep-slate border-2 border-deep-slate text-sand hover:bg-deep-slate/90 hover:border-deep-slate/90 focus-visible:ring-deep-slate",
+    "bg-deep-slate border-2 border-deep-slate text-vanilla-custard hover:bg-deep-slate/90 hover:border-deep-slate/90 focus-visible:ring-deep-slate",
   secondary:
     "bg-sand border-2 border-sand text-deep-slate hover:bg-sand/90 hover:border-sand/90 focus-visible:ring-sand",
   ghost:

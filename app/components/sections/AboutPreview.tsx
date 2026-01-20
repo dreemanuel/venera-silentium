@@ -407,7 +407,7 @@ export function AboutPreview({
   };
 
   return (
-    <section ref={ref} className="py-20 md:py-28 bg-papaya-whip/30 overflow-hidden">
+    <section ref={ref} className="py-20 md:py-28 bg-vanilla-custard overflow-hidden">
       <motion.div
         className="container mx-auto px-6"
         variants={containerVariants}

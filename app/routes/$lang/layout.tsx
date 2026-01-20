@@ -14,7 +14,7 @@ import { HreflangLinks } from "~/components/seo";
 import { NavigationProgress } from "~/components/ui/NavigationProgress";
 import { PromoBannersList } from "~/components/ui/PromoBanner";
 import { sanityClient } from "~/lib/sanity/client.server";
-import { activePromoBannersQuery, type PromoBanner, type PromoBannerPage, type Language } from "~/lib/sanity";
+import { activePromoBannersQuery, navigationSettingsQuery, type PromoBanner, type PromoBannerPage, type Language, type NavigationVisibility } from "~/lib/sanity";
 
 export async function loader({ params }: Route.LoaderArgs) {
   const lang = params.lang;
@@ -23,15 +23,35 @@ export async function loader({ params }: Route.LoaderArgs) {
     throw redirect(`/${defaultLanguage}`);
   }
 
-  // Fetch active promo banners
+  // Fetch active promo banners and navigation settings in parallel
   let promoBanners: PromoBanner[] = [];
+  let navigationVisibility: NavigationVisibility = {
+    showAbout: true,
+    showServices: true,
+    showBlog: true,
+    showContact: true,
+  };
+
   try {
-    promoBanners = await sanityClient.fetch<PromoBanner[]>(activePromoBannersQuery) || [];
+    const [bannersResult, navSettings] = await Promise.all([
+      sanityClient.fetch<PromoBanner[]>(activePromoBannersQuery),
+      sanityClient.fetch<{ navigationVisibility?: NavigationVisibility }>(navigationSettingsQuery)
+    ]);
+
+    promoBanners = bannersResult || [];
+    if (navSettings?.navigationVisibility) {
+      navigationVisibility = {
+        showAbout: navSettings.navigationVisibility.showAbout ?? true,
+        showServices: navSettings.navigationVisibility.showServices ?? true,
+        showBlog: navSettings.navigationVisibility.showBlog ?? true,
+        showContact: navSettings.navigationVisibility.showContact ?? true,
+      };
+    }
   } catch {
     // Silently fail if Sanity is not configured
   }
 
-  return { lang, promoBanners };
+  return { lang, promoBanners, navigationVisibility };
 }
 
 // Helper to determine current page from pathname
@@ -48,7 +68,7 @@ function getCurrentPage(pathname: string): PromoBannerPage {
 }
 
 export default function LangLayout({ loaderData }: Route.ComponentProps) {
-  const { lang, promoBanners } = loaderData;
+  const { lang, promoBanners, navigationVisibility } = loaderData;
   const [isI18nReady, setIsI18nReady] = useState(i18next.isInitialized);
   const location = useLocation();
 
@@ -116,7 +136,7 @@ export default function LangLayout({ loaderData }: Route.ComponentProps) {
       />
 
       <div className="flex flex-col min-h-screen">
-        <Header lang={typedLang} hasTopBanner={topBannerVisible} />
+        <Header lang={typedLang} hasTopBanner={topBannerVisible} navigationVisibility={navigationVisibility} />
         <main className="flex-1">
           <Outlet context={{ lang: typedLang }} />
         </main>

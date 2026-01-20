@@ -1,10 +1,11 @@
-import { useState, lazy, Suspense } from "react";
+import { useState, lazy, Suspense, useMemo } from "react";
 import { Link } from "react-router";
 import { useTranslation } from "react-i18next";
 import { Menu } from "lucide-react";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { Button } from "~/components/ui/Button";
 import type { SupportedLanguage } from "~/lib/i18n";
+import type { NavigationVisibility } from "~/lib/sanity";
 
 // Lazy load mobile menu - only needed on mobile devices
 const MobileMenu = lazy(() =>
@@ -14,6 +15,7 @@ const MobileMenu = lazy(() =>
 interface HeaderProps {
   lang: SupportedLanguage;
   hasTopBanner?: boolean;
+  navigationVisibility?: NavigationVisibility;
 }
 
 interface NavItem {
@@ -21,23 +23,40 @@ interface NavItem {
   href: string;
 }
 
-export function Header({ lang, hasTopBanner = false }: HeaderProps) {
+// Map nav keys to visibility settings
+const navKeyToVisibility: Record<string, keyof NavigationVisibility> = {
+  about: "showAbout",
+  services: "showServices",
+  blog: "showBlog",
+  contact: "showContact",
+};
+
+export function Header({ lang, hasTopBanner = false, navigationVisibility }: HeaderProps) {
   const { t } = useTranslation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const navItems: NavItem[] = [
+  const allNavItems: NavItem[] = [
     { key: "about", href: `/${lang}/about` },
     { key: "services", href: `/${lang}/services` },
     { key: "blog", href: `/${lang}/blog` },
     { key: "contact", href: `/${lang}/contact` },
   ];
 
+  // Filter nav items based on Sanity visibility settings
+  const navItems = useMemo(() => {
+    if (!navigationVisibility) return allNavItems;
+    return allNavItems.filter((item) => {
+      const visibilityKey = navKeyToVisibility[item.key];
+      return visibilityKey ? navigationVisibility[visibilityKey] !== false : true;
+    });
+  }, [navigationVisibility, lang]);
+
   // Offset header when promo banner is present (banner height ~48px)
   const topOffset = hasTopBanner ? 'top-12' : 'top-0';
 
   return (
     <>
-      <header className={`fixed ${topOffset} left-0 right-0 z-50 backdrop-blur-lg border-b border-sand/30 transition-[top] duration-300`} style={{ backgroundColor: 'rgba(186, 157, 38, 0.5)' }}>
+      <header className={`fixed ${topOffset} left-0 right-0 z-50 bg-sand/50 backdrop-blur-lg border-b border-sand/30 transition-[top] duration-300`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 md:h-20">
             {/* Logo */}

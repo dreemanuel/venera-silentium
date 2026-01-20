@@ -171,6 +171,39 @@ export const siteSettings = defineType({
         }),
       ],
     }),
+    // Navigation Visibility Toggles
+    defineField({
+      name: 'navigationVisibility',
+      title: 'Navigation Menu Visibility',
+      type: 'object',
+      description: 'Show or hide items in the navigation menu',
+      fields: [
+        defineField({
+          name: 'showAbout',
+          title: 'Show About in Nav',
+          type: 'boolean',
+          initialValue: true,
+        }),
+        defineField({
+          name: 'showServices',
+          title: 'Show Services in Nav',
+          type: 'boolean',
+          initialValue: true,
+        }),
+        defineField({
+          name: 'showBlog',
+          title: 'Show Blog in Nav',
+          type: 'boolean',
+          initialValue: true,
+        }),
+        defineField({
+          name: 'showContact',
+          title: 'Show Contact in Nav',
+          type: 'boolean',
+          initialValue: true,
+        }),
+      ],
+    }),
     // About Dr. Venera Section
     defineField({
       name: 'aboutDrVenera',
