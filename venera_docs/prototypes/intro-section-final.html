@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Woman Silentium - Hero + Intro Section (Final Direction)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Bricolage+Grotesque:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --vanilla-custard: #E6D6A3;
+      --cornsilk: #FEFAE0;
+      --papaya-whip: #FAEDCD;
+      --golden-bronze: #BA9D26;
+      --sand: #D2BE78;
+      --deep-slate: #3D4A4F;
+      --dark-khaki: #3D3D29;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'EB Garamond', serif;
+      background: var(--vanilla-custard);
+      color: var(--deep-slate);
+      overflow-x: hidden;
+    }
+
+    /* Context labels */
+    .context-label {
+      text-align: center;
+      padding: 0.75rem;
+      background: var(--deep-slate);
+      color: var(--cornsilk);
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    /* ============================================
+       REVISED HERO SECTION - Simplified
+       ============================================ */
+    .hero-section {
+      height: 100vh;
+      background: linear-gradient(135deg, var(--dark-khaki) 0%, #2C2416 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--cornsilk);
+      text-align: center;
+      padding: 2rem;
+      position: relative;
+    }
+
+    /* Simulated background image overlay */
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(186,157,38,0.1)" stroke-width="0.5"/></svg>');
+      background-size: 400px;
+      opacity: 0.3;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-brand {
+      font-family: 'EB Garamond', serif;
+      font-size: 4.5rem;
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      line-height: 1.1;
+    }
+
+    .hero-tagline {
+      font-family: 'EB Garamond', serif;
+      font-size: 1.5rem;
+      font-style: italic;
+      font-weight: 400;
+      opacity: 0.9;
+      margin-bottom: 3rem;
+      letter-spacing: 0.05em;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 1rem 2.5rem;
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary {
+      background: var(--golden-bronze);
+      color: var(--cornsilk);
+    }
+
+    .btn-primary:hover {
+      background: var(--sand);
+      color: var(--deep-slate);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--cornsilk);
+      border: 1px solid var(--cornsilk);
+    }
+
+    .btn-secondary:hover {
+      background: var(--cornsilk);
+      color: var(--deep-slate);
+    }
+
+    /* ============================================
+       INTRO SECTION - Final Direction (100vh)
+       ============================================ */
+    .intro-section {
+      min-height: 100vh;
+      background: var(--cornsilk);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+
+    .intro-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+      padding: 4rem 2rem;
+      width: 100%;
+    }
+
+    /* 1. Main Quote */
+    .intro-main-quote {
+      text-align: center;
+      max-width: 900px;
+      margin-bottom: 4.5rem;
+    }
+
+    .intro-main-quote blockquote {
+      font-family: 'EB Garamond', serif;
+      font-size: 2.25rem;
+      font-style: italic;
+      font-weight: 400;
+      line-height: 1.6;
+      color: var(--deep-slate);
+      margin-bottom: 1.5rem;
+    }
+
+    .intro-main-quote .intro-attribution {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: var(--golden-bronze);
+    }
+
+    /* 2. Two Pillars */
+    .intro-pillars {
+      display: flex;
+      gap: 6rem;
+      margin-bottom: 4.5rem;
+    }
+
+    .pillar {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .pillar-icon {
+      width: 56px;
+      height: 56px;
+      border: 2px solid var(--golden-bronze);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: var(--golden-bronze);
+      margin-bottom: 0.75rem;
+      transition: all 0.3s ease;
+    }
+
+    .pillar:hover .pillar-icon {
+      background: var(--golden-bronze);
+      color: var(--cornsilk);
+    }
+
+    .pillar h3 {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--deep-slate);
+      margin-bottom: 0.5rem;
+    }
+
+    .pillar p {
+      font-size: 0.9rem;
+      color: var(--deep-slate);
+      opacity: 0.7;
+      max-width: 180px;
+      line-height: 1.5;
+    }
+
+    /* Decorative divider */
+    .intro-divider {
+      width: 60px;
+      height: 1px;
+      background: var(--golden-bronze);
+      margin-bottom: 3rem;
+    }
+
+    /* 3. Body Text (Attribution + Explanation) */
+    .intro-body {
+      text-align: center;
+      max-width: 700px;
+      margin-bottom: 3.5rem;
+    }
+
+    .intro-explanation {
+      font-size: 1.1rem;
+      line-height: 1.9;
+      color: var(--deep-slate);
+      opacity: 0.85;
+    }
+
+    .intro-explanation + .intro-explanation {
+      margin-top: 1.5rem;
+    }
+
+    /* 4. Trust Stats Bar (C.3 style) */
+    .intro-stats-bar {
+      display: flex;
+      justify-content: center;
+      background: var(--deep-slate);
+      padding: 3rem 2rem;
+      width: 100%;
+    }
+
+    .intro-stats-bar .stat {
+      text-align: center;
+      padding: 0 3rem;
+      border-right: 1px solid rgba(254, 250, 224, 0.2);
+    }
+
+    .intro-stats-bar .stat:last-child {
+      border-right: none;
+    }
+
+    .intro-stats-bar .stat .value {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 600;
+      color: var(--golden-bronze);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .intro-stats-bar .stat .label {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--cornsilk);
+      opacity: 0.8;
+    }
+
+    /* Services placeholder */
+    .services-placeholder {
+      min-height: 60vh;
+      background: var(--papaya-whip);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      padding: 4rem 2rem;
+    }
+
+    .services-placeholder .left,
+    .services-placeholder .right {
+      flex: 1;
+      max-width: 500px;
+      height: 300px;
+      background: var(--cornsilk);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Bricolage Grotesque', sans-serif;
+      color: var(--deep-slate);
+      opacity: 0.6;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero-brand {
+        font-size: 2.5rem;
+        letter-spacing: 0.1em;
+      }
+
+      .hero-tagline {
+        font-size: 1.1rem;
+      }
+
+      .intro-main-quote blockquote {
+        font-size: 1.5rem;
+      }
+
+      .intro-pillars {
+        gap: 2rem;
+      }
+
+      .pillar-icon {
+        width: 48px;
+        height: 48px;
+        font-size: 1.25rem;
+      }
+
+      .intro-stats-bar {
+        flex-wrap: wrap;
+        gap: 2rem;
+      }
+
+      .intro-stats-bar .stat {
+        border-right: none;
+        padding: 0 2rem;
+        flex: 1 1 40%;
+      }
+
+      .services-placeholder {
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-brand {
+        font-size: 2rem;
+      }
+
+      .hero-ctas {
+        flex-direction: column;
+        width: 100%;
+        max-width: 280px;
+      }
+
+      .btn {
+        width: 100%;
+        text-align: center;
+      }
+
+      .intro-pillars {
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================
+       REVISED HERO SECTION
+       ============================================ -->
+  <div class="context-label">Revised Hero — Simplified (brand + tagline + 2 CTAs)</div>
+  <section class="hero-section">
+    <div class="hero-content">
+      <h1 class="hero-brand">Woman Silentium</h1>
+      <p class="hero-tagline">Injecting beauty through inner harmony</p>
+      <div class="hero-ctas">
+        <a href="#" class="btn btn-primary">Book Consultation</a>
+        <a href="#" class="btn btn-secondary">Explore Services</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       INTRO SECTION - Final Direction (100vh)
+       ============================================ -->
+  <div class="context-label">New Intro Section — Quote → Pillars → Body → Trust (100vh)</div>
+  <section class="intro-section">
+
+    <div class="intro-content">
+      <!-- 1. Main Quote + Attribution -->
+      <div class="intro-main-quote">
+        <blockquote>
+          "Beauty is born in silence. In the stillness where a woman finally hears herself — her breath, her heartbeat, her truth."
+        </blockquote>
+        <p class="intro-attribution">— Dr. Venera Frolova, Aesthetic Physician</p>
+      </div>
+
+      <!-- 2. Two Pillars -->
+      <div class="intro-pillars">
+        <div class="pillar">
+          <div class="pillar-icon">✦</div>
+          <h3>Beauty</h3>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">◯</div>
+          <h3>Wellness</h3>
+        </div>
+      </div>
+
+      <!-- 3. Body Text -->
+      <div class="intro-body">
+        <p class="intro-explanation">
+          We are more than a beauty clinic — this is a sanctuary where science meets spirit, where each treatment becomes a sacred ritual of care. Here, a certified aesthetic physician combines medical precision with mindful practice to reveal your natural radiance.
+        </p>
+        <p class="intro-explanation">
+          Because true beauty is more than skin deep: it shines from within a pure and peaceful soul.
+        </p>
+      </div>
+    </div>
+
+    <!-- 4. Trust Stats Bar -->
+    <div class="intro-stats-bar">
+      <div class="stat">
+        <div class="value">10+</div>
+        <div class="label">Years Experience</div>
+      </div>
+      <div class="stat">
+        <div class="value">5,000+</div>
+        <div class="label">Women Served</div>
+      </div>
+      <div class="stat">
+        <div class="value">MD</div>
+        <div class="label">Certified Doctor</div>
+      </div>
+      <div class="stat">
+        <div class="value">100%</div>
+        <div class="label">Natural Results</div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- Context: Services below -->
+  <div class="context-label">↓ Services Section Below (split screen accordion + gallery)</div>
+  <div class="services-placeholder">
+    <div class="left">[Accordion]</div>
+    <div class="right">[Image Gallery]</div>
+  </div>
+
+</body>
+</html>

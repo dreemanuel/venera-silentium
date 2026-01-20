@@ -8,9 +8,23 @@
   },
   "hero": {
     "title": "Woman Silentium",
-    "tagline": "Di mana sains bertemu jiwa",
+    "tagline": "Menyuntikkan kecantikan melalui harmoni batin",
     "quote": "Kecantikan lahir dalam keheningan; dalam kesunyian seorang wanita akhirnya mendengar dirinya sendiri.",
     "cta": "Pesan Konsultasi"
+  },
+  "intro": {
+    "quote": "Kecantikan lahir dalam keheningan. Dalam kesunyian di mana seorang wanita akhirnya mendengar dirinya sendiri — napasnya, detak jantungnya, kebenarannya.",
+    "attribution": "— Dr. Venera Frolova, Dokter Estetika",
+    "pillarBeauty": "Kecantikan",
+    "pillarWellness": "Kesejahteraan",
+    "body1": "Kami lebih dari sekadar klinik kecantikan — ini adalah tempat suci di mana sains bertemu jiwa, di mana setiap perawatan menjadi ritual suci kepedulian. Di sini, seorang dokter estetika bersertifikat menggabungkan presisi medis dengan praktik penuh kesadaran untuk mengungkap kecantikan alami Anda.",
+    "body2": "Karena kecantikan sejati lebih dari sekadar kulit: ia bersinar dari dalam jiwa yang murni dan damai.",
+    "stats": {
+      "experience": "Tahun Pengalaman",
+      "clients": "Wanita Dilayani",
+      "certified": "Dokter Bersertifikat",
+      "natural": "Hasil Alami"
+    }
   },
   "about": {
     "pageTitle": "Tentang | Woman Silentium",

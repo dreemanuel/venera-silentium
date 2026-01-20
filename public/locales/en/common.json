@@ -8,9 +8,23 @@
   },
   "hero": {
     "title": "Woman Silentium",
-    "tagline": "Where science meets spirit",
+    "tagline": "Injecting beauty through inner harmony",
     "quote": "Beauty is born in silence; in the stillness is where a woman finally hears herself.",
     "cta": "Book Consultation"
+  },
+  "intro": {
+    "quote": "Beauty is born in silence. In the stillness where a woman finally hears herself — her breath, her heartbeat, her truth.",
+    "attribution": "— Dr. Venera Frolova, Aesthetic Physician",
+    "pillarBeauty": "Beauty",
+    "pillarWellness": "Wellness",
+    "body1": "We are more than a beauty clinic — this is a sanctuary where science meets spirit, where each treatment becomes a sacred ritual of care. Here, a certified aesthetic physician combines medical precision with mindful practice to reveal your natural radiance.",
+    "body2": "Because true beauty is more than skin deep: it shines from within a pure and peaceful soul.",
+    "stats": {
+      "experience": "Years Experience",
+      "clients": "Women Served",
+      "certified": "Certified Doctor",
+      "natural": "Natural Results"
+    }
   },
   "about": {
     "pageTitle": "About | Woman Silentium",
