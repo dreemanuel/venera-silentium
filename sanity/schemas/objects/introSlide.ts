@@ -38,10 +38,26 @@ export const introSlide = defineType({
       description: 'Descriptive text displayed alongside the image',
     }),
     defineField({
-      name: 'backgroundImage',
-      title: 'Background Image',
+      name: 'leftImage',
+      title: 'Left Panel Image',
       type: 'image',
       options: { hotspot: true },
+      description: 'Background image behind the headline (sepia → color transition)',
+      fields: [
+        defineField({
+          name: 'alt',
+          title: 'Alt Text',
+          type: 'string',
+          description: 'Describe the image for accessibility',
+        }),
+      ],
+    }),
+    defineField({
+      name: 'rightImage',
+      title: 'Right Panel Image',
+      type: 'image',
+      options: { hotspot: true },
+      description: 'Background image behind the paragraph text',
       fields: [
         defineField({
           name: 'alt',
@@ -53,9 +69,9 @@ export const introSlide = defineType({
     }),
     defineField({
       name: 'kenBurnsDirection',
-      title: 'Ken Burns Animation',
+      title: 'Ken Burns Animation (Left Image)',
       type: 'string',
-      description: 'Subtle animation direction for the background image',
+      description: 'Subtle animation direction for the left background image',
       options: {
         list: [
           { title: 'Zoom In', value: 'zoomIn' },
@@ -70,7 +86,7 @@ export const introSlide = defineType({
       name: 'overlayOpacity',
       title: 'Overlay Opacity',
       type: 'number',
-      description: 'Darkness of overlay on image (0-100). Higher = darker.',
+      description: 'Darkness of overlay on both images (0-100). Higher = darker.',
       initialValue: 30,
       validation: (Rule) => Rule.min(0).max(100),
     }),
@@ -80,7 +96,7 @@ export const introSlide = defineType({
       headlinePrefix: 'headlinePrefix.en',
       headlineEmphasis: 'headlineEmphasis.en',
       subtitle: 'subtitle.en',
-      media: 'backgroundImage',
+      media: 'leftImage',
     },
     prepare({ headlinePrefix, headlineEmphasis, subtitle, media }) {
       return {

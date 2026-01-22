@@ -307,32 +307,44 @@ p {
   }
 }
 
-/* Left Panel - Headline */
+/* Left Panel - Headline with Background Image */
 .intro-slider-left {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 2rem 1.5rem;
-  background-color: var(--color-cornsilk);
   flex: 1;
-}
-
-@media (min-width: 768px) {
-  .intro-slider-left {
-    padding: 3rem 2rem;
-  }
+  overflow: hidden;
 }
 
 @media (min-width: 1024px) {
   .intro-slider-left {
     width: 50%;
     flex: none;
+  }
+}
+
+/* Left Panel Content (on top of image) */
+.intro-slider-left-content {
+  position: relative;
+  z-index: 2;
+  padding: 2rem 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .intro-slider-left-content {
+    padding: 3rem 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .intro-slider-left-content {
     padding: 4rem 3rem;
   }
 }
 
 @media (min-width: 1280px) {
-  .intro-slider-left {
+  .intro-slider-left-content {
     padding: 4rem 5rem;
   }
 }
@@ -344,8 +356,9 @@ p {
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.2em;
-  color: var(--color-golden-bronze);
+  color: var(--color-cornsilk);
   margin-bottom: 1.5rem;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 @media (min-width: 768px) {
@@ -365,7 +378,8 @@ p {
   font-family: var(--font-display);
   font-size: 2.5rem;
   font-weight: 300;
-  color: var(--color-deep-slate);
+  color: var(--color-cornsilk);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 @media (min-width: 640px) {
@@ -395,6 +409,7 @@ p {
 .intro-slider-emphasis {
   font-style: italic;
   color: var(--color-golden-bronze);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
 }
 
 /* Right Panel - Image + Text */
@@ -416,6 +431,7 @@ p {
   position: absolute;
   inset: 0;
   overflow: hidden;
+  z-index: 1;
 }
 
 .intro-slider-image {
@@ -423,19 +439,39 @@ p {
   inset: 0;
   background-size: cover;
   background-position: center;
+}
+
+/* Left Image - Sepia to Color transition */
+.intro-slider-image-left {
   filter: sepia(100%);
   transition: filter 1s linear 0.5s;
 }
 
-.swiper-slide-active .intro-slider-image {
+.swiper-slide-active .intro-slider-image-left {
   filter: sepia(0%);
+}
+
+/* Right Image - Hue-rotate effect */
+.intro-slider-image-right {
+  filter: hue-rotate(-60deg);
+  transition: filter 1s linear 0.5s;
+}
+
+.swiper-slide-active .intro-slider-image-right {
+  filter: hue-rotate(90deg);
 }
 
 .intro-slider-image-overlay {
   position: absolute;
   inset: 0;
-  background-color: var(--color-deep-slate);
+  background-color: rgba(0, 0, 0, 0.2);
+  background-blend-mode: overlay;
   pointer-events: none;
+}
+
+.intro-slider-image-overlay-right {
+  background-color: rgba(0, 0, 0, 0.4);
+  background-blend-mode: multiply;
 }
 
 .intro-slider-paragraph {

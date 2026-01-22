@@ -92,7 +92,8 @@ export interface IntroSlide {
   headlineSuffix?: LocalizedString;
   subtitle?: LocalizedString;
   paragraph?: LocalizedText;
-  backgroundImage?: SanityImage & { alt?: string };
+  leftImage?: SanityImage & { alt?: string };
+  rightImage?: SanityImage & { alt?: string };
   kenBurnsDirection?: KenBurnsDirection;
   overlayOpacity?: number;
 }

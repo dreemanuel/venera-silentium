@@ -39,7 +39,11 @@ export const siteSettingsQuery = groq`
       headlineSuffix,
       subtitle,
       paragraph,
-      backgroundImage {
+      leftImage {
+        ...,
+        "alt": alt
+      },
+      rightImage {
         ...,
         "alt": alt
       },

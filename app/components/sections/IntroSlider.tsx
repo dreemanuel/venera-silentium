@@ -92,8 +92,11 @@ export function IntroSlider({ slides, lang, stats }: IntroSliderProps) {
           const emphasis = getLocalizedValue(slide.headlineEmphasis, lang) || '';
           const suffix = getLocalizedValue(slide.headlineSuffix, lang) || '';
           const subtitle = getLocalizedValue(slide.subtitle, lang) || '';
-          const imageUrl = slide.backgroundImage
-            ? urlFor(slide.backgroundImage).width(1920).quality(85).url()
+          const leftImageUrl = slide.leftImage
+            ? urlFor(slide.leftImage).width(1920).quality(85).url()
+            : '';
+          const rightImageUrl = slide.rightImage
+            ? urlFor(slide.rightImage).width(1920).quality(85).url()
             : '';
           const overlayOpacity = slide.overlayOpacity ?? 30;
 
@@ -101,50 +104,67 @@ export function IntroSlider({ slides, lang, stats }: IntroSliderProps) {
             <SwiperSlide key={slide._key} className="intro-slider-slide">
               {/* Split Screen Layout */}
               <div className="intro-slider-content">
-                {/* Left Panel - Headline */}
+                {/* Left Panel - Headline with Background Image */}
                 <div className="intro-slider-left" data-swiper-parallax-y="-20%">
-                  {subtitle && (
-                    <span
-                      className="intro-slider-subtitle"
-                      data-swiper-parallax-opacity="0"
-                      data-swiper-parallax-y="-100%"
-                    >
-                      {subtitle}
-                    </span>
-                  )}
-                  <h2 className="intro-slider-headline">
-                    <span
-                      className="intro-slider-headline-line"
-                      data-swiper-parallax-opacity="0"
-                      data-swiper-parallax-x="-20%"
-                    >
-                      {prefix}{' '}
-                      <em className="intro-slider-emphasis">{emphasis}</em>
-                    </span>
-                    {suffix && (
-                      <span
-                        className="intro-slider-headline-line"
-                        data-swiper-parallax-opacity="0"
-                        data-swiper-parallax-x="-30%"
-                      >
-                        {suffix}
-                      </span>
-                    )}
-                  </h2>
-                </div>
-
-                {/* Right Panel - Image + Text */}
-                <div className="intro-slider-right" data-swiper-parallax-y="35%">
-                  {/* Background Image with Ken Burns */}
-                  {imageUrl && (
+                  {/* Left Background Image with Sepia Filter */}
+                  {leftImageUrl && (
                     <div className="intro-slider-image-wrapper">
                       <div
-                        className={`intro-slider-image ${getKenBurnsClass(slide.kenBurnsDirection)}`}
-                        style={{ backgroundImage: `url(${imageUrl})` }}
+                        className={`intro-slider-image intro-slider-image-left ${getKenBurnsClass(slide.kenBurnsDirection)}`}
+                        style={{ backgroundImage: `url(${leftImageUrl})` }}
                       />
                       <div
                         className="intro-slider-image-overlay"
                         style={{ opacity: overlayOpacity / 100 }}
+                      />
+                    </div>
+                  )}
+
+                  {/* Headline Content */}
+                  <div className="intro-slider-left-content">
+                    {subtitle && (
+                      <span
+                        className="intro-slider-subtitle"
+                        data-swiper-parallax-opacity="0"
+                        data-swiper-parallax-y="-100%"
+                      >
+                        {subtitle}
+                      </span>
+                    )}
+                    <h2 className="intro-slider-headline">
+                      <span
+                        className="intro-slider-headline-line"
+                        data-swiper-parallax-opacity="0"
+                        data-swiper-parallax-x="-20%"
+                      >
+                        {prefix}{' '}
+                        <em className="intro-slider-emphasis">{emphasis}</em>
+                      </span>
+                      {suffix && (
+                        <span
+                          className="intro-slider-headline-line"
+                          data-swiper-parallax-opacity="0"
+                          data-swiper-parallax-x="-30%"
+                        >
+                          {suffix}
+                        </span>
+                      )}
+                    </h2>
+                  </div>
+                </div>
+
+                {/* Right Panel - Image + Text */}
+                <div className="intro-slider-right" data-swiper-parallax-y="35%">
+                  {/* Right Background Image with Hue-Rotate Filter */}
+                  {rightImageUrl && (
+                    <div className="intro-slider-image-wrapper">
+                      <div
+                        className="intro-slider-image intro-slider-image-right"
+                        style={{ backgroundImage: `url(${rightImageUrl})` }}
+                      />
+                      <div
+                        className="intro-slider-image-overlay intro-slider-image-overlay-right"
+                        style={{ opacity: (overlayOpacity + 20) / 100 }}
                       />
                     </div>
                   )}
