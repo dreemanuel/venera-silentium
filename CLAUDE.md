@@ -4,34 +4,33 @@
 
 ## 🎯 QUICK START - NEW SESSION
 
-**🎉 ALL EPICS COMPLETE + INTRO SECTION IMPLEMENTED**
+**🚧 IntroSlider IN PROGRESS - Animation fixes needed**
 
-**Latest Session: January 21, 2026**
-- ✅ New IntroSection component with brand introduction
-- ✅ Hero section simplified (removed quote, increased CTA spacing)
-- ✅ Primary button text color updated to vanilla-custard
-- ✅ Translations added for EN, RU, ID
-- ✅ Terminology research documented (Cosmetologist vs Aesthetic Physician)
+**Latest Session: January 23, 2026**
+- ✅ IntroSlider component developed in feature worktree (scroll hijacking, Ken Burns, filters)
+- ✅ IntroSection moved from home page to about page
+- ✅ Committed and pushed IntroSection relocation to main
+- 🚧 IntroSlider has stuttery animations - needs fixing before merge
 
 **What Was Accomplished:**
-- ✅ **IntroSection:** New component between Hero and Services
-  - Quote + Attribution → Two Pillars → Body Text → Stats Bar
-  - Full-width dark stats bar with trust metrics
-  - Framer Motion animations with staggered reveal
-- ✅ **Hero Simplification:** Brand name + tagline + CTAs only
-  - Tagline updated to "Injecting beauty through inner harmony"
-  - CTA buttons pushed down with `mt-16 md:mt-24`
-- ✅ **Button Styling:** Primary button text changed to vanilla-custard
-- ✅ **Documentation:** Brand notes consolidated, terminology research complete
+- ✅ **IntroSlider (Feature Worktree):**
+  - Vertical Swiper with parallax effects
+  - Scroll hijacking with snap-to-top behavior
+  - Ken Burns zoom animation on left image
+  - Brightness/blur filter on right image for text readability
+  - Stats bar moved above slider for visual separation
+- ✅ **Main Worktree:**
+  - IntroSection moved to about page (after AboutPreview)
+  - IntroSection removed from home page (prep for IntroSlider)
 
-**⚠️ UNCOMMITTED CHANGES:**
-- Button.tsx color change (vanilla-custard)
-- Clean up `.bak` backup files before committing
+**⏳ NEXT SESSION:**
+- Fix IntroSlider animation stuttering in feature worktree
+- Merge IntroSlider to main once smooth
 
 **What to Read First:**
-1. `/venera_docs/devlogs/DEVLOG-JAN21-2026-INTRO-SECTION-COMPLETE.md` - Latest session
-2. `/venera_docs/venera-web_silentium/__updated-project-notes.md` - Brand documentation
-3. This file (continue reading below)
+1. `/venera_docs/devlogs/DEVLOG-JAN23-2026-INTRO-SLIDER-PROGRESS.md` - Latest session ⭐
+2. Plan file: `/home/andre/.claude/plans/effervescent-zooming-zephyr.md` - Implementation plan
+3. Feature worktree: `/home/andre/Documents/_personal-projects/venera-intro-slider`
 
 **Production Site:** Deployed to Vercel (auto-deploy from main branch)
 
@@ -356,44 +355,42 @@ When starting a new session:
 
 ## Recent Session Log
 
+### January 23, 2026 - IntroSlider Development & IntroSection Move
+**Status:** 🚧 IN PROGRESS (IntroSlider animation needs fixing)
+**Branch:** `main`
+**Commit:** `b07baf8` - refactor: Move IntroSection from home page to about page
+
+**Key Changes:**
+1. **IntroSlider (Feature Worktree - NOT MERGED)**
+   - Location: `/home/andre/Documents/_personal-projects/venera-intro-slider`
+   - Vertical Swiper with scroll hijacking and snap-to-top
+   - Ken Burns zoom on left image, blur/darken on right image
+   - Stats bar above slider for visual separation
+   - ⚠️ Has stuttery animations - needs fixing
+
+2. **IntroSection Moved to About Page**
+   - Removed from `app/routes/$lang/home.tsx`
+   - Added to `app/routes/$lang/about.tsx` (after AboutPreview)
+   - Prepares home page for future IntroSlider integration
+
+**Next Session:**
+- Fix IntroSlider animation stuttering
+- Merge IntroSlider to main once smooth
+
+**DEVLOG:** `venera_docs/devlogs/DEVLOG-JAN23-2026-INTRO-SLIDER-PROGRESS.md`
+
+---
+
 ### January 21, 2026 - IntroSection Implementation
-**Status:** COMPLETE (button color uncommitted)
+**Status:** COMPLETE
 **Branch:** `main`
 **Commit:** `391ef76` - feat: Add IntroSection component with brand introduction
 
 **Key Changes:**
-1. **IntroSection Component** (NEW)
-   - File: `app/components/sections/IntroSection.tsx` (+145 lines)
-   - Quote with attribution, two pillars, body text, stats bar
-   - Full-width dark `bg-deep-slate` stats bar
-   - Framer Motion animations with stagger
-
-2. **Hero Section Simplification**
-   - Removed quote (moved to IntroSection)
-   - Updated tagline: "Injecting beauty through inner harmony"
-   - Increased CTA spacing: `mt-16 md:mt-24`
-
-3. **Button Color Update** (uncommitted)
-   - File: `app/components/ui/Button.tsx:27`
-   - Primary text: `text-vanilla-custard` on `bg-deep-slate`
-
-4. **Translations Added**
-   - EN, RU, ID locales updated with intro section content
-   - Hero tagline updated in all locales
-
-5. **Documentation Created**
-   - `venera_docs/venera-web_silentium/__updated-project-notes.md` - Brand documentation
-   - `venera_docs/venera-web_silentium/__terminology-research.md` - Cosmetology vs Aesthetic Physician
-   - `venera_docs/prototypes/intro-section-final.html` - Design prototype
-
-**Design Decisions:**
-- Section order: Hero → IntroSection → Services (hook visitors before services)
-- Stats: 10+ Years | 5,000+ Women | MD Certified | 100% Natural
-- Pillars show icons only (removed descriptions to reduce text density)
-
-**Files Modified:** 10+ files
-
-**Next:** Commit button color change, clean up .bak files
+1. **IntroSection Component** - Quote + pillars + stats bar
+2. **Hero Simplification** - Removed quote, updated tagline
+3. **Button Color** - `text-vanilla-custard` on primary buttons
+4. **Documentation** - Brand notes, terminology research
 
 ---
 
