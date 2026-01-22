@@ -4,6 +4,7 @@ import type { Route } from './+types/home';
 import {
   HeroSection,
   IntroSection,
+  IntroSlider,
   AboutPreview,
   SilentiumPhilosophy,
   ServicesGallery,
@@ -177,20 +178,33 @@ export default function Home() {
       />
 
       {/* Intro Section - Brand Introduction */}
-      <IntroSection
-        quote={t('intro.quote')}
-        attribution={t('intro.attribution')}
-        bodyParagraph1={t('intro.body1')}
-        bodyParagraph2={t('intro.body2')}
-        pillarLeftTitle={t('intro.pillarBeauty')}
-        pillarRightTitle={t('intro.pillarWellness')}
-        stats={[
-          { value: '10+', label: t('intro.stats.experience') },
-          { value: '5,000+', label: t('intro.stats.clients') },
-          { value: 'MD', label: t('intro.stats.certified') },
-          { value: '100%', label: t('intro.stats.natural') },
-        ]}
-      />
+      {siteSettings?.introSliderEnabled && siteSettings?.introSlides && siteSettings.introSlides.length > 0 ? (
+        <IntroSlider
+          slides={siteSettings.introSlides}
+          lang={lang}
+          stats={[
+            { value: '10+', label: t('intro.stats.experience') },
+            { value: '5,000+', label: t('intro.stats.clients') },
+            { value: 'MD', label: t('intro.stats.certified') },
+            { value: '100%', label: t('intro.stats.natural') },
+          ]}
+        />
+      ) : (
+        <IntroSection
+          quote={t('intro.quote')}
+          attribution={t('intro.attribution')}
+          bodyParagraph1={t('intro.body1')}
+          bodyParagraph2={t('intro.body2')}
+          pillarLeftTitle={t('intro.pillarBeauty')}
+          pillarRightTitle={t('intro.pillarWellness')}
+          stats={[
+            { value: '10+', label: t('intro.stats.experience') },
+            { value: '5,000+', label: t('intro.stats.clients') },
+            { value: 'MD', label: t('intro.stats.certified') },
+            { value: '100%', label: t('intro.stats.natural') },
+          ]}
+        />
+      )}
 
       {/* Services Preview Section */}
       {showServices && (

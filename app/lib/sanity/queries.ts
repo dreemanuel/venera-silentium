@@ -31,6 +31,21 @@ export const siteSettingsQuery = groq`
     socialLinks,
     seoTitle,
     seoDescription,
+    introSliderEnabled,
+    introSlides[] {
+      _key,
+      headlinePrefix,
+      headlineEmphasis,
+      headlineSuffix,
+      subtitle,
+      paragraph,
+      backgroundImage {
+        ...,
+        "alt": alt
+      },
+      kenBurnsDirection,
+      overlayOpacity
+    },
     aboutDrVenera {
       photo,
       slideshowEnabled,

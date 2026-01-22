@@ -84,6 +84,19 @@ export interface AboutMediaItem {
   duration?: number;
 }
 
+// Intro slider types
+export interface IntroSlide {
+  _key: string;
+  headlinePrefix?: LocalizedString;
+  headlineEmphasis?: LocalizedString;
+  headlineSuffix?: LocalizedString;
+  subtitle?: LocalizedString;
+  paragraph?: LocalizedText;
+  backgroundImage?: SanityImage & { alt?: string };
+  kenBurnsDirection?: KenBurnsDirection;
+  overlayOpacity?: number;
+}
+
 export interface SocialLinks {
   instagram?: string;
   facebook?: string;
@@ -142,6 +155,9 @@ export interface SiteSettings {
   heroSlideshowEnabled?: boolean;
   heroMedia?: HeroMediaItem[];
   heroSlideshowInterval?: number;
+  // Intro slider fields
+  introSliderEnabled?: boolean;
+  introSlides?: IntroSlide[];
   // Contact fields
   contactEmail?: string;
   contactPhone?: string;

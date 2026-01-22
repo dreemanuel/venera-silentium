@@ -114,6 +114,26 @@ export const siteSettings = defineType({
       title: 'Default SEO Description',
       type: 'localizedString',
     }),
+    // Intro Slider Section
+    defineField({
+      name: 'introSliderEnabled',
+      title: 'Enable Intro Slider',
+      type: 'boolean',
+      description: 'Toggle between static intro section and animated slider',
+      initialValue: false,
+    }),
+    defineField({
+      name: 'introSlides',
+      title: 'Intro Slides',
+      type: 'array',
+      of: [{ type: 'introSlide' }],
+      description: 'Add slides for the intro section slider (3 recommended)',
+      options: {
+        sortable: true,
+      },
+      hidden: ({ document }) => !document?.introSliderEnabled,
+      validation: (Rule) => Rule.max(5).warning('Consider limiting to 5 slides for optimal UX'),
+    }),
     // Section Visibility Toggles
     defineField({
       name: 'sectionVisibility',
