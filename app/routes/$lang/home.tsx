@@ -3,7 +3,6 @@ import { useLoaderData } from 'react-router';
 import type { Route } from './+types/home';
 import {
   HeroSection,
-  IntroSection,
   AboutPreview,
   SilentiumPhilosophy,
   ServicesGallery,
@@ -174,22 +173,6 @@ export default function Home() {
         slideshowEnabled={heroSlideshowEnabled}
         media={heroMedia}
         slideshowInterval={heroSlideshowInterval}
-      />
-
-      {/* Intro Section - Brand Introduction */}
-      <IntroSection
-        quote={t('intro.quote')}
-        attribution={t('intro.attribution')}
-        bodyParagraph1={t('intro.body1')}
-        bodyParagraph2={t('intro.body2')}
-        pillarLeftTitle={t('intro.pillarBeauty')}
-        pillarRightTitle={t('intro.pillarWellness')}
-        stats={[
-          { value: '10+', label: t('intro.stats.experience') },
-          { value: '5,000+', label: t('intro.stats.clients') },
-          { value: 'MD', label: t('intro.stats.certified') },
-          { value: '100%', label: t('intro.stats.natural') },
-        ]}
       />
 
       {/* Services Preview Section */}

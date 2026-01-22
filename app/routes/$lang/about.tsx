@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { useLoaderData } from 'react-router';
 import type { Route } from './+types/about';
 import { motion, type Variants } from 'framer-motion';
-import { AboutPreview, SilentiumPhilosophy, ContactCTA } from '~/components/sections';
+import { AboutPreview, IntroSection, SilentiumPhilosophy, ContactCTA } from '~/components/sections';
 import { sanityClient } from '~/lib/sanity/client.server';
 import {
   siteSettingsQuery,
@@ -117,6 +117,22 @@ export default function About() {
         ctaText={t('hero.cta')}
         ctaLink={`/${lang}/contact`}
         lang={lang}
+      />
+
+      {/* Intro Section - Brand Philosophy */}
+      <IntroSection
+        quote={t('intro.quote')}
+        attribution={t('intro.attribution')}
+        bodyParagraph1={t('intro.body1')}
+        bodyParagraph2={t('intro.body2')}
+        pillarLeftTitle={t('intro.pillarBeauty')}
+        pillarRightTitle={t('intro.pillarWellness')}
+        stats={[
+          { value: '10+', label: t('intro.stats.experience') },
+          { value: '5,000+', label: t('intro.stats.clients') },
+          { value: 'MD', label: t('intro.stats.certified') },
+          { value: '100%', label: t('intro.stats.natural') },
+        ]}
       />
 
       {/* Silentium Philosophy - Full Section */}
