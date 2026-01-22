@@ -230,14 +230,17 @@ ok i have finished inputting the text in the slides and published.
 
 a few things that are not quite right with this intro section now:
 
-we have now included 2 images for the 2 blocks in each slide. but i dont see the paragraph text being displayed. I only see the
-headline and subtitle displayed on the left block in each slide.
+- we have now included 2 images for the 2 blocks in each slide. but i dont see the paragraph text being displayed. I only see the
+  headline and subtitle displayed on the left block in each slide.
 
-I also dont see any ken burns zoom effect taking place.
+- I also dont see any ken burns zoom effect taking place.
 
 the scroll animations are solid.
 
-but the images on the right block are given an overlay that turns skin tones into green (image 4).
-upon closer inspection, the image on the right seems to have one overlay when first sliding into view, but it turns the skin tones
-purple. then it turns into a somewhat normal color, but when it fully locks into place it then is given the green overlay i mentioned
-earlier.
+- but the images on the right block are given an overlay that turns skin tones into green (image 4).
+  upon closer inspection, the image on the right seems to have one overlay when first sliding into view, but it turns the skin tones
+  purple. then it turns into a somewhat normal color, but when it fully locks into place it then is given the green overlay i mentioned
+  earlier.
+
+- improvement for usability:
+  can we sticky snap the section to the top of the viewport when the section gets into view, then lock it in place so the user cannot scroll any further until all the slides have been scrolled through?

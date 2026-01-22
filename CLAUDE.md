@@ -4,34 +4,30 @@
 
 ## 🎯 QUICK START - NEW SESSION
 
-**🎉 ALL EPICS COMPLETE + INTRO SECTION IMPLEMENTED**
+**🚧 IntroSlider Swiper Implementation IN PROGRESS (~85% Complete)**
 
-**Latest Session: January 21, 2026**
-- ✅ New IntroSection component with brand introduction
-- ✅ Hero section simplified (removed quote, increased CTA spacing)
-- ✅ Primary button text color updated to vanilla-custard
-- ✅ Translations added for EN, RU, ID
-- ✅ Terminology research documented (Cosmetologist vs Aesthetic Physician)
+**Latest Session: January 23, 2026**
+- ✅ Built IntroSlider component with Swiper.js vertical carousel
+- ✅ Created introSlide Sanity schema with dual-image support
+- ✅ Added 400+ lines of custom CSS with parallax effects
+- ✅ Created content documentation with EN/RU/ID translations
+- ✅ Pushed feature branch to remote
+- 🚧 **Visual bugs to fix:** Paragraph not showing, Ken Burns not working, hue-rotate filter issues
 
-**What Was Accomplished:**
-- ✅ **IntroSection:** New component between Hero and Services
-  - Quote + Attribution → Two Pillars → Body Text → Stats Bar
-  - Full-width dark stats bar with trust metrics
-  - Framer Motion animations with staggered reveal
-- ✅ **Hero Simplification:** Brand name + tagline + CTAs only
-  - Tagline updated to "Injecting beauty through inner harmony"
-  - CTA buttons pushed down with `mt-16 md:mt-24`
-- ✅ **Button Styling:** Primary button text changed to vanilla-custard
-- ✅ **Documentation:** Brand notes consolidated, terminology research complete
-
-**⚠️ UNCOMMITTED CHANGES:**
-- Button.tsx color change (vanilla-custard)
-- Clean up `.bak` backup files before committing
+**⚠️ ACTIVE FEATURE BRANCH:**
+- **Branch:** `feature/intro-swiper-slider`
+- **Worktree:** `/home/andre/Documents/_personal-projects/venera-intro-slider`
+- **PR Ready:** https://github.com/dreemanuel/venera-silentium/pull/new/feature/intro-swiper-slider
 
 **What to Read First:**
-1. `/venera_docs/devlogs/DEVLOG-JAN21-2026-INTRO-SECTION-COMPLETE.md` - Latest session
-2. `/venera_docs/venera-web_silentium/__updated-project-notes.md` - Brand documentation
+1. `/venera_docs/devlogs/DEVLOG-JAN23-2026-INTRO-SLIDER-SWIPER-IN-PROGRESS.md` ⭐ **START HERE**
+2. `/venera_docs/intro-slider-content.md` - Slide content and known issues
 3. This file (continue reading below)
+
+**⚠️ IMMEDIATE NEXT STEPS:**
+1. Fix paragraph text visibility (z-index issue)
+2. Fix Ken Burns animation (CSS class not triggering)
+3. Replace hue-rotate filter with skin-tone-safe alternative
 
 **Production Site:** Deployed to Vercel (auto-deploy from main branch)
 
@@ -42,17 +38,20 @@
 npm run sanity        # Local Sanity Studio at localhost:3333
 ```
 
-**Current Branch:** `main`
+**Current Branch:** `feature/intro-swiper-slider` (worktree)
+**Main Branch:** `main`
 **Repository:** https://github.com/dreemanuel/venera-silentium
 
-**Quick Commands:**
+**Quick Commands (use worktree for IntroSlider work):**
 ```bash
-cd /home/andre/Documents/_personal-projects/venera-cosmetology
-npm run dev        # Start dev server at localhost:5173
-npm run sanity     # Sanity Studio at localhost:3333
-npm run build      # Production build
-npm run typecheck  # TypeScript check
-npm run lint       # ESLint
+# Navigate to worktree
+cd /home/andre/Documents/_personal-projects/venera-intro-slider
+
+# Start dev server
+npm run dev
+
+# Start Sanity Studio (if needed)
+cd sanity && npx sanity dev
 ```
 
 ---
@@ -355,6 +354,45 @@ When starting a new session:
 ---
 
 ## Recent Session Log
+
+### January 23, 2026 - IntroSlider Swiper Implementation
+**Status:** IN PROGRESS (~85% - visual bugs to fix)
+**Branch:** `feature/intro-swiper-slider`
+**Worktree:** `/home/andre/Documents/_personal-projects/venera-intro-slider`
+**Commits:** 5 new commits (see DEVLOG for details)
+
+**Key Changes:**
+1. **IntroSlider Component** (NEW)
+   - File: `app/components/sections/IntroSlider.tsx` (+214 lines)
+   - Vertical Swiper with parallax, mousewheel, pagination
+   - Split-screen layout: headline left, image+text right
+   - Conditional rendering with IntroSection fallback
+
+2. **Sanity Schema - introSlide** (NEW)
+   - File: `sanity/schemas/objects/introSlide.ts` (+109 lines)
+   - Dual-image support (leftImage + rightImage)
+   - Localized text fields (EN/RU/ID)
+   - Ken Burns animation options
+
+3. **Custom CSS** (+406 lines in app.css)
+   - Sepia → color transition on left image
+   - Hue-rotate effect on right image (needs fix)
+   - Ken Burns animations
+   - Stats bar styling
+
+4. **Content Documentation** (NEW)
+   - File: `venera_docs/intro-slider-content.md` (+243 lines)
+   - All 3 slides with EN/RU/ID translations
+   - Image recommendations
+
+**Known Issues to Fix:**
+- Paragraph text not displaying on right panel
+- Ken Burns zoom effect not triggering
+- Hue-rotate filter causing unnatural skin tones
+
+**Next:** Fix visual bugs, then merge to main
+
+---
 
 ### January 21, 2026 - IntroSection Implementation
 **Status:** COMPLETE (button color uncommitted)
