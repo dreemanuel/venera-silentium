@@ -48,7 +48,7 @@ Each slide contains:
 
 | Field                 | Content                                                                                                                                                                                                                       |
 | --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Subtitle**          | Наша Философия                                                                                                                                                                                                                     |
+| **Subtitle**          | Наша Философия                                                                                                                                                                                                                |
 | **Headline Prefix**   | Святилище                                                                                                                                                                                                                     |
 | **Headline Emphasis** | Тихой                                                                                                                                                                                                                         |
 | **Headline Suffix**   | Красоты                                                                                                                                                                                                                       |
@@ -58,7 +58,7 @@ Each slide contains:
 
 | Field                 | Content                                                                                                                                                                                                                                                                           |
 | --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Subtitle**          | Filosofi Kami                                                                                                                                                                                                                                                                          |
+| **Subtitle**          | Filosofi Kami                                                                                                                                                                                                                                                                     |
 | **Headline Prefix**   | Sebuah                                                                                                                                                                                                                                                                            |
 | **Headline Emphasis** | Sanctuary                                                                                                                                                                                                                                                                         |
 | **Headline Suffix**   | Kecantikan Sunyi                                                                                                                                                                                                                                                                  |
@@ -89,7 +89,7 @@ Each slide contains:
 
 | Field                 | Content                                                                                                                                                                                                                |
 | --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Subtitle**          | Наш Подход                                                                                                                                                                                                                 |
+| **Subtitle**          | Наш Подход                                                                                                                                                                                                             |
 | **Headline Prefix**   | Где                                                                                                                                                                                                                    |
 | **Headline Emphasis** | Наука                                                                                                                                                                                                                  |
 | **Headline Suffix**   | Встречает Дух                                                                                                                                                                                                          |
@@ -99,7 +99,7 @@ Each slide contains:
 
 | Field                 | Content                                                                                                                                                                                                                              |
 | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Subtitle**          | Pendekatan Kami                                                                                                                                                                                                                           |
+| **Subtitle**          | Pendekatan Kami                                                                                                                                                                                                                      |
 | **Headline Prefix**   | Di mana                                                                                                                                                                                                                              |
 | **Headline Emphasis** | Sains                                                                                                                                                                                                                                |
 | **Headline Suffix**   | Bertemu Jiwa                                                                                                                                                                                                                         |
@@ -130,7 +130,7 @@ Each slide contains:
 
 | Field                 | Content                                                                                                                                                                                                              |
 | --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Subtitle**          | Наше Обещание                                                                                                                                                                                                             |
+| **Subtitle**          | Наше Обещание                                                                                                                                                                                                        |
 | **Headline Prefix**   | _(empty)_                                                                                                                                                                                                            |
 | **Headline Emphasis** | Естественный                                                                                                                                                                                                         |
 | **Headline Suffix**   | Результат, Всегда                                                                                                                                                                                                    |
@@ -225,3 +225,19 @@ Original inspiration: Slider with parallax and filter transitions
 ---
 
 _Last updated: January 2026_
+
+ok i have finished inputting the text in the slides and published.
+
+a few things that are not quite right with this intro section now:
+
+we have now included 2 images for the 2 blocks in each slide. but i dont see the paragraph text being displayed. I only see the
+headline and subtitle displayed on the left block in each slide.
+
+I also dont see any ken burns zoom effect taking place.
+
+the scroll animations are solid.
+
+but the images on the right block are given an overlay that turns skin tones into green (image 4).
+upon closer inspection, the image on the right seems to have one overlay when first sliding into view, but it turns the skin tones
+purple. then it turns into a somewhat normal color, but when it fully locks into place it then is given the green overlay i mentioned
+earlier.
