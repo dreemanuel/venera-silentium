@@ -3,3 +3,4 @@ export { localizedText } from './localizedText';
 export { portableText } from './portableText';
 export { heroMediaItem } from './heroMediaItem';
 export { aboutMediaItem } from './aboutMediaItem';
+export { introSlide } from './introSlide';

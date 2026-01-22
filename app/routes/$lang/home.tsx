@@ -3,6 +3,8 @@ import { useLoaderData } from 'react-router';
 import type { Route } from './+types/home';
 import {
   HeroSection,
+  IntroSlider,
+  IntroSection,
   AboutPreview,
   SilentiumPhilosophy,
   ServicesGallery,
@@ -99,6 +101,10 @@ export default function Home() {
   const heroMedia = siteSettings?.heroMedia ?? [];
   const heroSlideshowInterval = siteSettings?.heroSlideshowInterval ?? 6;
 
+  // IntroSlider settings
+  const introSliderEnabled = siteSettings?.introSliderEnabled ?? false;
+  const introSlides = siteSettings?.introSlides ?? [];
+
   // WhatsApp number from site settings
   const whatsappNumber = siteSettings?.whatsappNumber;
 
@@ -175,6 +181,20 @@ export default function Home() {
         slideshowInterval={heroSlideshowInterval}
       />
 
+      {/* IntroSlider - Vertical Swiper Introduction */}
+      {introSliderEnabled && introSlides.length > 0 && (
+        <IntroSlider
+          slides={introSlides}
+          lang={lang}
+          stats={[
+            { value: '10+', label: t('intro.stats.experience') },
+            { value: '5,000+', label: t('intro.stats.clients') },
+            { value: 'MD', label: t('intro.stats.certified') },
+            { value: '100%', label: t('intro.stats.natural') },
+          ]}
+        />
+      )}
+
       {/* Services Preview Section */}
       {showServices && (
         featuredServices.length > 0 ? (
@@ -227,6 +247,22 @@ export default function Home() {
           slideshowInterval={aboutSlideshowInterval}
         />
       )}
+
+      {/* Intro Section - Brand Philosophy (below About image) */}
+      <IntroSection
+        quote={t('intro.quote')}
+        attribution={t('intro.attribution')}
+        bodyParagraph1={t('intro.body1')}
+        bodyParagraph2={t('intro.body2')}
+        pillarLeftTitle={t('intro.pillarBeauty')}
+        pillarRightTitle={t('intro.pillarWellness')}
+        stats={[
+          { value: '10+', label: t('intro.stats.experience') },
+          { value: '5,000+', label: t('intro.stats.clients') },
+          { value: 'MD', label: t('intro.stats.certified') },
+          { value: '100%', label: t('intro.stats.natural') },
+        ]}
+      />
 
       {/* Silentium Philosophy Section */}
       {showSilentiumPhilosophy && (

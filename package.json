@@ -29,6 +29,7 @@
   "dependencies": {
     "@heroui/react": "^2.8.5",
     "@hookform/resolvers": "^5.2.2",
+    "@portabletext/react": "^6.0.2",
     "@radix-ui/react-tabs": "^1.1.13",
     "@react-router/node": "7.10.1",
     "@react-router/serve": "7.10.1",
@@ -51,6 +52,7 @@
     "react-intersection-observer": "^10.0.0",
     "react-router": "7.10.1",
     "resend": "^6.5.2",
+    "swiper": "^12.0.3",
     "tailwind-merge": "^3.4.0"
   },
   "devDependencies": {

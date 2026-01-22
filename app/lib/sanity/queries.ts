@@ -24,6 +24,25 @@ export const siteSettingsQuery = groq`
       duration,
       kenBurnsDirection
     },
+    introSliderEnabled,
+    introSlides[] {
+      _key,
+      headlinePrefix,
+      headlineEmphasis,
+      headlineSuffix,
+      subtitle,
+      paragraph,
+      leftImage {
+        ...,
+        "alt": alt
+      },
+      rightImage {
+        ...,
+        "alt": alt
+      },
+      kenBurnsDirection,
+      overlayOpacity
+    },
     contactEmail,
     contactPhone,
     whatsappNumber,

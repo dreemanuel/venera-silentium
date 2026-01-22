@@ -60,6 +60,26 @@ export const siteSettings = defineType({
       type: 'localizedString',
       description: 'Call-to-action button text',
     }),
+    // Intro Slider Section
+    defineField({
+      name: 'introSliderEnabled',
+      title: 'Enable Intro Slider',
+      type: 'boolean',
+      description: 'Show the vertical intro slider section after the hero',
+      initialValue: false,
+    }),
+    defineField({
+      name: 'introSlides',
+      title: 'Intro Slides',
+      type: 'array',
+      of: [{ type: 'introSlide' }],
+      description: 'Add slides for the intro section (recommended: 3-5 slides)',
+      options: {
+        sortable: true,
+      },
+      hidden: ({ document }) => !document?.introSliderEnabled,
+      validation: (Rule) => Rule.max(5).warning('Consider limiting to 5 slides for optimal experience'),
+    }),
     defineField({
       name: 'contactEmail',
       title: 'Contact Email',
