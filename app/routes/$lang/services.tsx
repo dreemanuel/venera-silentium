@@ -6,7 +6,9 @@ import { ServicesGallery, ContactCTA } from '~/components/sections';
 import { sanityClient } from '~/lib/sanity/client.server';
 import {
   servicesQuery,
+  serviceCategoriesQuery,
   type Service,
+  type ServiceCategoryDoc,
   type Language,
 } from '~/lib/sanity';
 import { generateMeta, pageSeo, getOgLocale, SITE_URL } from '~/lib/seo';
@@ -14,15 +16,20 @@ import { generateMeta, pageSeo, getOgLocale, SITE_URL } from '~/lib/seo';
 export async function loader({ params }: Route.LoaderArgs) {
   const lang = (params.lang || 'en') as Language;
 
-  // Fetch all services
+  // Fetch services and categories in parallel
   let services: Service[] = [];
+  let categories: ServiceCategoryDoc[] = [];
+
   try {
-    services = await sanityClient.fetch<Service[]>(servicesQuery);
+    [services, categories] = await Promise.all([
+      sanityClient.fetch<Service[]>(servicesQuery),
+      sanityClient.fetch<ServiceCategoryDoc[]>(serviceCategoriesQuery),
+    ]);
   } catch {
-    console.log('Failed to fetch services from Sanity');
+    console.log('Failed to fetch services/categories from Sanity');
   }
 
-  return { services, lang };
+  return { services, categories, lang };
 }
 
 export function meta({ params }: Route.MetaArgs) {
@@ -39,7 +46,7 @@ export function meta({ params }: Route.MetaArgs) {
 
 export default function Services() {
   const { t } = useTranslation();
-  const { services, lang } = useLoaderData<typeof loader>();
+  const { services, categories, lang } = useLoaderData<typeof loader>();
 
   return (
     <>
@@ -72,6 +79,7 @@ export default function Services() {
       {services.length > 0 ? (
         <ServicesGallery
           services={services}
+          categories={categories}
           lang={lang}
           showCategories={true}
         />

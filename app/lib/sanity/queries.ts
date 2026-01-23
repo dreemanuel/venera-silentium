@@ -96,6 +96,18 @@ export const siteSettingsQuery = groq`
   }
 `;
 
+// All Service Categories Query
+export const serviceCategoriesQuery = groq`
+  *[_type == "serviceCategory"] | order(order asc) {
+    _id,
+    key,
+    title,
+    description,
+    order,
+    image
+  }
+`;
+
 // All Services Query (for services listing)
 export const servicesQuery = groq`
   *[_type == "service"] | order(order asc) {
@@ -105,6 +117,7 @@ export const servicesQuery = groq`
     category,
     shortDescription,
     image,
+    gallery,
     featured,
     order
   }

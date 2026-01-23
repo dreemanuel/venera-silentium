@@ -172,6 +172,12 @@ p {
   box-shadow: var(--shadow-glass-lg);
 }
 
+@utility glass-overlay {
+  background: rgba(254, 250, 224, 0.75);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+}
+
 /* Selection Styles */
 ::selection {
   background-color: var(--color-tea-green);
@@ -501,6 +507,7 @@ p {
   color: var(--color-cornsilk);
   font-family: var(--font-body);
   font-size: 1.25rem;
+  font-style: italic;
   line-height: 1.8;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }

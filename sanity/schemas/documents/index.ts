@@ -1,5 +1,6 @@
 export { siteSettings } from './siteSettings';
 export { service } from './service';
+export { serviceCategory } from './serviceCategory';
 export { page } from './page';
 export { testimonial } from './testimonial';
 export { blogPost } from './blogPost';

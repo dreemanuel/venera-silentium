@@ -174,13 +174,25 @@ export interface SiteSettings {
   contactCTA?: ContactCTASettings;
 }
 
-export type ServiceCategory =
+export type ServiceCategoryKey =
   | 'anti-aging-injectables'
   | 'skin-rejuvenation'
   | 'problem-specific'
   | 'specialized'
   | 'preparatory'
   | 'consultation';
+
+// Keep ServiceCategory as alias for backward compatibility
+export type ServiceCategory = ServiceCategoryKey;
+
+export interface ServiceCategoryDoc {
+  _id: string;
+  key: ServiceCategoryKey;
+  title: LocalizedString;
+  description?: LocalizedString;
+  order: number;
+  image?: SanityImage;
+}
 
 export interface Service {
   _id: string;
