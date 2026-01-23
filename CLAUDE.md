@@ -4,33 +4,23 @@
 
 ## 🎯 QUICK START - NEW SESSION
 
-**🚧 IntroSlider IN PROGRESS - Animation fixes needed**
+**✅ IntroSlider MERGED + IntroSection Reorganized**
 
 **Latest Session: January 23, 2026**
-- ✅ IntroSlider component developed in feature worktree (scroll hijacking, Ken Burns, filters)
-- ✅ IntroSection moved from home page to about page
-- ✅ Committed and pushed IntroSection relocation to main
-- 🚧 IntroSlider has stuttery animations - needs fixing before merge
+- ✅ IntroSlider merged to main (with all Sanity schemas)
+- ✅ IntroSection moved to home page (below AboutPreview)
+- ✅ All dependencies installed, TypeScript compiles
+- ⚠️ IntroSlider has slightly stuttery animations (future fix)
 
-**What Was Accomplished:**
-- ✅ **IntroSlider (Feature Worktree):**
-  - Vertical Swiper with parallax effects
-  - Scroll hijacking with snap-to-top behavior
-  - Ken Burns zoom animation on left image
-  - Brightness/blur filter on right image for text readability
-  - Stats bar moved above slider for visual separation
-- ✅ **Main Worktree:**
-  - IntroSection moved to about page (after AboutPreview)
-  - IntroSection removed from home page (prep for IntroSlider)
+**Home Page Section Order:**
+1. HeroSection → 2. **IntroSlider** (if enabled) → 3. Services → 4. Gallery → 5. AboutPreview → 6. **IntroSection** → 7. SilentiumPhilosophy → ...
 
-**⏳ NEXT SESSION:**
-- Fix IntroSlider animation stuttering in feature worktree
-- Merge IntroSlider to main once smooth
+**To Enable IntroSlider:**
+1. `npm run sanity` → Site Settings → Enable Intro Slider → Add slides
 
 **What to Read First:**
-1. `/venera_docs/devlogs/DEVLOG-JAN23-2026-INTRO-SLIDER-PROGRESS.md` - Latest session ⭐
-2. Plan file: `/home/andre/.claude/plans/effervescent-zooming-zephyr.md` - Implementation plan
-3. Feature worktree: `/home/andre/Documents/_personal-projects/venera-intro-slider`
+1. `/venera_docs/devlogs/DEVLOG-JAN23-2026-INTRO-SLIDER-MERGED.md` - Latest session ⭐
+2. This file (section order and brand specs below)
 
 **Production Site:** Deployed to Vercel (auto-deploy from main branch)
 
@@ -355,29 +345,26 @@ When starting a new session:
 
 ## Recent Session Log
 
-### January 23, 2026 - IntroSlider Development & IntroSection Move
-**Status:** 🚧 IN PROGRESS (IntroSlider animation needs fixing)
+### January 23, 2026 - IntroSlider Merged & IntroSection Reorganized
+**Status:** ✅ COMPLETE
 **Branch:** `main`
-**Commit:** `b07baf8` - refactor: Move IntroSection from home page to about page
+**Commit:** `be4b6fa` - feat: Add IntroSlider component and reorganize IntroSection
 
 **Key Changes:**
-1. **IntroSlider (Feature Worktree - NOT MERGED)**
-   - Location: `/home/andre/Documents/_personal-projects/venera-intro-slider`
-   - Vertical Swiper with scroll hijacking and snap-to-top
-   - Ken Burns zoom on left image, blur/darken on right image
-   - Stats bar above slider for visual separation
-   - ⚠️ Has stuttery animations - needs fixing
+1. **IntroSlider Merged to Main**
+   - Installed swiper + @portabletext/react dependencies
+   - Added IntroSlider.tsx component (351 lines)
+   - Added IntroSlider CSS (~470 lines)
+   - Added Sanity schema + query for intro slides
+   - Enabled via Site Settings toggle in Sanity
 
-2. **IntroSection Moved to About Page**
-   - Removed from `app/routes/$lang/home.tsx`
-   - Added to `app/routes/$lang/about.tsx` (after AboutPreview)
-   - Prepares home page for future IntroSlider integration
+2. **IntroSection Reorganized**
+   - Removed from about page
+   - Added to home page (below AboutPreview section)
 
-**Next Session:**
-- Fix IntroSlider animation stuttering
-- Merge IntroSlider to main once smooth
+**Home Page Order:** Hero → IntroSlider (if enabled) → Services → Gallery → AboutPreview → IntroSection → SilentiumPhilosophy → ...
 
-**DEVLOG:** `venera_docs/devlogs/DEVLOG-JAN23-2026-INTRO-SLIDER-PROGRESS.md`
+**DEVLOG:** `venera_docs/devlogs/DEVLOG-JAN23-2026-INTRO-SLIDER-MERGED.md`
 
 ---
 
