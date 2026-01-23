@@ -4,23 +4,29 @@
 
 ## 🎯 QUICK START - NEW SESSION
 
-**✅ IntroSlider MERGED + IntroSection Reorganized**
+**✅ Services Section Restructured with Category-First Accordion**
 
 **Latest Session: January 23, 2026**
-- ✅ IntroSlider merged to main (with all Sanity schemas)
-- ✅ IntroSection moved to home page (below AboutPreview)
-- ✅ All dependencies installed, TypeScript compiles
-- ⚠️ IntroSlider has slightly stuttery animations (future fix)
+- ✅ ServicesGallery refactored to category-first interaction model
+- ✅ ServiceCategory Sanity schema + seed script created
+- ✅ ServiceOverlay component with slide-up animation
+- ✅ Home page accordion behavior preserved
+- ✅ All rounded corners removed, fonts increased
 
-**Home Page Section Order:**
-1. HeroSection → 2. **IntroSlider** (if enabled) → 3. Services → 4. Gallery → 5. AboutPreview → 6. **IntroSection** → 7. SilentiumPhilosophy → ...
+**New Services Interaction:**
+1. Categories shown as collapsed accordion items
+2. Click category → shows description + service list
+3. Hover service → slideshow shows that service's images
+4. Click service → overlay appears with title + description
 
-**To Enable IntroSlider:**
-1. `npm run sanity` → Site Settings → Enable Intro Slider → Add slides
+**To Seed Categories:**
+```bash
+npm run seed:categories
+```
 
 **What to Read First:**
-1. `/venera_docs/devlogs/DEVLOG-JAN23-2026-INTRO-SLIDER-MERGED.md` - Latest session ⭐
-2. This file (section order and brand specs below)
+1. `/venera_docs/devlogs/DEVLOG-JAN23-2026-SERVICES-RESTRUCTURE-COMPLETE.md` - Latest session ⭐
+2. This file (brand specs below)
 
 **Production Site:** Deployed to Vercel (auto-deploy from main branch)
 
@@ -345,7 +351,32 @@ When starting a new session:
 
 ## Recent Session Log
 
-### January 23, 2026 - IntroSlider Merged & IntroSection Reorganized
+### January 23, 2026 - Services Section Restructure
+**Status:** ✅ COMPLETE
+**Branch:** `main`
+**Commit:** `907cf5e` - feat: Restructure Services section with category-first accordion
+
+**Key Changes:**
+1. **ServicesGallery Refactored**
+   - Category-first accordion (categories as top-level items)
+   - ServiceOverlay component with slide-up animation
+   - Service hover changes slideshow images
+   - Service click shows overlay with title + description
+
+2. **New Sanity Schema**
+   - ServiceCategory document type for CMS-managed categories
+   - Seed script: `npm run seed:categories`
+
+3. **UI Improvements**
+   - Removed all rounded corners
+   - Increased font sizes throughout
+   - Overlay: 40% height, golden-bronze title in Gilmoray font
+
+**DEVLOG:** `venera_docs/devlogs/DEVLOG-JAN23-2026-SERVICES-RESTRUCTURE-COMPLETE.md`
+
+---
+
+### January 23, 2026 (Earlier) - IntroSlider Merged & IntroSection Reorganized
 **Status:** ✅ COMPLETE
 **Branch:** `main`
 **Commit:** `be4b6fa` - feat: Add IntroSlider component and reorganize IntroSection
@@ -361,8 +392,6 @@ When starting a new session:
 2. **IntroSection Reorganized**
    - Removed from about page
    - Added to home page (below AboutPreview section)
-
-**Home Page Order:** Hero → IntroSlider (if enabled) → Services → Gallery → AboutPreview → IntroSection → SilentiumPhilosophy → ...
 
 **DEVLOG:** `venera_docs/devlogs/DEVLOG-JAN23-2026-INTRO-SLIDER-MERGED.md`
 
