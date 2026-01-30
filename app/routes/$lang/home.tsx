@@ -18,6 +18,7 @@ import { sanityClient } from '~/lib/sanity/client.server';
 import {
   siteSettingsQuery,
   servicesQuery,
+  serviceCategoriesQuery,
   featuredTestimonialsQuery,
   featuredBlogPostsQuery,
   brandsQuery,
@@ -26,6 +27,7 @@ import {
   urlFor,
   type SiteSettings,
   type Service,
+  type ServiceCategoryDoc,
   type Testimonial,
   type BlogPost,
   type Brand,
@@ -41,15 +43,17 @@ export async function loader({ params }: Route.LoaderArgs) {
   // Try to fetch from Sanity, but gracefully handle if not configured
   let siteSettings: SiteSettings | null = null;
   let featuredServices: Service[] = [];
+  let serviceCategories: ServiceCategoryDoc[] = [];
   let testimonials: Testimonial[] = [];
   let blogPosts: BlogPost[] = [];
   let brands: Brand[] = [];
   let galleryImages: GalleryImage[] = [];
 
   try {
-    const [settings, services, testimonialsData, blogData, brandsData, galleryData] = await Promise.all([
+    const [settings, services, categories, testimonialsData, blogData, brandsData, galleryData] = await Promise.all([
       sanityClient.fetch<SiteSettings>(siteSettingsQuery),
       sanityClient.fetch<Service[]>(servicesQuery),
+      sanityClient.fetch<ServiceCategoryDoc[]>(serviceCategoriesQuery),
       sanityClient.fetch<Testimonial[]>(featuredTestimonialsQuery),
       sanityClient.fetch<BlogPost[]>(featuredBlogPostsQuery),
       sanityClient.fetch<Brand[]>(brandsQuery),
@@ -57,6 +61,7 @@ export async function loader({ params }: Route.LoaderArgs) {
     ]);
     siteSettings = settings;
     featuredServices = services || [];
+    serviceCategories = categories || [];
     testimonials = testimonialsData || [];
     blogPosts = blogData || [];
     brands = brandsData || [];
@@ -67,7 +72,7 @@ export async function loader({ params }: Route.LoaderArgs) {
     console.log('Sanity fetch failed, using i18n fallback');
   }
 
-  return { siteSettings, featuredServices, testimonials, blogPosts, brands, galleryImages, lang };
+  return { siteSettings, featuredServices, serviceCategories, testimonials, blogPosts, brands, galleryImages, lang };
 }
 
 export function meta({ params }: Route.MetaArgs) {
@@ -85,7 +90,7 @@ export function meta({ params }: Route.MetaArgs) {
 
 export default function Home() {
   const { t } = useTranslation();
-  const { siteSettings, featuredServices, testimonials, blogPosts, brands, galleryImages, lang } = useLoaderData<typeof loader>();
+  const { siteSettings, featuredServices, serviceCategories, testimonials, blogPosts, brands, galleryImages, lang } = useLoaderData<typeof loader>();
 
   // Get Hero content from Sanity or fall back to i18n
   const heroTitle =
@@ -200,11 +205,13 @@ export default function Home() {
         featuredServices.length > 0 ? (
           <ServicesGallery
             services={featuredServices}
+            categories={serviceCategories}
             lang={lang}
             title={t('services.homeHeading')}
             subtitle={t('services.homeSubheading')}
-            showCategories={false}
+            showCategories={true}
             titleLink={`/${lang}/services`}
+            whatsappNumber={whatsappNumber}
           />
         ) : (
           <section className="py-20 bg-sand/30">

@@ -508,7 +508,7 @@ const services: ServiceSeed[] = [
       id: 'Terapi Exosome',
     },
     slug: { _type: 'slug', current: 'exosome' },
-    category: 'specialized',
+    category: 'skin-rejuvenation',
     shortDescription: {
       en: 'Advanced cellular regeneration therapy for deep skin renewal and rejuvenation.',
       ru: 'Передовая клеточная регенеративная терапия для глубокого обновления и омоложения кожи.',
@@ -548,7 +548,7 @@ const services: ServiceSeed[] = [
       id: 'Lipolitik',
     },
     slug: { _type: 'slug', current: 'lipolytics' },
-    category: 'specialized',
+    category: 'problem-specific',
     shortDescription: {
       en: 'The art of liberation—gentle injections helping the body release what weighs it down.',
       ru: 'Искусство освобождения — нежные инъекции, помогающие телу избавиться от того, что его тяготит.',
@@ -630,7 +630,7 @@ const services: ServiceSeed[] = [
       id: 'Pembersihan Wajah',
     },
     slug: { _type: 'slug', current: 'facial-cleansing' },
-    category: 'preparatory',
+    category: 'skin-rejuvenation',
     shortDescription: {
       en: 'A moment of gentle liberation where cleansing becomes a ritual of renewal.',
       ru: 'Момент нежного освобождения, когда очищение становится ритуалом обновления.',
@@ -661,6 +661,48 @@ const services: ServiceSeed[] = [
     duration: '60-75 minutes',
     order: 13,
     featured: false,
+  },
+
+  // Consultation
+  {
+    _type: 'service',
+    title: {
+      en: 'Free Consultation',
+      ru: 'Бесплатная консультация',
+      id: 'Konsultasi Gratis',
+    },
+    slug: { _type: 'slug', current: 'consultation' },
+    category: 'consultation',
+    shortDescription: {
+      en: 'Begin your journey with a complimentary consultation. We take time to understand your unique needs and craft a personalized treatment plan tailored just for you.',
+      ru: 'Начните свой путь с бесплатной консультации. Мы уделяем время, чтобы понять ваши уникальные потребности и создать персонализированный план лечения специально для вас.',
+      id: 'Mulai perjalanan Anda dengan konsultasi gratis. Kami meluangkan waktu untuk memahami kebutuhan unik Anda dan menyusun rencana perawatan yang dipersonalisasi khusus untuk Anda.',
+    },
+    description: {
+      en: createPortableText(
+        "Every journey to radiant beauty begins with understanding.\n\nOur complimentary consultation is a sacred space where we listen deeply to your desires, assess your unique features, and explore the possibilities together. Dr. Venera takes time to understand not just your skin, but your lifestyle, your concerns, and your vision of beauty.\n\nThis is where science meets intuition, where your story becomes the foundation for a personalized treatment plan crafted exclusively for you."
+      ),
+      ru: createPortableText(
+        "Каждый путь к сияющей красоте начинается с понимания.\n\nНаша бесплатная консультация — это священное пространство, где мы внимательно слушаем ваши желания, оцениваем ваши уникальные особенности и вместе исследуем возможности. Доктор Венера уделяет время, чтобы понять не только вашу кожу, но и ваш образ жизни, ваши заботы и ваше видение красоты.\n\nЗдесь наука встречается с интуицией, где ваша история становится основой для персонализированного плана лечения, созданного исключительно для вас."
+      ),
+      id: createPortableText(
+        "Setiap perjalanan menuju kecantikan yang bersinar dimulai dengan pemahaman.\n\nKonsultasi gratis kami adalah ruang sakral di mana kami mendengarkan dengan dalam keinginan Anda, menilai fitur unik Anda, dan menjelajahi kemungkinan bersama. Dr. Venera meluangkan waktu untuk memahami tidak hanya kulit Anda, tetapi gaya hidup, kekhawatiran, dan visi kecantikan Anda.\n\nDi sinilah sains bertemu intuisi, di mana cerita Anda menjadi fondasi untuk rencana perawatan yang dipersonalisasi yang dibuat khusus untuk Anda."
+      ),
+    },
+    benefits: [
+      { en: 'Personalized assessment', ru: 'Персонализированная оценка', id: 'Penilaian yang dipersonalisasi' },
+      { en: 'Expert recommendations', ru: 'Экспертные рекомендации', id: 'Rekomendasi ahli' },
+      { en: 'Customized treatment plan', ru: 'Индивидуальный план лечения', id: 'Rencana perawatan yang disesuaikan' },
+      { en: 'No obligation', ru: 'Без обязательств', id: 'Tanpa kewajiban' },
+    ],
+    idealFor: {
+      en: 'Anyone beginning their aesthetic journey or seeking expert guidance',
+      ru: 'Для всех, кто начинает свой эстетический путь или ищет экспертное руководство',
+      id: 'Siapa saja yang memulai perjalanan estetika atau mencari panduan ahli',
+    },
+    duration: '30-45 minutes',
+    order: 14,
+    featured: true,
   },
 ];
 

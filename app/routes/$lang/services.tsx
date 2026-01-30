@@ -7,8 +7,10 @@ import { sanityClient } from '~/lib/sanity/client.server';
 import {
   servicesQuery,
   serviceCategoriesQuery,
+  siteSettingsQuery,
   type Service,
   type ServiceCategoryDoc,
+  type SiteSettings,
   type Language,
 } from '~/lib/sanity';
 import { generateMeta, pageSeo, getOgLocale, SITE_URL } from '~/lib/seo';
@@ -16,20 +18,24 @@ import { generateMeta, pageSeo, getOgLocale, SITE_URL } from '~/lib/seo';
 export async function loader({ params }: Route.LoaderArgs) {
   const lang = (params.lang || 'en') as Language;
 
-  // Fetch services and categories in parallel
+  // Fetch services, categories, and site settings in parallel
   let services: Service[] = [];
   let categories: ServiceCategoryDoc[] = [];
+  let siteSettings: SiteSettings | null = null;
 
   try {
-    [services, categories] = await Promise.all([
+    [services, categories, siteSettings] = await Promise.all([
       sanityClient.fetch<Service[]>(servicesQuery),
       sanityClient.fetch<ServiceCategoryDoc[]>(serviceCategoriesQuery),
+      sanityClient.fetch<SiteSettings>(siteSettingsQuery),
     ]);
   } catch {
     console.log('Failed to fetch services/categories from Sanity');
   }
 
-  return { services, categories, lang };
+  const whatsappNumber = siteSettings?.whatsappNumber;
+
+  return { services, categories, lang, whatsappNumber };
 }
 
 export function meta({ params }: Route.MetaArgs) {
@@ -46,7 +52,7 @@ export function meta({ params }: Route.MetaArgs) {
 
 export default function Services() {
   const { t } = useTranslation();
-  const { services, categories, lang } = useLoaderData<typeof loader>();
+  const { services, categories, lang, whatsappNumber } = useLoaderData<typeof loader>();
 
   return (
     <>
@@ -82,6 +88,7 @@ export default function Services() {
           categories={categories}
           lang={lang}
           showCategories={true}
+          whatsappNumber={whatsappNumber}
         />
       ) : (
         <section className="py-20 bg-cornsilk">
@@ -100,7 +107,7 @@ export default function Services() {
         bookButtonText={t('contact.bookConsultation')}
         whatsappButtonText={t('contact.whatsappUs')}
         bookLink={`/${lang}/contact`}
-        whatsappNumber="yourphonenumber"
+        whatsappNumber={whatsappNumber}
         lang={lang}
       />
     </>
